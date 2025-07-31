@@ -7,7 +7,7 @@ namespace Content.Shared.Planets.Prototypes;
 /// This is a prototype for...
 /// </summary>
 [Prototype()]
-public sealed partial class PlanetSpawnRoomPrototype : IPrototype
+public sealed partial class PlanetSpawnGridPrototype : IPrototype
 {
     /// <inheritdoc/>
     [IdDataField]

@@ -5,20 +5,30 @@
   - type: PlanetSpawn
     path: "/Maps/Nonstations/miningoutpost.yml"
     biome: Lava
-    roomPool: LavalandRoomPool
+    gridPool: LavalandGridPool
 
-- type: planetSpawnRoomPool
-  id: LavalandRoomPool
-  rooms:
+- type: planetSpawnGridPool
+  id: LavalandGridPool
+  grids:
+  - LavalandTestRoom
+  - LavalandTestRoom3
+  - LavalandTestRoom
+  - LavalandTestRoom2
+  - LavalandTestRoom
   - LavalandTestRoom
   - LavalandTestRoom2
 
-- type: planetSpawnRoom
+- type: planetSpawnGrid
   id: LavalandTestRoom
   name: Test Room please ignore
   path: /Maps/Salvage/small-1.yml
 
-- type: planetSpawnRoom
+- type: planetSpawnGrid
   id: LavalandTestRoom2
   name: Test Room please ignore
   path: /Maps/Salvage/small-2.yml
+
+- type: planetSpawnGrid
+  id: LavalandTestRoom3
+  name: Test Room please ignore
+  path: /Maps/Salvage/small-3.yml
