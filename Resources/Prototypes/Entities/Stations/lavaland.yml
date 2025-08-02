@@ -14,6 +14,8 @@
   - LavalandBrokenCargo
   - LavalandCatwalkCrossroad
   - LavalandCaveMurder
+  - LavalandClownRoom
+  - LavalandCommieOutpost
 
 - type: planetSpawnGrid
   id: LavalandBait
