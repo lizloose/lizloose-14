@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Server.Parallax;
+using Content.Server.Procedural;
 using Content.Server.Station.Events;
 using Content.Server.Worldgen.Tools;
 using Content.Shared.Interaction;
@@ -16,8 +17,10 @@ namespace Content.Server.Planets;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class PlanetSystem : EntitySystem
+public sealed partial class PlanetSystem : EntitySystem
 {
+
+    private EntityQuery<MetaDataComponent> _metaQuery;
 
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
@@ -27,12 +30,15 @@ public sealed class PlanetSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly PoissonDiskSampler _sampler = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     private readonly List<(Vector2i, Tile)> _mapTiles = new();
 
     /// <inheritdoc/>
     public override void Initialize()
     {
+        _metaQuery = GetEntityQuery<MetaDataComponent>();
         SubscribeLocalEvent<PlanetSpawnComponent, StationPostInitEvent>(OnPlanetSpawnPostInit);
     }
 
@@ -48,7 +54,11 @@ public sealed class PlanetSystem : EntitySystem
 
         _biomes.EnsurePlanet(mapUid, _protoManager.Index(ent.Comp.Biome));
 
+        if (!TryComp<MapGridComponent>(mapUid, out var mapGrid))
+            return;
+
         //Ore time
+
         var biomeComp = EnsureComp<BiomeComponent>(mapUid);
         foreach (var layer in ent.Comp.OreLayers)
         {
@@ -58,43 +68,52 @@ public sealed class PlanetSystem : EntitySystem
         //TODO: Replace with the Ferry Shuttles
         AddComp<FTLDestinationComponent>(mapUid);
 
-        //Loading the station grid
-        if (!_mapLoader.TryLoadGrid(mapId, ent.Comp.Path, out var grid))
+        if (!_mapLoader.TryLoadGrid(mapId, ent.Comp.Path, out var stationGrid))
             return;
+        _transform.SetCoordinates(stationGrid.Value, new EntityCoordinates(mapUid, 0, 0));
 
-        //Ensuring no overlap of station and planet rocks
-        _mapTiles.Clear();
-        var bounds = Comp<MapGridComponent>(grid.Value).LocalAABB;
-        _biomes.ReserveTiles(mapUid, bounds, _mapTiles);
+        _map.InitializeMap(mapUid);
 
         if (!_protoManager.TryIndex(ent.Comp.GridPool,  out var gridPool))
             return;
 
+        var debrisPoints = GeneratePoints();
+        _random.Shuffle(debrisPoints);
 
-        var gridsCount = gridPool.Grids.Count;
+        var rotations = new List<int> {0, 90, 180, 270};
 
+        var worldRotation = _transform.GetWorldRotation(mapUid);
 
         foreach (var room in gridPool.Grids)
         {
-            var coordinates = new Vector2(_random.Next(30, gridPool.Distance), _random.Next(30, gridPool.Distance));
+            var originTransform = Matrix3Helpers.CreateTranslation(0f, 0f);
 
-            if ( _random.Next(1, 100) > 50)
-            {
-                coordinates.X *= -1;
-            }
-            var negative = _random.Next(1, 100);
-            if ( _random.Next(1, 100) > 50)
-            {
-                coordinates.Y *= -1;
-            }
+            var coords = _random.PickAndTake(debrisPoints);
+            Log.Debug("new coords" + coords.ToString());
 
-            if (!_mapLoader.TryLoadGrid(mapId, _protoManager.Index(room).Path, out var roomGrid))
-                continue;
+            LoadGrid(mapUid, mapGrid, coords, 0f, _protoManager.Index(room).Path);
 
-            _transform.SetCoordinates(roomGrid.Value, new EntityCoordinates(mapUid, coordinates.X, coordinates.Y));
-            var roomBounds = Comp<MapGridComponent>(roomGrid.Value).LocalAABB;
+            //var coordinates = Vector2.Round(_random.PickAndTake(debrisPoints));
+            //if (!_mapLoader.TryLoadGrid(mapId, _protoManager.Index(room).Path, out var roomGrid))
+            //    continue;
+            //_transform.SetCoordinates(roomGrid.Value, new EntityCoordinates(mapUid, coordinates.X, coordinates.Y));
+        }
+    }
+
+    private List<Vector2i> GeneratePoints()
+    {
+        var topLeft = new Vector2i(-100, -100);
+        var lowerRight = new Vector2i(100, 100);
+        var enumerator = _sampler.SampleRectangle(topLeft, lowerRight, 30f);
+
+        var gridPoints = new List<Vector2i>();
+
+        while (enumerator.MoveNext(out var debrisPoint))
+        {
+            gridPoints.Add(debrisPoint.Value.Ceiled());
         }
 
-        _map.InitializeMap(mapUid);
+        return gridPoints;
     }
+
 }
