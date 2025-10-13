@@ -10,25 +10,39 @@
 - type: planetSpawnGridPool
   id: LavalandGridPool
   grids:
-  - LavalandTestRoom
-  - LavalandTestRoom3
-  - LavalandTestRoom
-  - LavalandTestRoom2
-  - LavalandTestRoom
-  - LavalandTestRoom
-  - LavalandTestRoom2
+  - LavalandBait
+  - LavalandBrokenCargo
+  - LavalandCatwalkCrossroad
+  - LavalandCaveMurder
+  - LavalandClownRoom
+  - LavalandCommieOutpost
 
 - type: planetSpawnGrid
-  id: LavalandTestRoom
-  name: Test Room please ignore
-  path: /Maps/Salvage/small-1.yml
+  id: LavalandBait
+  name: bait
+  path: /Maps/Lavaland/bait.yml
 
 - type: planetSpawnGrid
-  id: LavalandTestRoom2
-  name: Test Room please ignore
-  path: /Maps/Salvage/small-2.yml
+  id: LavalandBrokenCargo
+  name: broken cargo
+  path: /Maps/Lavaland/broken_cargo.yml
 
 - type: planetSpawnGrid
-  id: LavalandTestRoom3
-  name: Test Room please ignore
-  path: /Maps/Salvage/small-3.yml
+  id: LavalandCatwalkCrossroad
+  name: catwalk crossroad
+  path: /Maps/Lavaland/catwalk_crossroad.yml
+
+- type: planetSpawnGrid
+  id: LavalandCaveMurder
+  name: cave murder
+  path: /Maps/Lavaland/cave_murder.yml
+
+- type: planetSpawnGrid
+  id: LavalandClownRoom
+  name: clown room
+  path: /Maps/Lavaland/clown_room.yml
+
+- type: planetSpawnGrid
+  id: LavalandCommieOutpost
+  name: commie outpost
+  path: /Maps/Lavaland/commieoutpost.yml
