@@ -28,6 +28,9 @@ reagent-desc-space-drugs = An illegal compound which induces a number of effects
 reagent-name-nocturine = nocturine
 reagent-desc-nocturine = A highly effective sedative and hypnotic, developed by the Syndicate for stealth operations. One-way ticket to honk-shoo town.
 
+reagent-name-somnusol = somnusol
+reagent-desc-somnusol = A powerful sedative that induces sleep. Commonly used to treat insomnia and other sleep disorders. Known to cause drowsiness, dizziness, and impaired coordination.
+
 reagent-name-mute-toxin = mute toxin
 reagent-desc-mute-toxin = A thick chemical that coats the vocal cords, making the user unable to speak during metabolization.
 
