@@ -614,19 +614,48 @@
 
 #Chemicals
 
+#Begin Lizloose Changes
+#- type: listing
+#  id: UplinkHypopen
+#  name: uplink-hypopen-name
+#  description: uplink-hypopen-desc
+#  icon: { sprite: /Textures/Objects/Misc/pens.rsi, state: pen }
+#  productEntity: HypopenBox
+#  discountCategory: rareDiscounts
+#  discountDownTo:
+#    Telecrystal: 4
+#  cost:
+#    Telecrystal: 6
+#  categories:
+#  - UplinkChemicals
 - type: listing
-  id: UplinkHypopen
-  name: uplink-hypopen-name
-  description: uplink-hypopen-desc
+  id: UplinkSleepyPen
+  name: uplink-sleepypen-name
+  description: uplink-sleepypen-desc
   icon: { sprite: /Textures/Objects/Misc/pens.rsi, state: pen }
-  productEntity: HypopenBox
+  productEntity: SleepyPenBox
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkChemicals
+
+- type: listing
+  id: UplinkHypospray
+  name: uplink-hypospray-name
+  description: uplink-hypospray-desc
+  icon: { sprite: /Textures/Objects/Specific/Medical/syndihypo.rsi, state: hypo }
+  productEntity: SyndiHypoTraitor
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 4
   cost:
-    Telecrystal: 6
+    Telecrystal: 8
   categories:
   - UplinkChemicals
+# End lizloose changes
 
 - type: listing
   id: UplinkHypoDart
@@ -783,7 +812,7 @@
     Telecrystal: 1
   categories:
   - UplinkDeception
-  
+
 - type: listing
   id: UplinkAgentIDCard
   name: uplink-agent-id-card-name

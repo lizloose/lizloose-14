@@ -1,0 +1,24 @@
+- type: reagent
+  id: Zolpidem # ambien
+  name: zolpidem
+  group: Narcotics
+  desc: sleepy
+  physicalDesc: reagent-physical-desc-powdery
+  contrabandSeverity: Syndicate
+  color: "#128e80"
+  boilingPoint: 444.0
+  meltingPoint: 128.0
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 0.65
+        sprintSpeedModifier: 0.65
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: Zolpidem
+          min: 8
+        effectProto: StatusEffectForcedSleeping
+        time: 12
+        delay: 0.8

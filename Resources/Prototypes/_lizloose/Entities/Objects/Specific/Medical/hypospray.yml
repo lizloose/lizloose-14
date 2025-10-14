@@ -1,0 +1,53 @@
+- type: entity
+  name: pen
+  suffix: SleepyPen
+  parent: Pen # It is just like normal pen, isn't it?
+  description: A dark ink pen.
+  id: SleepyPen
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 30
+        reagents:
+        - ReagentId: Zolpidem
+          Quantity: 30
+  - type: Hypospray
+    solutionName: pen
+    onlyAffectsMobs: false
+    transferAmount: 10
+    injectOnly: true
+  - type: UseDelay
+    delay: 1.6
+  - type: EmitSoundOnUse
+    handle: false # don't want the sound to stop the self-inject from triggering
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: SleepyPenBox
+  name: sleepy pen box
+  description: A small box containing a sleepy pen. Packaging disintegrates when opened, leaving no evidence behind.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Storage/penbox.rsi
+    state: hypopen
+  - type: SpawnItemsOnUse
+    items:
+    - id: SleepyPen
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: syndicate hypospray
+  parent: [ SyndiHypo, BaseSyndicateContraband ]
+  description: Using reverse engineered designs from NT, Cybersun made these hyposprays as a cheaper, less effective version of the ones they provided to Gorlex Marauders.
+  id: SyndiHypoTraitor
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 15
+  - type: Hypospray
+    transferAmount: 2.5
