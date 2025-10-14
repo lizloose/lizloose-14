@@ -25,19 +25,6 @@ public sealed partial class BatteryWeaponFireModesComponent : Component
     [DataField]
     [AutoNetworkedField]
     public int CurrentFireMode;
-
-    /// <summary>
-    /// Layers to add to the sprite of the player that is holding this entity (for changing gun color)
-    /// </summary>
-    [DataField]
-    public Dictionary<HandLocation, List<PrototypeLayerData>> InhandVisuals = new();
-
-    /// <summary>
-    /// Layers to add to the sprite of the player that is wearing this entity (for changing gun color)
-    /// </summary>
-    [DataField]
-    public Dictionary<string, List<PrototypeLayerData>> ClothingVisuals = new();
-
 }
 
 [DataDefinition, Serializable, NetSerializable]
@@ -66,9 +53,4 @@ public sealed partial class BatteryWeaponFireMode
 public enum BatteryWeaponFireModeVisuals : byte
 {
     State
-}
-[Serializable, NetSerializable]
-public enum BatteryWeaponFireModeVisualizer : byte
-{
-    Color,
 }

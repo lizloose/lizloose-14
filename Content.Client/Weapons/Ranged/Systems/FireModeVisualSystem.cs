@@ -1,11 +1,13 @@
 using System.Linq;
 using Content.Client.Clothing;
 using Content.Client.Items.Systems;
+using Content.Client.Weapons.Ranged.Components;
 using Content.Shared.Clothing;
 using Content.Shared.Hands;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Wieldable.Components;
 using Robust.Client.GameObjects;
 
 namespace Content.Client.Weapons.Ranged.Systems;
@@ -13,45 +15,51 @@ namespace Content.Client.Weapons.Ranged.Systems;
 /// <inheritdoc/>
 public sealed class BatteryWeaponFireModesVisuals : EntitySystem
 {
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<BatteryWeaponFireModesComponent, AppearanceChangeEvent>(OnAppearanceChange);
-        SubscribeLocalEvent<BatteryWeaponFireModesComponent, GetInhandVisualsEvent>(OnGetHeldVisuals, after: [typeof(ItemSystem)]);
-        SubscribeLocalEvent<BatteryWeaponFireModesComponent, GetEquipmentVisualsEvent>(OnGetEquipmentVisuals, after: [typeof(ClientClothingSystem)]);
+        SubscribeLocalEvent<FireModeVisualsComponent, AppearanceChangeEvent>(OnAppearanceChange);
+        SubscribeLocalEvent<FireModeVisualsComponent, GetInhandVisualsEvent>(OnGetHeldVisuals, after: [typeof(ItemSystem)]);
+        SubscribeLocalEvent<FireModeVisualsComponent, GetEquipmentVisualsEvent>(OnGetEquipmentVisuals, after: [typeof(ClientClothingSystem)]);
     }
 
-    private void OnAppearanceChange(Entity<BatteryWeaponFireModesComponent> ent, ref AppearanceChangeEvent args)
+    private void OnAppearanceChange(Entity<FireModeVisualsComponent> ent, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
             return;
 
-        if (!_appearance.TryGetData<Color>(ent.Owner, BatteryWeaponFireModeVisualizer.Color, out var color, args.Component))
-            return;
-
-        if (TryComp(ent, out SpriteComponent? sprite) && _sprite.LayerExists((ent.Owner, sprite), BatteryWeaponFireModeVisualizer.Color))
-                _sprite.LayerSetColor((ent.Owner, sprite), BatteryWeaponFireModeVisualizer.Color, color);
-
         _item.VisualsChanged(ent);
-
     }
 
-    private void OnGetHeldVisuals(Entity<BatteryWeaponFireModesComponent> ent, ref GetInhandVisualsEvent args)
+    private void OnGetHeldVisuals(Entity<FireModeVisualsComponent> ent, ref GetInhandVisualsEvent args)
     {
-        if (!TryComp(ent, out AppearanceComponent? appearance))
+        if (!TryComp<BatteryWeaponFireModesComponent>(ent, out var fireModesComponent))
             return;
 
-        if (!_appearance.TryGetData<Color>(ent.Owner, BatteryWeaponFireModeVisualizer.Color, out var color, appearance))
+        if (!HasComp<AppearanceComponent>(ent))
             return;
+
+        var color = fireModesComponent.FireModes[fireModesComponent.CurrentFireMode].Color;
 
         if (!ent.Comp.InhandVisuals.TryGetValue(args.Location, out var layers))
             return;
 
-        var i = 0;
         var defaultKey = $"inhand-{args.Location.ToString().ToLowerInvariant()}-color";
+
+        if (TryComp(ent, out WieldableComponent? wieldableComponent) && wieldableComponent.Wielded)
+        {
+            if (!ent.Comp.WieldedInhandVisuals.TryGetValue(args.Location, out var wieldedLayers))
+                return;
+            AddLayers(wieldedLayers, color, defaultKey, args);
+            return;
+        }
+        AddLayers(layers, color, defaultKey, args);
+    }
+
+    private void AddLayers(List<PrototypeLayerData> layers, Color color, string defaultKey, GetInhandVisualsEvent args)
+    {
+        var i = 0;
         foreach (var layer in layers)
         {
             var key = layer.MapKeys?.FirstOrDefault();
@@ -65,9 +73,12 @@ public sealed class BatteryWeaponFireModesVisuals : EntitySystem
         }
     }
 
-    private void OnGetEquipmentVisuals(Entity<BatteryWeaponFireModesComponent> ent, ref GetEquipmentVisualsEvent args)
+    private void OnGetEquipmentVisuals(Entity<FireModeVisualsComponent> ent, ref GetEquipmentVisualsEvent args)
     {
-        if (!TryComp(ent.Owner, out AppearanceComponent? appearance))
+        if (!TryComp<BatteryWeaponFireModesComponent>(ent, out var fireModesComponent))
+            return;
+
+        if (!HasComp<AppearanceComponent>(ent))
             return;
 
         if (!TryComp(args.Equipee, out InventoryComponent? inventory))
@@ -82,8 +93,7 @@ public sealed class BatteryWeaponFireModesVisuals : EntitySystem
         if (layers == null && !ent.Comp.ClothingVisuals.TryGetValue(args.Slot, out layers))
             return;
 
-        if (!_appearance.TryGetData<Color>(ent.Owner, BatteryWeaponFireModeVisualizer.Color, out var color, appearance))
-            return;
+        var color = fireModesComponent.FireModes[fireModesComponent.CurrentFireMode].Color;
 
         var i = 0;
         foreach (var layer in layers)

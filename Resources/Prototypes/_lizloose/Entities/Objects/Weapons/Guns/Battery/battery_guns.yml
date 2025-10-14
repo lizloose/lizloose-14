@@ -10,15 +10,15 @@
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-unshaded-0
-      map: ["enum.BatteryWeaponFireModeVisualizer.Color", "enum.GunVisualLayers.MagUnshaded"]
+      map: ["color", "enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Appearance
   - type: GenericVisualizer
     visuals:
       enum.BatteryWeaponFireModeVisuals.State:
-        enum.BatteryWeaponFireModeVisualizer.Color:
-          BulletDisabler: {}
-          BulletLaser: {}
+        color:
+          BulletDisabler: { color: "#5fcde4" }
+          BulletLaser: { color: "#ff0006" }
   - type: Clothing
     sprite: _lizloose/Objects/Weapons/Guns/Battery/energygun.rsi
     quickEquip: false
@@ -41,6 +41,7 @@
     - proto: BulletLaser
       fireCost: 125
       color: "#ff0006"
+  - type: FireModeVisuals
     inhandVisuals:
       left:
       - state: inhand-left-color
