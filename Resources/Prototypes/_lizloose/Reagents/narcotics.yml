@@ -1,8 +1,8 @@
 - type: reagent
-  id: Zolpidem # ambien
-  name: zolpidem
+  id: Somnusol # ambien
+  name: somnusol
   group: Narcotics
-  desc: sleepy
+  desc: A powerful sedative that induces sleep. Commonly used to treat insomnia and other sleep disorders. Known to cause drowsiness, dizziness, and impaired coordination.
   physicalDesc: reagent-physical-desc-powdery
   contrabandSeverity: Syndicate
   color: "#128e80"
@@ -17,7 +17,7 @@
       - !type:ModifyStatusEffect
         conditions:
         - !type:ReagentCondition
-          reagent: Zolpidem
+          reagent: Somnusol
           min: 8
         effectProto: StatusEffectForcedSleeping
         time: 12

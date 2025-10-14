@@ -10,7 +10,7 @@
       pen:
         maxVol: 30
         reagents:
-        - ReagentId: Zolpidem
+        - ReagentId: Somnusol
           Quantity: 30
   - type: Hypospray
     solutionName: pen
