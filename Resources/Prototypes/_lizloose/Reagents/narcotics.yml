@@ -1,8 +1,8 @@
 - type: reagent
   id: Somnusol # ambien
-  name: somnusol
+  name: reagent-name-somnusol
   group: Narcotics
-  desc: A powerful sedative that induces sleep. Commonly used to treat insomnia and other sleep disorders. Known to cause drowsiness, dizziness, and impaired coordination.
+  desc: reagent-desc-somnusol
   physicalDesc: reagent-physical-desc-powdery
   contrabandSeverity: Syndicate
   color: "#128e80"
