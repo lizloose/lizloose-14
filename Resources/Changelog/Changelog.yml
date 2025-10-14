@@ -1,66 +1,4 @@
 ﻿Entries:
-- author: Nox38
-  changes:
-  - message: Increased firerate and cooldown of Drozd's burst mode.
-    type: Tweak
-  id: 8590
-  time: '2025-05-30T16:16:50.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/34906
-- author: spanky-spanky
-  changes:
-  - message: Secret door sprites now display correctly when facing all directions.
-    type: Fix
-  id: 8591
-  time: '2025-05-30T18:11:48.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/37914
-- author: ArtisticRoomba
-  changes:
-  - message: The TEG now shows its capable peak power output on inspect, making it
-      easier for engineers to match the TEG's power output with the current grid demand
-      (to save fuel!).
-    type: Add
-  id: 8592
-  time: '2025-05-30T21:41:31.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/37957
-- author: Centronias
-  changes:
-  - message: Headphones show animated music notes when activated again.
-    type: Fix
-  id: 8593
-  time: '2025-05-30T23:53:56.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/35341
-- author: beck-thompson
-  changes:
-  - message: Removed the keep alive traitor objective.
-    type: Remove
-  id: 8594
-  time: '2025-05-31T02:09:17.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/37945
-- author: ScarKy0
-  changes:
-  - message: Priority mail now grants slightly more spesos if delivered on time, and
-      slightly less if done otherwise.
-    type: Tweak
-  - message: Bomb mail now explodes way after and deals slightly more damage.
-    type: Tweak
-  id: 8595
-  time: '2025-06-01T04:28:13.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/37986
-- author: TheFlyingSentry
-  changes:
-  - message: Added a new disability called Monochromacy, total colorblindness.
-    type: Add
-  id: 8596
-  time: '2025-06-01T05:31:46.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/37989
-- author: Hitlinemoss
-  changes:
-  - message: Cargo can now order the bulk cleanades crate, containing two cleanade
-      boxes for $400.
-    type: Add
-  id: 8597
-  time: '2025-06-01T15:48:16.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/38000
 - author: chromiumboy
   changes:
   - message: Atmospheric pipes can now be built on three different sublayers, allowing
@@ -3943,3 +3881,63 @@
   id: 9092
   time: '2025-10-13T21:22:53.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/40888
+- author: KittyCat432
+  changes:
+  - message: Slime guidebook is more representative of their actual strengths.
+    type: Tweak
+  id: 9093
+  time: '2025-10-14T04:21:07.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/40842
+- author: MilenVolf
+  changes:
+  - message: Fixed some physics bugs that could cause the grappling hook to teleport
+      entities.
+    type: Fix
+  id: 9094
+  time: '2025-10-14T10:35:38.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/40899
+- author: SirWarock
+  changes:
+  - message: Made Bodybags slightly harder to drag, and rollerbeds slightly easier.
+      They have wheels.
+    type: Tweak
+  id: 9095
+  time: '2025-10-14T11:41:30.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/40880
+- author: aada
+  changes:
+  - message: Geiger counters can now be placed on a utility belt.
+    type: Fix
+  id: 9096
+  time: '2025-10-14T12:12:06.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/40898
+- author: kontakt
+  changes:
+  - message: Singulo now consumes carpet tiles.
+    type: Fix
+  id: 9097
+  time: '2025-10-14T18:27:58.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/40896
+- author: B_Kirill
+  changes:
+  - message: Fixed blocked rotation of zombie NPCs.
+    type: Fix
+  id: 9098
+  time: '2025-10-14T19:12:36.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/40812
+- author: temm1ie, aksosotl
+  changes:
+  - message: Added new botany-themed poster.
+    type: Add
+  id: 9099
+  time: '2025-10-14T19:42:59.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/40908
+- author: ArtisticRoomba
+  changes:
+  - message: Atmospherics Delta-Pressure now properly computes delta pressure for
+      structures that can hold air in their tile while still being airtight (ex. directional
+      windows, diagonal windows).
+    type: Fix
+  id: 9100
+  time: '2025-10-14T22:46:46.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/40435
