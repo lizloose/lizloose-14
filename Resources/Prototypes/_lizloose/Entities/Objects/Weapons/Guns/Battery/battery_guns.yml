@@ -70,7 +70,6 @@
     zeroVisible: true
   - type: Item
     storedOffset: -1,-5
-
   - type: GuideHelp
     guides:
     - Security
