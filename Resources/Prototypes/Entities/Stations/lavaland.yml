@@ -1,0 +1,48 @@
+- type: entity
+  id: BaseStationLavaland
+  abstract: true
+  components:
+  - type: PlanetSpawn
+    path: "/Maps/Nonstations/miningoutpost.yml"
+    biome: Lava
+    gridPool: LavalandGridPool
+
+- type: planetSpawnGridPool
+  id: LavalandGridPool
+  grids:
+  - LavalandBait
+  - LavalandBrokenCargo
+  - LavalandCatwalkCrossroad
+  - LavalandCaveMurder
+  - LavalandClownRoom
+  - LavalandCommieOutpost
+
+- type: planetSpawnGrid
+  id: LavalandBait
+  name: bait
+  path: /Maps/Lavaland/bait.yml
+
+- type: planetSpawnGrid
+  id: LavalandBrokenCargo
+  name: broken cargo
+  path: /Maps/Lavaland/broken_cargo.yml
+
+- type: planetSpawnGrid
+  id: LavalandCatwalkCrossroad
+  name: catwalk crossroad
+  path: /Maps/Lavaland/catwalk_crossroad.yml
+
+- type: planetSpawnGrid
+  id: LavalandCaveMurder
+  name: cave murder
+  path: /Maps/Lavaland/cave_murder.yml
+
+- type: planetSpawnGrid
+  id: LavalandClownRoom
+  name: clown room
+  path: /Maps/Lavaland/clown_room.yml
+
+- type: planetSpawnGrid
+  id: LavalandCommieOutpost
+  name: commie outpost
+  path: /Maps/Lavaland/commieoutpost.yml
