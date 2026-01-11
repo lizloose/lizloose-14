@@ -390,6 +390,43 @@
     lifetime: 3
 
 - type: entity
+  name: ion bolt
+  id: IonBolt
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: ion
+      shader: unshaded
+  - type: Ammo
+    muzzleFlash: null
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        mask:
+        - Opaque
+      fly-by: *flybyfixture
+  - type: Projectile
+    damage:
+      types:
+        Heat: 4
+  - type: TimedDespawn
+    lifetime: 3
+  - type: TriggerOnCollide
+    maxTriggers: 1
+    fixtureID: projectile
+  - type: EmpOnTrigger
+    range: 1
+    energyConsumption: 250
+
+- type: entity
   name: watcher bolt
   id: WatcherBolt
   parent: BaseBullet
