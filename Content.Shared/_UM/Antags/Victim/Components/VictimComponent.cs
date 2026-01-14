@@ -1,4 +1,6 @@
+using Content.Shared.Alert;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._UM.Antags.Victim.Components;
@@ -13,24 +15,17 @@ public sealed partial class VictimComponent : Component
     public TimeSpan DetonationTime;
 
     [DataField, ViewVariables]
-    public TimeSpan BombDuration = TimeSpan.FromMinutes(10);
-}
+    public TimeSpan BombDuration = TimeSpan.FromMinutes(15);
 
-[Serializable, NetSerializable]
-public sealed class VictimTimerBoundUserInterfaceState : BoundUserInterfaceState
-{
-    public TimeSpan DetonationTime;
+    /// <summary>
+    /// How often the status effect should update
+    /// </summary>
+    [ViewVariables]
+    public TimeSpan UpdateInterval = TimeSpan.FromMinutes(1);
 
-    public VictimTimerBoundUserInterfaceState(TimeSpan detonationTime)
-    {
-        DetonationTime = detonationTime;
-    }
+    [ViewVariables]
+    public TimeSpan NextUpdate = TimeSpan.FromMinutes(1);
 
-}
-
-
-[Serializable, NetSerializable]
-public enum VictimTimerUiKey
-{
-    Key,
+    [DataField]
+    public ProtoId<AlertPrototype> TimerAlert = "VictimAlert";
 }

@@ -1,0 +1,27 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseVictimObjective
+  components:
+  - type: Objective
+    difficulty: 1.5
+    issuer: The Puppetmaster
+  - type: RoleRequirement
+    roles:
+    - VictimRole
+
+
+- type: entity
+  parent: [BaseVictimObjective, BaseCodeObjective]
+  id: WelderBombObjective
+  description: Make sure you are caught.
+  components:
+  - type: Objective
+    icon:
+      sprite: Structures/Storage/tanks.rsi
+      state: fueltank-2
+  - type: WelderBombObjective
+    blacklist:
+      tags:
+      - GhostOnlyWarp
+      - NinjaBombingTargetBlocker

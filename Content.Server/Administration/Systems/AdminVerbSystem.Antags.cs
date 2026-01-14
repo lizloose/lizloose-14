@@ -4,6 +4,7 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Zombies;
 using Content.Shared.Administration;
 using Content.Server.Clothing.Systems;
+using Content.Shared._UM.Antags.Victim.Components;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind.Components;
@@ -32,6 +33,7 @@ public sealed partial class AdminVerbSystem
 //    private static readonly EntProtoId ParadoxCloneRuleId = "ParadoxCloneSpawn";
     private static readonly EntProtoId DefaultWizardRule = "Wizard";
     private static readonly EntProtoId DefaultNinjaRule = "NinjaSpawn";
+    private static readonly EntProtoId DefaultVictimRule = "Victim";
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
 
     // All antag verbs have names so invokeverb works.
@@ -222,6 +224,21 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", ninjaName, Loc.GetString("admin-verb-make-space-ninja")),
         };
         args.Verbs.Add(ninja);
+
+        var victimName = "Make Victim";
+        Verb victim = new()
+        {
+            Text = victimName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Weapons/Bombs/c4.rsi"), "icon"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<VictimRoleComponent>(targetPlayer, DefaultVictimRule);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", victimName, Loc.GetString("make victim")),
+        };
+        args.Verbs.Add(victim);
 
         // if (HasComp<HumanoidProfileComponent>(args.Target)) // only humanoids can be cloned
         //     args.Verbs.Add(paradox);

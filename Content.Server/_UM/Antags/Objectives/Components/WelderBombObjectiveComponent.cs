@@ -1,0 +1,34 @@
+using Content.Shared.Whitelist;
+using Robust.Shared.GameStates;
+
+namespace Content.Server._UM.Antags.Objectives.Components;
+
+/// <inheritdoc/>
+[RegisterComponent]
+public sealed partial class WelderBombObjectiveComponent : Component
+{
+    /// <summary>
+    /// Warp point that the welder bomb has to target
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public EntityUid? Target;
+
+    /// <summary>
+    /// Tags that should be used to exclude Warp Points
+    /// from the list of valid bombing targets
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? Blacklist;
+
+    /// <summary>
+    /// Range for how far we can welder bomb
+    /// </summary>
+    [DataField]
+    public float Range = 10f;
+
+    /// <summary>
+    /// Whether or not they did the bomb
+    /// </summary>
+    [DataField]
+    public bool Bombed = false;
+}

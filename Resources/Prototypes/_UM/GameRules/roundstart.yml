@@ -94,3 +94,37 @@
       tableId: CargoGiftsTable
     - !type:NestedSelector
       tableId: CalmPestEventsTable
+
+- type: entity
+  id: Victim
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+    minPlayers: 25
+  - type: AntagSelection
+    agentName: victim
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Changeling ]
+      max: 3
+      playerRatio: 15
+      briefing:
+        text: You are a victim! Someone has planted a bomb in your neck, and it's going to go off if you don't do exactly what they say.
+        color: Red
+      components:
+      - type: Victim
+      mindRoles:
+      - MindRoleVictim
+  - type: AntagObjectives
+    objectives:
+    - WelderBombObjective
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleVictim
+  name: Victim Role
+  components:
+  - type: MindRole
+    antagPrototype: Victim
+    subtype: Victim
+  - type: VictimRole
