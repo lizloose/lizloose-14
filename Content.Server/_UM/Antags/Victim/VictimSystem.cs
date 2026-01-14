@@ -5,6 +5,7 @@ using Content.Server.Objectives.Systems;
 using Content.Shared._UM.Antags.Victim.Components;
 using Content.Shared._UM.Antags.Victim.Systems;
 using Content.Shared.Alert;
+using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.Mind;
 using Robust.Shared.Timing;
 
@@ -15,12 +16,12 @@ public sealed class VictimSystem : SharedVictimSystem
 
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedExplosionSystem _explosionSystem = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<VictimComponent, ComponentStartup>(OnStartup);
-
         SubscribeLocalEvent<VictimComponent, ComponentRemove>(ComponentRemoved);
     }
 
@@ -41,8 +42,18 @@ public sealed class VictimSystem : SharedVictimSystem
 
             _alerts.ShowAlert(uid, comp.TimerAlert);
 
+            if (comp.DetonationTime > curTime)
+                Detonate((uid, comp));
+
             comp.NextUpdate += comp.UpdateInterval;
         }
+    }
+
+    private void Detonate(Entity<VictimComponent> ent)
+    {
+        //minibomb
+        //when offmed is in remove their head
+        _explosionSystem.QueueExplosion(ent.Owner, "Minibomb", 200, 30f, 60f, canCreateVacuum: true);
     }
 
     private void OnStartup(Entity<VictimComponent> ent, ref ComponentStartup args)
@@ -54,7 +65,4 @@ public sealed class VictimSystem : SharedVictimSystem
     {
         _alerts.ClearAlert(ent.Owner, ent.Comp.TimerAlert);
     }
-
-
-
 }

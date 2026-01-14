@@ -15,7 +15,7 @@ public sealed partial class VictimComponent : Component
     public TimeSpan DetonationTime;
 
     [DataField, ViewVariables]
-    public TimeSpan BombDuration = TimeSpan.FromMinutes(15);
+    public TimeSpan BombDuration = TimeSpan.FromMinutes(2);
 
     /// <summary>
     /// How often the status effect should update
