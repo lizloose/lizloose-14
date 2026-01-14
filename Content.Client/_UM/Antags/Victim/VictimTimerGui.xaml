@@ -1,0 +1,16 @@
+<controls:VictimTimerGui
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._UM.Antags.Victim">
+    <PanelContainer StyleClasses="windowPanel">
+        <BoxContainer Align="Center" Orientation="Vertical" SeparationOverride="4" Margin="5">
+
+            <BoxContainer Align="Center" Margin="5">
+                <RichTextLabel Name="Text" Access="Public" Text="[bold]Time Remaining[/bold]"/>
+            </BoxContainer>
+
+            <BoxContainer Align="Center" Margin="20">
+                <RichTextLabel Name="CountdownTimer" Access="Public"/>
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
+</controls:VictimTimerGui>
