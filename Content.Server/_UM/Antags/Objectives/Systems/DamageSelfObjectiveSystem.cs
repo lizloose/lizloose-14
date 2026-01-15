@@ -31,7 +31,6 @@ public sealed class DamageSelfObjectiveSystem : EntitySystem
     private void OnMapInit(Entity<DamageSelfObjectiveComponent> ent, ref MapInitEvent args)
     {
         ent.Comp.Damage = _random.Next(ent.Comp.MinDamage, ent.Comp.MaxDamage);
-        Log.Debug("This is the number: " + ent.Comp.Damage);
     }
 
     private void OnGetProgress(Entity<DamageSelfObjectiveComponent> ent, ref ObjectiveGetProgressEvent args)
@@ -45,7 +44,6 @@ public sealed class DamageSelfObjectiveSystem : EntitySystem
     private void OnAfterAssign(Entity<DamageSelfObjectiveComponent> ent, ref ObjectiveAfterAssignEvent args)
     {
         var title = Loc.GetString("objective-condition-deal-damage-to-self-title", ("amount", ent.Comp.Damage));
-
         _metaData.SetEntityName(ent, title, args.Meta);
     }
 

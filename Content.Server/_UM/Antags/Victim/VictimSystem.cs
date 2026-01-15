@@ -46,7 +46,7 @@ public sealed class VictimSystem : SharedVictimSystem
             else
                 _alerts.ClearAlert(uid, comp.TimerAlert);
 
-            if (comp.DetonationTime > curTime && comp.BombEnabled)
+            if (comp.DetonationTime < curTime && comp.BombEnabled)
             {
                 Detonate((uid, comp));
                 continue;
