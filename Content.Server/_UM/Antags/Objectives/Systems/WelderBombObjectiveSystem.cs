@@ -90,6 +90,7 @@ public sealed class WelderBombObjectiveSystem : EntitySystem
             return;
 
         Log.Debug("welder bomb obj:" + nameof(obj));
-        _codeCondition.SetCompleted(ent.Owner, "WelderBombObjective");
+        if (ent.Comp.BombEnabled)
+            _codeCondition.SetCompleted(ent.Owner, "WelderBombObjective");
     }
 }
