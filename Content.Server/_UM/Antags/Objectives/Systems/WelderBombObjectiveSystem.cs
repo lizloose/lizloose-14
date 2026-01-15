@@ -1,5 +1,6 @@
 using Content.Server._UM.Antags.Objectives.Components;
 using Content.Server.Damage.Components;
+using Content.Server.Objectives.Systems;
 using Content.Shared._UM.Antags.Victim.Components;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
@@ -18,6 +19,7 @@ public sealed class WelderBombObjectiveSystem : EntitySystem
     [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly CodeConditionSystem _codeCondition = default!;
 
     public override void Initialize()
     {
@@ -30,10 +32,6 @@ public sealed class WelderBombObjectiveSystem : EntitySystem
 
     private void OnWelderBombGetProgress(Entity<WelderBombObjectiveComponent> ent, ref ObjectiveGetProgressEvent args)
     {
-        if (ent.Comp.Bombed)
-            args.Progress = 1f;
-        else
-            args.Progress = 0f;
     }
 
     private void OnWelderBombAfterAssign(Entity<WelderBombObjectiveComponent> ent, ref ObjectiveAfterAssignEvent args)
@@ -91,6 +89,7 @@ public sealed class WelderBombObjectiveSystem : EntitySystem
         if (tankXform.MapID != targetXform.MapID || (_transform.GetWorldPosition(tankXform) - _transform.GetWorldPosition(targetXform)).LengthSquared() > obj.Range * obj.Range)
             return;
 
-        obj.Bombed = true;
+        Log.Debug("welder bomb obj:" + nameof(obj));
+        _codeCondition.SetCompleted(ent.Owner, "WelderBombObjective");
     }
 }

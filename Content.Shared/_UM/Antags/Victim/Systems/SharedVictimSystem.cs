@@ -21,5 +21,7 @@ public abstract partial class SharedVictimSystem : EntitySystem
     private void OnMapInit(Entity<VictimComponent> ent, ref MapInitEvent args)
     {
         ent.Comp.DetonationTime = _gameTiming.CurTime + ent.Comp.BombDuration;
+        ent.Comp.NextUpdate =  _gameTiming.CurTime + ent.Comp.UpdateInterval;
+        ent.Comp.BombEnabled = true;
     }
 }

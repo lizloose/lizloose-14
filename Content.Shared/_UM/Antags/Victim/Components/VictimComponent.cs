@@ -8,7 +8,8 @@ namespace Content.Shared._UM.Antags.Victim.Components;
 /// <summary>
 /// This is used for...
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent]
+[AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class VictimComponent : Component
 {
     [ViewVariables, AutoNetworkedField]
@@ -24,7 +25,14 @@ public sealed partial class VictimComponent : Component
     public TimeSpan UpdateInterval = TimeSpan.FromMinutes(1);
 
     [ViewVariables]
+    [AutoNetworkedField, AutoPausedField]
     public TimeSpan NextUpdate = TimeSpan.FromMinutes(1);
+
+    /// <summary>
+    /// Is the bomb enabled?
+    /// </summary>
+    [ViewVariables]
+    public bool BombEnabled = false;
 
     [DataField]
     public ProtoId<AlertPrototype> TimerAlert = "VictimAlert";

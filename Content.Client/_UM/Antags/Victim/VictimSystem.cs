@@ -17,7 +17,6 @@ public sealed class VictimSystem : SharedVictimSystem
         SubscribeLocalEvent<VictimComponent, GetGenericAlertCounterAmountEvent>(OnGetCounterAmount);
     }
 
-
     private void OnGetCounterAmount(Entity<VictimComponent> ent, ref GetGenericAlertCounterAmountEvent args)
     {
         if (args.Handled)

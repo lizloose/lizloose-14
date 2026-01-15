@@ -7,16 +7,18 @@ using Content.Shared._UM.Antags.Victim.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.Mind;
+using Content.Shared.Roles;
 using Robust.Shared.Timing;
 
 namespace Content.Server._UM.Antags.Victim;
 
 public sealed class VictimSystem : SharedVictimSystem
 {
-
+    [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedExplosionSystem _explosionSystem = default!;
+    [Dependency] private readonly SharedRoleSystem _roles = default!;
 
     public override void Initialize()
     {
@@ -24,7 +26,6 @@ public sealed class VictimSystem : SharedVictimSystem
         SubscribeLocalEvent<VictimComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<VictimComponent, ComponentRemove>(ComponentRemoved);
     }
-
 
     public override void Update(float frameTime)
     {
@@ -40,20 +41,43 @@ public sealed class VictimSystem : SharedVictimSystem
             if (comp.NextUpdate > curTime)
                 continue;
 
-            _alerts.ShowAlert(uid, comp.TimerAlert);
+            if (comp.BombEnabled)
+                _alerts.ShowAlert(uid, comp.TimerAlert);
+            else
+                _alerts.ClearAlert(uid, comp.TimerAlert);
 
-            if (comp.DetonationTime > curTime)
+            if (comp.DetonationTime > curTime && comp.BombEnabled)
+            {
                 Detonate((uid, comp));
-
+                continue;
+            }
             comp.NextUpdate += comp.UpdateInterval;
         }
     }
 
     private void Detonate(Entity<VictimComponent> ent)
     {
-        //minibomb
-        //when offmed is in remove their head
-        _explosionSystem.QueueExplosion(ent.Owner, "Minibomb", 200, 30f, 60f, canCreateVacuum: true);
+        if (!_mind.TryGetMind(ent, out var mindEnt, out var mindComponent))
+            return;
+
+        foreach (var objective in mindComponent.Objectives)
+        {
+            if (!TryComp<CodeConditionComponent>(objective, out var condition))
+                continue;
+
+            //minibomb
+            //when offmed is in remove their head
+            if (!condition.Completed)
+            {
+                _explosionSystem.QueueExplosion(ent.Owner, "Minibomb", 200, 30f, 60f, canCreateVacuum: true);
+                _alerts.ClearAlert(ent.Owner, ent.Comp.TimerAlert);
+                ent.Comp.BombEnabled = false;
+                return;
+            }
+
+            ent.Comp.BombEnabled = false;
+            _alerts.ClearAlert(ent.Owner, ent.Comp.TimerAlert);
+        }
     }
 
     private void OnStartup(Entity<VictimComponent> ent, ref ComponentStartup args)
