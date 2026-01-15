@@ -25,3 +25,16 @@
       tags:
       - GhostOnlyWarp
       - NinjaBombingTargetBlocker
+
+- type: entity
+  parent: [BaseVictimObjective, BaseCodeObjective]
+  id: DamageSelfObjective
+  description: Leave a mark.
+  components:
+  - type: Objective
+    icon:
+      sprite: Fluids/tomato_splat.rsi
+      state: puddle-2
+  - type: DamageSelfObjective
+    minDamage: 200
+    maxDamage: 450

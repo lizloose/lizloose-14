@@ -118,6 +118,7 @@
   - type: AntagObjectives
     objectives:
     - WelderBombObjective
+    - DamageSelfObjective
 
 - type: entity
   parent: BaseMindRoleAntag

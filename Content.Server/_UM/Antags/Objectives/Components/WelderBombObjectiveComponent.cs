@@ -3,7 +3,9 @@ using Robust.Shared.GameStates;
 
 namespace Content.Server._UM.Antags.Objectives.Components;
 
-/// <inheritdoc/>
+/// <summary>
+/// This is the objective component that handles welder bombing the hop
+/// </summary>
 [RegisterComponent]
 public sealed partial class WelderBombObjectiveComponent : Component
 {
