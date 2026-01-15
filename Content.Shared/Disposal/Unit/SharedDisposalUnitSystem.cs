@@ -79,6 +79,7 @@ public abstract class SharedDisposalUnitSystem : EntitySystem
         SubscribeLocalEvent<DisposalUnitComponent, DisposalDoAfterEvent>(OnDoAfter);
 
         SubscribeLocalEvent<DisposalUnitComponent, BeforeThrowInsertEvent>(OnThrowInsert);
+        SubscribeLocalEvent<DisposalUnitComponent, AfterThrowInsertEvent>(OnAfterThrowInsert);
 
         SubscribeLocalEvent<DisposalUnitComponent, DisposalUnitComponent.UiButtonPressedMessage>(OnUiButtonPressed);
 
@@ -169,6 +170,15 @@ public abstract class SharedDisposalUnitSystem : EntitySystem
         if (!CanInsert(ent, ent, args.ThrownEntity))
             args.Cancelled = true;
     }
+
+    //BEGIN UM
+    private void OnAfterThrowInsert(Entity<DisposalUnitComponent> ent, ref AfterThrowInsertEvent args)
+    {
+        Log.Debug("Throw test" + args.ThrownEntity);
+        var disposalInsertArgs = new OnDisposalInsertEvent(args.ThrownEntity, ent.Owner);
+        RaiseLocalEvent(args.Thrower, ref disposalInsertArgs);
+    }
+    //END UM
 
     public override void Update(float frameTime)
     {
@@ -490,6 +500,14 @@ public abstract class SharedDisposalUnitSystem : EntitySystem
 
         if (user != inserted && user != null)
             _adminLog.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(user.Value):player} inserted {ToPrettyString(inserted)} into {ToPrettyString(uid)}");
+
+        //BEGIN UM
+        if (user != null && user != inserted)
+        {
+            var disposalInsertArgs = new OnDisposalInsertEvent(inserted, uid);
+            RaiseLocalEvent(user.Value, ref disposalInsertArgs);
+        }
+        //END UM
 
         QueueAutomaticEngage(uid, component);
 

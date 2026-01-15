@@ -14,9 +14,9 @@ namespace Content.Server._UM.Antags.Objectives.Systems;
 public sealed class WelderBombObjectiveSystem : EntitySystem
 {
     [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly CodeConditionSystem _codeCondition = default!;
@@ -72,8 +72,6 @@ public sealed class WelderBombObjectiveSystem : EntitySystem
 
     private void OnWelderBomb(Entity<VictimComponent> ent, ref WelderBombEvent args)
     {
-        Log.Debug("welder bombed");
-
         if (!_mind.TryGetMind(ent, out var mind, out _))
             return;
 
@@ -89,7 +87,6 @@ public sealed class WelderBombObjectiveSystem : EntitySystem
         if (tankXform.MapID != targetXform.MapID || (_transform.GetWorldPosition(tankXform) - _transform.GetWorldPosition(targetXform)).LengthSquared() > obj.Range * obj.Range)
             return;
 
-        Log.Debug("welder bomb obj:" + nameof(obj));
         if (ent.Comp.BombEnabled)
             _codeCondition.SetCompleted(ent.Owner, "WelderBombObjective");
     }

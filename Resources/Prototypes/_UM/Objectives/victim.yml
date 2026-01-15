@@ -38,3 +38,19 @@
   - type: DamageSelfObjective
     minDamage: 200
     maxDamage: 450
+
+- type: entity
+  parent: [BaseVictimObjective, BaseCodeObjective]
+  id: FlushItemObjective
+  description: Be the tider you've always wanted to be.
+  components:
+  - type: Objective
+    icon:
+      sprite: Markers/jobs.rsi
+      state: clown
+  - type: FlushItemObjective
+    targets:
+    - WeaponDisabler
+    - Stunbaton
+    - WeaponPistolMk58
+    - JackBoots

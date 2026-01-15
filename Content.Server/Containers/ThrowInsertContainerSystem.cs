@@ -44,6 +44,14 @@ public sealed class ThrowInsertContainerSystem : EntitySystem
             return;
         }
 
+        //BEGIN UM
+        if (TryComp<ThrownItemComponent>(args.Thrown, out var thrownItemComponent) && thrownItemComponent.Thrower != null)
+        {
+            var afterThrowArgs = new AfterThrowInsertEvent(args.Thrown, thrownItemComponent.Thrower.Value);
+            RaiseLocalEvent(ent, ref afterThrowArgs);
+        }
+        //END UM
+
         if (!_containerSystem.Insert(args.Thrown, container))
             throw new InvalidOperationException("Container insertion failed but CanInsert returned true");
 

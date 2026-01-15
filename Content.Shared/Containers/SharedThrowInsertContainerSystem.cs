@@ -6,3 +6,11 @@ namespace Content.Shared.Containers;
 /// </summary>
 [ByRefEvent]
 public record struct BeforeThrowInsertEvent(EntityUid ThrownEntity, bool Cancelled = false);
+
+//BEGIN UM
+/// <summary>
+/// Sent after the insertion is made
+/// </summary>
+[ByRefEvent]
+public record struct AfterThrowInsertEvent(EntityUid ThrownEntity, EntityUid Thrower);
+//END UM

@@ -195,3 +195,15 @@ public enum DisposalsPressureState : byte
     /// </summary>
     Pressurizing
 }
+
+
+//BEGIN UM
+/// <summary>
+/// Raised on an entity when it inserts something into a disposal bin
+/// </summary>
+[ByRefEvent]
+public readonly record struct OnDisposalInsertEvent(EntityUid Inserted, EntityUid Target);
+
+[ByRefEvent]
+public readonly record struct OnDisposalFlush(EntityUid Target);
+//END UM

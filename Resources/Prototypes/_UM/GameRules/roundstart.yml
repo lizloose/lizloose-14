@@ -119,6 +119,7 @@
     objectives:
     - WelderBombObjective
     - DamageSelfObjective
+    - FlushItemObjective
 
 - type: entity
   parent: BaseMindRoleAntag
