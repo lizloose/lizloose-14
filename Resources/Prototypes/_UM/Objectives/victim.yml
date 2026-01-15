@@ -5,7 +5,7 @@
   components:
   - type: Objective
     difficulty: 1.5
-    issuer: The Puppetmaster
+    issuer: objective-issuer-victim
   - type: RoleRequirement
     roles:
     - VictimRole
@@ -29,7 +29,7 @@
 - type: entity
   parent: [BaseVictimObjective, BaseCodeObjective]
   id: DamageSelfObjective
-  description: Leave a mark.
+  description: Grab a crowbar, and be sure to leave a mark.
   components:
   - type: Objective
     icon:

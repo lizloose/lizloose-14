@@ -109,7 +109,7 @@
       max: 3
       playerRatio: 15
       briefing:
-        text: You are a victim! Someone has planted a bomb in your neck, and it's going to go off if you don't do exactly what they say.
+        text: victim-role-greeting
         color: Red
       components:
       - type: Victim
