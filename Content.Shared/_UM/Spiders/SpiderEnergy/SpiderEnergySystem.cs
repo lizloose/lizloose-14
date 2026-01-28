@@ -44,6 +44,8 @@ public sealed class SpiderEnergySystem : EntitySystem
 
     private void OnMapInit(Entity<SpiderEnergyComponent> ent, ref MapInitEvent args)
     {
+        ent.Comp.NextUpdate = _timing.CurTime + ent.Comp.NextUpdate;
+
         if (ent.Comp.IgnoreEnergy)
             return;
 
@@ -95,6 +97,7 @@ public sealed class SpiderEnergySystem : EntitySystem
         if (_net.IsClient)
             return true;
 
+        Log.Debug("Energy: " + ent.Comp.Energy);
         ent.Comp.Energy += amount;
         Dirty(ent);
         _alerts.ShowAlert(ent.Owner, ent.Comp.EnergyAlert);

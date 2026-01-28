@@ -108,6 +108,14 @@
         mask:
         - MobMask
   - type: GhostRole
-    name: Spider
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-spider-name
+    description: ghost-role-information-spider-description
+    rules: ghost-role-information-rules-team-antagonist
+    mindRoles:
+    - MindRoleSpider
   - type: GhostRoleMobSpawner
     prototype: MobSpiderUndecided
+

@@ -85,3 +85,23 @@
     priority: 1
   - type: InstantAction
     event: !type:ToggleActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionSpiderHealBolt
+  name: Healing Spit
+  description: Spit on your fellow spiders to heal them. Does damage to normal people
+  components:
+  - type: Action
+    useDelay: 3
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    icon:
+      sprite: Objects/Weapons/Guns/Projectiles/magic.rsi/
+      state: declone
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectileSpiderBolt

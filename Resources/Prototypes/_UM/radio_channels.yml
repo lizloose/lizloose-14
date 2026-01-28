@@ -1,0 +1,8 @@
+- type: radioChannel
+  id: SpiderMind
+  name: chat-radio-spider
+  keycode: 'w'
+  frequency: 6969
+  color: "#8f4a4b"
+  # long range since I don't wanna make a special xenoborg telecomm server
+  longRange: true

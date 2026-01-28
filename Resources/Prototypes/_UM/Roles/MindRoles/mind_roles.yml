@@ -1,0 +1,37 @@
+- type: roleType
+  id: Broodmother
+  name: role-type-broodmother-name
+  color: '#9370db'
+  symbol: "🕷️"
+
+- type: roleType
+  id: Spider
+  name: role-type-spider-name
+  color: '#9370db'
+  symbol: "🕷️"
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleBroodmother
+  name: Broodmother Role
+  components:
+  - type: MindRole
+    antagPrototype: Broodmother
+    roleType: Broodmother
+    subtype: role-subtype-spider
+    exclusiveAntag: true
+  - type: RoleBriefing
+    briefing: roles-antag-broodmother-objective
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleSpider
+  name: Spider Role
+  components:
+  - type: MindRole
+    antagPrototype: Spider
+    roleType: Spider
+    subtype: role-subtype-spider
+    exclusiveAntag: true
+  - type: RoleBriefing
+    briefing: roles-antag-spider-objective

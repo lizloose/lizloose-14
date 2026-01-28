@@ -1,0 +1,11 @@
+- type: antag
+  id: Broodmother
+  name: roles-antag-broodmother-name
+  antagonist: true
+  objective: roles-antag-broodmother-objective
+
+- type: antag
+  id: Spider
+  name: roles-antag-spider-name
+  antagonist: true
+  objective: roles-antag-spider-objective

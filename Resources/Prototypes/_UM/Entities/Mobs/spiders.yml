@@ -91,6 +91,13 @@
       groups:
         Brute: -0.07
         Burn: -0.07
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - SpiderMind
+  - type: ActiveRadio
+    channels:
+    - SpiderMind
   - type: SpiderEnergy
 
 - type: entity
@@ -146,6 +153,16 @@
   - type: SpiderEnergy
     passiveRegen: 0
     energy: 200
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-broodmother-name
+    description: ghost-role-information-broodmother-description
+    rules: ghost-role-information-rules-team-antagonist
+    mindRoles:
+    - MindRoleBroodmother
 
 - type: entity
   name: tarantula
@@ -351,6 +368,9 @@
     damage:
       types:
         Piercing: 10
+  - type: ActionGrant
+    actions:
+    - ActionSpiderHealBolt
 
 - type: entity
   name: hunter

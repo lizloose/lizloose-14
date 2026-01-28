@@ -7,3 +7,26 @@ alerts-spider-energy-name = Energy
 alerts-spider-essence-desc = Spider energy.
 
 spider-evolve-fail-energy = You don't have enough energy to evolve!
+
+chat-radio-spider = Hive
+
+role-type-spider-color = #9370db
+
+ghost-role-information-broodmother-name = Broodmother
+ghost-role-information-broodmother-description = A being of pure evil. Grow the hive.
+
+ghost-role-information-spider-name = Spider
+ghost-role-information-spider-description = Help the broodmother grow the hive.
+
+role-type-spider-name = Spider
+role-type-broodmother-name = Broodmother
+
+roles-antag-broodmother-name = [color={role-type-spider-color}]Broodmother[/color]
+roles-antag-broodmother-objective =
+    Create your hive. Spread to every corner of the station.
+    Talk to your fellow spiders using :w
+
+roles-antag-spider-name = Spider
+roles-antag-spider-objective =
+    Help the broodmother create the hive.
+    Talk to your fellow spiders using :w

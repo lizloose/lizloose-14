@@ -1,0 +1,27 @@
+- type: entity
+  id: ProjectileSpiderBolt
+  name: spider thing
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: declone
+  - type: Projectile
+    damage:
+      types:
+        Caustic: 15
+    ignoreResistances: true
+  - type: ProjectileWhitelist
+    whitelist:
+      components:
+      - Spider
+    whitelistDamage:
+      groups:
+        Brute: -7
+        Burn: -7
+        Airloss: -7
+        Toxin: -7
+      types:
+        Bloodloss: -7
