@@ -13,6 +13,7 @@ namespace Content.Shared._UM.Spiders.Cocoon;
 /// This is used for...
 /// </summary>
 [RegisterComponent, NetworkedComponent]
+[AutoGenerateComponentState]
 public sealed partial class CocoonComponent : Component
 {
     /// <summary>
@@ -42,16 +43,34 @@ public sealed partial class CocoonComponent : Component
     /// <summary>
     /// Whether or not tha cocoon has been harvested
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public bool Harvested = false;
+    public bool Harvested;
 
     /// <summary>
-    /// Amount of energy this cocoon has
+    /// Energy this cocoon can provide
+    /// Rolls on component init
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public FixedPoint2 Energy = 70;
+
+    /// <summary>
+    /// Maximum energy this cocoon can provide
+    /// Rolls on component init
     /// </summary>
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public FixedPoint2 Energy = 20;
+    public int MaxEnergy = 70;
+
+    /// <summary>
+    /// minimum energy this cocoon can provide
+    /// Rolls on component init
+    /// </summary>
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int MinEnergy = 40;
+
 }
 
 

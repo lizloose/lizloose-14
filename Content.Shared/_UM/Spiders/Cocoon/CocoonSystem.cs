@@ -1,22 +1,20 @@
-using Content.Shared._UM.Spiders.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Random;
 
 namespace Content.Shared._UM.Spiders.Cocoon;
 
-/// <summary>
-/// This handles...
-/// </summary>
 public sealed class CocoonSystem : EntitySystem
 {
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedToolSystem _tools = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -34,7 +32,9 @@ public sealed class CocoonSystem : EntitySystem
 
     private void OnComponentInit(Entity<CocoonComponent> ent, ref ComponentInit args)
     {
+        ent.Comp.Energy = _random.Next(ent.Comp.MinEnergy, ent.Comp.MaxEnergy);
         ent.Comp.Contents = _container.EnsureContainer<Container>(ent, ent.Comp.ContainerId);
+        Dirty(ent);
     }
 
     private void OnInteract(Entity<CocoonComponent> ent, ref ActivateInWorldEvent args)
@@ -103,7 +103,7 @@ public sealed class CocoonSystem : EntitySystem
         if (args.Cancelled || args.Used == null)
             return;
 
-        var removed = _container.EmptyContainer(ent.Comp.Contents, false, Transform(ent).Coordinates);
+        _container.EmptyContainer(ent.Comp.Contents, false, Transform(ent).Coordinates);
         args.Handled = true;
         PredictedDel(ent.Owner);
         _audio.PlayPredicted(ent.Comp.DestroySound, args.Used.Value, args.User);

@@ -64,7 +64,7 @@ public enum HiveBuilderRadialUiKey : byte
 [Serializable, NetSerializable]
 public sealed partial class OnBuildDoAfterEvent : DoAfterEvent
 {
-    public NetCoordinates Target;
+    public NetCoordinates TargetCoordinates;
 
     public override DoAfterEvent Clone() => this;
 }

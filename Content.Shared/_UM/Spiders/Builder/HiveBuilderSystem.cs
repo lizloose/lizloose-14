@@ -115,7 +115,7 @@ public sealed class HiveBuilderSystem : EntitySystem
 
         var doAfter = new OnBuildDoAfterEvent()
         {
-            Target = GetNetCoordinates(doafterTarget),
+            TargetCoordinates = GetNetCoordinates(doafterTarget),
         };
 
         _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, 0.5f, doAfter, ent)
@@ -133,7 +133,7 @@ public sealed class HiveBuilderSystem : EntitySystem
         if (!_energy.TrySpendEnergy(ent.Owner, ent.Comp.BuildCost))
             return;
 
-        PredictedSpawnAtPosition(ent.Comp.CurrentBuild, GetCoordinates(args.Target));
+        PredictedSpawnAtPosition(ent.Comp.CurrentBuild, GetCoordinates(args.TargetCoordinates));
 
         args.Handled = true;
     }

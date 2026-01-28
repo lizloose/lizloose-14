@@ -1,6 +1,7 @@
 using Content.Shared.Alert;
 using Content.Shared.Alert.Components;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._UM.Spiders.SpiderEnergy;
@@ -12,6 +13,7 @@ public sealed class SpiderEnergySystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private readonly INetManager _net = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -59,8 +61,12 @@ public sealed class SpiderEnergySystem : EntitySystem
         if (ent.Comp.Energy < amount)
             return false;
 
+        if (_net.IsClient)
+            return true;
+
         ent.Comp.Energy -= amount;
         Dirty(ent);
+        _alerts.ShowAlert(ent.Owner, ent.Comp.EnergyAlert);
         return true;
     }
 
@@ -86,7 +92,12 @@ public sealed class SpiderEnergySystem : EntitySystem
         if (ent.Comp.Energy + amount < 0)
             return false;
 
+        if (_net.IsClient)
+            return true;
+
         ent.Comp.Energy += amount;
+        Dirty(ent);
+        _alerts.ShowAlert(ent.Owner, ent.Comp.EnergyAlert);
         return true;
     }
 

@@ -68,6 +68,7 @@
       Male: UnisexArachnid
       Female: UnisexArachnid
       Unsexed: UnisexArachnid
+  - type: Emoting
   - type: TypingIndicator
     proto: spider
   - type: Tag
@@ -280,11 +281,6 @@
   - type: MeleeChemicalInjector
     transferAmount: 4
     solution: melee
-  - type: Stealth
-    hadOutline: true
-  - type: StealthOnMove
-    passiveVisibilityRate: -0.10
-    movementVisibilityRate: 0.10
   - type: DamageStateVisuals
     states:
       Alive:
@@ -302,6 +298,22 @@
     damage:
       types:
         Piercing: 4
+  - type: ItemToggle
+    onUse: false
+    onActivate: false
+    predictable: false
+  - type: SpiderToggleAction
+    action: ActionSpiderCloak
+    energyDrain: 10
+  - type: ComponentToggler
+    components:
+    - type: Stealth
+      minVisibility: 0.001 #basically completely invisible
+      lastVisibility: 0.001
+  - type: SpiderEnergy
+    passiveRegen: 5
+    energy:
+    maxRegenEnergy: 80
 
 - type: entity
   name: nurse

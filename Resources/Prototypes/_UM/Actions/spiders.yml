@@ -72,3 +72,16 @@
     priority: 1
   - type: InstantAction
     event: !type:SpiderEvolveActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionSpiderCloak
+  name: "[color=red]Stealth[/color]"
+  description: Activates your cloak.
+  components:
+  - type: Action
+    icon: { sprite : _UM/Actions/broodmother.rsi, state: cloak }
+    itemIconStyle: BigAction
+    priority: 1
+  - type: InstantAction
+    event: !type:ToggleActionEvent

@@ -1,6 +1,6 @@
-using Content.Shared._UM.Spiders.Builder;
 using Content.Shared._UM.Spiders.SpiderEnergy;
 using Content.Shared.Actions;
+using Content.Shared.Emoting;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
@@ -8,9 +8,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._UM.Spiders.Evolution;
 
-/// <summary>
-/// This handles...
-/// </summary>
 public sealed class SpiderEvolutionSystem : EntitySystem
 {
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
@@ -19,6 +16,7 @@ public sealed class SpiderEvolutionSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SpiderEnergySystem _energy = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private const string SpiderEvolveBuiXmlGeneratedName = "SpiderEvolutionBoundUserInterface";
     /// <inheritdoc/>
@@ -85,5 +83,7 @@ public sealed class SpiderEvolutionSystem : EntitySystem
         var newSpider = PredictedSpawnAtPosition(proto, coords);
         _mind.TransferTo(mind, newSpider);
         _mind.UnVisit(mind);
+        var oldRotation = _transform.GetWorldRotation(ent);
+        _transform.SetWorldRotation(newSpider, oldRotation);
     }
 }
