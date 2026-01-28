@@ -78,6 +78,7 @@
   description: Eww
   components:
   - type: Sprite
+    drawdepth: Items
     sprite: _UM/Objects/eggs.rsi
     noRot: true
     layers:

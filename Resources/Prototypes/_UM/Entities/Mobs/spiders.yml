@@ -312,7 +312,7 @@
       lastVisibility: 0.001
   - type: SpiderEnergy
     passiveRegen: 5
-    energy:
+    energy: 80
     maxRegenEnergy: 80
 
 - type: entity
