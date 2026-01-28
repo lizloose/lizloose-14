@@ -5,7 +5,7 @@
   description: A weapon with dual fire modes, for non-lethal stun bolts or lethal laser fire.
   components:
   - type: Sprite
-    sprite: _lizloose/Objects/Weapons/Guns/Battery/energygun.rsi
+    sprite: _UM/Objects/Weapons/Guns/Battery/energygun.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -20,7 +20,7 @@
           BulletDisabler: { color: "#5fcde4" }
           BulletLaser: { color: "#ff0006" }
   - type: Clothing
-    sprite: _lizloose/Objects/Weapons/Guns/Battery/energygun.rsi
+    sprite: _UM/Objects/Weapons/Guns/Battery/energygun.rsi
     quickEquip: false
     slots:
     - suitStorage
@@ -32,13 +32,14 @@
     projectileSpeed: 35 # any higher and this causes issues in lag
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletDisabler
     fireCost: 50
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: BulletDisabler
       fireCost: 50
+      pacifismAllowedMode: true
       color: "#5fcde4"
     - proto: BulletLaser
       fireCost: 100
