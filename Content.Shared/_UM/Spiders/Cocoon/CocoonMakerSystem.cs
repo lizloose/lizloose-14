@@ -67,7 +67,7 @@ public sealed class CocoonMakerSystem : EntitySystem
             ent,
             PopupType.LargeCaution);
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, 5f, new OnCocoonWrapDoAfterEvent(), ent, args.Target)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.WrapTime, new OnCocoonWrapDoAfterEvent(), ent, args.Target)
         {
             BreakOnMove = true,
             NeedHand = false,

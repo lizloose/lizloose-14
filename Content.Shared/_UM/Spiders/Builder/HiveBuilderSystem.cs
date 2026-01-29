@@ -118,7 +118,7 @@ public sealed class HiveBuilderSystem : EntitySystem
             TargetCoordinates = GetNetCoordinates(doafterTarget),
         };
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, 0.5f, doAfter, ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.BuildTime, doAfter, ent)
         {
             BreakOnMove = true,
             NeedHand = false,

@@ -41,6 +41,12 @@ public sealed partial class CocoonComponent : Component
     public ProtoId<ToolQualityPrototype> Quality = "Slicing";
 
     /// <summary>
+    /// Time it takes to open the cocoon
+    /// </summary>
+    [DataField]
+    public TimeSpan OpenTime = TimeSpan.FromSeconds(6);
+
+    /// <summary>
     /// Whether or not tha cocoon has been harvested
     /// </summary>
     [DataField, AutoNetworkedField]

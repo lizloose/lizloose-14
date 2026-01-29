@@ -33,6 +33,13 @@ public sealed partial class CocoonMakerComponent : Component
     public EntProtoId SmallCocoon = "SpiderCocoonSmall";
 
     /// <summary>
+    /// How long it should take to wrap someone in a cocoon
+    /// TODO: Move this to mobsize when thats done
+    /// </summary>
+    [DataField]
+    public TimeSpan WrapTime = TimeSpan.FromSeconds(5);
+
+    /// <summary>
     /// Damage to deal to person inside cocoon when their essence is absorbed.
     /// </summary>
     [DataField(required: true)]

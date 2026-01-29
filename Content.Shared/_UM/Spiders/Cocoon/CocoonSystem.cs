@@ -39,7 +39,7 @@ public sealed class CocoonSystem : EntitySystem
 
     private void OnInteract(Entity<CocoonComponent> ent, ref ActivateInWorldEvent args)
     {
-        if (args.Handled || !args.Complex || ent.Comp.Harvested)
+        if (args.Handled || ent.Comp.Harvested)
             return;
 
         if (!HasComp<CocoonMakerComponent>(args.User))
@@ -72,7 +72,9 @@ public sealed class CocoonSystem : EntitySystem
         if (!Resolve(cocoonMaker, ref cocoonMaker.Comp))
             return;
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, cocoonMaker, 4f, new OnCocoonEnergyAbsorbDoAfterEvent(), cocoonMaker, ent)
+        var duration = ent.Comp.Energy.Value / 2;
+
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, cocoonMaker, duration, new OnCocoonEnergyAbsorbDoAfterEvent(), cocoonMaker, ent)
         {
             BreakOnMove = true,
             NeedHand = false,
@@ -89,7 +91,7 @@ public sealed class CocoonSystem : EntitySystem
         if (!_tools.HasQuality(args.Used, ent.Comp.Quality))
             return;
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, 5f, new OnCocoonDestroyDoAfterEvent(), ent, args.Target, args.Used)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.OpenTime, new OnCocoonDestroyDoAfterEvent(), ent, args.Target, args.Used)
         {
             BreakOnMove = true,
             NeedHand = true,

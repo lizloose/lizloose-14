@@ -34,6 +34,9 @@ public sealed partial class HiveBuilderComponent : Component
     [DataField(required: true), AutoNetworkedField]
     public List<EntProtoId> BuildTypes = new() { "WallWeb", "WebDoor", "SpiderWeb" };
 
+    [DataField]
+    public TimeSpan BuildTime = TimeSpan.FromSeconds(0.5);
+
     /// <summary>
     /// How much should it cost to build
     /// </summary>
