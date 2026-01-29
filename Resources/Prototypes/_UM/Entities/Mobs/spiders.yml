@@ -444,3 +444,28 @@
       types:
         Blunt: 15
         Slash: 15
+
+- type: entity
+  id: EnergyTestMonkey
+  name: energy test
+  parent: MobMonkey
+  components:
+  - type: Energy
+    types:
+      fart:
+        amount: 69
+        maxEnergy: 250
+      wheeze:
+        amount: 600
+        maxEnergy: 750
+  - type: EnergyRegeneration
+    updateInterval: 1
+    types:
+      fart:
+        amount: 1
+      wheeze:
+        amount: 6
+  - type: EnergyAlert
+    types:
+      fart: SpiderEnergy
+      wheeze: Essence
