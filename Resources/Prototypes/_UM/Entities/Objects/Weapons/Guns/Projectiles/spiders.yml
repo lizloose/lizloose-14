@@ -13,6 +13,9 @@
       types:
         Caustic: 15
     ignoreResistances: true
+    impactEffect: BulletImpactEffectGreenNurseSpider
+    soundHit:
+      collection: MeatLaserImpact
   - type: ProjectileWhitelist
     whitelist:
       tags:
@@ -25,3 +28,22 @@
         Toxin: -7
       types:
         Bloodloss: -7
+
+- type: entity
+  id: BulletImpactEffectGreenNurseSpider
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.2
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+      state: impact_laser_greyscale
+      color: greenyellow
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+    - HideContextMenu

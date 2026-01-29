@@ -95,11 +95,13 @@
   - type: Action
     useDelay: 3
     itemIconStyle: BigAction
-    raiseOnUser: true
+    raiseOnUser: false
     icon:
       sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
       state: declone
     priority: 3
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Weapons/Xeno/alien_spitacid.ogg
   - type: TargetAction
     range: 60
     checkCanAccess: false
