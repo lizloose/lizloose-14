@@ -1,7 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._UM.Spiders.Components;
+namespace Content.Shared._UM.Spiders;
 
 /// <summary>
 /// This is used for...

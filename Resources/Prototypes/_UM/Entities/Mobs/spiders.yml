@@ -392,10 +392,10 @@
       - Spider
     healAmount:
       groups:
-        Brute: -10
-        Burn: -10
-        Airloss: -10
-        Toxin: -10
+        Brute: -11
+        Burn: -11
+        Airloss: -11
+        Toxin: -11
       types:
         Bloodloss: -10
 

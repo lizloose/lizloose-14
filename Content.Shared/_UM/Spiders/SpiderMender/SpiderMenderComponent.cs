@@ -26,13 +26,20 @@ public sealed partial class SpiderMenderComponent : Component
     /// How much energy does it cost to heal
     /// </summary>
     [DataField]
-    public FixedPoint2 HealCost = 5;
+    public FixedPoint2 HealCost = 20;
 
     /// <summary>
     /// How much should the action heal
     /// </summary>
     [DataField(required: true)]
     public DamageSpecifier HealAmount;
+
+    /// <remarks>
+    /// This should generally be negative,
+    /// since you're, like, trying to heal damage.
+    /// </remarks>
+    [DataField, AutoNetworkedField]
+    public float BloodlossModifier = -10.0f;
 
     /// <summary>
     /// Entity whitelist for what is allowed to be healed.

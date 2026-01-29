@@ -1,5 +1,7 @@
 using Content.Shared._UM.Spiders.SpiderEnergy;
 using Content.Shared.Actions;
+using Content.Shared.Body.Systems;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Popups;
@@ -18,6 +20,7 @@ public sealed class SpiderMenderSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SpiderEnergySystem _energy = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -44,6 +47,24 @@ public sealed class SpiderMenderSystem : EntitySystem
         }
     }
 
+    private bool HasDamage(Entity<SpiderMenderComponent> healing, Entity<DamageableComponent?> target)
+    {
+        if (!Resolve(target, ref target.Comp))
+            return false;
+
+        var damageableDict = target.Comp.Damage.DamageDict;
+        var healingDict = healing.Comp.HealAmount.DamageDict;
+        foreach (var type in healingDict)
+        {
+            if (damageableDict[type.Key].Value > 0)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private void OnMendAction(Entity<SpiderMenderComponent> ent, ref OnSpiderMendActionEvent args)
     {
         if (_whitelist.IsWhitelistFail(ent.Comp.Whitelist, args.Target) || args.Handled)
@@ -56,11 +77,13 @@ public sealed class SpiderMenderSystem : EntitySystem
             return;
         }
 
+        if (!HasDamage(ent, args.Target))
+            return;
+
         var time = ent.Comp.HealTime;
 
         if (ent.Owner == args.Target)
             time = ent.Comp.HealTime * 2;
-
 
         _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, time, new SpiderMendDoAfterEvent(), ent, args.Target)
         {
@@ -99,6 +122,7 @@ public sealed class SpiderMenderSystem : EntitySystem
         if (!_energy.TrySpendEnergy(ent.Owner, ent.Comp.HealCost))
             return;
 
+        _bloodstreamSystem.TryModifyBleedAmount(args.Target.Value, ent.Comp.BloodlossModifier);
         _damage.TryChangeDamage(args.Target.Value, ent.Comp.HealAmount);
     }
 }
