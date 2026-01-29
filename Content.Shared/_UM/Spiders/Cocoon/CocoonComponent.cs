@@ -1,5 +1,4 @@
 using Content.Shared.DoAfter;
-using Content.Shared.FixedPoint;
 using Content.Shared.Tools;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -54,12 +53,10 @@ public sealed partial class CocoonComponent : Component
     public bool Harvested;
 
     /// <summary>
-    /// Energy this cocoon can provide
-    /// Rolls on component init
+    /// How long should it take to absorb?
     /// </summary>
-    [DataField, AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadWrite)]
-    public FixedPoint2 Energy = 70;
+    [DataField]
+    public TimeSpan Duration = TimeSpan.FromSeconds(40);
 
     /// <summary>
     /// Maximum energy this cocoon can provide

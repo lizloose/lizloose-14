@@ -7,6 +7,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
+using Robust.Shared.Random;
 
 namespace Content.Shared._UM.Spiders.Cocoon;
 
@@ -22,6 +23,7 @@ public sealed class CocoonMakerSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly SpiderEnergySystem _energy = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -100,7 +102,10 @@ public sealed class CocoonMakerSystem : EntitySystem
 
         Dirty(ent);
         cocoon.Harvested = true;
-        _energy.TryAddEnergy(ent.Owner, cocoon.Energy);
+
+        var energy = _random.Next(cocoon.MinEnergy, cocoon.MaxEnergy);
+
+        _energy.TryAddEnergy(ent.Owner, energy);
 
         foreach (var mob in cocoon.Contents.ContainedEntities)
         {
