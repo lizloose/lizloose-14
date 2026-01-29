@@ -219,15 +219,15 @@
     maxRegenEnergy: 50
   - type: SpiderEvolution
     evolutionTypes:
-    - MobSpiderBuilder
+    - MobSpiderWeaver
     - MobSpiderViper
     - MobSpiderHunter
     - MobSpiderNurse
 
 - type: entity
-  name: nest builder
+  name: weaver
   parent: UMMobSpiderBase
-  id: MobSpiderBuilder
+  id: MobSpiderWeaver
   description: Build the nest, serve the broodmother
   components:
   - type: Sprite

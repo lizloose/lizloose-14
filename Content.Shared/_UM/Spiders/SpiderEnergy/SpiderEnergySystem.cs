@@ -96,7 +96,7 @@ public sealed class SpiderEnergySystem : EntitySystem
 
         if (_net.IsClient)
             return true;
-        
+
         ent.Comp.Energy += amount;
         Dirty(ent);
         _alerts.ShowAlert(ent.Owner, ent.Comp.EnergyAlert);

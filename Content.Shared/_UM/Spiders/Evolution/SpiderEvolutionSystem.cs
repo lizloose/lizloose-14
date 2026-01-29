@@ -1,6 +1,6 @@
 using Content.Shared._UM.Spiders.SpiderEnergy;
 using Content.Shared.Actions;
-using Content.Shared.Emoting;
+using Content.Shared.DoAfter;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
@@ -17,6 +17,7 @@ public sealed class SpiderEvolutionSystem : EntitySystem
     [Dependency] private readonly SpiderEnergySystem _energy = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
 
     private const string SpiderEvolveBuiXmlGeneratedName = "SpiderEvolutionBoundUserInterface";
     /// <inheritdoc/>
@@ -27,6 +28,7 @@ public sealed class SpiderEvolutionSystem : EntitySystem
         SubscribeLocalEvent<SpiderEvolutionComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<SpiderEvolutionComponent, SpiderEvolveActionEvent>(OnEvolveAction);
         SubscribeLocalEvent<SpiderEvolutionComponent, SpiderEvolutionSelectMessage>(OnEvolutionSelect);
+        SubscribeLocalEvent<SpiderEvolutionComponent, EvolveDoAfterEvent>(OnEvolutionDoAfter);
     }
 
     private void OnMapInit(Entity<SpiderEvolutionComponent> ent, ref MapInitEvent args)
@@ -64,10 +66,47 @@ public sealed class SpiderEvolutionSystem : EntitySystem
         if (!ent.Comp.EvolutionTypes.Contains(args.PrototypeId))
             return;
 
+        if (!_energy.CanSpendEnergy(ent.Owner, ent.Comp.EvolutionCost))
+            return;
+
+        var doAfter = new EvolveDoAfterEvent()
+        {
+            ProtoId = args.PrototypeId,
+        };
+
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.EvolutionDuration, doAfter, ent)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            NeedHand = false,
+        });
+
+        var selfMessage = Loc.GetString("spider-evolve-start-self");
+        var othersMessage = Loc.GetString("spider-evolve-start-others", ("spider", ent.Owner));
+
+        _popup.PopupPredicted(
+            selfMessage,
+            othersMessage,
+            ent,
+            ent,
+            PopupType.MediumCaution);
+    }
+
+    private void OnEvolutionDoAfter(Entity<SpiderEvolutionComponent> ent, ref EvolveDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled)
+            return;
+
+        if (!ent.Comp.EvolutionTypes.Contains(args.ProtoId))
+            return;
+
         if (_net.IsClient)
             return;
 
-        Evolve(ent, args.PrototypeId);
+        if (!_energy.CanSpendEnergy(ent.Owner, ent.Comp.EvolutionCost))
+            return;
+
+        Evolve(ent, args.ProtoId);
         Del(ent);
     }
 

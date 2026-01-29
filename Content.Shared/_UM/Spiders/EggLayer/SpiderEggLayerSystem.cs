@@ -1,5 +1,7 @@
 using Content.Shared._UM.Spiders.SpiderEnergy;
 using Content.Shared.Actions;
+using Content.Shared.DoAfter;
+using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared._UM.Spiders.EggLayer;
@@ -12,6 +14,8 @@ public sealed class EggLayerSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SpiderEnergySystem _energy = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -21,6 +25,7 @@ public sealed class EggLayerSystem : EntitySystem
         SubscribeLocalEvent<SpiderEggLayerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<SpiderEggLayerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<SpiderEggLayerComponent, OnLayEggActionEvent>(OnLayEggAction);
+        SubscribeLocalEvent<SpiderEggLayerComponent, LayEggDoAfterEvent>(OnLayEggDoAfter);
     }
 
     private void OnMapInit(Entity<SpiderEggLayerComponent> ent, ref MapInitEvent args)
@@ -41,11 +46,51 @@ public sealed class EggLayerSystem : EntitySystem
         if (args.Handled)
             return;
 
+        if (!_energy.CanSpendEnergy(ent.Owner, ent.Comp.LayEggCost))
+            return;
+
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.LayEggTime, new LayEggDoAfterEvent(), ent)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            NeedHand = false,
+        });
+
+        var selfMessage = Loc.GetString("spider-layegg-start-self");
+        var othersMessage = Loc.GetString("spider-layegg-start-others", ("spider", ent.Owner));
+
+        _popup.PopupPredicted(
+            selfMessage,
+            othersMessage,
+            ent,
+            ent,
+            PopupType.LargeCaution);
+
+        args.Handled = true;
+    }
+
+    private void OnLayEggDoAfter(Entity<SpiderEggLayerComponent> ent, ref LayEggDoAfterEvent args)
+    {
+        if (args.Handled || args.Cancelled)
+            return;
+
         if (!_energy.TrySpendEnergy(ent.Owner, ent.Comp.LayEggCost))
             return;
 
         var eggs = PredictedSpawnAtPosition(ent.Comp.EggProto, Transform(ent).Coordinates);
+
         _audio.PlayPredicted(ent.Comp.LayEggSound, eggs, null);
+
+        var selfMessage = Loc.GetString("spider-layegg-done-self");
+        var othersMessage = Loc.GetString("spider-layegg-done-others", ("spider", ent.Owner));
+
+        _popup.PopupPredicted(
+            selfMessage,
+            othersMessage,
+            ent,
+            ent,
+            PopupType.LargeCaution);
+
         args.Handled = true;
     }
 }

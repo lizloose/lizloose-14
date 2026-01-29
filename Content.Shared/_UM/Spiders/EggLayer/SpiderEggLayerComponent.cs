@@ -1,8 +1,10 @@
 using Content.Shared.Actions;
+using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._UM.Spiders.EggLayer;
 
@@ -33,6 +35,13 @@ public sealed partial class SpiderEggLayerComponent : Component
     public FixedPoint2 LayEggCost = 20;
 
     /// <summary>
+    /// How much time it takes to lay an egg
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [AutoNetworkedField]
+    public TimeSpan LayEggTime = TimeSpan.FromSeconds(5);
+
+    /// <summary>
     /// Sound that should play when laying an egg
     /// </summary>
     [DataField]
@@ -40,5 +49,10 @@ public sealed partial class SpiderEggLayerComponent : Component
 }
 
 public sealed partial class OnLayEggActionEvent : InstantActionEvent
+{
+}
+
+[Serializable, NetSerializable]
+public sealed partial class LayEggDoAfterEvent : SimpleDoAfterEvent
 {
 }

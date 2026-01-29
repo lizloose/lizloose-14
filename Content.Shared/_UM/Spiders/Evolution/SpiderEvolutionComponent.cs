@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -22,8 +23,17 @@ public sealed partial class SpiderEvolutionComponent : Component
     [DataField, AutoNetworkedField]
     public List<EntProtoId> EvolutionTypes = new() { "MobLizard", "MobMonkey", "MobGorilla" };
 
+    /// <summary>
+    /// How much energy it costs to evolve
+    /// </summary>
     [DataField, AutoNetworkedField]
     public FixedPoint2 EvolutionCost = 50;
+
+    /// <summary>
+    /// How long it should take to evolve
+    /// </summary>
+    [DataField]
+    public TimeSpan EvolutionDuration = TimeSpan.FromSeconds(25);
 }
 
 [Serializable, NetSerializable]
@@ -42,3 +52,12 @@ public enum SpiderEvolveRadialUiKey : byte
 /// Action event for evolving
 /// </summary>
 public sealed partial class SpiderEvolveActionEvent : InstantActionEvent;
+
+
+[Serializable, NetSerializable]
+public sealed partial class EvolveDoAfterEvent : DoAfterEvent
+{
+    public EntProtoId ProtoId;
+
+    public override DoAfterEvent Clone() => this;
+}
