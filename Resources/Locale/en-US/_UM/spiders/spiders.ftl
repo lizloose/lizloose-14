@@ -8,6 +8,12 @@ spider-layegg-done-self = You lay some eggs
 spider-layegg-done-others = {THE($spider)} lays some eggs!
 
 
+
+spider-mend-start-self = You start to tend to your wounds!
+spider-mend-start-others = {THE($spider)} starts to tend to your wounds!
+
+spider-mend-fail-energy = You don't have enough energy to do that!
+
 spider-evolve-start-self = You begin to shed your skin
 spider-evolve-start-others = {THE($spider)} begins shedding its skin.
 

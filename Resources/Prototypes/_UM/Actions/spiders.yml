@@ -111,6 +111,25 @@
 
 - type: entity
   parent: BaseAction
+  id: ActionWebMend
+  name: "[color=red]Web mend[/color]"
+  description: Tend a spiders wounds using your webs
+  components:
+  - type: Action
+    icon: { sprite : Objects/Specific/Medical/medical.rsi, state: gauze }
+    itemIconStyle: BigAction
+    priority: 3
+  - type: TargetAction
+  - type: EntityTargetAction
+    canTargetSelf: true
+    whitelist:
+      components:
+      - MobState
+    event: !type:OnSpiderMendActionEvent
+
+
+- type: entity
+  parent: BaseAction
   id: ActionSpiderEyes
   name: "[color=red]Spider Vision[/color]"
   description: Spider vision?

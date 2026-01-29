@@ -383,6 +383,21 @@
   - type: ActionGrant
     actions:
     - ActionSpiderHealBolt
+  - type: SpiderEnergy
+    passiveRegen: 2
+    energy: 70
+  - type: SpiderMender
+    whitelist:
+      tags:
+      - Spider
+    healAmount:
+      groups:
+        Brute: -10
+        Burn: -10
+        Airloss: -10
+        Toxin: -10
+      types:
+        Bloodloss: -10
 
 - type: entity
   name: hunter

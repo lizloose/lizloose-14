@@ -28,6 +28,7 @@
         Toxin: -7
       types:
         Bloodloss: -7
+        Heat: 1
 
 - type: entity
   id: BulletImpactEffectGreenNurseSpider
