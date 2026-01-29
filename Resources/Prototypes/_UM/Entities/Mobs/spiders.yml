@@ -1,3 +1,6 @@
+- type: Tag
+  id: Spider
+
 - type: entity
   parent: [ MobAtmosStandard, BaseMob, MobDamageable, BaseMobHemocyanin, MobBloodstream, MobPolymorphable, MobCombat ]
   id: UMMobSpiderBase
@@ -75,6 +78,7 @@
     tags:
     - DoorBumpOpener
     - FootstepSound
+    - Spider
   - type: Prying # Open door from xeno.yml.
     pryPowered: true
     force: true

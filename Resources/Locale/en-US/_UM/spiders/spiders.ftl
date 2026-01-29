@@ -18,6 +18,8 @@ ghost-role-information-broodmother-description = A being of pure evil. Grow the 
 ghost-role-information-spider-name = Spider
 ghost-role-information-spider-description = Help the broodmother grow the hive.
 
+role-subtype-spider = Spider
+
 role-type-spider-name = Spider
 role-type-broodmother-name = Broodmother
 

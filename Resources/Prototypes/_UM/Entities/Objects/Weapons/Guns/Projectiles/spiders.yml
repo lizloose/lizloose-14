@@ -15,7 +15,7 @@
     ignoreResistances: true
   - type: ProjectileWhitelist
     whitelist:
-      components:
+      tags:
       - Spider
     whitelistDamage:
       groups:
