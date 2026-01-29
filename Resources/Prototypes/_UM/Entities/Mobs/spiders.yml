@@ -103,6 +103,14 @@
     channels:
     - SpiderMind
   - type: SpiderEnergy
+  - type: SpiderEyes
+  - type: PointLight
+    color: MediumPurple
+    netsync: false
+    radius: 50
+    energy: 3
+    castShadows: false
+    enabled: false
 
 - type: entity
   name: Broodmother

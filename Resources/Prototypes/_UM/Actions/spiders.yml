@@ -8,7 +8,7 @@
     icon: { sprite : _UM/Actions/broodmother.rsi, state: wrap_0 }
     iconOn: { sprite : _UM/Actions/broodmother.rsi, state: wrap_1 }
     itemIconStyle: BigAction
-    priority: 1
+    priority: 3
   - type: TargetAction
   - type: EntityTargetAction
     canTargetSelf: false
@@ -26,7 +26,7 @@
   - type: Action
     icon: { sprite : _UM/Actions/broodmother.rsi, state: lay_eggs }
     itemIconStyle: BigAction
-    priority: 1
+    priority: 3
   - type: InstantAction
     event: !type:OnLayEggActionEvent
 
@@ -37,9 +37,9 @@
   description: Build your fucked up spider walls
   components:
   - type: Action
-    icon: { sprite : _UM/Actions/broodmother.rsi, state: spider_wall }
+    icon: { sprite : _UM/Actions/broodmother.rsi, state: spider_mirror }
     itemIconStyle: BigAction
-    priority: 1
+    priority: 5
   - type: InstantAction
     event: !type:HiveBuilderSelectTypeActionEvent
 
@@ -51,7 +51,7 @@
   components:
   - type: Action
     # TODO: actual sprite and iconOn
-    icon: { sprite : _UM/Actions/broodmother.rsi, state: spider_mirror }
+    icon: { sprite : _UM/Actions/broodmother.rsi, state: spider_wall }
     itemIconStyle: BigAction
     priority: 2
   - type: TargetAction
@@ -69,7 +69,7 @@
   - type: Action
     icon: { sprite : _UM/Actions/broodmother.rsi, state: defensive_mode }
     itemIconStyle: BigAction
-    priority: 1
+    priority: 3
   - type: InstantAction
     event: !type:SpiderEvolveActionEvent
 
@@ -82,7 +82,7 @@
   - type: Action
     icon: { sprite : _UM/Actions/broodmother.rsi, state: cloak }
     itemIconStyle: BigAction
-    priority: 1
+    priority: 3
   - type: InstantAction
     event: !type:ToggleActionEvent
 
@@ -99,9 +99,25 @@
     icon:
       sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
       state: declone
+    priority: 3
   - type: TargetAction
     range: 60
     checkCanAccess: false
   - type: WorldTargetAction
     event: !type:ProjectileSpellEvent
       prototype: ProjectileSpiderBolt
+
+- type: entity
+  parent: BaseAction
+  id: ActionSpiderEyes
+  name: "[color=red]Spider Vision[/color]"
+  description: Spider vision?
+  components:
+  - type: Action
+    useDelay: 2
+    icon: { sprite : _UM/Actions/broodmother.rsi, state: adjust_vision }
+    itemIconStyle: BigAction
+    priority: 1
+    clientExclusive: true
+  - type: InstantAction
+    event: !type:ToggleSpiderEyesActionEvent
