@@ -1,5 +1,20 @@
 - type: entity
   parent: BaseAction
+  id: ActionDeployBroodmother
+  name: "[color=red]Deploy[/color]"
+  description: Become the broodmother
+  components:
+  - type: Action
+    icon: { sprite : _UM/Actions/broodmother.rsi, state: defensive_mode }
+    itemIconStyle: BigAction
+    priority: 3
+  - type: ConfirmableAction
+    popup: deploy-action-popup
+  - type: InstantAction
+    event: !type:DeployAntagActionEvent
+
+- type: entity
+  parent: BaseAction
   id: ActionCocoon
   name: "[color=red]Cocoon[/color]"
   description: put that bitch into a cocoon
@@ -142,3 +157,4 @@
     clientExclusive: true
   - type: InstantAction
     event: !type:ToggleSpiderEyesActionEvent
+

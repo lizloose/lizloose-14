@@ -1,0 +1,23 @@
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  id: SpawnPointGhostBroodmother
+  name: ghost role spawn point
+  suffix: spiders
+  parent: BaseAntagSpawner
+  components:
+    - type: GhostRole
+      name: ghost-role-information-broodmother-name
+      description: ghost-role-information-broodmother-description
+      rules: ghost-role-information-antagonist-rules
+      mindRoles:
+      - MindRoleBroodmother
+      raffle:
+        settings: default
+    - type: GhostRoleMobSpawner
+      prototype: MobInfectedMouse
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+      - state: green
+      - sprite: Structures/Wallmounts/signs.rsi
+        state: radiation

@@ -19,6 +19,10 @@ spider-evolve-start-others = {THE($spider)} begins shedding its skin.
 
 spider-build-fail-energy = You don't have enough energy to build a {$build}!
 
+spider-deployed = You emerge from the {THE($target)}.
+
+deploy-action-popup = THIS ACTION WILL TURN YOU INTO THE BROODMOTHER! Use it again to confirm.
+
 alerts-spider-energy-name = Energy
 alerts-spider-essence-desc = Spider energy.
 

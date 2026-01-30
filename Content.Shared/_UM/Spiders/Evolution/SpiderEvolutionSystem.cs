@@ -110,7 +110,7 @@ public sealed class SpiderEvolutionSystem : EntitySystem
         Del(ent);
     }
 
-    private void Evolve(Entity<SpiderEvolutionComponent> ent, EntProtoId proto)
+    public void Evolve(EntityUid ent, EntProtoId proto, bool deleteOriginal = false)
     {
         if (_net.IsClient)
             return;
@@ -124,5 +124,7 @@ public sealed class SpiderEvolutionSystem : EntitySystem
         _mind.UnVisit(mind);
         var oldRotation = _transform.GetWorldRotation(ent);
         _transform.SetWorldRotation(newSpider, oldRotation);
+        if (deleteOriginal)
+            Del(ent);
     }
 }

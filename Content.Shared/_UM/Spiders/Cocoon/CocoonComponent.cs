@@ -56,7 +56,7 @@ public sealed partial class CocoonComponent : Component
     /// How long should it take to absorb?
     /// </summary>
     [DataField]
-    public TimeSpan Duration = TimeSpan.FromSeconds(40);
+    public TimeSpan Duration = TimeSpan.FromSeconds(30);
 
     /// <summary>
     /// Maximum energy this cocoon can provide

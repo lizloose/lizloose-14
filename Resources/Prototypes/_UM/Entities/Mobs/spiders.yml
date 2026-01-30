@@ -114,6 +114,19 @@
   - type: Spider
 
 - type: entity
+  parent: MobMouse
+  id: MobMouseBroodmother
+  suffix: SpiderAntag
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      450: Critical
+      500: Dead
+  - type: DeployableAntag
+    protoId: MobBroodmother
+
+- type: entity
   name: Broodmother
   parent: UMMobSpiderBase
   id: MobBroodmother
@@ -159,23 +172,10 @@
       types:
         Blunt: 100
   - type: SpiderEggLayer
-  - type: HiveBuilder
-    buildTypes:
-    - WallWeb
-    - SpiderWeb
+    layEggCost: 30
   - type: SpiderEnergy
     passiveRegen: 0
-    energy: 200
-  - type: GhostTakeoverAvailable
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-broodmother-name
-    description: ghost-role-information-broodmother-description
-    rules: ghost-role-information-rules-team-antagonist
-    mindRoles:
-    - MindRoleBroodmother
+    energy: 65
 
 - type: entity
   name: tarantula
