@@ -118,4 +118,6 @@
     - MindRoleSpider
   - type: GhostRoleMobSpawner
     prototype: MobSpiderUndecided
-
+  - type: Tag
+    tags:
+    - Spider

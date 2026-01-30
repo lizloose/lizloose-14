@@ -118,6 +118,7 @@
     energy: 3
     castShadows: false
     enabled: false
+  - type: Spider
 
 - type: entity
   name: Broodmother
@@ -207,7 +208,7 @@
       Alive:
         Base: tarantula
       Critical:
-        Base: tarantula
+        Base: tarantula_dead
       Dead:
         Base: tarantula_dead
   - type: MeleeWeapon
@@ -255,9 +256,9 @@
       Alive:
         Base: guard
       Critical:
-        Base: guard
+        Base: guard_dead
       Dead:
-        Base: guard
+        Base: guard_dead
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -332,9 +333,9 @@
       Alive:
         Base: viper
       Critical:
-        Base: viper
+        Base: viper_dead
       Dead:
-        Base: viper
+        Base: viper_dead
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -385,9 +386,9 @@
       Alive:
         Base: nurse
       Critical:
-        Base: nurse
+        Base: nurse_dead
       Dead:
-        Base: nurse
+        Base: nurse_dead
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -397,6 +398,9 @@
     damage:
       types:
         Piercing: 10
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
   - type: ActionGrant
     actions:
     - ActionSpiderHealBolt
@@ -409,10 +413,10 @@
       - Spider
     healAmount:
       groups:
-        Brute: -11
-        Burn: -11
-        Airloss: -11
-        Toxin: -11
+        Brute: -25
+        Burn: -25
+        Airloss: -25
+        Toxin: -25
       types:
         Bloodloss: -10
 
@@ -441,16 +445,16 @@
       300: Critical
       350: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 2
-    baseSprintSpeed : 4
+    baseWalkSpeed : 1.5
+    baseSprintSpeed : 3
   - type: DamageStateVisuals
     states:
       Alive:
         Base: hunter
       Critical:
-        Base: hunter
+        Base: hunter_dead
       Dead:
-        Base: hunter
+        Base: hunter_dead
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
