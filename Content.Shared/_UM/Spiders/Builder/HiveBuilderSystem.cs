@@ -45,6 +45,7 @@ public sealed class HiveBuilderSystem : EntitySystem
         _uiSystem.SetUi((ent, userInterfaceComp), HiveBuilderRadialUiKey.Key, new InterfaceData(HiveBuilderBuiXmlGeneratedName));
 
         ent.Comp.CurrentBuild = ent.Comp.BuildTypes.First();
+        Dirty(ent);
     }
 
     private void OnShutdown(Entity<HiveBuilderComponent> ent, ref ComponentShutdown args)
