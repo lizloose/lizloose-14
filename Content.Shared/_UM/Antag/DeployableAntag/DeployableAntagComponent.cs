@@ -4,7 +4,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._UM.Spiders.DeployableAntag;
+namespace Content.Shared._UM.Antag.DeployableAntag;
 
 /// <summary>
 /// This handles antagonists that start off as a normal mob, find a safe place, and transform into the actual antag.

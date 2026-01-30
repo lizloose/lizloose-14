@@ -8,13 +8,13 @@
     - type: GhostRole
       name: ghost-role-information-broodmother-name
       description: ghost-role-information-broodmother-description
-      rules: ghost-role-information-antagonist-rules
+      rules: ghost-role-information-rules-team-antagonist
       mindRoles:
       - MindRoleBroodmother
       raffle:
         settings: default
     - type: GhostRoleMobSpawner
-      prototype: MobInfectedMouse
+      prototype: MobMouseBroodmother
     - type: Sprite
       sprite: Markers/jobs.rsi
       layers:

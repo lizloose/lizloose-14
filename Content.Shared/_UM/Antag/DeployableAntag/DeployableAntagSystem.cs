@@ -5,7 +5,7 @@ using Content.Shared.Gibbing;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
 
-namespace Content.Shared._UM.Spiders.DeployableAntag;
+namespace Content.Shared._UM.Antag.DeployableAntag;
 
 /// <summary>
 /// This handles...
