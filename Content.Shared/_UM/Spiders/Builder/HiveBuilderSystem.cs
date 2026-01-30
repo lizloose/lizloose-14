@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Shared._UM.Energy;
 using Content.Shared._UM.Spiders.SpiderEnergy;
 using Content.Shared.Actions;
 using Content.Shared.DoAfter;
@@ -20,7 +19,7 @@ public sealed class HiveBuilderSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedEnergySystem _energy = default!;
+    [Dependency] private readonly SpiderEnergySystem _energy = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
@@ -46,7 +45,6 @@ public sealed class HiveBuilderSystem : EntitySystem
         _uiSystem.SetUi((ent, userInterfaceComp), HiveBuilderRadialUiKey.Key, new InterfaceData(HiveBuilderBuiXmlGeneratedName));
 
         ent.Comp.CurrentBuild = ent.Comp.BuildTypes.First();
-        Dirty(ent);
     }
 
     private void OnShutdown(Entity<HiveBuilderComponent> ent, ref ComponentShutdown args)
@@ -79,10 +77,9 @@ public sealed class HiveBuilderSystem : EntitySystem
 
     private void OnBuildAction(Entity<HiveBuilderComponent> ent, ref HiveBuilderBuildActionEvent args)
     {
-        if (!_energy.CanSpendEnergy(ent.Owner, ent.Comp.EnergyType, ent.Comp.BuildCost))
+        if (!_energy.CanSpendEnergy(ent.Owner, ent.Comp.BuildCost))
         {
-            if (!_prototype.TryIndex(ent.Comp.CurrentBuild, out var entName))
-                return;
+            var entName = _prototype.Index(ent.Comp.CurrentBuild);
             var message = Loc.GetString("spider-build-fail-energy", ("build", entName.Name));
             _popup.PopupClient(message, ent, PopupType.SmallCaution);
             return;
@@ -133,7 +130,7 @@ public sealed class HiveBuilderSystem : EntitySystem
         if (args.Cancelled || args.Handled)
             return;
 
-        if (!_energy.TrySpendEnergy(ent.Owner, ent.Comp.EnergyType, ent.Comp.BuildCost))
+        if (!_energy.TrySpendEnergy(ent.Owner, ent.Comp.BuildCost))
             return;
 
         PredictedSpawnAtPosition(ent.Comp.CurrentBuild, GetCoordinates(args.TargetCoordinates));

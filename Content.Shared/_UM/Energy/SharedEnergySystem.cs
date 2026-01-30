@@ -76,9 +76,6 @@ public sealed class SharedEnergySystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
-        if (!_timing.IsFirstTimePredicted)
-            return true;
-
         if (!HasEnergyType(ent, id))
             return false;
 
@@ -86,7 +83,6 @@ public sealed class SharedEnergySystem : EntitySystem
             return false;
 
         ent.Comp.Types[id].Energy -= amount;
-        Dirty(ent);
         return true;
     }
 
@@ -97,10 +93,8 @@ public sealed class SharedEnergySystem : EntitySystem
 
         if (!TryGetEnergy(ent, id, out var energy))
             return false;
-
-        TryAddEnergy(energy, amount);
-        Dirty(ent);
-        return true;
+        
+        return TryAddEnergy(energy, amount);
     }
 
 

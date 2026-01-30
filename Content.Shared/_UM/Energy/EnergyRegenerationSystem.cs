@@ -1,4 +1,5 @@
 using Content.Shared._UM.Energy.Components;
+using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._UM.Energy;
@@ -33,22 +34,20 @@ public sealed class EnergyRegenerationSystem : EntitySystem
             foreach (var regenEnergy in regenComp.Types)
             {
                 if (!_energySystem.TryGetEnergy(uid, regenEnergy.Key, out var energy))
-                    continue;
+                    return;
 
                 if (energy.Energy > regenEnergy.Value.MaxRegenAmount)
                     continue;
 
-                if (!_energySystem.TryAddEnergy(uid, regenEnergy.Key, regenEnergy.Value.Amount))
+                if (!_energySystem.TryAddEnergy(energy, regenEnergy.Value.Amount))
                     continue;
             }
             regenComp.NextUpdate += regenComp.UpdateInterval;
-            Dirty(uid, regenComp);
         }
     }
 
     private void OnMapInit(Entity<EnergyRegenerationComponent> ent, ref MapInitEvent args)
     {
         ent.Comp.NextUpdate = _timing.CurTime + ent.Comp.UpdateInterval;
-        Dirty(ent);
     }
 }

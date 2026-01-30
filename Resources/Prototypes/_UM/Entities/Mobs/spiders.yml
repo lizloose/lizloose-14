@@ -102,14 +102,7 @@
   - type: ActiveRadio
     channels:
     - SpiderMind
-  - type: Energy
-    types:
-      spider:
-        amount: 25
-        maxEnergy: 100
-  - type: EnergyAlert
-    types:
-      spider: SpiderEnergy
+  - type: SpiderEnergy
   - type: SpiderEyes
   - type: PointLight
     color: MediumPurple
@@ -269,19 +262,9 @@
       types:
         Piercing: 6
         Structural: 35
-  - type: Energy
-    types:
-      spider:
-        amount: 25
-        maxEnergy: 50
-  - type: EnergyRegeneration
-    updateInterval: 5
-    types:
-      spider:
-        amount: 4
-  - type: EnergyAlert
-    types:
-      spider: SpiderEnergy
+  - type: SpiderEnergy
+    passiveRegen: 2
+    energy: 50
   - type: HiveBuilder
     buildTypes:
       - WallWeb
