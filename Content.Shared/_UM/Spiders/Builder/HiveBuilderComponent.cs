@@ -43,6 +43,9 @@ public sealed partial class HiveBuilderComponent : Component
     [DataField, AutoNetworkedField]
     public FixedPoint2 BuildCost = 5;
 
+    [DataField]
+    public string EnergyType = "spider";
+
     /// <summary>
     /// Currently selected build.
     /// </summary>
