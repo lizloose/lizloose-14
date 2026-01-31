@@ -1,5 +1,4 @@
 using Content.Shared._UM.Energy;
-using Content.Shared._UM.Spiders.SpiderEnergy;
 using Content.Shared.Actions;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage.Components;

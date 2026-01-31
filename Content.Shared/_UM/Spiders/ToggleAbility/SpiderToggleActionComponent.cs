@@ -1,6 +1,4 @@
-using Content.Shared._UM.Spiders.SpiderEnergy;
 using Content.Shared.Actions.Components;
-using Content.Shared.FixedPoint;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Toggleable;
 using Robust.Shared.GameStates;

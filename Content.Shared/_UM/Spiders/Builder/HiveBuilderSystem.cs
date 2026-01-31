@@ -1,15 +1,12 @@
 using System.Linq;
 using Content.Shared._UM.Energy;
-using Content.Shared._UM.Spiders.SpiderEnergy;
 using Content.Shared.Actions;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Physics;
-using Content.Shared.Popups;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared._UM.Spiders.Builder;
 
