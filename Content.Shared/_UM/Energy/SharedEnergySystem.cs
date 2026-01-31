@@ -1,4 +1,5 @@
 using Content.Shared.Alert;
+using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._UM.Energy;
@@ -12,6 +13,8 @@ public sealed class SharedEnergySystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<EnergyComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<EnergyComponent, EntGotInsertedIntoContainerMessage>(OnEnergyInserted);
+        SubscribeLocalEvent<EnergyComponent, EntGotRemovedFromContainerMessage>(OnEnergyRemoved);
     }
 
     public override void Update(float frameTime)
@@ -32,19 +35,33 @@ public sealed class SharedEnergySystem : EntitySystem
                 continue;
             comp.Amount = Math.Min(comp.MaxRegen, comp.Amount + comp.PassiveRegen);
             Dirty(uid, comp);
-
-            if (comp.Alert != null)
-                _alerts.ShowAlert(comp.ContainerOwner, comp.Alert.Value);
         }
+    }
+
+    private void OnEnergyInserted(Entity<EnergyComponent> ent, ref EntGotInsertedIntoContainerMessage args)
+    {
+        if (!TryComp<EnergyContainerComponent>(args.Container.Owner, out var energyContainer))
+            return;
+
+        if (ent.Comp.Alert != null)
+            _alerts.ShowAlert(args.Container.Owner, ent.Comp.Alert.Value);
+
+        energyContainer.EnergyTypes.TryAdd(ent.Comp.Name, ent);
+    }
+
+    private void OnEnergyRemoved(Entity<EnergyComponent> ent, ref EntGotRemovedFromContainerMessage args)
+    {
+        if (!TryComp<EnergyContainerComponent>(args.Container.Owner, out var energyContainer))
+            return;
+
+        if (ent.Comp.Alert != null)
+            _alerts.ClearAlert(args.Container.Owner, ent.Comp.Alert.Value);
+
+        energyContainer.EnergyTypes.Remove(ent.Comp.Name);
     }
 
     private void OnMapInit(Entity<EnergyComponent> ent, ref MapInitEvent args)
     {
         ent.Comp.NextUpdate += _timing.CurTime + ent.Comp.UpdateInterval;
-
-        if (ent.Comp.Alert == null)
-            return;
-
-        _alerts.ShowAlert(ent.Comp.ContainerOwner, ent.Comp.Alert.Value);
     }
 }

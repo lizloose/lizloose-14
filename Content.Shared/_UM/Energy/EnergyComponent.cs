@@ -14,17 +14,20 @@ namespace Content.Shared._UM.Energy;
 [AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class EnergyComponent : Component
 {
+    [DataField(required:true), AutoNetworkedField]
+    public string Name;
+
     /// <summary>
     /// Amount of energy we should start with
     /// </summary>
     [DataField, AutoNetworkedField]
-    public int Amount { get; set; }
+    public int Amount;
 
     /// <summary>
     /// How much energy we passively regenerate every UpdateInterval
     /// </summary>
     [DataField, AutoNetworkedField]
-    public int PassiveRegen { get; set; }
+    public int PassiveRegen;
 
     /// <summary>
     /// Update interval for passive regeneration
@@ -36,7 +39,7 @@ public sealed partial class EnergyComponent : Component
     /// The maximum amount we can regenerate (separate from Max)
     /// </summary>
     [DataField, AutoNetworkedField]
-    public int MaxRegen { get; set; }
+    public int MaxRegen = 100;
 
     /// <summary>
     /// Actual maximum amount of energy we can have.
@@ -50,9 +53,6 @@ public sealed partial class EnergyComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public ProtoId<AlertPrototype>? Alert;
-
-    [DataField, AutoNetworkedField]
-    public EntityUid ContainerOwner;
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoNetworkedField, AutoPausedField]

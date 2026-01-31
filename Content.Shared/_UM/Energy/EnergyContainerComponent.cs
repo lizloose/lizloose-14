@@ -7,12 +7,10 @@ namespace Content.Shared._UM.Energy;
 /// This is used for managing different types of energies.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-[AutoGenerateComponentState]
 public sealed partial class EnergyContainerComponent : Component
 {
-
-    [AutoNetworkedField]
-    public HashSet<string> EnergyTypes = new(1);
+    [ViewVariables]
+    public Dictionary<string, Entity<EnergyComponent>> EnergyTypes = new();
 
     /// <summary>
     /// Energy types are specified here. This is cleared after mapinit.

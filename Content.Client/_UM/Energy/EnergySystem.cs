@@ -22,7 +22,7 @@ public sealed class EnergySystem : EntitySystem
     {
         foreach (var type in ent.Comp.EnergyTypes)
         {
-            if (!_energyContainer.TryGetEnergy(ent.Owner, type, out var energy))
+            if (!_energyContainer.TryGetEnergy((ent, ent.Comp), type.Key, out var energy))
                 continue;
 
             if (args.Alert == energy.Value.Comp.Alert)

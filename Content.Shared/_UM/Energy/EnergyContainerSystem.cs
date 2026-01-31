@@ -26,30 +26,30 @@ public sealed class EnergyContainerSystem : EntitySystem
         if (_net.IsClient)
             return;
 
-        var containerManager = EnsureComp<ContainerManagerComponent>(ent);
-
         foreach (var type in ent.Comp.Types)
         {
-            var container = _container.EnsureContainer<ContainerSlot>(ent, $"energytype@{type.Key}", containerManager);
-
-            var energy = SpawnEnergy(container, type);
-            _entityManager.InitializeAndStartEntity(energy);
-            energy.Comp.ContainerOwner = container.Owner;
-            ent.Comp.EnergyTypes.Add(type.Key);
-            Dirty(energy);
+            CreateEnergy(ent, type.Value);
         }
-        ent.Comp.Types.Clear();
-        Dirty(ent);
     }
 
-    private Entity<EnergyComponent> SpawnEnergy(ContainerSlot container, KeyValuePair<string, EntProtoId> protoId)
+    public void CreateEnergy(Entity<EnergyContainerComponent> ent, EntProtoId protoId)
+    {
+        var containerManager = EnsureComp<ContainerManagerComponent>(ent);
+        var container = _container.EnsureContainer<Container>(ent, "energy", containerManager);
+
+        var energy = SpawnEnergy(container, protoId);
+        _entityManager.InitializeAndStartEntity(energy.Owner);
+        _container.Insert(energy.Owner, container, force: true);
+        Dirty(energy);
+        Dirty(ent.Owner, containerManager);
+    }
+
+    private Entity<EnergyComponent> SpawnEnergy(Container container, EntProtoId protoId)
     {
         var coords = new EntityCoordinates(container.Owner, Vector2.Zero);
-        var uid = _entityManager.CreateEntityUninitialized(protoId.Value, coords);
+        var uid = _entityManager.CreateEntityUninitialized(protoId, coords);
         var energy = EnsureComp<EnergyComponent>(uid);
-        _metadata.SetEntityName(uid, $"energy - {protoId.Key}", raiseEvents: false);
-        _container.Insert(uid, container, force: true);
-
+        _metadata.SetEntityName(uid, $"energy - {energy.Name}", raiseEvents: false);
         return (uid, energy);
     }
 
@@ -63,18 +63,10 @@ public sealed class EnergyContainerSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
-        if (!_container.TryGetContainer(ent, $"energytype@{name}", out var container))
+        if (!ent.Comp.EnergyTypes.TryGetValue(name, out var energyEnt))
             return false;
-
-        if (container is ContainerSlot slot && slot.ContainedEntity != null)
-        {
-            if (!TryComp<EnergyComponent>(slot.ContainedEntity.Value, out var energyComp))
-                return false;
-
-            energy = (slot.ContainedEntity.Value, energyComp);
-            return true;
-        }
-        return false;
+        energy = energyEnt;
+        return true;
     }
 
     /// <summary>
