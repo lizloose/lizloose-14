@@ -1,0 +1,58 @@
+- type: entity
+  id: BaseSpiderEnergy
+  name: spider
+  components:
+  - type: Energy
+    amount: 50
+    passiveRegen: 1
+    maxRegen: 100
+    alert: SpiderEnergy
+
+- type: entity
+  id: BroodmotherEnergy
+  name: spider
+  components:
+  - type: Energy
+    amount: 65
+    passiveRegen: 0
+    alert: SpiderEnergy
+
+- type: entity
+  id: UndecidedEnergy
+  name: spider
+  components:
+  - type: Energy
+    amount: 0
+    passiveRegen: 1
+    maxRegen: 50
+    alert: SpiderEnergy
+
+- type: entity
+  id: WeaverEnergy
+  name: spider
+  components:
+  - type: Energy
+    amount: 50
+    passiveRegen: 1
+    maxRegen: 100
+    alert: SpiderEnergy
+
+- type: entity
+  id: ViperEnergy
+  name: spider
+  components:
+  - type: Energy
+    amount: 80
+    passiveRegen: 5
+    maxRegen: 80
+    alert: SpiderEnergy
+
+- type: entity
+  id: NurseEnergy
+  name: spider
+  components:
+  - type: Energy
+    amount: 70
+    passiveRegen: 2
+    maxRegen: 70
+    alert: SpiderEnergy

@@ -104,10 +104,7 @@
     - SpiderMind
   - type: EnergyContainer
     types:
-    - name: spider
-      amount: 100
-      passiveRegen: 0
-      alert: SpiderEnergy
+      spider: BaseSpiderEnergy
   - type: SpiderEyes
   - type: PointLight
     color: MediumPurple
@@ -180,10 +177,7 @@
     layEggCost: 30
   - type: EnergyContainer
     types:
-    - name: spider
-      amount: 65
-      passiveRegen: 0
-      alert: SpiderEnergy
+      spider: BroodmotherEnergy
 
 - type: entity
   name: tarantula
@@ -224,11 +218,7 @@
         Structural: 10
   - type: EnergyContainer
     types:
-    - name: spider
-      amount: 0
-      passiveRegen: 1
-      maxRegen: 50
-      alert: SpiderEnergy
+      spider: UndecidedEnergy
   - type: SpiderEvolution
     evolutionTypes:
     - MobSpiderWeaver
@@ -275,11 +265,7 @@
         Structural: 35
   - type: EnergyContainer
     types:
-    - name: spider
-      amount: 50
-      passiveRegen: 1
-      maxRegen: 100
-      alert: SpiderEnergy
+      spider: WeaverEnergy
   - type: HiveBuilder
     buildTypes:
       - WallWeb
@@ -357,11 +343,7 @@
       lastVisibility: 0.001
   - type: EnergyContainer
     types:
-    - name: spider
-      amount: 80
-      passiveRegen: 5
-      maxRegen: 80
-      alert: SpiderEnergy
+      spider: ViperEnergy
 
 - type: entity
   name: nurse
@@ -407,11 +389,7 @@
     - ActionSpiderHealBolt
   - type: EnergyContainer
     types:
-    - name: spider
-      amount: 70
-      passiveRegen: 2
-      maxRegen: 70
-      alert: SpiderEnergy
+      spider: NurseEnergy
   - type: SpiderMender
     whitelist:
       tags:

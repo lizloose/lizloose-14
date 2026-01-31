@@ -16,29 +16,5 @@ public sealed partial class EnergyContainerComponent : Component
     public HashSet<string> EnergyTypes = new(1);
 
     [DataField(required:true)]
-    public List<Energy> Types;
-}
-
-
-[DataDefinition]
-[Serializable, NetSerializable]
-public partial struct Energy
-{
-    [DataField]
-    public string Name;
-
-    [DataField]
-    public int Amount;
-
-    [DataField]
-    public int PassiveRegen;
-
-    [DataField]
-    public int Max = 999;
-
-    [DataField]
-    public int MaxRegen = 999;
-
-    [DataField]
-    public ProtoId<AlertPrototype>? Alert;
+    public Dictionary<string, EntProtoId> Types;
 }

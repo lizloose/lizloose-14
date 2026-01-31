@@ -35,7 +35,6 @@ public sealed partial class EnergyComponent : Component
     [AutoNetworkedField, AutoPausedField]
     public TimeSpan NextUpdate = TimeSpan.Zero;
 
-    [DataField]
-    [AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public TimeSpan UpdateInterval = TimeSpan.FromSeconds(2);
 }
