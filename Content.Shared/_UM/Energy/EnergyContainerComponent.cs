@@ -15,7 +15,7 @@ public sealed partial class EnergyContainerComponent : Component
     [AutoNetworkedField]
     public HashSet<string> EnergyTypes = new(1);
 
-    [DataField]
+    [DataField(required:true)]
     public List<Energy> Types;
 }
 
