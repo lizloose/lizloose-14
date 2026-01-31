@@ -13,8 +13,20 @@ namespace Content.Shared._UM.Energy;
 [AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class EnergyComponent : Component
 {
-    [DataField(required: true), AutoNetworkedField]
-    public Dictionary<string, Energy> Types = new();
+    [DataField, AutoNetworkedField]
+    public int Amount { get; set; }
+
+    [DataField, AutoNetworkedField]
+    public int UpdateAmount { get; set; }
+
+    [DataField, AutoNetworkedField]
+    public int Max = 999;
+
+    [DataField, AutoNetworkedField]
+    public ProtoId<AlertPrototype>? Alert;
+
+    [DataField, AutoNetworkedField]
+    public EntityUid ContainerOwner;
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoNetworkedField, AutoPausedField]
@@ -23,32 +35,4 @@ public sealed partial class EnergyComponent : Component
     [DataField]
     [AutoNetworkedField]
     public TimeSpan UpdateInterval = TimeSpan.FromSeconds(2);
-}
-
-
-[Serializable, NetSerializable, DataDefinition]
-public partial struct Energy : IRobustCloneable<Energy>
-{
-    [DataField]
-    public int Amount { get; set; }
-
-    [DataField]
-    public int UpdateAmount { get; set; }
-
-    [DataField]
-    public int Max = 999;
-
-    [DataField]
-    public ProtoId<AlertPrototype>? Alert = "Essence";
-
-    public Energy(Energy energy)
-    {
-        Amount = energy.Amount;
-        UpdateAmount = energy.UpdateAmount;
-    }
-
-    public Energy Clone()
-    {
-        return new Energy(this);
-    }
 }

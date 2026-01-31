@@ -1,5 +1,6 @@
 using Content.Shared._UM.Energy;
 using Content.Shared.Alert.Components;
+using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 
 namespace Content.Client._UM.Energy;
@@ -10,24 +11,30 @@ namespace Content.Client._UM.Energy;
 public sealed class EnergySystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<EnergyComponent, GetGenericAlertCounterAmountEvent>(OnGetGenericAlertCounterAmount);
+        SubscribeLocalEvent<EnergyContainerComponent, GetGenericAlertCounterAmountEvent>(OnGetGenericAlertCounterAmount);
     }
 
-
-    private void OnGetGenericAlertCounterAmount(Entity<EnergyComponent> ent, ref GetGenericAlertCounterAmountEvent args)
+    private void OnGetGenericAlertCounterAmount(Entity<EnergyContainerComponent> ent, ref GetGenericAlertCounterAmountEvent args)
     {
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
-        foreach (var type in ent.Comp.Types)
+        foreach (var type in ent.Comp.EnergyTypes)
         {
-            if (type.Value.Alert == args.Alert)
-                args.Amount = type.Value.Amount;
+            if (!_container.TryGetContainer(ent, $"energytype@{type}", out var container))
+                continue;
+
+            if (container is ContainerSlot slot && slot.ContainedEntity != null)
+            {
+                if (!TryComp<EnergyComponent>(slot.ContainedEntity.Value, out var energy))
+                    continue;
+
+                if (args.Alert == energy.Alert)
+                    args.Amount = energy.Amount;
+            }
         }
     }
 }

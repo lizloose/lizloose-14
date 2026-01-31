@@ -1,5 +1,5 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Alert;
+using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._UM.Energy;
@@ -9,13 +9,12 @@ namespace Content.Shared._UM.Energy;
 /// </summary>
 public sealed class SharedEnergySystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
-        base.Initialize();
         SubscribeLocalEvent<EnergyComponent, MapInitEvent>(OnMapInit);
     }
 
@@ -32,78 +31,24 @@ public sealed class SharedEnergySystem : EntitySystem
             if (curTime < comp.NextUpdate)
                 continue;
 
+            comp.Amount = Math.Min(comp.Max, comp.Amount + comp.UpdateAmount);
+
             comp.NextUpdate += comp.UpdateInterval;
             Dirty(uid, comp);
 
-            foreach (var energyType in comp.Types)
-            {
-                TryAddEnergy(uid, energyType.Key, energyType.Value.UpdateAmount);
-            }
+            if (comp.Alert != null)
+                _alerts.ShowAlert(comp.ContainerOwner, comp.Alert.Value);
         }
     }
+
 
     private void OnMapInit(Entity<EnergyComponent> ent, ref MapInitEvent args)
     {
-        ent.Comp.NextUpdate = _timing.CurTime + ent.Comp.UpdateInterval;
+        ent.Comp.NextUpdate += _timing.CurTime + ent.Comp.UpdateInterval;
 
-        foreach (var type in ent.Comp.Types)
-        {
-            if (type.Value.Alert != null)
-            {
-                _alerts.ShowAlert(ent.Owner, type.Value.Alert.Value);
-            }
-        }
-    }
+        if (ent.Comp.Alert == null)
+            return;
 
-    public bool HasEnergyType(Entity<EnergyComponent?> ent, string type)
-    {
-        if (!Resolve(ent, ref ent.Comp))
-            return false;
-
-        return ent.Comp.Types.ContainsKey(type);
-    }
-
-    public bool TryAddEnergy(Entity<EnergyComponent?> ent, string type, int amount)
-    {
-        if (!Resolve(ent, ref ent.Comp))
-            return false;
-
-        if (!ent.Comp.Types.TryGetValue(type, out var energy))
-            return false;
-
-        energy.Amount = Math.Min(energy.Max, energy.Amount + amount);
-        ent.Comp.Types[type] = energy;
-
-        Dirty(ent);
-        return true;
-    }
-
-    public bool CanSpendEnergy(Entity<EnergyComponent?> ent, string type, int amount)
-    {
-        if (!Resolve(ent, ref ent.Comp))
-            return false;
-
-        if (!ent.Comp.Types.TryGetValue(type, out var energy))
-            return false;
-
-        return energy.Amount >= amount;
-    }
-
-    public bool TrySpendEnergy(Entity<EnergyComponent?> ent, string type, int amount)
-    {
-        if (!Resolve(ent, ref ent.Comp))
-            return false;
-
-        if (!ent.Comp.Types.TryGetValue(type, out var energy))
-            return false;
-
-        if (!CanSpendEnergy((ent, ent.Comp), type, amount))
-            return false;
-
-        energy.Amount -= amount;
-        ent.Comp.Types[type] = energy;
-
-        Dirty(ent);
-        return ent.Comp.Types[type].Amount >= amount;
+        _alerts.ShowAlert(ent.Comp.ContainerOwner, ent.Comp.Alert.Value);
     }
 }

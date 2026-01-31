@@ -3,13 +3,13 @@
   name: energy test
   parent: MobMonkey
   components:
-  - type: Energy
+  - type: EnergyContainer
     types:
-      fart:
-        amount: 69
-        updateAmount: 4
-        alert: Essence
-      wheeze:
-        amount: 1
-        updateAmount: 1
-        alert: Essence2
+    - name: fart
+      amount: 69
+      updateAmount: 1
+      alert: Essence
+    - name: asdfad
+      amount: 1
+      updateAmount: 4
+      alert: Essence2
