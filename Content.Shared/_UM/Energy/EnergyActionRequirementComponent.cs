@@ -10,8 +10,14 @@ namespace Content.Shared._UM.Energy;
 public sealed partial class EnergyActionRequirementComponent : Component
 {
     [DataField(required: true), AutoNetworkedField]
-    public string Name;
+    public string EnergyName;
+
+    [DataField(required: true)]
+    public string FancyName;
 
     [DataField(required: true), AutoNetworkedField]
     public int Amount;
+
+    [DataField]
+    public LocId CantFireMessage = "action-popup-energy-requirement";
 }

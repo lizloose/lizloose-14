@@ -1,4 +1,5 @@
 using Content.Shared.Actions.Events;
+using Content.Shared.Popups;
 
 namespace Content.Shared._UM.Energy;
 
@@ -8,7 +9,7 @@ namespace Content.Shared._UM.Energy;
 public sealed class EnergyActionRequirementSystem : EntitySystem
 {
     [Dependency] private readonly EnergyContainerSystem _energyContainer = default!;
-
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -21,11 +22,12 @@ public sealed class EnergyActionRequirementSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (!_energyContainer.TrySpendEnergy(args.User, ent.Comp.Name, ent.Comp.Amount))
+        if (!_energyContainer.TrySpendEnergy(args.User, ent.Comp.EnergyName, ent.Comp.Amount))
         {
+            var message = Loc.GetString(ent.Comp.CantFireMessage, ("energy", ent.Comp.FancyName));
+            _popupSystem.PopupClient(message, args.User, args.User, PopupType.SmallCaution);
             args.Cancelled = true;
             return;
         }
-
     }
 }
