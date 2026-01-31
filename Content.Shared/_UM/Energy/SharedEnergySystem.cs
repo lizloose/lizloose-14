@@ -1,12 +1,8 @@
 using Content.Shared.Alert;
-using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._UM.Energy;
 
-/// <summary>
-/// This handles...
-/// </summary>
 public sealed class SharedEnergySystem : EntitySystem
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
@@ -41,7 +37,6 @@ public sealed class SharedEnergySystem : EntitySystem
                 _alerts.ShowAlert(comp.ContainerOwner, comp.Alert.Value);
         }
     }
-
 
     private void OnMapInit(Entity<EnergyComponent> ent, ref MapInitEvent args)
     {

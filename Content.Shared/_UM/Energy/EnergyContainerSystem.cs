@@ -1,17 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
-using Content.Shared.Alert;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 namespace Content.Shared._UM.Energy;
 
-/// <summary>
-/// This handles...
-/// </summary>
 public sealed class EnergyContainerSystem : EntitySystem
 {
     [Dependency] private readonly SharedContainerSystem _container = default!;
@@ -58,6 +53,9 @@ public sealed class EnergyContainerSystem : EntitySystem
         return (uid, energy);
     }
 
+    /// <summary>
+    /// If true, returns an EnergyComponent if a container with name exists
+    /// </summary>
     public bool TryGetEnergy(Entity<EnergyContainerComponent?> ent, string name, [NotNullWhen(true)] out Entity<EnergyComponent>? energy)
     {
         energy = null;
@@ -79,6 +77,9 @@ public sealed class EnergyContainerSystem : EntitySystem
         return false;
     }
 
+    /// <summary>
+    /// If true, returns the current amount an energy type has if a container with its name exists
+    /// </summary>
     public bool TryGetEnergyAmount(Entity<EnergyContainerComponent?> ent, string name, [NotNullWhen(true)] out int? amount)
     {
         amount = null;
@@ -90,6 +91,9 @@ public sealed class EnergyContainerSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// If true, adds "amount" to an energy type has if a container with its name exists
+    /// </summary>
     public bool TryAddEnergy(Entity<EnergyContainerComponent?> ent, string name, int amount)
     {
         if (!Resolve(ent, ref ent.Comp, false))
@@ -103,6 +107,9 @@ public sealed class EnergyContainerSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// If true, deducts "amount" from an energy type has if a container with its name exists
+    /// </summary>
     public bool TrySpendEnergy(Entity<EnergyContainerComponent?> ent, string name, int amount)
     {
         if (!Resolve(ent, ref ent.Comp, false))
@@ -116,6 +123,9 @@ public sealed class EnergyContainerSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// returns true if specified energy type can spend "amount"
+    /// </summary>
     public bool CanSpendEnergy(Entity<EnergyContainerComponent?> ent, string name, int amount)
     {
         if (!Resolve(ent, ref ent.Comp, false))
@@ -130,6 +140,9 @@ public sealed class EnergyContainerSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// returns true if energycomponent can spend "amount"
+    /// </summary>
     public bool CanSpendEnergy(Entity<EnergyComponent?> ent, int amount)
     {
         if (!Resolve(ent, ref ent.Comp, false))

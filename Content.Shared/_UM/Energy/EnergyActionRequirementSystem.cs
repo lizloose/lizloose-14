@@ -3,9 +3,6 @@ using Content.Shared.Popups;
 
 namespace Content.Shared._UM.Energy;
 
-/// <summary>
-/// This handles...
-/// </summary>
 public sealed class EnergyActionRequirementSystem : EntitySystem
 {
     [Dependency] private readonly EnergyContainerSystem _energyContainer = default!;
@@ -30,7 +27,6 @@ public sealed class EnergyActionRequirementSystem : EntitySystem
             var message = Loc.GetString(ent.Comp.CantFireMessage, ("energy", ent.Comp.FancyName));
             _popupSystem.PopupClient(message, args.User, args.User, PopupType.SmallCaution);
             args.Cancelled = true;
-            return;
         }
     }
 }
