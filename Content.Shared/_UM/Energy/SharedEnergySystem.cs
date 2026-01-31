@@ -32,7 +32,7 @@ public sealed class SharedEnergySystem : EntitySystem
                 continue;
 
             comp.NextUpdate += comp.UpdateInterval;
-            if (comp.Amount >= comp.MaxRegen)
+            if (comp.Amount >= comp.MaxRegen || comp.PassiveRegen == 0)
                 continue;
             comp.Amount = Math.Min(comp.MaxRegen, comp.Amount + comp.PassiveRegen);
             Dirty(uid, comp);

@@ -39,6 +39,7 @@ public sealed class EnergyContainerSystem : EntitySystem
 
             var energy = SpawnEnergy(container, type);
             _entityManager.InitializeAndStartEntity(energy);
+            energy.Comp.ContainerOwner = container.Owner;
             ent.Comp.EnergyTypes.Add(type.Key);
             Dirty(energy);
         }
@@ -50,10 +51,7 @@ public sealed class EnergyContainerSystem : EntitySystem
     {
         var coords = new EntityCoordinates(container.Owner, Vector2.Zero);
         var uid = _entityManager.CreateEntityUninitialized(protoId.Value, coords);
-
         var energy = EnsureComp<EnergyComponent>(uid);
-        energy.ContainerOwner = container.Owner;
-
         _metadata.SetEntityName(uid, $"energy - {protoId.Key}", raiseEvents: false);
         _container.Insert(uid, container, force: true);
 
