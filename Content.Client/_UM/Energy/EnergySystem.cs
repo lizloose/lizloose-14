@@ -12,7 +12,7 @@ public sealed class EnergySystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
-
+    [Dependency] private readonly EnergyContainerSystem _energyContainer = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -24,17 +24,11 @@ public sealed class EnergySystem : EntitySystem
     {
         foreach (var type in ent.Comp.EnergyTypes)
         {
-            if (!_container.TryGetContainer(ent, $"energytype@{type}", out var container))
+            if (!_energyContainer.TryGetEnergy(ent.Owner, type, out var energy))
                 continue;
 
-            if (container is ContainerSlot slot && slot.ContainedEntity != null)
-            {
-                if (!TryComp<EnergyComponent>(slot.ContainedEntity.Value, out var energy))
-                    continue;
-
-                if (args.Alert == energy.Alert)
-                    args.Amount = energy.Amount;
-            }
+            if (args.Alert == energy.Alert)
+                args.Amount = energy.Amount;
         }
     }
 }

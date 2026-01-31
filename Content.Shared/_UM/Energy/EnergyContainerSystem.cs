@@ -46,14 +46,14 @@ public sealed class EnergyContainerSystem : EntitySystem
             ent.Comp.EnergyTypes.Add(type.Name);
             Dirty(energy);
         }
-
+        ent.Comp.Types.Clear();
         Dirty(ent);
     }
 
     private Entity<EnergyComponent> SpawnEnergy(ContainerSlot container, Energy energytype)
     {
         var coords = new EntityCoordinates(container.Owner, Vector2.Zero);
-        var uid = _entityManager.CreateEntityUninitialized(null, coords, null);
+        var uid = _entityManager.CreateEntityUninitialized(null, coords);
 
         var energy = new EnergyComponent() { Amount = energytype.Amount, Max = energytype.Max, UpdateAmount = energytype.UpdateAmount, Alert = energytype.Alert, ContainerOwner = container.Owner};
         AddComp(uid, energy);
@@ -64,4 +64,24 @@ public sealed class EnergyContainerSystem : EntitySystem
         return (uid, energy);
     }
 
+    public bool TryGetEnergy(Entity<EnergyContainerComponent?> ent, string name, [NotNullWhen(true)] out EnergyComponent? energy)
+    {
+        energy = null;
+
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        if (!_container.TryGetContainer(ent, $"energytype@{name}", out var container))
+            return false;
+
+        if (container is ContainerSlot slot && slot.ContainedEntity != null)
+        {
+            if (!TryComp<EnergyComponent>(slot.ContainedEntity.Value, out var energyComp))
+                return false;
+
+            energy = energyComp;
+            return true;
+        }
+        return false;
+    }
 }

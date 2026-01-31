@@ -12,7 +12,7 @@ namespace Content.Shared._UM.Energy;
 [AutoGenerateComponentState]
 public sealed partial class EnergyContainerComponent : Component
 {
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public HashSet<string> EnergyTypes = new(1);
 
     [DataField]
