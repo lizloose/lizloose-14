@@ -107,6 +107,19 @@ public sealed class EnergyContainerSystem : EntitySystem
         return true;
     }
 
+    public bool TrySpendEnergy(Entity<EnergyContainerComponent?> ent, string name, int amount)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        if (!TryGetEnergy(ent, name, out var energy) || energy.Value.Comp.Amount < amount)
+            return false;
+
+        energy.Value.Comp.Amount -= amount;
+        Dirty(energy.Value);
+        return true;
+    }
+
     public bool CanSpendEnergy(Entity<EnergyContainerComponent?> ent, string name, int amount)
     {
         if (!Resolve(ent, ref ent.Comp, false))
