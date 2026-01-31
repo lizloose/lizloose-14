@@ -10,8 +10,6 @@ namespace Content.Client._UM.Energy;
 /// </summary>
 public sealed class EnergySystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly EnergyContainerSystem _energyContainer = default!;
     /// <inheritdoc/>
     public override void Initialize()
@@ -27,8 +25,8 @@ public sealed class EnergySystem : EntitySystem
             if (!_energyContainer.TryGetEnergy(ent.Owner, type, out var energy))
                 continue;
 
-            if (args.Alert == energy.Alert)
-                args.Amount = energy.Amount;
+            if (args.Alert == energy.Value.Comp.Alert)
+                args.Amount = energy.Value.Comp.Amount;
         }
     }
 }

@@ -13,8 +13,6 @@ namespace Content.Shared._UM.Energy;
 /// </summary>
 public sealed class EnergyContainerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly INetManager _net = default!;
@@ -64,7 +62,7 @@ public sealed class EnergyContainerSystem : EntitySystem
         return (uid, energy);
     }
 
-    public bool TryGetEnergy(Entity<EnergyContainerComponent?> ent, string name, [NotNullWhen(true)] out EnergyComponent? energy)
+    public bool TryGetEnergy(Entity<EnergyContainerComponent?> ent, string name, [NotNullWhen(true)] out Entity<EnergyComponent>? energy)
     {
         energy = null;
 
@@ -79,9 +77,58 @@ public sealed class EnergyContainerSystem : EntitySystem
             if (!TryComp<EnergyComponent>(slot.ContainedEntity.Value, out var energyComp))
                 return false;
 
-            energy = energyComp;
+            energy = (slot.ContainedEntity.Value, energyComp);
             return true;
         }
         return false;
+    }
+
+    public bool TryGetEnergyAmount(Entity<EnergyContainerComponent?> ent, string name, [NotNullWhen(true)] out int? amount)
+    {
+        amount = null;
+
+        if (!TryGetEnergy(ent, name, out var energy))
+            return false;
+
+        amount = energy.Value.Comp.Amount;
+        return true;
+    }
+
+    public bool TryAddEnergy(Entity<EnergyContainerComponent?> ent, string name, int amount)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        if (!TryGetEnergy(ent, name, out var energy))
+            return false;
+
+        energy.Value.Comp.Amount = Math.Min(energy.Value.Comp.Max, energy.Value.Comp.Amount += amount);
+        Dirty(energy.Value);
+        return true;
+    }
+
+    public bool CanSpendEnergy(Entity<EnergyContainerComponent?> ent, string name, int amount)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        if (!TryGetEnergyAmount(ent, name, out var energyAmount))
+            return false;
+
+        if (energyAmount < amount)
+            return false;
+
+        return true;
+    }
+
+    public bool CanSpendEnergy(Entity<EnergyComponent?> ent, int amount)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        if (ent.Comp.Amount < amount)
+            return false;
+
+        return true;
     }
 }
