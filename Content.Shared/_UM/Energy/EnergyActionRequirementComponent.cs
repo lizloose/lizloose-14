@@ -1,0 +1,23 @@
+using Robust.Shared.GameStates;
+
+namespace Content.Shared._UM.Energy;
+
+/// <summary>
+/// This is used for...
+/// </summary>
+[RegisterComponent, NetworkedComponent]
+[AutoGenerateComponentState]
+public sealed partial class EnergyActionRequirementComponent : Component
+{
+    [DataField(required: true), AutoNetworkedField]
+    public string EnergyName;
+
+    [DataField(required: true)]
+    public string FancyName;
+
+    [DataField(required: true), AutoNetworkedField]
+    public int Amount;
+
+    [DataField]
+    public LocId CantFireMessage = "action-popup-energy-requirement";
+}
