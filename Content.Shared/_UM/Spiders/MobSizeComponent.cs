@@ -14,9 +14,8 @@ public sealed partial class MobSizeComponent : Component
     /// What size is this mob?
     /// </summary>
     [DataField(required: true), AutoNetworkedField]
-    public MobSizes Size = MobSizes.Humanoid;
+    public MobSizes Size = MobSizes.Small;
 }
-
 
 [Serializable, NetSerializable]
 public enum MobSizes : byte

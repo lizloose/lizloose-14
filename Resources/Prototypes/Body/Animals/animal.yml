@@ -53,3 +53,7 @@
         - id: OrganAnimalStomach
         - id: OrganAnimalLiver
         - id: OrganAnimalKidneys
+  #UM START
+  - type: MobSize
+    size: Small
+  #UM END

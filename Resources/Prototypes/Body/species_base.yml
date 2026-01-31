@@ -159,6 +159,10 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
+  #UM START
+  - type: MobSize
+    size: Humanoid
+  #UM END
 
 - type: entity
   abstract: true
