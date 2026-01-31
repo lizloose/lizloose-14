@@ -22,6 +22,9 @@ public sealed class EnergyActionRequirementSystem : EntitySystem
         if (args.Cancelled)
             return;
 
+        if (ent.Comp.OnlyCheck && _energyContainer.CanSpendEnergy(args.User, ent.Comp.EnergyName, ent.Comp.Amount))
+            return;
+
         if (!_energyContainer.TrySpendEnergy(args.User, ent.Comp.EnergyName, ent.Comp.Amount))
         {
             var message = Loc.GetString(ent.Comp.CantFireMessage, ("energy", ent.Comp.FancyName));

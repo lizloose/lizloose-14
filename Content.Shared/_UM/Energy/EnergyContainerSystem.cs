@@ -53,7 +53,7 @@ public sealed class EnergyContainerSystem : EntitySystem
         var coords = new EntityCoordinates(container.Owner, Vector2.Zero);
         var uid = _entityManager.CreateEntityUninitialized(null, coords);
 
-        var energy = new EnergyComponent() { Amount = energytype.Amount, Max = energytype.Max, UpdateAmount = energytype.UpdateAmount, Alert = energytype.Alert, ContainerOwner = container.Owner};
+        var energy = new EnergyComponent() { Amount = energytype.Amount, Max = energytype.Max, MaxRegen = energytype.MaxRegen, PassiveRegen = energytype.PassiveRegen, Alert = energytype.Alert, ContainerOwner = container.Owner};
         AddComp(uid, energy);
 
         _metadata.SetEntityName(uid, $"energy - {energytype.Name}", raiseEvents: false);

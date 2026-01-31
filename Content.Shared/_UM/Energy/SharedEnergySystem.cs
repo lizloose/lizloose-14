@@ -31,9 +31,10 @@ public sealed class SharedEnergySystem : EntitySystem
             if (curTime < comp.NextUpdate)
                 continue;
 
-            comp.Amount = Math.Min(comp.Max, comp.Amount + comp.UpdateAmount);
-
             comp.NextUpdate += comp.UpdateInterval;
+            if (comp.Amount >= comp.MaxRegen)
+                continue;
+            comp.Amount = Math.Min(comp.MaxRegen, comp.Amount + comp.PassiveRegen);
             Dirty(uid, comp);
 
             if (comp.Alert != null)

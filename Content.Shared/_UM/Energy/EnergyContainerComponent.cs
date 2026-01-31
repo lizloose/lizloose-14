@@ -31,10 +31,13 @@ public partial struct Energy
     public int Amount;
 
     [DataField]
-    public int UpdateAmount;
+    public int PassiveRegen;
 
     [DataField]
     public int Max = 999;
+
+    [DataField]
+    public int MaxRegen = 999;
 
     [DataField]
     public ProtoId<AlertPrototype>? Alert;

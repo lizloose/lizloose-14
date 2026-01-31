@@ -17,7 +17,10 @@ public sealed partial class EnergyComponent : Component
     public int Amount { get; set; }
 
     [DataField, AutoNetworkedField]
-    public int UpdateAmount { get; set; }
+    public int PassiveRegen { get; set; }
+
+    [DataField, AutoNetworkedField]
+    public int MaxRegen { get; set; }
 
     [DataField, AutoNetworkedField]
     public int Max = 999;

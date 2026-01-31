@@ -102,7 +102,12 @@
   - type: ActiveRadio
     channels:
     - SpiderMind
-  - type: SpiderEnergy
+  - type: EnergyContainer
+    types:
+    - name: spider
+      amount: 100
+      passiveRegen: 0
+      alert: SpiderEnergy
   - type: SpiderEyes
   - type: PointLight
     color: MediumPurple
@@ -173,9 +178,12 @@
         Blunt: 100
   - type: SpiderEggLayer
     layEggCost: 30
-  - type: SpiderEnergy
-    passiveRegen: 0
-    energy: 65
+  - type: EnergyContainer
+    types:
+    - name: spider
+      amount: 65
+      passiveRegen: 0
+      alert: SpiderEnergy
 
 - type: entity
   name: tarantula
@@ -214,10 +222,13 @@
       types:
         Piercing: 10
         Structural: 10
-  - type: SpiderEnergy
-    passiveRegen: 1
-    energy: 0
-    maxRegenEnergy: 50
+  - type: EnergyContainer
+    types:
+    - name: spider
+      amount: 0
+      passiveRegen: 1
+      maxRegen: 50
+      alert: SpiderEnergy
   - type: SpiderEvolution
     evolutionTypes:
     - MobSpiderWeaver
@@ -262,9 +273,13 @@
       types:
         Piercing: 6
         Structural: 35
-  - type: SpiderEnergy
-    passiveRegen: 2
-    energy: 50
+  - type: EnergyContainer
+    types:
+    - name: spider
+      amount: 50
+      passiveRegen: 1
+      maxRegen: 100
+      alert: SpiderEnergy
   - type: HiveBuilder
     buildTypes:
       - WallWeb
@@ -340,10 +355,13 @@
     - type: Stealth
       minVisibility: 0.001 #basically completely invisible
       lastVisibility: 0.001
-  - type: SpiderEnergy
-    passiveRegen: 5
-    energy: 80
-    maxRegenEnergy: 80
+  - type: EnergyContainer
+    types:
+    - name: spider
+      amount: 80
+      passiveRegen: 5
+      maxRegen: 80
+      alert: SpiderEnergy
 
 - type: entity
   name: nurse
@@ -387,9 +405,13 @@
   - type: ActionGrant
     actions:
     - ActionSpiderHealBolt
-  - type: SpiderEnergy
-    passiveRegen: 2
-    energy: 70
+  - type: EnergyContainer
+    types:
+    - name: spider
+      amount: 70
+      passiveRegen: 2
+      maxRegen: 70
+      alert: SpiderEnergy
   - type: SpiderMender
     whitelist:
       tags:

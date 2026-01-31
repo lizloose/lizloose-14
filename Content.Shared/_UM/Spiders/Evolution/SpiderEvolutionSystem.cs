@@ -1,3 +1,4 @@
+using Content.Shared._UM.Energy;
 using Content.Shared._UM.Spiders.SpiderEnergy;
 using Content.Shared.Actions;
 using Content.Shared.DoAfter;
@@ -14,7 +15,7 @@ public sealed class SpiderEvolutionSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SpiderEnergySystem _energy = default!;
+    [Dependency] private readonly EnergyContainerSystem _energy = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
@@ -48,7 +49,7 @@ public sealed class SpiderEvolutionSystem : EntitySystem
     }
     private void OnEvolveAction(Entity<SpiderEvolutionComponent> ent, ref SpiderEvolveActionEvent args)
     {
-        if (!_energy.CanSpendEnergy(ent.Owner, ent.Comp.EvolutionCost))
+        if (!_energy.CanSpendEnergy(ent.Owner, ent.Comp.EnergyName, ent.Comp.EvolutionCost))
         {
             var message = Loc.GetString("spider-evolve-fail-energy");
             _popup.PopupClient(message, ent, PopupType.SmallCaution);
@@ -66,7 +67,7 @@ public sealed class SpiderEvolutionSystem : EntitySystem
         if (!ent.Comp.EvolutionTypes.Contains(args.PrototypeId))
             return;
 
-        if (!_energy.CanSpendEnergy(ent.Owner, ent.Comp.EvolutionCost))
+        if (!_energy.CanSpendEnergy(ent.Owner, ent.Comp.EnergyName, ent.Comp.EvolutionCost))
             return;
 
         var doAfter = new EvolveDoAfterEvent()
@@ -103,7 +104,7 @@ public sealed class SpiderEvolutionSystem : EntitySystem
         if (_net.IsClient)
             return;
 
-        if (!_energy.CanSpendEnergy(ent.Owner, ent.Comp.EvolutionCost))
+        if (!_energy.CanSpendEnergy(ent.Owner, ent.Comp.EnergyName, ent.Comp.EvolutionCost))
             return;
 
         Evolve(ent, args.ProtoId);

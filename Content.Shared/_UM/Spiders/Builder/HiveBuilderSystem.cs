@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._UM.Energy;
 using Content.Shared._UM.Spiders.SpiderEnergy;
 using Content.Shared.Actions;
 using Content.Shared.DoAfter;
@@ -19,9 +20,7 @@ public sealed class HiveBuilderSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SpiderEnergySystem _energy = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly EnergyContainerSystem _energy = default!;
 
     private const string HiveBuilderBuiXmlGeneratedName = "HiveBuilderSelectTypeBoundUserInterface";
     public override void Initialize()
@@ -78,14 +77,6 @@ public sealed class HiveBuilderSystem : EntitySystem
 
     private void OnBuildAction(Entity<HiveBuilderComponent> ent, ref HiveBuilderBuildActionEvent args)
     {
-        if (!_energy.CanSpendEnergy(ent.Owner, ent.Comp.BuildCost))
-        {
-            var entName = _prototype.Index(ent.Comp.CurrentBuild);
-            var message = Loc.GetString("spider-build-fail-energy", ("build", entName.Name));
-            _popup.PopupClient(message, ent, PopupType.SmallCaution);
-            return;
-        }
-
         var xform = Transform(ent);
 
         if (!_transform.InRange(xform.Coordinates, args.Target, SharedInteractionSystem.InteractionRange))
@@ -131,7 +122,7 @@ public sealed class HiveBuilderSystem : EntitySystem
         if (args.Cancelled || args.Handled)
             return;
 
-        if (!_energy.TrySpendEnergy(ent.Owner, ent.Comp.BuildCost))
+        if (!_energy.TrySpendEnergy(ent.Owner, ent.Comp.EnergyName, ent.Comp.BuildCost))
             return;
 
         PredictedSpawnAtPosition(ent.Comp.CurrentBuild, GetCoordinates(args.TargetCoordinates));

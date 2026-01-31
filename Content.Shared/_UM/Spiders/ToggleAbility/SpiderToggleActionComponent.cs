@@ -31,7 +31,10 @@ public sealed partial class SpiderToggleActionComponent : Component
     /// How many points per tick does this ability cost to use
     /// </summary>
     [DataField, AutoNetworkedField]
-    public FixedPoint2 EnergyDrain = 5;
+    public int EnergyDrain = 5;
+
+    [DataField]
+    public string EnergyName = "spider";
 
     /// <summary>
     /// Time when next passive energy regen update will happen.

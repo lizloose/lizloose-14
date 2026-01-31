@@ -1,3 +1,4 @@
+using Content.Shared._UM.Energy;
 using Content.Shared._UM.Spiders.SpiderEnergy;
 using Content.Shared.Actions;
 using Content.Shared.Item.ItemToggle;
@@ -10,7 +11,7 @@ public sealed class SpiderToggleActionSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly SpiderEnergySystem _energy = default!;
+    [Dependency] private readonly EnergyContainerSystem _energy = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     /// <inheritdoc/>
@@ -34,7 +35,7 @@ public sealed class SpiderToggleActionSystem : EntitySystem
             if (comp.NextUpdate > curTime)
                 continue;
 
-            if (_toggle.IsActivated(uid) && !_energy.TrySpendEnergy(uid, comp.EnergyDrain))
+            if (_toggle.IsActivated(uid) && !_energy.TrySpendEnergy(uid, comp.EnergyName, comp.EnergyDrain))
                 _toggle.Toggle(uid);
 
             comp.NextUpdate += comp.UpdateInterval;
@@ -57,7 +58,7 @@ public sealed class SpiderToggleActionSystem : EntitySystem
 
     private void OnToggleAction(Entity<SpiderToggleActionComponent> ent, ref ToggleActionEvent args)
     {
-        if (!_toggle.IsActivated(ent.Owner) && _energy.CanSpendEnergy(ent.Owner, ent.Comp.EnergyDrain))
+        if (!_toggle.IsActivated(ent.Owner) && _energy.CanSpendEnergy(ent.Owner, ent.Comp.EnergyName, ent.Comp.EnergyDrain))
         {
             args.Handled = _toggle.Toggle(ent.Owner, args.Performer);
             return;

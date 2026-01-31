@@ -1,3 +1,4 @@
+using Content.Shared._UM.Energy;
 using Content.Shared._UM.Spiders.SpiderEnergy;
 using Content.Shared.Actions;
 using Content.Shared.Body.Systems;
@@ -19,7 +20,7 @@ public sealed class SpiderMenderSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SpiderEnergySystem _energy = default!;
+    [Dependency] private readonly EnergyContainerSystem _energy = default!;
     [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
 
     /// <inheritdoc/>
@@ -70,7 +71,7 @@ public sealed class SpiderMenderSystem : EntitySystem
         if (_whitelist.IsWhitelistFail(ent.Comp.Whitelist, args.Target) || args.Handled)
             return;
 
-        if (!_energy.CanSpendEnergy(ent.Owner, ent.Comp.HealCost))
+        if (!_energy.CanSpendEnergy(ent.Owner, ent.Comp.EnergyName, ent.Comp.HealCost))
         {
             var message = Loc.GetString("spider-mend-fail-energy");
             _popup.PopupClient(message, ent, PopupType.SmallCaution);
@@ -119,7 +120,7 @@ public sealed class SpiderMenderSystem : EntitySystem
         if (args.Target == null)
             return;
 
-        if (!_energy.TrySpendEnergy(ent.Owner, ent.Comp.HealCost))
+        if (!_energy.TrySpendEnergy(ent.Owner, ent.Comp.EnergyName, ent.Comp.HealCost))
             return;
 
         _bloodstreamSystem.TryModifyBleedAmount(args.Target.Value, ent.Comp.BloodlossModifier);

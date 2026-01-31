@@ -32,7 +32,10 @@ public sealed partial class SpiderEggLayerComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
-    public FixedPoint2 LayEggCost = 20;
+    public int LayEggCost = 20;
+
+    [DataField]
+    public string EnergyName = "spider";
 
     /// <summary>
     /// How much time it takes to lay an egg

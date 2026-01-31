@@ -1,3 +1,4 @@
+using Content.Shared._UM.Energy;
 using Content.Shared._UM.Spiders.SpiderEnergy;
 using Content.Shared.Actions;
 using Content.Shared.Damage.Systems;
@@ -22,7 +23,7 @@ public sealed class CocoonMakerSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly SpiderEnergySystem _energy = default!;
+    [Dependency] private readonly EnergyContainerSystem _energy = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
     /// <inheritdoc/>
@@ -105,7 +106,7 @@ public sealed class CocoonMakerSystem : EntitySystem
 
         var energy = _random.Next(cocoon.MinEnergy, cocoon.MaxEnergy);
 
-        _energy.TryAddEnergy(ent.Owner, energy);
+        _energy.TryAddEnergy(ent.Owner, ent.Comp.EnergyName, energy);
 
         foreach (var mob in cocoon.Contents.ContainedEntities)
         {

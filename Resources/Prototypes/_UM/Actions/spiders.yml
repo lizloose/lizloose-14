@@ -44,6 +44,11 @@
     priority: 3
   - type: InstantAction
     event: !type:OnLayEggActionEvent
+  - type: EnergyActionRequirement
+    energyName: spider
+    fancyName: spider energy
+    onlyCheck: true
+    amount: 20
 
 - type: entity
   parent: BaseAction
@@ -74,6 +79,11 @@
     range: 0
   - type: WorldTargetAction
     event: !type:HiveBuilderBuildActionEvent
+  - type: EnergyActionRequirement
+    energyName: spider
+    fancyName: spider energy
+    onlyCheck: true
+    amount: 5
 
 - type: entity
   parent: BaseAction
@@ -123,6 +133,10 @@
   - type: WorldTargetAction
     event: !type:ProjectileSpellEvent
       prototype: ProjectileSpiderBolt
+  - type: EnergyActionRequirement
+    energyName: spider
+    fancyName: spider energy
+    amount: 10
 
 - type: entity
   parent: BaseAction
@@ -141,7 +155,10 @@
       components:
       - MobState
     event: !type:OnSpiderMendActionEvent
-
+  - type: EnergyActionRequirement
+    energyName: spider
+    fancyName: spider energy
+    amount: 20
 
 - type: entity
   parent: BaseAction

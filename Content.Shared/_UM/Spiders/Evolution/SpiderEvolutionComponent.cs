@@ -27,7 +27,10 @@ public sealed partial class SpiderEvolutionComponent : Component
     /// How much energy it costs to evolve
     /// </summary>
     [DataField, AutoNetworkedField]
-    public FixedPoint2 EvolutionCost = 50;
+    public int EvolutionCost = 50;
+
+    [DataField]
+    public string EnergyName = "spider";
 
     /// <summary>
     /// How long it should take to evolve

@@ -1,3 +1,4 @@
+using Content.Shared._UM.Energy;
 using Content.Shared._UM.Spiders.SpiderEnergy;
 using Content.Shared.Actions;
 using Content.Shared.DoAfter;
@@ -13,7 +14,7 @@ public sealed class EggLayerSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SpiderEnergySystem _energy = default!;
+    [Dependency] private readonly EnergyContainerSystem _energy = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
@@ -46,9 +47,6 @@ public sealed class EggLayerSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!_energy.CanSpendEnergy(ent.Owner, ent.Comp.LayEggCost))
-            return;
-
         _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.LayEggTime, new LayEggDoAfterEvent(), ent)
         {
             BreakOnMove = true,
@@ -74,7 +72,7 @@ public sealed class EggLayerSystem : EntitySystem
         if (args.Handled || args.Cancelled)
             return;
 
-        if (!_energy.TrySpendEnergy(ent.Owner, ent.Comp.LayEggCost))
+        if (!_energy.TrySpendEnergy(ent.Owner, ent.Comp.EnergyName, ent.Comp.LayEggCost))
             return;
 
         var eggs = PredictedSpawnAtPosition(ent.Comp.EggProto, Transform(ent).Coordinates);

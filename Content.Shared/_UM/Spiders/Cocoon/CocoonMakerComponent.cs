@@ -39,6 +39,9 @@ public sealed partial class CocoonMakerComponent : Component
     [DataField]
     public TimeSpan WrapTime = TimeSpan.FromSeconds(5);
 
+    [DataField]
+    public string EnergyName = "spider";
+
     /// <summary>
     /// Damage to deal to person inside cocoon when their essence is absorbed.
     /// </summary>

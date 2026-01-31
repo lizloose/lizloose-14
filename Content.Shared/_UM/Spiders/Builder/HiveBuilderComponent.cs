@@ -41,7 +41,10 @@ public sealed partial class HiveBuilderComponent : Component
     /// How much should it cost to build
     /// </summary>
     [DataField, AutoNetworkedField]
-    public FixedPoint2 BuildCost = 5;
+    public int BuildCost = 5;
+
+    [DataField]
+    public string EnergyName = "spider";
 
     /// <summary>
     /// Currently selected build.

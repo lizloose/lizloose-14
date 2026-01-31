@@ -26,7 +26,10 @@ public sealed partial class SpiderMenderComponent : Component
     /// How much energy does it cost to heal
     /// </summary>
     [DataField]
-    public FixedPoint2 HealCost = 20;
+    public int HealCost = 20;
+
+    [DataField]
+    public string EnergyName = "spider";
 
     /// <summary>
     /// How much should the action heal
