@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Shared._UM.Energy;
+namespace Content.Shared._UM.Energy.Components;
 
 /// <summary>
 /// This is used for keeping track of a single type of energy

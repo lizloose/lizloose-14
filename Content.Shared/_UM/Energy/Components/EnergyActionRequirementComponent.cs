@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._UM.Energy;
+namespace Content.Shared._UM.Energy.Components;
 
 /// <summary>
 /// This is used for...

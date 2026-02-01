@@ -1,3 +1,4 @@
+using Content.Shared._UM.Energy.Components;
 using Content.Shared.Actions.Events;
 using Content.Shared.Popups;
 

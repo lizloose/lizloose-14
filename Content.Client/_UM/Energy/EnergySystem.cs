@@ -1,13 +1,9 @@
 using Content.Shared._UM.Energy;
+using Content.Shared._UM.Energy.Components;
 using Content.Shared.Alert.Components;
-using Robust.Shared.Containers;
-using Robust.Shared.Timing;
 
 namespace Content.Client._UM.Energy;
 
-/// <summary>
-/// This handles...
-/// </summary>
 public sealed class EnergySystem : EntitySystem
 {
     [Dependency] private readonly EnergyContainerSystem _energyContainer = default!;
