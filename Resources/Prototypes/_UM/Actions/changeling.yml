@@ -1,20 +1,57 @@
 - type: entity
-  parent: BaseSmiteAction
-  id: BaseActionSting
-  name: Changeling Sting
-  description: sting that beehind
+  parent: BaseAction
+  id: BaseActionSolutionInject
+  abstract: true
   components:
   - type: Action
+    useDelay: 10
+    raiseOnAction: true
+    itemIconStyle: BigAction
     icon:
-      sprite: Objects/Specific/Chemistry/syringe.rsi
-      state: syringe1
+      sprite: _UM/Interface/Actions/changeling.rsi
+      state: sting_mute
+  - type: TargetAction
   - type: EntityTargetAction
-    event: !type:StingActionEvent
+    event: !type:SolutionInjectActionEvent
+    canTargetSelf: false
     whitelist:
       components:
       - MobState
-  - type: StingAction
+
+- type: entity
+  parent: BaseActionSolutionInject
+  id: ActionStingMute
+  name: Mute Sting
+  description: We silently sting a human, completely silencing them for a short time. Does not provide a warning to the victim that they have been stung, until they try to speak and cannot.
+  components:
+  - type: Action
+    useDelay: 10
+    raiseOnAction: true
+    itemIconStyle: BigAction
+    icon:
+      sprite: _UM/Interface/Actions/changeling.rsi
+      state: sting_mute
+  - type: SolutionInjectAction
     solution:
       reagents:
-      - ReagentId: Nocturine
-        Quantity: 30
+      - ReagentId: MuteToxin
+        Quantity: 6
+
+- type: entity
+  parent: BaseAction
+  id: ActionExtractGenomeSting
+  components:
+  - type: Action
+    useDelay: 10
+    raiseOnAction: true
+    itemIconStyle: BigAction
+    icon:
+      sprite: _UM/Interface/Actions/changeling.rsi
+      state: sting_extract
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:ExtractGenomeActionEvent
+    whitelist:
+      components:
+      - MobState
+  - type: ExtractGenomeAction
