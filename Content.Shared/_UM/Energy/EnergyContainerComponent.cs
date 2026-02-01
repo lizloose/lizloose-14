@@ -13,8 +13,8 @@ public sealed partial class EnergyContainerComponent : Component
     public Dictionary<string, Entity<EnergyComponent>> EnergyTypes = new();
 
     /// <summary>
-    /// Energy types are specified here. This is cleared after mapinit.
+    /// Energy types are specified here. This is only used on mapinit.
     /// </summary>
     [DataField(required:true)]
-    public Dictionary<string, EntProtoId> Types;
+    public List<EntProtoId> Types;
 }

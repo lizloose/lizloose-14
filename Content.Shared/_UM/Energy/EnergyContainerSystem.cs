@@ -28,7 +28,7 @@ public sealed class EnergyContainerSystem : EntitySystem
 
         foreach (var type in ent.Comp.Types)
         {
-            CreateEnergy(ent, type.Value);
+            CreateEnergy(ent, type);
         }
     }
 
