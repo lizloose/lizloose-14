@@ -1,0 +1,20 @@
+- type: entity
+  parent: BaseSmiteAction
+  id: BaseActionSting
+  name: Changeling Sting
+  description: sting that beehind
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Specific/Chemistry/syringe.rsi
+      state: syringe1
+  - type: EntityTargetAction
+    event: !type:StingActionEvent
+    whitelist:
+      components:
+      - MobState
+  - type: StingAction
+    solution:
+      reagents:
+      - ReagentId: Nocturine
+        Quantity: 30
