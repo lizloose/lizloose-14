@@ -1,7 +1,14 @@
 changeling-extract-genome-sting-self = You stealthily steal a sample of { THE($target)}'s genome.
-
 changeling-extract-genome-sting-already-absorbed = You've already absorbed {THE($target)}'s genome!
 
 changeling-solution-inject-sting-stealth-self = You stealthily inject { THE($target)}.
 
 changeling-solution-inject-sting-self = You inject { THE($target)}.
+
+
+changeling-mute-sting-name = Mute Sting
+changeling-mute-sting-desc = We silently sting a human, completely silencing them for a short time.
+
+changeling-extract-genome-name = Extract DNA Sting
+changeling-extract-genome-desc = We stealthily sting a target and extract their DNA.
+        Will give us the DNA of our target, allowing us to transform into them. This will render us unable to absorb their body fully later.

@@ -5,16 +5,24 @@
   suffix: Non-Antag
   components:
   - type: ChangelingDevour
+    #UM START
+    changelingDevourAction: UMActionChangelingDevour
+    #UM END
   - type: ChangelingIdentity
   - type: ChangelingTransform
+    #UM START
+    changelingTransformAction: UMActionChangelingTransform
+    #UM END
   - type: ActionGrant
     actions:
     - ActionChangelingStore
   - type: Store
     balance:
       ChangelingDNA: 50
-  - type: UserInterface
-    interfaces:
-      enum.StoreUiKey.Key:
-        type: StoreBoundUserInterface
-        requireInputValidation: false
+#UM START
+#  - type: UserInterface
+#    interfaces:
+#      enum.StoreUiKey.Key:
+#        type: StoreBoundUserInterface
+#        requireInputValidation: false
+#UM END

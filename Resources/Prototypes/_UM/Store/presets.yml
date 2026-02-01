@@ -22,3 +22,14 @@
       Telecrystal: 0
     expectedFaction:
     - Syndicate
+
+- type: entity
+  id: UMStorePresetChangeling
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-changeling
+    categories:
+    - ChangelingAbilities
+    currencyWhitelist:
+    - ChangelingDNA

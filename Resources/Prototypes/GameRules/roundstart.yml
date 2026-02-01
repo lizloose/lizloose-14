@@ -272,8 +272,14 @@
         sound: /Audio/Ambience/Antag/changeling_start.ogg
       components:
       - type: ChangelingDevour
+        #UM START
+        changelingDevourAction: UMActionChangelingDevour
+        #UM END
       - type: ChangelingIdentity
       - type: ChangelingTransform
+        #UM START
+        changelingTransformAction: UMActionChangelingTransform
+        #UM END
       - type: ActionGrant
         actions:
         - ActionChangelingStore
@@ -281,16 +287,20 @@
       - type: Store
         name: store-preset-name-changeling
         categories:
-        - ChangelingAbilities
+        #UM START
+        - UMChangelingAbilities
+        #UM END
         currencyWhitelist:
         - ChangelingDNA
         balance:
           ChangelingDNA: 50
-      - type: UserInterface
-        interfaces:
-          enum.StoreUiKey.Key:
-            type: StoreBoundUserInterface
-            requireInputValidation: false
+#UM START
+#      - type: UserInterface
+#        interfaces:
+#          enum.StoreUiKey.Key:
+#            type: StoreBoundUserInterface
+#            requireInputValidation: false
+#UM END
       mindRoles:
       - MindRoleChangeling
   - type: AntagObjectives

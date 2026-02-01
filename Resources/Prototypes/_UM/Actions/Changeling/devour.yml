@@ -1,0 +1,25 @@
+- type: entity
+  id: UMActionChangelingDevour
+  name: "[color=red]Devour[/color]"
+  description: Consume the essence of your victims and subsume their identity and mind into your own.
+  components:
+  - type: Action
+    icon:
+      sprite: _UM/Interface/Actions/changeling.rsi
+      state: absorb_dna
+    priority: 1
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:ChangelingDevourActionEvent
+
+- type: entity
+  id: UMActionChangelingTransform
+  name: "[color=red]Transform[/color]"
+  description: Transform and assume the identities of those you have devoured.
+  components:
+  - type: Action
+    icon:
+      sprite: _UM/Interface/Actions/changeling.rsi
+      state: transform
+  - type: InstantAction
+    event: !type:ChangelingTransformActionEvent
