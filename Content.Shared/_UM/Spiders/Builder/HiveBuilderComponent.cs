@@ -29,19 +29,12 @@ public sealed partial class HiveBuilderComponent : Component
 
     /// <summary>
     /// Things the spider can build
-    /// TODO: Rework this into its own prototype so there can be a cost/build duration for each one
     /// </summary>
     [DataField(required: true), AutoNetworkedField]
-    public List<EntProtoId> BuildTypes = new() { "WallWeb", "WebDoor", "SpiderWeb" };
+    public List<ProtoId<HiveBuildPrototype>> BuildTypes = new();
 
     [DataField]
     public TimeSpan BuildTime = TimeSpan.FromSeconds(0.5);
-
-    /// <summary>
-    /// How much should it cost to build
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public int BuildCost = 5;
 
     [DataField]
     public string EnergyName = "spider";
@@ -50,15 +43,15 @@ public sealed partial class HiveBuilderComponent : Component
     /// Currently selected build.
     /// </summary>
     [ViewVariables]
-    public EntProtoId CurrentBuild = new();
+    public ProtoId<HiveBuildPrototype> CurrentBuild = new();
 }
 
 
 
 [Serializable, NetSerializable]
-public sealed class HiveBuilderTypeSelectMessage(EntProtoId protoId) : BoundUserInterfaceMessage
+public sealed class HiveBuilderTypeSelectMessage(ProtoId<HiveBuildPrototype> protoId) : BoundUserInterfaceMessage
 {
-    public readonly EntProtoId PrototypeId = protoId;
+    public readonly ProtoId<HiveBuildPrototype> PrototypeId = protoId;
 }
 
 [Serializable, NetSerializable]

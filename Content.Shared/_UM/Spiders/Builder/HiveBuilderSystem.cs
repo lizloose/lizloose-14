@@ -7,6 +7,7 @@ using Content.Shared.Physics;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._UM.Spiders.Builder;
 
@@ -18,6 +19,7 @@ public sealed class HiveBuilderSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly EnergyContainerSystem _energy = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     private const string HiveBuilderBuiXmlGeneratedName = "HiveBuilderSelectTypeBoundUserInterface";
     public override void Initialize()
@@ -74,6 +76,12 @@ public sealed class HiveBuilderSystem : EntitySystem
 
     private void OnBuildAction(Entity<HiveBuilderComponent> ent, ref HiveBuilderBuildActionEvent args)
     {
+        if (!_prototypeManager.TryIndex(ent.Comp.CurrentBuild, out var buildPrototype))
+            return;
+
+        if (!_energy.CanSpendEnergy(ent.Owner, ent.Comp.EnergyName, buildPrototype.Cost))
+            return;
+
         var xform = Transform(ent);
 
         if (!_transform.InRange(xform.Coordinates, args.Target, SharedInteractionSystem.InteractionRange))
@@ -90,6 +98,9 @@ public sealed class HiveBuilderSystem : EntitySystem
         var physQuery = GetEntityQuery<PhysicsComponent>();
         foreach (var entity in anchored)
         {
+            var proto = Prototype(entity);
+            if (proto != null && proto == buildPrototype.Prototype)
+                return;
             if (!physQuery.TryGetComponent(entity, out var body))
                 continue;
             if (body.BodyType != BodyType.Static ||
@@ -107,7 +118,7 @@ public sealed class HiveBuilderSystem : EntitySystem
             TargetCoordinates = GetNetCoordinates(doafterTarget),
         };
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.BuildTime, doAfter, ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, buildPrototype.Delay, doAfter, ent)
         {
             BreakOnMove = true,
             NeedHand = false,
@@ -119,10 +130,13 @@ public sealed class HiveBuilderSystem : EntitySystem
         if (args.Cancelled || args.Handled)
             return;
 
-        if (!_energy.TrySpendEnergy(ent.Owner, ent.Comp.EnergyName, ent.Comp.BuildCost))
+        if (!_prototypeManager.TryIndex(ent.Comp.CurrentBuild, out var buildPrototype))
             return;
 
-        PredictedSpawnAtPosition(ent.Comp.CurrentBuild, GetCoordinates(args.TargetCoordinates));
+        if (!_energy.TrySpendEnergy(ent.Owner, ent.Comp.EnergyName, buildPrototype.Cost))
+            return;
+
+        PredictedSpawnAtPosition(buildPrototype.Prototype, GetCoordinates(args.TargetCoordinates));
 
         args.Handled = true;
     }

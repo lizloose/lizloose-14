@@ -268,9 +268,9 @@
     - WeaverEnergy
   - type: HiveBuilder
     buildTypes:
-      - WallWeb
-      - WebDoor
-      - SpiderWeb
+      - WebWall
+      - Web
+      - WebPassage
 
 - type: entity
   name: viper

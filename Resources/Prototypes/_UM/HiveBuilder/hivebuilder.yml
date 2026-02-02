@@ -1,0 +1,20 @@
+- type: hiveBuild
+  id: WebWall
+  name: Web Wall
+  prototype: UMWallWeb
+  cost: 5
+  delay: 1
+
+- type: hiveBuild
+  id: Web
+  name: Spider Web
+  prototype: SpiderWeb
+  cost: 2
+  delay: 0.1
+
+- type: hiveBuild
+  id: WebPassage
+  name: Web Passage
+  prototype: WebPassage
+  cost: 25
+  delay: 5

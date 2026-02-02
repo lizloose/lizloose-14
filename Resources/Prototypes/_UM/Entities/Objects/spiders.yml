@@ -4,7 +4,7 @@
   description: Eww
   components:
   - type: Sprite
-    sprite: _UM/Objects/cocoon.rsi
+    sprite: _UM/Objects/web.rsi
     noRot: true
     layers:
     - state: cocoon_large1
@@ -47,7 +47,7 @@
   description: Eww
   components:
   - type: Sprite
-    sprite: _UM/Objects/cocoon.rsi
+    sprite: _UM/Objects/web.rsi
     noRot: true
     layers:
     - state: cocoon1
@@ -125,3 +125,66 @@
   - type: Tag
     tags:
     - Spider
+
+- type: entity
+  id: WebPassage
+  name: web passage
+  description: It's stringy and sticky.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    sprite: _UM/Objects/web.rsi
+    layers:
+    - state: webpassage
+  - type: Appearance
+  - type: Clickable
+  - type: Transform
+    anchored: true
+  - type: Physics
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Temperature
+  - type: TemperatureDamage
+    heatDamage:
+      types:
+        Heat: 5
+    coldDamage: {}
+    coldDamageThreshold: 0
+  - type: Flammable
+    fireSpread: true
+    damage:
+      types:
+        Heat: 5
+  - type: Reactive
+    groups:
+      Flammable: [Touch]
+      Extinguish: [Touch]
+  - type: SpiderWebObject
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - MidImpassable
+  - type: Destructible
+    thresholds:
+    - trigger:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.01
+    sprintSpeedModifier: 0.01
+    ignoreWhitelist:
+      components:
+      - IgnoreSpiderWeb

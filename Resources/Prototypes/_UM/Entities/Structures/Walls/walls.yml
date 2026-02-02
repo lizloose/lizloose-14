@@ -1,0 +1,28 @@
+- type: entity
+  parent: BaseWall
+  id: UMWallWeb
+  name: web wall
+  description: Keeps the spiders in and the greytide out.
+  components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Weapons/slash.ogg"
+  - type: Damageable
+    damageModifierSet: Web
+  - type: Sprite
+    sprite: _UM/Structures/Walls/webwall.rsi
+  - type: Icon
+    sprite: _UM/Structures/Walls/webwall.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: walls
+    base: wall

@@ -35,7 +35,7 @@ public sealed class HiveBuilderSelectTypeBoundUserInterface(EntityUid owner, Enu
         _menu.SetButtons(models);
     }
 
-    private IEnumerable<RadialMenuOptionBase> ConvertToButtons(List<EntProtoId> prototypes)
+    private IEnumerable<RadialMenuOptionBase> ConvertToButtons(List<ProtoId<HiveBuildPrototype>> prototypes)
     {
         var buttons = new List<RadialMenuOptionBase>();
 
@@ -43,10 +43,10 @@ public sealed class HiveBuilderSelectTypeBoundUserInterface(EntityUid owner, Enu
         {
             var prototype = _prototypeManager.Index(protoId);
 
-            var option = new RadialMenuActionOption<EntProtoId>(SendIdentitySelect, protoId)
+            var option = new RadialMenuActionOption<HiveBuildPrototype>(SendIdentitySelect, prototype)
             {
-                IconSpecifier = RadialMenuIconSpecifier.With(prototype),
-                ToolTip = prototype.Description
+                IconSpecifier = RadialMenuIconSpecifier.With(prototype.Prototype),
+                ToolTip = prototype.SetName
             };
             buttons.Add(option);
         }
@@ -54,7 +54,7 @@ public sealed class HiveBuilderSelectTypeBoundUserInterface(EntityUid owner, Enu
         return buttons;
     }
 
-    private void SendIdentitySelect(EntProtoId protoId)
+    private void SendIdentitySelect(HiveBuildPrototype protoId)
     {
         SendPredictedMessage(new HiveBuilderTypeSelectMessage(protoId));
     }
