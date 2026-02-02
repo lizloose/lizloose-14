@@ -54,7 +54,7 @@ public sealed class CocoonMakerSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!TryComp<MobStateComponent>(args.Target, out var mobState))
+        if (!TryComp<MobStateComponent>(args.Target, out var mobState) || !HasComp<MobSizeComponent>(args.Target))
             return;
 
         if (mobState.CurrentState == MobState.Alive)
@@ -83,8 +83,16 @@ public sealed class CocoonMakerSystem : EntitySystem
         if (_net.IsClient || args.Target == null || args.Cancelled)
             return;
 
+        if (!TryComp<MobSizeComponent>(args.Target.Value, out var mobSizeComponent))
+            return;
+
         var position = Transform(args.Target.Value).Coordinates;
-        var cocoon = Spawn(ent.Comp.LargeCocoon, position);
+
+        var size = ent.Comp.LargeCocoon;
+        if (mobSizeComponent.Size == MobSizes.Small)
+            size = ent.Comp.SmallCocoon;
+
+        var cocoon = Spawn(size, position);
 
         if (!TryComp<CocoonComponent>(cocoon, out var cocoonComponent))
             return;

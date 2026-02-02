@@ -25,7 +25,6 @@ public sealed class EggLayerSystem : EntitySystem
         SubscribeLocalEvent<SpiderEggLayerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<SpiderEggLayerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<SpiderEggLayerComponent, OnLayEggActionEvent>(OnLayEggAction);
-        SubscribeLocalEvent<SpiderEggLayerComponent, LayEggDoAfterEvent>(OnLayEggDoAfter);
     }
 
     private void OnMapInit(Entity<SpiderEggLayerComponent> ent, ref MapInitEvent args)
@@ -46,34 +45,6 @@ public sealed class EggLayerSystem : EntitySystem
         if (args.Handled)
             return;
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.LayEggTime, new LayEggDoAfterEvent(), ent)
-        {
-            BreakOnMove = true,
-            BreakOnDamage = true,
-            NeedHand = false,
-        });
-
-        var selfMessage = Loc.GetString("spider-layegg-start-self");
-        var othersMessage = Loc.GetString("spider-layegg-start-others", ("spider", ent.Owner));
-
-        _popup.PopupPredicted(
-            selfMessage,
-            othersMessage,
-            ent,
-            ent,
-            PopupType.LargeCaution);
-
-        args.Handled = true;
-    }
-
-    private void OnLayEggDoAfter(Entity<SpiderEggLayerComponent> ent, ref LayEggDoAfterEvent args)
-    {
-        if (args.Handled || args.Cancelled)
-            return;
-
-        if (!_energy.TrySpendEnergy(ent.Owner, ent.Comp.EnergyName, ent.Comp.LayEggCost))
-            return;
-
         var eggs = PredictedSpawnAtPosition(ent.Comp.EggProto, Transform(ent).Coordinates);
 
         _audio.PlayPredicted(ent.Comp.LayEggSound, eggs, null);
@@ -89,5 +60,6 @@ public sealed class EggLayerSystem : EntitySystem
             PopupType.LargeCaution);
 
         args.Handled = true;
+
     }
 }

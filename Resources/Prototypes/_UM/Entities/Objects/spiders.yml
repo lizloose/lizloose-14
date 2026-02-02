@@ -37,6 +37,8 @@
         mask:
         - MobMask
   - type: Cocoon
+    minEnergy: 40
+    maxEnergy: 70
 
 - type: entity
   name: cocoon
@@ -70,6 +72,8 @@
         mask:
         - MobMask
   - type: Cocoon
+    minEnergy: 10
+    maxEnergy: 25
 
 - type: entity
   name: spider eggs

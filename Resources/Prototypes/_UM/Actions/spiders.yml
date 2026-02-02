@@ -39,15 +39,19 @@
   description: Lay your fucked up spider eggs
   components:
   - type: Action
+    useDelay: 60
     icon: { sprite : _UM/Actions/broodmother.rsi, state: lay_eggs }
     itemIconStyle: BigAction
     priority: 3
+  - type: DoAfterArgs
+    breakOnMove: true
+    breakOnDamage: true
+    delay: 3
   - type: InstantAction
     event: !type:OnLayEggActionEvent
   - type: EnergyActionRequirement
     energyName: spider
     fancyName: spider energy
-    onlyCheck: true
     amount: 20
 
 - type: entity

@@ -1,5 +1,6 @@
 - type: entity
   id: BaseSpiderEnergy
+  categories: [ HideSpawnMenu ]
   components:
   - type: Energy
     name: spider
@@ -10,6 +11,7 @@
 
 - type: entity
   id: BroodmotherEnergy
+  categories: [ HideSpawnMenu ]
   components:
   - type: Energy
     name: spider
@@ -19,6 +21,7 @@
 
 - type: entity
   id: UndecidedEnergy
+  categories: [ HideSpawnMenu ]
   components:
   - type: Energy
     name: spider
@@ -29,6 +32,7 @@
 
 - type: entity
   id: WeaverEnergy
+  categories: [ HideSpawnMenu ]
   components:
   - type: Energy
     name: spider
@@ -39,6 +43,7 @@
 
 - type: entity
   id: ViperEnergy
+  categories: [ HideSpawnMenu ]
   components:
   - type: Energy
     name: spider
@@ -49,6 +54,7 @@
 
 - type: entity
   id: NurseEnergy
+  categories: [ HideSpawnMenu ]
   components:
   - type: Energy
     name: spider

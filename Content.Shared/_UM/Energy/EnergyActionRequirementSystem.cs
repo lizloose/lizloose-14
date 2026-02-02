@@ -13,6 +13,7 @@ public sealed class EnergyActionRequirementSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<EnergyActionRequirementComponent, ActionAttemptEvent>(OnAttempt);
+        SubscribeLocalEvent<EnergyActionRequirementComponent, ActionPerformedEvent>(OnPerform);
     }
 
     private void OnAttempt(Entity<EnergyActionRequirementComponent> ent, ref ActionAttemptEvent args)
@@ -23,11 +24,18 @@ public sealed class EnergyActionRequirementSystem : EntitySystem
         if (ent.Comp.OnlyCheck && _energyContainer.CanSpendEnergy(args.User, ent.Comp.EnergyName, ent.Comp.Amount))
             return;
 
-        if (!_energyContainer.TrySpendEnergy(args.User, ent.Comp.EnergyName, ent.Comp.Amount))
+        if (!_energyContainer.CanSpendEnergy(args.User, ent.Comp.EnergyName, ent.Comp.Amount))
         {
             var message = Loc.GetString(ent.Comp.CantFireMessage, ("energy", ent.Comp.FancyName));
             _popupSystem.PopupClient(message, args.User, args.User, PopupType.SmallCaution);
             args.Cancelled = true;
         }
     }
+
+    private void OnPerform(Entity<EnergyActionRequirementComponent> ent, ref ActionPerformedEvent args)
+    {
+        if (!ent.Comp.OnlyCheck)
+            _energyContainer.TrySpendEnergy(args.Performer, ent.Comp.EnergyName, ent.Comp.Amount);
+    }
+
 }
