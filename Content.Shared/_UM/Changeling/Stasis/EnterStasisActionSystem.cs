@@ -56,6 +56,9 @@ public sealed class EnterStasisActionSystem : EntitySystem
 
     private void OnStasisEnterAction(Entity<EnterStasisActionComponent> ent, ref StasisEnterActionEvent args)
     {
+        if (args.Handled)
+            return;
+
         if (HasComp<RevivingStasisComponent>(ent))
             return;
 

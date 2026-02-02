@@ -22,6 +22,9 @@ public sealed class SolutionInjectActionSystem : EntitySystem
 
     private void OnStingAction(Entity<SolutionInjectActionComponent> ent, ref SolutionInjectActionEvent args)
     {
+        if (args.Handled)
+            return;
+
         if (!HasComp<BloodstreamComponent>(args.Target))
             return;
 
@@ -29,6 +32,7 @@ public sealed class SolutionInjectActionSystem : EntitySystem
             return;
 
         _solution.Inject(args.Target, solutionComp.Value, ent.Comp.Solution);
+        args.Handled = true;
 
         _popup.PopupClient(Loc.GetString(ent.Comp.UserPopup, ("target", args.Target)), args.Performer, args.Performer);
 

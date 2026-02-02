@@ -16,6 +16,9 @@
   - type: ActionGrant
     actions:
     - ActionChangelingStore
+  #UM START
+    - ActionEnterStasis
+  #UM END
   - type: Store
     balance:
       ChangelingDNA: 50

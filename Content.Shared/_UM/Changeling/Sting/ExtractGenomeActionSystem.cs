@@ -27,6 +27,10 @@ public sealed class ExtractGenomeActionSystem : EntitySystem
 
     private void OnExtractGenomeAction(Entity<ExtractGenomeActionComponent> ent, ref ExtractGenomeActionEvent args)
     {
+        if (args.Handled)
+            return;
+
+
         if (!TryComp<ChangelingIdentityComponent>(args.Performer, out var identityStorage))
             return;
 
@@ -52,6 +56,7 @@ public sealed class ExtractGenomeActionSystem : EntitySystem
             return;
 
         _changelingIdentitySystem.CloneToPausedMap((args.Performer, identityStorage), args.Target);
+        args.Handled = true;
 
         _popup.PopupClient(Loc.GetString(ent.Comp.UserPopup, ("target", args.Target)), args.Performer, args.Performer);
 

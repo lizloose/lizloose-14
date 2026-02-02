@@ -283,6 +283,9 @@
       - type: ActionGrant
         actions:
         - ActionChangelingStore
+        #UM START
+        - ActionEnterStasis
+        #UM END
       # TODO: Make it so the changeling gamerule changeling can inherit from the changeling store preset somehow
       - type: Store
         name: store-preset-name-changeling
