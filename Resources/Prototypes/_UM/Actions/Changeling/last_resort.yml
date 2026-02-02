@@ -1,0 +1,13 @@
+- type: entity
+  id: ActionChangelingLastResort
+  name: "[color=red]Last Resort[/color]"
+  description: head sluggin
+  components:
+  - type: Action
+    raiseOnAction: true
+    icon:
+      sprite: _UM/Interface/Actions/changeling.rsi
+      state: last_resort
+  - type: InstantAction
+    event: !type:LastResortActionEvent
+  - type: LastResortAction

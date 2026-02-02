@@ -1,0 +1,45 @@
+- type: entity
+  name: headslug
+  parent: SimpleMobBase
+  id: MobHeadslug
+  description: A small, slug-like creature with a large, gaping maw. It's covered in a thick, slimy mucus.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _UM/Mobs/Animals/headslug.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: headslug
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: headslug
+      Critical:
+        Base: headslug_dead
+      Dead:
+        Base: headslug_dead
+  - type: Tag
+    tags:
+    - Mouse
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 6
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 5
