@@ -6,6 +6,7 @@ using Content.Shared.Cloning;
 using Content.Shared.Forensics.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Popups;
 using Robust.Shared.Random;
 
 namespace Content.Shared._UM.Changeling.Sting;
@@ -22,7 +23,7 @@ public sealed class InjectGenomeActionSystem : EntitySystem
     [Dependency] private readonly SharedCloningSystem _cloning = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
-
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -55,7 +56,11 @@ public sealed class InjectGenomeActionSystem : EntitySystem
         _metaData.SetEntityName(args.Target, Name(cloneEnt), raiseEvents: false);
         _identity.QueueIdentityUpdate(args.Target);
 
-        Dirty(args.Target, MetaData(args.Target));
         args.Handled = true;
+
+        _popup.PopupClient(Loc.GetString(ent.Comp.UserPopup, ("target", args.Target)), args.Performer, args.Performer);
+
+        if (!ent.Comp.Silent)
+            _popup.PopupEntity(Loc.GetString(ent.Comp.TargetPopup), args.Target, args.Target);
     }
 }

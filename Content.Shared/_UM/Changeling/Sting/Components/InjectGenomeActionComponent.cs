@@ -16,6 +16,15 @@ public sealed partial class InjectGenomeActionComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public ProtoId<CloningSettingsPrototype> Settings = "ChangelingCloningSettings";
+
+    [DataField]
+    public bool Silent = true;
+
+    [DataField]
+    public LocId UserPopup = "changeling-solution-inject-sting-stealth-self";
+
+    [DataField]
+    public LocId TargetPopup = "injector-component-feel-prick-message";
 }
 
 
