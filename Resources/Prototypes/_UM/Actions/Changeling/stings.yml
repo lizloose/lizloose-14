@@ -40,6 +40,8 @@
 - type: entity
   parent: BaseAction
   id: ActionExtractGenomeSting
+  name: Extract DNA
+  description: dna
   components:
   - type: Action
     useDelay: 60
@@ -55,3 +57,24 @@
       components:
       - MobState
   - type: ExtractGenomeAction
+
+- type: entity
+  parent: BaseAction
+  id: ActionInjectGenomeSting
+  name: Inject DNA
+  description: Injects your target with a random selection of one of your absorbed targets
+  components:
+  - type: Action
+    useDelay: 60
+    raiseOnAction: true
+    itemIconStyle: BigAction
+    icon:
+      sprite: _UM/Interface/Actions/changeling.rsi
+      state: sting_transform
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:InjectGenomeActionEvent
+    whitelist:
+      components:
+      - MobState
+  - type: InjectGenomeAction
