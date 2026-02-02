@@ -12,3 +12,14 @@ changeling-mute-sting-desc = We silently sting a human, completely silencing the
 changeling-extract-genome-name = Extract DNA Sting
 changeling-extract-genome-desc = We stealthily sting a target and extract their DNA.
         Will give us the DNA of our target, allowing us to transform into them. This will render us unable to absorb their body fully later.
+
+
+changeling-enter-stasis-confirm = Are we sure we wish to fake our own death?
+
+changeling-enter-stasis-message = We begin our stasis, preparing energy to arise once more.
+
+changeling-in-stasis-name = [color=red]Stasis[/color]
+changeling-in-stasis-desc = You're [color=red]in stasis[/color], preparing energy to arise once more.
+
+changeling-finished-stasis-alert-name = [color=red]Revive[/color]
+changeling-finished-stasis-alert-desc = You're [color=green]ready[/color] to exit stasis. Click the alert to revive.
