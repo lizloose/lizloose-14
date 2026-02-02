@@ -7,6 +7,7 @@ using Content.Shared.Forensics.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
+using Robust.Shared.Network;
 using Robust.Shared.Random;
 
 namespace Content.Shared._UM.Changeling.Sting;
@@ -16,9 +17,8 @@ namespace Content.Shared._UM.Changeling.Sting;
 /// </summary>
 public sealed class InjectGenomeActionSystem : EntitySystem
 {
-    [Dependency] private readonly ChangelingClonerSystem _changelingClonerSystem = default!;
+    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedForensicsSystem _forensics = default!;
     [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
     [Dependency] private readonly SharedCloningSystem _cloning = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
@@ -48,7 +48,7 @@ public sealed class InjectGenomeActionSystem : EntitySystem
 
         var cloneEnt = _random.Pick(changelingIdentity.ConsumedIdentities);
 
-        if (!Exists(cloneEnt))
+        if (!Exists(cloneEnt) || _net.IsClient)
             return;
 
         _visualBody.CopyAppearanceFrom(cloneEnt, args.Target);
