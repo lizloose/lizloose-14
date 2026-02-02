@@ -3,9 +3,9 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._UM.Spiders.Builder;
 
 /// <summary>
-/// This is a prototype for...
+/// This is a prototype for things that can be built with the "Hive Builder" ability. Used by spiders
 /// </summary>
-[Prototype("hiveBuild")]
+[Prototype]
 public sealed partial class HiveBuildPrototype : IPrototype
 {
     /// <inheritdoc/>
