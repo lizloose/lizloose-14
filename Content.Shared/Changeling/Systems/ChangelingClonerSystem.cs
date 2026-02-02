@@ -30,6 +30,7 @@ public sealed class ChangelingClonerSystem : EntitySystem
     [Dependency] private readonly SharedChangelingIdentitySystem _changelingIdentity = default!;
     [Dependency] private readonly SharedForensicsSystem _forensics = default!;
     [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private readonly IdentitySystem _identity = default!;
 
     public override void Initialize()
     {
@@ -262,6 +263,9 @@ public sealed class ChangelingClonerSystem : EntitySystem
         _visualBody.CopyAppearanceFrom(ent.Comp.ClonedBackup.Value, target);
         _cloning.CloneComponents(ent.Comp.ClonedBackup.Value, target, settings);
         _metaData.SetEntityName(target, Name(ent.Comp.ClonedBackup.Value), raiseEvents: ent.Comp.RaiseNameChangeEvents);
+        //BEGIN UM
+        _identity.QueueIdentityUpdate(target);
+        //END UM
 
     }
 

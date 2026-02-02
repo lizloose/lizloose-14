@@ -27,6 +27,7 @@ public sealed partial class ChangelingTransformSystem : EntitySystem
     [Dependency] private readonly SharedCloningSystem _cloningSystem = default!;
     [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IdentitySystem _identity = default!;
 
     private const string ChangelingBuiXmlGeneratedName = "ChangelingTransformBoundUserInterface";
     public override void Initialize()
@@ -155,6 +156,9 @@ public sealed partial class ChangelingTransformSystem : EntitySystem
 
         _visualBody.CopyAppearanceFrom(targetIdentity, args.User);
         _cloningSystem.CloneComponents(targetIdentity, args.User, settings);
+        //BEGIN UM
+        _identity.QueueIdentityUpdate(args.User);
+        //END UM
 
         if (TryComp<ChangelingStoredIdentityComponent>(targetIdentity, out var storedIdentity) && storedIdentity.OriginalSession != null)
             _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(ent.Owner):player} successfully transformed into \"{Name(targetIdentity)}\" ({storedIdentity.OriginalSession:player})");
