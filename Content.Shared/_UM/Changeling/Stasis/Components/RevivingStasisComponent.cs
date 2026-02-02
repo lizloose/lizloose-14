@@ -29,6 +29,9 @@ public sealed partial class RevivingStasisComponent : Component
     [AutoNetworkedField, AutoPausedField]
     public TimeSpan StasisEnd = TimeSpan.Zero;
 
+    [DataField, AutoNetworkedField]
+    public EntityUid? ActionEntity = null;
+
     [DataField]
     public ProtoId<AlertPrototype> StasisAlert = "StasisRegenerating";
 

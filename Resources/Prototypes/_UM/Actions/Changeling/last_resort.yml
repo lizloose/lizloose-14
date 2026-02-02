@@ -4,10 +4,14 @@
   description: head sluggin
   components:
   - type: Action
+    checkCanInteract: false
+    checkConsciousness: false
     raiseOnAction: true
     icon:
       sprite: _UM/Interface/Actions/changeling.rsi
       state: last_resort
+  - type: ConfirmableAction
+    popup: changeling-last-resort-confirm
   - type: InstantAction
     event: !type:LastResortActionEvent
   - type: LastResortAction

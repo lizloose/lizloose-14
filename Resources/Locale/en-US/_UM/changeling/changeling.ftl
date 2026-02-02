@@ -14,9 +14,10 @@ changeling-extract-genome-desc = We stealthily sting a target and extract their 
         Will give us the DNA of our target, allowing us to transform into them. This will render us unable to absorb their body fully later.
 
 
-changeling-enter-stasis-confirm = Are we sure we wish to fake our own death?
-
+changeling-enter-stasis-confirm = THIS ACTION WILL PUT YOU IN STASIS! Use it again to confirm.
 changeling-enter-stasis-message = We begin our stasis, preparing energy to arise once more.
+
+changeling-last-resort-confirm = THIS ACTION WILL GIB YOU! Use it again to confirm.
 
 changeling-in-stasis-name = [color=red]Stasis[/color]
 changeling-in-stasis-desc = You're [color=red]in stasis[/color], preparing energy to arise once more.

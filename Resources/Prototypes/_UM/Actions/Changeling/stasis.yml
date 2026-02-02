@@ -4,7 +4,9 @@
   description: We fall into a stasis, allowing us to regenerate and trick our enemies.
   components:
   - type: Action
-    useDelay: 180
+    useDelay: 120
+    checkCanInteract: false
+    checkConsciousness: false
     raiseOnAction: true
     icon:
       sprite: _UM/Interface/Actions/changeling.rsi
@@ -12,6 +14,8 @@
   - type: InstantAction
     event: !type:StasisEnterActionEvent
   - type: EnterStasisAction
+  - type: ConfirmableAction
+    popup: changeling-enter-stasis-confirm
 
 - type: alert
   id: StasisRegenerating

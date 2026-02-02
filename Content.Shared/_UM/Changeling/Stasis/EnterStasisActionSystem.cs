@@ -1,4 +1,6 @@
 using Content.Shared._UM.Changeling.Stasis.Components;
+using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.Administration.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Ghost;
@@ -19,6 +21,7 @@ public sealed class EnterStasisActionSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly RejuvenateSystem _rejuvenate = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
@@ -70,6 +73,7 @@ public sealed class EnterStasisActionSystem : EntitySystem
 
         var stasisComp = EnsureComp<RevivingStasisComponent>(args.Performer);
         stasisComp.StasisEnd = _timing.CurTime + stasisComp.Duration;
+        stasisComp.ActionEntity = args.Action;
 
         if (RemComp<GhostOnMoveComponent>(args.Performer))
             stasisComp.GhostOnMove = true;
@@ -90,6 +94,12 @@ public sealed class EnterStasisActionSystem : EntitySystem
     {
         _alerts.ClearAlert(ent.Owner, ent.Comp.StasisReadyAlert);
         _rejuvenate.PerformRejuvenate(ent);
+
+        //Because rejuvenate and cooldowns grr
+        if (ent.Comp.ActionEntity != null &&
+            TryComp<ActionComponent>(ent.Comp.ActionEntity.Value, out var actionComp) &&
+            actionComp.UseDelay != null)
+            _actions.SetCooldown(ent.Comp.ActionEntity.Value, actionComp.UseDelay.Value);
 
         if (ent.Comp.GhostOnMove)
         {
