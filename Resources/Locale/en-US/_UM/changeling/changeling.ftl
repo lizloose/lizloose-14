@@ -13,6 +13,13 @@ changeling-extract-genome-name = Extract DNA Sting
 changeling-extract-genome-desc = We stealthily sting a target and extract their DNA.
         Will give us the DNA of our target, allowing us to transform into them. This will render us unable to absorb their body fully later.
 
+changeling-inject-genome-name = Transformation Sting
+changeling-inject-genome-desc = The victim will transform much like a changeling would.
+    For complex humanoids, the transformation is temporarily, but the duration is paused while the victim is dead or in stasis.
+    For more simple humanoids, such as monkeys, the transformation is permanent.
+    Does not provide a warning to others. Mutations will not be transferred.
+
+
 
 changeling-enter-stasis-confirm = THIS ACTION WILL PUT YOU IN STASIS! Use it again to confirm.
 changeling-enter-stasis-message = We begin our stasis, preparing energy to arise once more.

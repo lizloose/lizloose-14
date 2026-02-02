@@ -39,3 +39,17 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: ChangelingInjectSting
+  name: changeling-inject-genome-name
+  description: changeling-inject-genome-desc
+  productAction: ActionInjectGenomeSting
+  applyToMob: true
+  cost:
+    ChangelingDNA: 20
+  categories:
+  - UMChangelingAbilities
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

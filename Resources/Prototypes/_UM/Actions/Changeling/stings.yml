@@ -61,8 +61,8 @@
 - type: entity
   parent: BaseAction
   id: ActionInjectGenomeSting
-  name: Inject DNA
-  description: Injects your target with a random selection of one of your absorbed targets
+  name: Transformation Sting
+  description: We silently sting an organism, injecting a retrovirus that forces them to transform.
   components:
   - type: Action
     useDelay: 60
