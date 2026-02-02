@@ -36,6 +36,23 @@
         - MobLayer
         mask:
         - MobMask
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Web
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: "/Audio/Weapons/slash.ogg"
+      - !type:EmptyContainersBehaviour
+        containers:
+        - contents
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: Cocoon
     minEnergy: 40
     maxEnergy: 70
