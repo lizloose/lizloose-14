@@ -20,8 +20,8 @@
 - type: alert
   id: StasisRegenerating
   icons:
-  - sprite: /Textures/Mobs/Species/Skeleton/parts.rsi
-    state: skull_icon
+  - sprite: _UM/Interface/Actions/changeling.rsi
+    state: fake_death
   name: changeling-in-stasis-name
   description: changeling-in-stasis-desc
 
@@ -29,7 +29,7 @@
   id: StasisReady
   clickEvent: !type:StasisReviveAlertEvent
   icons:
-  - sprite: /Textures/_UM/Interface/Alerts/changeling.rsi
-    state: ling_revive
+  - sprite: /Textures/_UM/Interface/Actions/changeling.rsi
+    state: revive
   name: changeling-finished-stasis-alert-name
   description: changeling-finished-stasis-alert-desc
