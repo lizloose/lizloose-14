@@ -1,7 +1,7 @@
 - type: entity
   name: energy gun
   parent: [BaseWeaponBatterySmall]
-  id: WeaponEnergyGun
+  id: UMWeaponEnergyGun
   description: A weapon with dual fire modes, for non-lethal stun bolts or lethal laser fire.
   components:
   - type: Sprite

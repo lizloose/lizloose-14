@@ -35,7 +35,7 @@
     eyes: ClothingEyesGlassesSecurity
     id: WardenPDA
     ears: ClothingHeadsetSecurity
-    pocket1: WeaponEnergyGun # Changed from wizden
+    pocket1: UMWeaponEnergyGun # Changed from wizden
   storage:
     back:
     - Flash
