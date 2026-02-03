@@ -15,7 +15,9 @@
     quickEquip: false
     slots:
     - Back
+    #UM START
     - suitStorage
+    #UM END
   - type: AmmoCounter
   - type: Gun
     minAngle: 2

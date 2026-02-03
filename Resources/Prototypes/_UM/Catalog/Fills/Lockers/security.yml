@@ -50,7 +50,7 @@
   id: UMFillGunSafeLaserCarbine
   table: !type:AllSelector
     children:
-    - id: WeaponLaserCarbine
+    - id: UMWeaponLaserCarbine
       amount: 6
 
 - type: entity

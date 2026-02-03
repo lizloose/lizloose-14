@@ -16,7 +16,7 @@ GunSafeSubMachineGunDrozd: UMGunSafeEnergyGun
 GunSafeRifleLecter: PottedPlantRandom
 GunSafePistolMk58: GunSafeDisabler
 CrateSecurityRiot : UMCrateSecurityRiot
-FillGunSafeLaserCarbine : UMFillGunSafeLaserCarbine
+GunSafeLaserCarbine : UMGunSafeLaserCarbine
 # Service
 WeaponShotgunDoubleBarreled : UMWeaponShotgunDoubleBarreled
 WeaponShotgunDoubleBarreledRubber: UMWeaponShotgunDoubleBarreled

@@ -3,6 +3,7 @@
   parent: [BaseWeaponBatterySmall]
   id: UMWeaponEnergyGun
   description: A weapon with dual fire modes, for non-lethal stun bolts or lethal laser fire.
+  suffix: UM
   components:
   - type: Sprite
     sprite: _UM/Objects/Weapons/Guns/Battery/energygun.rsi
@@ -71,6 +72,7 @@
   parent: [BaseWeaponBattery, BaseMajorContraband]
   id: UMWeaponIonRifle
   description: The ion rifle description
+  suffix: UM
   components:
   - type: Sprite
     sprite: _UM/Objects/Weapons/Guns/Battery/ionrifle.rsi
@@ -101,3 +103,60 @@
   - type: Tag
     tags:
     - LaserWeapon
+
+- type: entity
+  parent: [BaseWeaponBattery]
+  id: UMBaseLaserRifle
+  abstract: true
+  suffix: UM
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: BatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 62.5
+  - type: StaticPrice
+    price: 420
+  - type: Tag
+    tags:
+    - LaserWeapon
+
+- type: entity
+  name: laser carbine
+  parent: [UMBaseLaserRifle, BaseSecurityContraband]
+  id: UMWeaponLaserCarbine
+  description: Favoured by Nanotrasen Security for being cheap and easy to use.
+  suffix: UM
+
+- type: entity
+  name: practice laser carbine
+  parent: [UMBaseLaserRifle]
+  id: UMWeaponLaserCarbinePractice
+  description: This modified laser carbine fires nearly harmless beams in the 40-watt range, for target practice.
+  suffix: UM
+  components:
+  - type: StaticPrice
+    price: 300
+  - type: BatteryAmmoProvider
+    proto: RedLaserPractice
+    fireCost: 62.5
+  - type: PacifismAllowedGun
