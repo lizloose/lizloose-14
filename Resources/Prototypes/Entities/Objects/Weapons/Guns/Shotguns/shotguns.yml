@@ -18,7 +18,9 @@
     quickEquip: false
     slots:
     - Back
-    - suitStorage
+    #UM START
+    #- suitStorage
+    #UM END
   - type: AmmoCounter
   - type: Gun
     fireRate: 2

@@ -1,0 +1,51 @@
+- type: entity
+  name: double-barreled shotgun
+  parent: [BaseWeaponShotgun, BaseSecurityBartenderContraband]
+  id: UMWeaponShotgunDoubleBarreled
+  description: An immortal classic. Uses .50 shotgun shells.
+  suffix: UM
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
+  - type: Item
+    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
+    storedOffset: -2,0
+    size: Huge
+  - type: Gun
+    fireRate: 3
+  - type: GunSpreadModifier
+    spread: 0.6
+  - type: BallisticAmmoProvider
+    capacity: 2
+    proto: ShellShotgunBeanbag
+
+- type: entity
+  name: Riot Shotgun
+  parent: [BaseWeaponShotgun, BaseSecurityContraband]
+  id: UMWeaponShotgunRiot
+  description: An old yet faithful design, and a favorite among irregular forces of many worlds. Uses .50 shotgun shells.
+  suffix: UM
+  components:
+  - type: Item
+    sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
+    storedOffset: -2,0
+    size: Huge
+    shape:
+    - 0,0,5,1
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
+  - type: Gun
+    fireRate: 1
+  - type: GunSpreadModifier
+    spread: 0.6
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+    capacity: 6
+    proto: ShellShotgunBeanbag
+  - type: Tag
+    tags:
+    - WeaponShotgunKammerer # for shotgun cabinet?
