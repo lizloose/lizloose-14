@@ -83,7 +83,7 @@
   description: The ion rifle description
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/ionrifle.rsi
+    sprite: _UM/Objects/Weapons/Guns/Battery/ionrifle.rsi
     layers:
     - state: ionrifle
       map: ["enum.GunVisualLayers.Base"]
@@ -92,6 +92,14 @@
       shader: unshaded
   - type: Item
     storedOffset: 0,-5
+  - type: Clothing
+    sprite: _UM/Objects/Weapons/Guns/Battery/ionrifle.rsi
+    clothingVisuals:
+      back:
+      - state: ionrifle-back
+    quickEquip: false
+    slots:
+    - Back
   - type: BatteryAmmoProvider
     proto: UMIonBolt
     fireCost: 125

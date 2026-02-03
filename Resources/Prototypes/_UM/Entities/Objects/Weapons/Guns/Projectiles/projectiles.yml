@@ -5,7 +5,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    sprite: _UM/Objects/Weapons/Guns/Projectiles/ion.rsi
     layers:
     - state: ion
       shader: unshaded

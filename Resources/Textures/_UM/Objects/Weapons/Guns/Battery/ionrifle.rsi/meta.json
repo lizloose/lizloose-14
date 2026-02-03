@@ -11,6 +11,10 @@
 			"name": "ionrifle"
 		},
 		{
+			"name": "ionrifle-back",
+			"directions": 4
+		},
+		{
 			"name": "mag-unshaded-0"
 		},
 		{
