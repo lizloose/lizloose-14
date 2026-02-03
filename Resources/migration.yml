@@ -8,6 +8,21 @@
 # WallSolid: Window
 # Table: null
 
+# UM START
+# 2026-02
+# Security
+GunSafeShotgunKammerer: UMGunSafeShotgunRiot
+GunSafeSubMachineGunDrozd: UMGunSafeEnergyGun
+GunSafeRifleLecter: PottedPlantRandom
+GunSafePistolMk58: GunSafeDisabler
+CrateSecurityRiot : UMCrateSecurityRiot
+FillGunSafeLaserCarbine : UMFillGunSafeLaserCarbine
+# Service
+WeaponShotgunDoubleBarreled : UMWeaponShotgunDoubleBarreled
+WeaponShotgunDoubleBarreledRubber: UMWeaponShotgunDoubleBarreled
+
+# UM END
+
 # 2023-07-03
 ClothingHeadHelmetHelmet: ClothingHeadHelmetBasic
 ClothingHeadHelmetHelmetOld: ClothingHeadHelmetBasic

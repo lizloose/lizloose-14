@@ -1,0 +1,71 @@
+- type: entity
+  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  id: UMGunSafeShotgunRiot
+  name: riot shotgun safe
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: UMFillGunSafeShotgunRiot
+
+- type: entityTable
+  id: UMFillGunSafeShotgunRiot
+  table: !type:AllSelector
+    children:
+    - id: UMWeaponShotgunRiot
+      amount: 3
+    - id: BoxLethalshot
+      amount: 2
+    - id: BoxBeanbag
+      amount: 2
+
+- type: entity
+  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  id: UMGunSafeEnergyGun
+  name: energy gun safe
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: UMFillGunSafeEnergyGun
+
+- type: entityTable
+  id: UMFillGunSafeEnergyGun
+  table: !type:AllSelector
+    children:
+    - id: UMWeaponEnergyGun
+      amount: 6
+
+- type: entity
+  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  id: UMGunSafeLaserCarbine
+  name: laser safe
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: UMFillGunSafeLaserCarbine
+
+- type: entityTable
+  id: UMFillGunSafeLaserCarbine
+  table: !type:AllSelector
+    children:
+    - id: WeaponLaserCarbine
+      amount: 6
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: UMCrateSecurityRiot
+  name: swat crate
+  description: Contains two sets of riot armor, helmets and shields. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterArmorRiot
+          amount: 2
+        - id: ClothingHeadHelmetRiot
+          amount: 2
+        - id: RiotShield
+          amount: 2

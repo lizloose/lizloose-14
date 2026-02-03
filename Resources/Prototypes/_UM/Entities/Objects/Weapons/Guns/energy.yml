@@ -23,11 +23,10 @@
     sprite: _UM/Objects/Weapons/Guns/Battery/energygun.rsi
     quickEquip: false
     slots:
-    - suitStorage
     - back
   - type: Gun
-    minAngle: 20
-    maxAngle: 30
+    minAngle: 1
+    maxAngle: 4
     fireRate: 2
     projectileSpeed: 35 # any higher and this causes issues in lag
     soundGunshot:
@@ -53,24 +52,15 @@
     clothingVisuals:
       back:
       - state: equipped-BACKPACK-color
-      suitstorage:
-      - state: equipped-SUITSTORAGE-color
-    wieldedInhandVisuals:
-      left:
-      - state: wielded-inhand-left-color
-      right:
-      - state: wielded-inhand-right-color
-  - type: Wieldable
-    unwieldOnUse: false
-  - type: GunWieldBonus
-    minAngle: -19
-    maxAngle: -16
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
   - type: Item
-    storedOffset: -1,-5
+    storedOffset: -2,0
+    size: Huge
+    shape:
+    - 0,0,2,1
   - type: GuideHelp
     guides:
     - Security
