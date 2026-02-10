@@ -51,10 +51,12 @@ public sealed class IlleismAccentSystem : EntitySystem
             name = name.Split(sep)[0];
         }
 
-        var upperName = name.ToUpper();
-
-        message = message.Replace(LocNameKey, MostlyUppercase(message) ? upperName : name);
-
+        // TODO: Might be nice in the future to replace some instances with pronouns as well
+        // e.g. "I'm new here, and I could use some help" -> "Urist is new here, and he could use some help"
+        message = MostlyUppercase(message)
+            // ToUpper is needed on both because ApplyReplacements will capitalize the key
+            ? message.Replace(LocNameKey.ToUpper(), name.ToUpper())
+            : message.Replace(LocNameKey, name);
         args.Message = message;
     }
 }
