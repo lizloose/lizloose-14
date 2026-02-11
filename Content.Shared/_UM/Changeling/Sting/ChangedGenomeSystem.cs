@@ -77,7 +77,6 @@ public sealed class ChangedGenomeSystem : EntitySystem
         comp.EndTime = _timing.CurTime + comp.Duration;
     }
 
-
     private void Transform(Entity<ChangedGenomeComponent> ent, EntityUid? cloneEnt)
     {
         if (!Exists(cloneEnt) || _net.IsClient)

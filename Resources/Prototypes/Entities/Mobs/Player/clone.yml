@@ -116,6 +116,9 @@
   - TemperatureProtection
   - TypingIndicator
   - ScaleVisuals # for dwarf height
+  #UM START
+  - HumanoidProfile
+  #UM END
   eventComponents:
   # these need special treatment in the event subscription
   - Inventory # arachnid pockets and diona feet

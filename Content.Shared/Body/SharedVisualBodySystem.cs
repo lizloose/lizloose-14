@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid;
+using Content.Shared.Preferences;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -15,6 +16,9 @@ public abstract partial class SharedVisualBodySystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly MarkingManager _marking = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    //UM START
+    [Dependency] private readonly HumanoidProfileSystem _humanoidProfile = default!;
+    //UM END
 
     public override void Initialize()
     {
@@ -86,6 +90,35 @@ public abstract partial class SharedVisualBodySystem : EntitySystem
         ent.Comp.Markings = markings;
         Dirty(ent);
     }
+
+    /*
+    public void CopyAppearanceFrom(Entity<BodyComponent?> source, Entity<BodyComponent?> target)
+    {
+        if (!Resolve(source, ref source.Comp) || !Resolve(target, ref target.Comp))
+            return;
+
+        //UM START
+        if (TryComp<HumanoidProfileComponent>(source, out var humanoidProfile))
+        {
+            var profile = new HumanoidCharacterProfile()
+                .WithSex(humanoidProfile.Sex)
+                .WithGender(humanoidProfile.Gender)
+                .WithAge(humanoidProfile.Age)
+                .WithSpecies(humanoidProfile.Species);
+
+            _humanoidProfile.ApplyProfileTo(target.Owner, profile);
+        }
+        //UM END
+
+        var sourceOrgans = _container.EnsureContainer<Container>(source, BodyComponent.ContainerID);
+
+        foreach (var sourceOrgan in sourceOrgans.ContainedEntities)
+        {
+            var evt = new OrganCopyAppearanceEvent(sourceOrgan);
+            RaiseLocalEvent(target, ref evt);
+        }
+    }
+    */
 
     private void OnVisualOrganCopyAppearance(Entity<VisualOrganComponent> ent, ref BodyRelayedEvent<OrganCopyAppearanceEvent> args)
     {
