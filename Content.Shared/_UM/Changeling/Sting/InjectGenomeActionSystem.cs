@@ -40,6 +40,9 @@ public sealed class InjectGenomeActionSystem : EntitySystem
         if (args.Handled)
             return;
 
+        if (args.Target == args.Performer)
+            return;
+
         if (!HasComp<HumanoidProfileComponent>(args.Target))
             return;
 
@@ -54,22 +57,13 @@ public sealed class InjectGenomeActionSystem : EntitySystem
         if (!Exists(cloneEnt) || _net.IsClient)
             return;
 
-        /*
-
-        _visualBody.CopyAppearanceFrom(cloneEnt, args.Target);
-        _cloning.CloneComponents(cloneEnt, args.Target, ent.Comp.Settings);
-        _metaData.SetEntityName(args.Target, Name(cloneEnt), raiseEvents: false);
-        _identity.QueueIdentityUpdate(args.Target);
-
-        args.Handled = true;
-
-        */
-        Log.Debug("Cloning");
         _changedGenome.TransformInto(args.Target, cloneEnt);
 
-        _popup.PopupClient(Loc.GetString(ent.Comp.UserPopup, ("target", args.Target)), args.Performer, args.Performer);
+        _popup.PopupEntity(Loc.GetString(ent.Comp.UserPopup, ("target", args.Target)), args.Performer, args.Performer);
 
         if (!ent.Comp.Silent)
             _popup.PopupEntity(Loc.GetString(ent.Comp.TargetPopup), args.Target, args.Target);
+
+        args.Handled = true;
     }
 }

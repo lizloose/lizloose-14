@@ -37,6 +37,6 @@ public sealed partial class ChangedGenomeComponent : Component
     /// </summary>
     [DataField]
     [AutoNetworkedField]
-    public TimeSpan Duration = TimeSpan.FromMinutes(2);
+    public TimeSpan Duration = TimeSpan.FromMinutes(0.2);
 
 }

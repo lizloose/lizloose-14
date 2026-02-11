@@ -3,6 +3,7 @@ using Content.Shared.Body;
 using Content.Shared.Changeling.Systems;
 using Content.Shared.Cloning;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Stunnable;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -10,13 +11,14 @@ using Robust.Shared.Timing;
 namespace Content.Shared._UM.Changeling.Sting;
 
 /// <summary>
-/// This handles...
+/// This is shitcode
 /// </summary>
 public sealed class ChangedGenomeSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
     [Dependency] private readonly SharedCloningSystem _cloning = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
@@ -44,6 +46,7 @@ public sealed class ChangedGenomeSystem : EntitySystem
                 continue;
 
             Transform((uid, comp), comp.OriginalEntity);
+            _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(4));
             RemComp<ChangedGenomeComponent>(uid);
         }
     }
@@ -63,16 +66,11 @@ public sealed class ChangedGenomeSystem : EntitySystem
         var cloneEnt = _changelingIdentity.CloneToPausedMap(settings, toClone);
         var ownerClone = _changelingIdentity.CloneToPausedMap(settings, ent);
 
-        Log.Debug("Going");
-
         comp.OriginalEntity = ownerClone;
         comp.TransformedEntity = cloneEnt;
 
         if (!Exists(comp.TransformedEntity) || _net.IsClient)
             return;
-
-        Log.Debug("going2");
-
 
         Transform((ent, comp), comp.TransformedEntity);
 
@@ -84,8 +82,6 @@ public sealed class ChangedGenomeSystem : EntitySystem
     {
         if (!Exists(cloneEnt) || _net.IsClient)
             return;
-
-        Log.Debug("Transforming");
 
         _visualBody.CopyAppearanceFrom(cloneEnt.Value, ent.Owner);
         _cloning.CloneComponents(cloneEnt.Value, ent.Owner, ent.Comp.Settings);
