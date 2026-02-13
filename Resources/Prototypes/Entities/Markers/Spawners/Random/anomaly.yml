@@ -20,7 +20,7 @@
     - RandomRockAnomalySpawner
     - AnomalyLiquid
     - AnomalyFlora
-    - AnomalyShadow
+#    - AnomalyShadow
     - AnomalyTech
     #- AnomalySanta
     rareChance: 0.3
@@ -64,7 +64,7 @@
     prototypes:
     - AnomalyTrapPyroclastic
     - AnomalyTrapElectricity
-    - AnomalyTrapShadow
+#    - AnomalyTrapShadow
     - AnomalyTrapIce
     - AnomalyTrapFlora
     - AnomalyTrapBluespace

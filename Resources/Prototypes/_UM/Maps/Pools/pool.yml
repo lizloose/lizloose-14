@@ -1,0 +1,12 @@
+- type: gameMapPool
+  id: UMMapPool
+  maps:
+  - Bagel
+  - Box
+  - Elkridge
+  - Fland
+  - Marathon
+  - Oasis
+  - Packed
+  - Plasma
+  - Reach
