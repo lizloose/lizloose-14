@@ -49,7 +49,9 @@
 
 # Uplinks
 - type: entity
-  parent: [BaseItem, StorePresetUplink, BaseSyndicateContraband]
+  #UM START
+  parent: [BaseItem, UMStorePresetUplink, BaseSyndicateContraband]
+  #UM END
   id: BaseUplinkRadio
   name: syndicate uplink
   description: Suspiciously looking old radio...

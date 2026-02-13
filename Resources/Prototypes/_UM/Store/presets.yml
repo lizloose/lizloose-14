@@ -1,0 +1,24 @@
+- type: entity
+  id: UMStorePresetUplink
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-uplink
+    categories:
+    - UMUplinkWeaponry
+    - UMUplinkAmmo
+    - UMUplinkExplosives
+    - UMUplinkChemicals
+    - UMUplinkDeception
+    - UMUplinkDisruption
+    - UMUplinkImplants
+    - UMUplinkAllies
+    - UMUplinkWearables
+    - UMUplinkJob
+    - UMUplinkPointless
+    currencyWhitelist:
+    - Telecrystal
+    balance:
+      Telecrystal: 0
+    expectedFaction:
+    - Syndicate

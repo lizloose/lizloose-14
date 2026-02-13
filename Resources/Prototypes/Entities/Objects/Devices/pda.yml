@@ -1,6 +1,8 @@
 - type: entity
   abstract: true
-  parent: [ BaseItem, StorePresetUplink ] #PDA's have uplinks so they have to inherit the data.
+  #UM START
+  parent: [ BaseItem, UMStorePresetUplink ] #PDA's have uplinks so they have to inherit the data.
+  #UM END
   id: BasePDA
   name: PDA
   description: Personal Data Assistant.

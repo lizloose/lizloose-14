@@ -1,0 +1,55 @@
+#uplink categoires
+- type: storeCategory
+  id: UMUplinkWeaponry
+  name: store-category-weapons
+  priority: 0
+
+- type: storeCategory
+  id: UMUplinkAmmo
+  name: store-category-ammo
+  priority: 1
+
+- type: storeCategory
+  id: UMUplinkExplosives
+  name: store-category-explosives
+  priority: 2
+
+- type: storeCategory
+  id: UMUplinkWearables
+  name: store-category-wearables
+  priority: 3
+
+- type: storeCategory
+  id: UMUplinkChemicals
+  name: store-category-chemicals
+  priority: 4
+
+- type: storeCategory
+  id: UMUplinkDeception
+  name: store-category-deception
+  priority: 5
+
+- type: storeCategory
+  id: UMUplinkDisruption
+  name: store-category-disruption
+  priority: 6
+
+- type: storeCategory
+  id: UMUplinkImplants
+  name: store-category-implants
+  priority: 7
+
+- type: storeCategory
+  id: UMUplinkAllies
+  name: store-category-allies
+  priority: 8
+
+- type: storeCategory
+  id: UMUplinkJob
+  name: store-category-job
+  priority: 9
+
+- type: storeCategory
+  id: UMUplinkPointless
+  name: store-category-pointless
+  priority: 10
