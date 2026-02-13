@@ -77,6 +77,8 @@
   name: secure C-20r case
   suffix: UM
   components:
+  - type: Item
+    size: Ginormous
   - type: Storage
     maxItemSize: Huge
     grid:
@@ -92,6 +94,8 @@
   name: secure bulldog case
   suffix: UM
   components:
+  - type: Item
+    size: Ginormous
   - type: Storage
     maxItemSize: Huge
     grid:
@@ -107,6 +111,8 @@
   name: secure china lake case
   suffix: UM
   components:
+  - type: Item
+    size: Ginormous
   - type: Storage
     maxItemSize: Huge
     grid:
