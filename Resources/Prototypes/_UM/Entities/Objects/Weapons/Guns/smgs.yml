@@ -15,9 +15,10 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
     storedOffset: -2,0
+  - type: Item
     size: Huge
     shape:
-    - 0,0,4,1
+    - 0,0,3,2
   - type: Gun
     minAngle: 2
     maxAngle: 16

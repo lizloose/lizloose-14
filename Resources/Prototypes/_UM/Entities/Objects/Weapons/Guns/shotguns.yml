@@ -64,7 +64,7 @@
   - type: Item
     sprite: Objects/Weapons/Guns/Shotguns/hushpup.rsi
     shape:
-    - 0,0,3,0 # smaller than BaseShotgun by 1 tile
+    - 0,0,3,0
   - type: BallisticAmmoProvider
     capacity: 4
   - type: Gun
@@ -93,7 +93,11 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
+    sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
+    storedOffset: -2,0
     size: Large
+    shape:
+    - 0,0,4,2
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
     quickEquip: false

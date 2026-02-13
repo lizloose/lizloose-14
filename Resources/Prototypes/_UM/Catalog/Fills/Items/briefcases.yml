@@ -62,6 +62,7 @@
   id: UMBriefcaseWeaponHushpupFilled
   parent: BriefcaseWeaponSmall
   name: secure hushpup case
+  suffix: UM
   components:
   - type: EntityTableContainerFill
     containers:
@@ -74,7 +75,12 @@
   id: UMBriefcaseWeaponC20Filled
   parent: BriefcaseWeaponSmall
   name: secure C-20r case
+  suffix: UM
   components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,3,2
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -84,7 +90,12 @@
   id: UMBriefcaseWeaponBulldogFilled
   parent: BriefcaseWeaponSmall
   name: secure bulldog case
+  suffix: UM
   components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,4,2
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -94,7 +105,12 @@
   id: UMBriefcaseWeaponChinaLakeFilled
   parent: BriefcaseWeapon
   name: secure china lake case
+  suffix: UM
   components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,6,2
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
