@@ -2,6 +2,7 @@
   name: cocoon
   id: SpiderCocoonLarge
   description: Eww
+  suffix: UM
   components:
   - type: Sprite
     sprite: _UM/Objects/web.rsi
@@ -97,6 +98,7 @@
   parent: BaseStructure
   id: BroodmotherEggs
   description: Eww
+  suffix: UM
   components:
   - type: Sprite
     drawdepth: Items
@@ -151,6 +153,7 @@
     mode: SnapgridCenter
     snap:
     - Wall
+  suffix: UM
   components:
   - type: Sprite
     sprite: _UM/Objects/web.rsi

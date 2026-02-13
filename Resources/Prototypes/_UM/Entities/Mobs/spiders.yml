@@ -4,7 +4,7 @@
 - type: entity
   parent: [ MobAtmosStandard, BaseMob, MobDamageable, BaseMobHemocyanin, MobBloodstream, MobPolymorphable, MobCombat ]
   id: UMMobSpiderBase
-  suffix: SpiderAntag
+  suffix: UM, SpiderAntag
   abstract: true
   components:
   - type: Respirator
@@ -118,7 +118,7 @@
 - type: entity
   parent: MobMouse
   id: MobMouseBroodmother
-  suffix: SpiderAntag
+  suffix: UM, SpiderAntag
   components:
   - type: MobThresholds
     thresholds:

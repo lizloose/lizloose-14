@@ -2,7 +2,7 @@
   categories: [ HideSpawnMenu, Spawner ]
   id: SpawnPointGhostBroodmother
   name: ghost role spawn point
-  suffix: spiders
+  suffix: UM, SpiderAntag
   parent: BaseAntagSpawner
   components:
     - type: GhostRole

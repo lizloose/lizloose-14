@@ -3,6 +3,7 @@
   id: UMWallWeb
   name: web wall
   description: Keeps the spiders in and the greytide out.
+  suffix: UM
   components:
   - type: MeleeSound
     soundGroups:
