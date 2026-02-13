@@ -14,7 +14,6 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
-    storedOffset: -2,0
   - type: Item
     size: Huge
     shape:
