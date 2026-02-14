@@ -1,0 +1,22 @@
+<newsControls:NewscasterWindow
+    xmlns="https://spacestation14.io"
+    xmlns:newsControls="clr-namespace:Content.Client._UM.News.UI"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    SetSize="450 650"
+    Title="Newscaster"
+    HorizontalExpand="False"
+    VerticalExpand="True"
+    Resizable="False">
+    <PanelContainer Name="Background" Access="Public" StyleClasses="BackgroundPanelDark" />
+    <ScrollContainer HorizontalExpand="False" HScrollEnabled="False" Margin="8, 8, 8, 8">
+        <BoxContainer Orientation="Vertical">
+            <BoxContainer Orientation="Vertical">
+                <Button Visible="False" Text="Print Newspaper" HorizontalAlignment="Right" Margin="10 0 10 0"></Button>
+            </BoxContainer>
+            <BoxContainer Name="NoArticleText" Visible="True" Margin="100" Align="Center">
+                <Label Text="Theres nothing here!"></Label>
+            </BoxContainer>
+        <BoxContainer Name="EntryTable" Orientation="Vertical"  VerticalExpand="True" HorizontalExpand="False"/>
+        </BoxContainer>
+    </ScrollContainer>
+</newsControls:NewscasterWindow>

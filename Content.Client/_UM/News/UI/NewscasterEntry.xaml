@@ -1,0 +1,23 @@
+<Control xmlns="https://spacestation14.io">
+    <PanelContainer
+        HorizontalExpand="False"
+        StyleClasses="BorderedWindowPanel"
+        Margin="10 8 10 8">
+        <BoxContainer Orientation="Vertical">
+            <BoxContainer Margin="6" Orientation="Horizontal" Align="Center">
+                <Label Name="Title" Access="Public" Align="Center" StyleClasses="LabelKeyText"/>
+            </BoxContainer>
+            <BoxContainer Orientation="Vertical"  Align="Center">
+                <BoxContainer Margin="6 0 6 6" Orientation="Horizontal">
+                    <Label Name="Author" Margin="5 0 5 0" Access="Public" Align="Left" StyleClasses="LabelSubText"/>
+                </BoxContainer>
+                <BoxContainer Margin="6">
+                    <RichTextLabel Name="ArticleContents" Access="Public" MaxWidth="500"/>
+                </BoxContainer>
+                <BoxContainer Margin="0 0 0 0" Align="End" Orientation="Horizontal">
+                    <Label Name="Time" Access="Public" Align="Right" Margin="8 8 8 8" StyleClasses="LabelSubText"/>
+                </BoxContainer>
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
+</Control>

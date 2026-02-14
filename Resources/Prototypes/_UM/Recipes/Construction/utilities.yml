@@ -1,0 +1,12 @@
+- type: construction
+  id: Newscaster
+  graph: Newscaster
+  startNode: start
+  targetNode: news_caster
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}

@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseElectronics
+  id: NewscasterCircuitboard
+  name: newscaster electronics
+  description: An electronics board used in newscasters
+  suffix: UM
+  components:
+  - type: Item
+    storedRotation: 0
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: airalarm_electronics
+  - type: Tag
+    tags:
+    - NewscasterElectronics

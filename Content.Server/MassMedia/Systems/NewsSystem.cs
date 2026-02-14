@@ -28,6 +28,8 @@ using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using Content.Shared._UM.News;
+using Content.Shared._UM.News.Components;
 
 namespace Content.Server.MassMedia.Systems;
 
@@ -46,6 +48,9 @@ public sealed class NewsSystem : SharedNewsSystem
     [Dependency] private readonly DiscordWebhook _discord = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IBaseServer _baseServer = default!;
+    //UM START
+    [Dependency] private readonly NewscasterSystem _newscasterSystem = default!;
+    //UM END
 
     private WebhookIdentifier? _webhookId = null;
     private Color _webhookEmbedColor;
@@ -152,6 +157,9 @@ public sealed class NewsSystem : SharedNewsSystem
         }
 
         UpdateWriterDevices();
+        //UM START
+        UpdateNewscasters();
+        //UM END
     }
 
     private void OnRequestArticlesUiMessage(Entity<NewsWriterComponent> ent, ref NewsWriterArticlesRequestMessage msg)
@@ -242,7 +250,9 @@ public sealed class NewsSystem : SharedNewsSystem
             AddNewsSendWebhook(article.Value);
 
         UpdateWriterDevices();
-
+        //UM START
+        UpdateNewscasters(article.Value);
+        //UM END
         return true;
     }
 
@@ -375,6 +385,26 @@ public sealed class NewsSystem : SharedNewsSystem
             UpdateWriterUi((owner, comp));
         }
     }
+
+    //UM START
+    private void UpdateNewscasters(NewsArticle article)
+    {
+        var query = EntityQueryEnumerator<NewscasterComponent>();
+        while (query.MoveNext(out var owner, out var comp))
+        {
+            _newscasterSystem.OnNewArticle((owner, comp), article);
+        }
+    }
+    private void UpdateNewscasters()
+    {
+        var query = EntityQueryEnumerator<NewscasterComponent>();
+        while (query.MoveNext(out var owner, out var comp))
+        {
+            _newscasterSystem.UpdateNewscasterUiState((owner, comp));
+        }
+    }
+    //UM END
+
 
     private bool CanUse(EntityUid user, EntityUid console)
     {

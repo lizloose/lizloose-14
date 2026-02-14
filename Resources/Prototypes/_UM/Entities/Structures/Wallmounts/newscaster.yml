@@ -1,0 +1,101 @@
+- type: entity
+  parent: BaseWallmountMachine
+  id: Newscaster
+  name: newscaster
+  description: A standard Nanotrasen-licensed newsfeed handler for use in commercial space stations. All the news you absolutely have no use for, in one place!
+  suffix: UM, Wall
+  components:
+  - type: Newscaster
+  - type: WallMount
+    arc: 360
+  - type: Appearance
+  - type: Sprite
+    sprite: _UM/Structures/Machines/newscaster.rsi
+    layers:
+    - state: newscaster_off
+    - state: newscaster_normal
+      shader: unshaded
+  - type: Icon
+    sprite: _UM/Structures/Machines/newscaster.rsi
+    state: newscaster_0
+  - type: PointLight
+    enabled: false
+    castShadows: false
+    radius: 3
+    energy: 2
+    color: "#4d9d73"
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Vending
+  - type: LitOnPowered
+  - type: ContainerFill
+    containers:
+      board: [ NewscasterCircuitboard ]
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: PowerState
+    idlePowerDraw: 50
+    workingPowerDraw: 200
+  - type: UIPowerState
+  - type: Construction
+    graph: Newscaster
+    node: news_caster
+  - type: ActivatableUIRequiresPower
+  - type: ActivatableUI
+    requiresComplex: false
+    key: enum.NewscasterUiKey.Key
+  - type: Destructible
+    thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          StationMapBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: UserInterface
+    interfaces:
+      enum.NewscasterUiKey.Key:
+        type: NewscasterBoundUserInterface
+  - type: SpookySpeaker
+    speakChance: 0.1
+    cooldown: 120
+    messageSet: SpookySpeakerMessagesGeneric
+
+- type: entity
+  parent: BaseWallmountMetallic
+  id: NewscasterAssembly
+  name: newscaster assembly
+  description: A newscaster assembly.
+  suffix: UM
+  components:
+  - type: WallMount
+    arc: 360
+  - type: Sprite
+    sprite: _UM/Structures/Machines/newscaster.rsi
+    layers:
+    - state: newscaster_assembly
+  - type: Construction
+    graph: Newscaster
+    node: assembly
