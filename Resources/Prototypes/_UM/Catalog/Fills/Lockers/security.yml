@@ -2,6 +2,7 @@
   parent: [GunSafeBaseSecure, BaseSecurityContraband]
   id: UMGunSafeShotgunRiot
   name: riot shotgun safe
+  suffix: UM
   components:
   - type: EntityTableContainerFill
     containers:
@@ -23,6 +24,7 @@
   parent: [GunSafeBaseSecure, BaseSecurityContraband]
   id: UMGunSafeEnergyGun
   name: energy gun safe
+  suffix: UM
   components:
   - type: EntityTableContainerFill
     containers:
@@ -40,6 +42,7 @@
   parent: [GunSafeBaseSecure, BaseSecurityContraband]
   id: UMGunSafeLaserCarbine
   name: laser safe
+  suffix: UM
   components:
   - type: EntityTableContainerFill
     containers:
@@ -58,6 +61,7 @@
   id: UMCrateSecurityRiot
   name: swat crate
   description: Contains two sets of riot armor, helmets and shields. Requires Armory access to open.
+  suffix: UM
   components:
   - type: EntityTableContainerFill
     containers:
