@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 268.0.0
+  engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/07/2025 22:21:20
+  time: 02/14/2026 05:50:19
   entityCount: 28813
 maps:
 - 780
@@ -10949,6 +10949,8 @@ entities:
     - type: GridPathfinding
     - type: ImplicitRoof
     - type: ExplosionAirtightGrid
+    - type: TileHistory
+      chunkHistory: {}
   - uid: 11906
     components:
     - type: MetaData
@@ -11004,6 +11006,8 @@ entities:
     - type: GridPathfinding
     - type: ImplicitRoof
     - type: ExplosionAirtightGrid
+    - type: TileHistory
+      chunkHistory: {}
 - proto: AcousticGuitarInstrument
   entities:
   - uid: 19976
@@ -23039,22 +23043,6 @@ entities:
     - type: Transform
       pos: 24.498875,-36.223793
       parent: 8364
-- proto: BoxLethalshot
-  entities:
-  - uid: 26309
-    components:
-    - type: Transform
-      parent: 26317
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 26310
-    components:
-    - type: Transform
-      parent: 26317
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: BoxLightbulb
   entities:
   - uid: 1999
@@ -73186,44 +73174,29 @@ entities:
   - uid: 174
     components:
     - type: Transform
-      pos: -14.700324,42.37941
+      pos: -14.3043995,42.779083
       parent: 8364
   - uid: 7850
     components:
     - type: Transform
-      pos: -14.691839,42.63604
+      pos: -14.289832,42.50203
       parent: 8364
   - uid: 8543
     components:
     - type: Transform
-      pos: -14.700324,42.50441
+      pos: -14.654416,42.44368
       parent: 8364
   - uid: 8546
     components:
     - type: Transform
-      pos: -14.691839,42.761124
+      pos: -14.654416,42.70617
       parent: 8364
 - proto: ClothingOuterArmorReflective
   entities:
   - uid: 7311
     components:
     - type: Transform
-      pos: -14.401037,42.76715
-      parent: 8364
-  - uid: 7605
-    components:
-    - type: Transform
-      pos: -14.411459,42.631638
-      parent: 8364
-  - uid: 7843
-    components:
-    - type: Transform
-      pos: -14.403449,42.332535
-      parent: 8364
-  - uid: 7849
-    components:
-    - type: Transform
-      pos: -14.401037,42.49613
+      pos: -13.498101,47.54493
       parent: 8364
 - proto: ClothingOuterArmorRiot
   entities:
@@ -75097,6 +75070,9 @@ entities:
     - type: Transform
       pos: -12.5,47.5
       parent: 8364
+    - type: AccessReader
+      accessListsOriginal:
+      - - Armory
   - uid: 8988
     components:
     - type: Transform
@@ -87252,23 +87228,6 @@ entities:
       parent: 8364
     - type: FaxMachine
       name: Captain
-- proto: FigureSpawner
-  entities:
-  - uid: 7074
-    components:
-    - type: Transform
-      pos: 56.5,1.5
-      parent: 8364
-  - uid: 11690
-    components:
-    - type: Transform
-      pos: 56.5,0.5
-      parent: 8364
-  - uid: 11691
-    components:
-    - type: Transform
-      pos: 12.5,10.5
-      parent: 8364
 - proto: filingCabinet
   entities:
   - uid: 15378
@@ -129672,6 +129631,9 @@ entities:
       anchored: True
       pos: -14.5,41.5
       parent: 8364
+    - type: AccessReader
+      accessListsOriginal:
+      - - Armory
     - type: Lock
       locked: False
     - type: Physics
@@ -129680,163 +129642,6 @@ entities:
       currentLabel: 5
     - type: NameModifier
       baseName: disabler safe
-- proto: GunSafeLaserCarbine
-  entities:
-  - uid: 26316
-    components:
-    - type: MetaData
-      name: laser safe (4)
-    - type: Transform
-      anchored: True
-      pos: -8.5,47.5
-      parent: 8364
-    - type: Physics
-      bodyType: Static
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-          Oxygen: 1.7459903
-          Nitrogen: 6.568249
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 26291
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Label
-      currentLabel: 4
-    - type: NameModifier
-      baseName: laser safe
-- proto: GunSafePistolMk58
-  entities:
-  - uid: 4933
-    components:
-    - type: MetaData
-      name: mk58 safe (4)
-    - type: Transform
-      anchored: True
-      pos: -13.5,47.5
-      parent: 8364
-    - type: Physics
-      bodyType: Static
-    - type: Label
-      currentLabel: 4
-    - type: NameModifier
-      baseName: mk58 safe
-- proto: GunSafeRifleLecter
-  entities:
-  - uid: 25688
-    components:
-    - type: MetaData
-      name: lecter safe (4)
-    - type: Transform
-      anchored: True
-      pos: -9.5,47.5
-      parent: 8364
-    - type: Physics
-      bodyType: Static
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 26298
-          - 26301
-          - 26302
-          - 26305
-          - 26306
-          - 26307
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Label
-      currentLabel: 4
-    - type: NameModifier
-      baseName: lecter safe
-- proto: GunSafeShotgunKammerer
-  entities:
-  - uid: 26317
-    components:
-    - type: MetaData
-      name: kammerer safe (3)
-    - type: Transform
-      anchored: True
-      pos: -8.5,44.5
-      parent: 8364
-    - type: Physics
-      bodyType: Static
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-          Oxygen: 1.7459903
-          Nitrogen: 6.568249
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 26308
-          - 26309
-          - 26310
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Label
-      currentLabel: 3
-    - type: NameModifier
-      baseName: kammerer safe
-- proto: GunSafeSubMachineGunDrozd
-  entities:
-  - uid: 8594
-    components:
-    - type: MetaData
-      name: drozd safe (3)
-    - type: Transform
-      anchored: True
-      pos: -9.5,44.5
-      parent: 8364
-    - type: Physics
-      bodyType: Static
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-          Oxygen: 1.7459903
-          Nitrogen: 6.568249
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 26313
-          - 26312
-          - 26311
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Label
-      currentLabel: 3
-    - type: NameModifier
-      baseName: drozd safe
 - proto: GyroscopeUnanchored
   entities:
   - uid: 25012
@@ -132660,52 +132465,6 @@ entities:
     - type: Transform
       pos: 7.4027314,48.74582
       parent: 8364
-- proto: MagazinePistolSubMachineGun
-  entities:
-  - uid: 26311
-    components:
-    - type: Transform
-      parent: 8594
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 26313
-    components:
-    - type: Transform
-      parent: 8594
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: MagazineRifle
-  entities:
-  - uid: 26298
-    components:
-    - type: Transform
-      parent: 25688
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 26301
-    components:
-    - type: Transform
-      parent: 25688
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 26306
-    components:
-    - type: Transform
-      parent: 25688
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 26307
-    components:
-    - type: Transform
-      parent: 25688
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: MailingUnit
   entities:
   - uid: 8179
@@ -133173,6 +132932,23 @@ entities:
     components:
     - type: Transform
       pos: -31.488705,-11.49092
+      parent: 8364
+- proto: MechFigurineSpawner50
+  entities:
+  - uid: 7074
+    components:
+    - type: Transform
+      pos: 56.5,1.5
+      parent: 8364
+  - uid: 11690
+    components:
+    - type: Transform
+      pos: 56.5,0.5
+      parent: 8364
+  - uid: 11691
+    components:
+    - type: Transform
+      pos: 12.5,10.5
       parent: 8364
 - proto: MedicalBed
   entities:
@@ -133839,6 +133615,129 @@ entities:
     - type: Transform
       pos: 78.5,-62.5
       parent: 8364
+- proto: Newscaster
+  entities:
+  - uid: 25688
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 74.5,-5.5
+      parent: 8364
+    - type: Fixtures
+      fixtures: {}
+  - uid: 26291
+    components:
+    - type: Transform
+      pos: -41.5,0.5
+      parent: 8364
+    - type: Fixtures
+      fixtures: {}
+  - uid: 26298
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -56.5,-2.5
+      parent: 8364
+    - type: Fixtures
+      fixtures: {}
+  - uid: 26301
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-9.5
+      parent: 8364
+    - type: Fixtures
+      fixtures: {}
+  - uid: 26302
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 20.5,-11.5
+      parent: 8364
+    - type: Fixtures
+      fixtures: {}
+  - uid: 26305
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -10.5,-32.5
+      parent: 8364
+    - type: Fixtures
+      fixtures: {}
+  - uid: 26306
+    components:
+    - type: Transform
+      pos: 34.5,-10.5
+      parent: 8364
+    - type: Fixtures
+      fixtures: {}
+  - uid: 26307
+    components:
+    - type: Transform
+      pos: 23.5,16.5
+      parent: 8364
+    - type: Fixtures
+      fixtures: {}
+  - uid: 26308
+    components:
+    - type: Transform
+      pos: -1.5,42.5
+      parent: 8364
+    - type: Fixtures
+      fixtures: {}
+  - uid: 26309
+    components:
+    - type: Transform
+      pos: 23.5,-23.5
+      parent: 8364
+    - type: Fixtures
+      fixtures: {}
+  - uid: 26310
+    components:
+    - type: Transform
+      pos: 68.5,-21.5
+      parent: 8364
+    - type: Fixtures
+      fixtures: {}
+  - uid: 26311
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 52.5,1.5
+      parent: 8364
+    - type: Fixtures
+      fixtures: {}
+  - uid: 26312
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-52.5
+      parent: 8364
+    - type: Fixtures
+      fixtures: {}
+  - uid: 26313
+    components:
+    - type: Transform
+      pos: -35.5,-17.5
+      parent: 8364
+    - type: Fixtures
+      fixtures: {}
+  - uid: 26316
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 4.5,-16.5
+      parent: 8364
+    - type: Fixtures
+      fixtures: {}
+  - uid: 26317
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 5.5,-64.5
+      parent: 8364
+    - type: Fixtures
+      fixtures: {}
 - proto: NitrogenCanister
   entities:
   - uid: 2468
@@ -135250,6 +135149,33 @@ entities:
     components:
     - type: Transform
       pos: -21.53196,-58.55052
+      parent: 8364
+- proto: PlushieSpawner50
+  entities:
+  - uid: 5445
+    components:
+    - type: Transform
+      pos: 4.5,11.5
+      parent: 8364
+  - uid: 11692
+    components:
+    - type: Transform
+      pos: 58.5,17.5
+      parent: 8364
+  - uid: 11693
+    components:
+    - type: Transform
+      pos: 12.5,11.5
+      parent: 8364
+  - uid: 15957
+    components:
+    - type: Transform
+      pos: -28.5,-55.5
+      parent: 8364
+  - uid: 21954
+    components:
+    - type: Transform
+      pos: -48.5,-12.5
       parent: 8364
 - proto: PortableFlasher
   entities:
@@ -140729,6 +140655,12 @@ entities:
     - type: Transform
       pos: 7.5,31.5
       parent: 8364
+  - uid: 8594
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -8.5,44.5
+      parent: 8364
   - uid: 8597
     components:
     - type: Transform
@@ -140845,6 +140777,12 @@ entities:
     components:
     - type: Transform
       pos: 48.5,20.5
+      parent: 8364
+  - uid: 11817
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -13.5,47.5
       parent: 8364
   - uid: 11910
     components:
@@ -141439,11 +141377,6 @@ entities:
     components:
     - type: Transform
       pos: 55.5,20.5
-      parent: 8364
-  - uid: 11817
-    components:
-    - type: Transform
-      pos: 75.5,-5.5
       parent: 8364
   - uid: 13229
     components:
@@ -161013,33 +160946,6 @@ entities:
     - type: Transform
       pos: 31.579891,15.170173
       parent: 8364
-- proto: ToySpawner
-  entities:
-  - uid: 5445
-    components:
-    - type: Transform
-      pos: 4.5,11.5
-      parent: 8364
-  - uid: 11692
-    components:
-    - type: Transform
-      pos: 58.5,17.5
-      parent: 8364
-  - uid: 11693
-    components:
-    - type: Transform
-      pos: 12.5,11.5
-      parent: 8364
-  - uid: 15957
-    components:
-    - type: Transform
-      pos: -28.5,-55.5
-      parent: 8364
-  - uid: 21954
-    components:
-    - type: Transform
-      pos: -48.5,-12.5
-      parent: 8364
 - proto: TrainingBomb
   entities:
   - uid: 8570
@@ -161395,6 +161301,43 @@ entities:
     components:
     - type: Transform
       pos: 58.5,-20.5
+      parent: 8364
+- proto: UMGunSafeEnergyGun
+  entities:
+  - uid: 7605
+    components:
+    - type: Transform
+      pos: -8.5,47.5
+      parent: 8364
+    - type: AccessReader
+      accessListsOriginal:
+      - - Armory
+- proto: UMGunSafeLaserCarbine
+  entities:
+  - uid: 7849
+    components:
+    - type: Transform
+      pos: -9.5,47.5
+      parent: 8364
+    - type: AccessReader
+      accessListsOriginal:
+      - - Armory
+- proto: UMGunSafeShotgunRiot
+  entities:
+  - uid: 4933
+    components:
+    - type: Transform
+      pos: -9.5,44.5
+      parent: 8364
+    - type: AccessReader
+      accessListsOriginal:
+      - - Armory
+- proto: UMWeaponIonRifle
+  entities:
+  - uid: 7843
+    components:
+    - type: Transform
+      pos: -8.500002,44.614418
       parent: 8364
 - proto: UnfinishedMachineFrame
   entities:
@@ -180991,15 +180934,6 @@ entities:
       devices:
       - 203
       - 269
-- proto: WeaponLaserCarbine
-  entities:
-  - uid: 26291
-    components:
-    - type: Transform
-      parent: 26316
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: WeaponLaserCarbinePractice
   entities:
   - uid: 5107
@@ -181012,40 +180946,6 @@ entities:
     - type: Transform
       pos: 10.54466,50.378418
       parent: 8364
-- proto: WeaponRifleLecter
-  entities:
-  - uid: 26302
-    components:
-    - type: Transform
-      parent: 25688
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 26305
-    components:
-    - type: Transform
-      parent: 25688
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: WeaponShotgunKammerer
-  entities:
-  - uid: 26308
-    components:
-    - type: Transform
-      parent: 26317
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: WeaponSubMachineGunDrozd
-  entities:
-  - uid: 26312
-    components:
-    - type: Transform
-      parent: 8594
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: WeedSpray
   entities:
   - uid: 8983

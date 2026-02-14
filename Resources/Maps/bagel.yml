@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 271.1.0
+  engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 01/22/2026 02:05:58
-  entityCount: 25402
+  time: 02/14/2026 05:56:51
+  entityCount: 25430
 maps:
 - 943
 grids:
@@ -7141,7 +7141,8 @@ entities:
           -7,-3:
             0: 15247
           -7,-2:
-            0: 61627
+            0: 61625
+            3: 2
           -7,-1:
             0: 55551
           -7,0:
@@ -8192,7 +8193,7 @@ entities:
             0: 255
             1: 16384
           17,-7:
-            3: 1
+            4: 1
             1: 4104
           17,-6:
             1: 4593
@@ -8302,8 +8303,8 @@ entities:
           -13,7:
             1: 39408
           -12,8:
-            4: 12
-            5: 3072
+            5: 12
+            6: 3072
           -11,5:
             0: 63351
           -11,6:
@@ -8312,9 +8313,9 @@ entities:
           -11,7:
             1: 17532
           -11,8:
-            4: 1
+            5: 1
             1: 17476
-            5: 256
+            6: 256
           -10,5:
             0: 62139
           -10,6:
@@ -8410,10 +8411,10 @@ entities:
             0: 255
             1: 57344
           -8,11:
-            6: 13104
+            7: 13104
             1: 2184
           -9,11:
-            6: 34944
+            7: 34944
             1: 546
           -7,9:
             0: 65039
@@ -8431,7 +8432,7 @@ entities:
           -6,11:
             0: 4095
           -6,12:
-            6: 49425
+            7: 49425
             1: 4334
           -5,9:
             0: 65528
@@ -8442,7 +8443,7 @@ entities:
           -5,12:
             1: 32785
             0: 2254
-            6: 20480
+            7: 20480
           -4,9:
             0: 65528
           -4,10:
@@ -8454,10 +8455,10 @@ entities:
             1: 29772
           -4,13:
             1: 61599
-            6: 1120
+            7: 1120
           -5,13:
             1: 61644
-            6: 2065
+            7: 2065
           -4,14:
             1: 51448
           -5,14:
@@ -8470,10 +8471,10 @@ entities:
             1: 3276
           -3,12:
             1: 37273
-            6: 8226
+            7: 8226
           -3,13:
             1: 45193
-            6: 50
+            7: 50
           -3,15:
             1: 45346
             0: 136
@@ -8551,7 +8552,7 @@ entities:
             0: 752
           -12,9:
             0: 16
-            6: 3084
+            7: 3084
           -13,9:
             1: 39305
           -13,10:
@@ -8560,19 +8561,19 @@ entities:
             1: 35033
             0: 12544
           -12,10:
-            3: 12
-            6: 3072
+            4: 12
+            7: 3072
           -12,11:
-            6: 12
+            7: 12
           -11,9:
-            6: 257
+            7: 257
             1: 17476
           -11,10:
-            3: 1
-            6: 256
+            4: 1
+            7: 256
             1: 17476
           -11,11:
-            6: 1
+            7: 1
             1: 17476
           -11,12:
             1: 17652
@@ -8634,8 +8635,8 @@ entities:
             1: 240
           -13,12:
             1: 34952
-            5: 48
-            4: 12288
+            6: 48
+            5: 12288
           -12,13:
             1: 61455
           -13,13:
@@ -8674,17 +8675,17 @@ entities:
             1: 62671
           -7,14:
             1: 244
-            6: 57344
+            7: 57344
             0: 1024
           -7,15:
             1: 61440
-            6: 238
+            7: 238
             0: 1024
           -7,16:
             1: 65524
           -6,13:
             1: 61457
-            6: 204
+            7: 204
           -6,14:
             1: 17648
           -6,15:
@@ -8737,8 +8738,8 @@ entities:
           -14,12:
             0: 1
             1: 8738
-            5: 128
-            4: 32768
+            6: 128
+            5: 32768
           -17,12:
             0: 52232
           -16,13:
@@ -9281,6 +9282,11 @@ entities:
           moles:
             Oxygen: 27.225372
             Nitrogen: 102.419266
+        - volume: 2500
+          temperature: 293.14975
+          moles:
+            Oxygen: 20.078888
+            Nitrogen: 75.53487
         - volume: 2500
           temperature: 293.15
           moles:
@@ -62046,6 +62052,35 @@ entities:
     - type: Transform
       pos: -12.119702,-50.42532
       parent: 60
+- proto: ClothingOuterArmorBulletproof
+  entities:
+  - uid: 12087
+    components:
+    - type: Transform
+      pos: -27.674225,-6.2895913
+      parent: 60
+  - uid: 12088
+    components:
+    - type: Transform
+      pos: -27.32421,-6.2895913
+      parent: 60
+  - uid: 12089
+    components:
+    - type: Transform
+      pos: -27.695656,-6.610433
+      parent: 60
+  - uid: 12090
+    components:
+    - type: Transform
+      pos: -27.34568,-6.610433
+      parent: 60
+- proto: ClothingOuterArmorReflective
+  entities:
+  - uid: 12081
+    components:
+    - type: Transform
+      pos: -28.468111,-9.503182
+      parent: 60
 - proto: ClothingOuterCardborg
   entities:
   - uid: 5366
@@ -64170,13 +64205,6 @@ entities:
         moles:
           Oxygen: 1.6495836
           Nitrogen: 6.2055764
-- proto: CrateSecurityRiot
-  entities:
-  - uid: 1137
-    components:
-    - type: Transform
-      pos: -26.5,-7.5
-      parent: 60
 - proto: CrateSecurityTrackingMindshieldImplants
   entities:
   - uid: 2105
@@ -110794,46 +110822,14 @@ entities:
       parent: 60
 - proto: GunSafeDisabler
   entities:
-  - uid: 2792
-    components:
-    - type: Transform
-      pos: -29.5,-9.5
-      parent: 60
-- proto: GunSafeLaserCarbine
-  entities:
-  - uid: 1142
-    components:
-    - type: Transform
-      pos: -29.5,-6.5
-      parent: 60
-- proto: GunSafePistolMk58
-  entities:
   - uid: 974
     components:
     - type: Transform
       pos: -30.5,-9.5
       parent: 60
-- proto: GunSafeRifleLecter
-  entities:
-  - uid: 121
-    components:
-    - type: Transform
-      pos: -27.5,-6.5
-      parent: 60
-- proto: GunSafeShotgunKammerer
-  entities:
-  - uid: 79
-    components:
-    - type: Transform
-      pos: -30.5,-6.5
-      parent: 60
-- proto: GunSafeSubMachineGunDrozd
-  entities:
-  - uid: 937
-    components:
-    - type: Transform
-      pos: -28.5,-6.5
-      parent: 60
+    - type: AccessReader
+      accessListsOriginal:
+      - - Armory
 - proto: HandheldGPSBasic
   entities:
   - uid: 3712
@@ -114061,6 +114057,181 @@ entities:
     - type: Transform
       pos: -8.327919,25.771437
       parent: 60
+- proto: Newscaster
+  entities:
+  - uid: 2574
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 22.5,-28.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 2792
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 52.5,44.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 5955
+    components:
+    - type: Transform
+      pos: -6.5,-21.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 6504
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -16.5,-12.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 8596
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -31.5,-25.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 8597
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -30.5,-14.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 8970
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -39.5,5.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 9367
+    components:
+    - type: Transform
+      pos: -22.5,10.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 9562
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 18.5,15.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 11134
+    components:
+    - type: Transform
+      pos: 26.5,26.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 11259
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 36.5,44.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 11344
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 51.5,19.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 11379
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 50.5,5.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 11432
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 27.5,-25.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 11476
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 31.5,-18.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 11488
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -5.5,-56.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 11682
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-31.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 11683
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -47.5,-18.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 11734
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -46.5,-3.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 11761
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -44.5,23.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 12070
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -31.5,36.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
+  - uid: 12071
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,16.5
+      parent: 60
+    - type: Fixtures
+      fixtures: {}
 - proto: NitrogenCanister
   entities:
   - uid: 2736
@@ -120469,6 +120640,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: -18.5,5.5
       parent: 60
+  - uid: 1137
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -29.5,-9.5
+      parent: 60
   - uid: 1372
     components:
     - type: Transform
@@ -120709,6 +120886,18 @@ entities:
     components:
     - type: Transform
       pos: 14.5,-48.5
+      parent: 60
+  - uid: 12076
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -28.5,-9.5
+      parent: 60
+  - uid: 12086
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -27.5,-6.5
       parent: 60
   - uid: 12197
     components:
@@ -121466,11 +121655,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -35.5,4.5
-      parent: 60
-  - uid: 2574
-    components:
-    - type: Transform
-      pos: 22.5,-28.5
       parent: 60
   - uid: 2575
     components:
@@ -140932,6 +141116,55 @@ entities:
           - Reverse
         - - Middle
           - Off
+- proto: UMCrateSecurityRiot
+  entities:
+  - uid: 121
+    components:
+    - type: Transform
+      pos: -26.5,-7.5
+      parent: 60
+    - type: AccessReader
+      accessListsOriginal:
+      - - Armory
+- proto: UMGunSafeEnergyGun
+  entities:
+  - uid: 937
+    components:
+    - type: Transform
+      pos: -28.515615,-6.4940333
+      parent: 60
+    - type: AccessReader
+      accessListsOriginal:
+      - - Armory
+    - type: Physics
+      sleepTime: 0.21666646
+- proto: UMGunSafeLaserCarbine
+  entities:
+  - uid: 1142
+    components:
+    - type: Transform
+      pos: -29.5,-6.5
+      parent: 60
+    - type: AccessReader
+      accessListsOriginal:
+      - - Armory
+- proto: UMGunSafeShotgunRiot
+  entities:
+  - uid: 79
+    components:
+    - type: Transform
+      pos: -30.5,-6.5
+      parent: 60
+    - type: AccessReader
+      accessListsOriginal:
+      - - Armory
+- proto: UMWeaponIonRifle
+  entities:
+  - uid: 1457
+    components:
+    - type: Transform
+      pos: -29.488945,-9.45944
+      parent: 60
 - proto: UnfinishedMachineFrame
   entities:
   - uid: 3769
@@ -156753,6 +156986,10 @@ entities:
     - type: Transform
       pos: -26.5,-8.5
       parent: 60
+    - type: AccessReader
+      accessListsOriginal:
+      - - StationAi
+      - - Security
     - type: DeviceNetwork
       deviceLists:
       - 13699
