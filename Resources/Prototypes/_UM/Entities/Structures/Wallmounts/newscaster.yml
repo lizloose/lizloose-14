@@ -14,14 +14,21 @@
     layers:
     - state: newscaster_off
     - state: newscaster_normal
+      map: ["screen"]
       shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        screen:
+          True: { visible: true }
+          False: { visible: false }
   - type: Icon
     sprite: _UM/Structures/Machines/newscaster.rsi
     state: newscaster_0
   - type: PointLight
     enabled: false
     castShadows: false
-    radius: 3
+    radius: 2.5
     energy: 2
     color: "#4d9d73"
   - type: TypingIndicator
