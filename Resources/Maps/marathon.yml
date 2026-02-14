@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 269.0.1
+  engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/23/2025 21:10:24
-  entityCount: 23881
+  time: 02/14/2026 06:20:44
+  entityCount: 23894
 maps:
 - 5350
 grids:
@@ -7579,6 +7579,8 @@ entities:
     - type: GridPathfinding
     - type: ImplicitRoof
     - type: ExplosionAirtightGrid
+    - type: TileHistory
+      chunkHistory: {}
   - uid: 5350
     components:
     - type: MetaData
@@ -11784,7 +11786,7 @@ entities:
       pos: 34.5,45.5
       parent: 30
     - type: Door
-      secondsUntilStateChange: -48347.26
+      secondsUntilStateChange: -48695.805
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18248,15 +18250,6 @@ entities:
     - type: Transform
       pos: -15.496401,-18.280874
       parent: 30
-- proto: BoxLethalshot
-  entities:
-  - uid: 16932
-    components:
-    - type: Transform
-      parent: 16251
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: BoxLightbulb
   entities:
   - uid: 18788
@@ -55910,11 +55903,6 @@ entities:
     components:
     - type: Transform
       pos: -38.74173,56.6933
-      parent: 30
-  - uid: 23146
-    components:
-    - type: Transform
-      pos: -38.74173,56.512745
       parent: 30
 - proto: ClothingOuterArmorRiot
   entities:
@@ -103483,98 +103471,14 @@ entities:
       parent: 30
 - proto: GunSafeDisabler
   entities:
-  - uid: 4698
+  - uid: 16932
     components:
     - type: Transform
-      anchored: True
-      pos: -37.5,53.5
-      parent: 30
-    - type: Physics
-      bodyType: Static
-- proto: GunSafePistolMk58
-  entities:
-  - uid: 2594
-    components:
-    - type: Transform
-      anchored: True
-      pos: -37.5,54.5
-      parent: 30
-    - type: Physics
-      bodyType: Static
-- proto: GunSafeRifleLecter
-  entities:
-  - uid: 21165
-    components:
-    - type: MetaData
-      desc: A standard-issue Nanotrasen storage unit, containing 3 Lecter submachine guns.
-    - type: Transform
-      anchored: True
-      pos: -42.5,53.5
-      parent: 30
-    - type: Physics
-      bodyType: Static
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 21283
-          - 21906
-          - 21907
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-- proto: GunSafeShotgunKammerer
-  entities:
-  - uid: 16251
-    components:
-    - type: MetaData
-      desc: A standard-issue Nanotrasen storage unit, containing 3 Kammerer shotguns.
-    - type: Transform
-      anchored: True
       pos: -42.5,55.5
       parent: 30
-    - type: Physics
-      bodyType: Static
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 16932
-          - 17473
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-- proto: GunSafeSubMachineGunDrozd
-  entities:
-  - uid: 18838
-    components:
-    - type: MetaData
-      desc: A standard-issue Nanotrasen storage unit, containing 3 Drozd submachine guns.
-    - type: Transform
-      anchored: True
-      pos: -42.5,54.5
-      parent: 30
-    - type: Physics
-      bodyType: Static
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 19841
-          - 20432
-          - 20525
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
+    - type: AccessReader
+      accessListsOriginal:
+      - - Armory
 - proto: Handcuffs
   entities:
   - uid: 5839
@@ -107627,38 +107531,6 @@ entities:
     - type: Transform
       pos: 23.5,13.5
       parent: 30
-- proto: MagazinePistolSubMachineGun
-  entities:
-  - uid: 19841
-    components:
-    - type: Transform
-      parent: 18838
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 20525
-    components:
-    - type: Transform
-      parent: 18838
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: MagazineRifle
-  entities:
-  - uid: 21283
-    components:
-    - type: Transform
-      parent: 21165
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 21906
-    components:
-    - type: Transform
-      parent: 21165
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: MaintenanceFluffSpawner
   entities:
   - uid: 9199
@@ -108369,6 +108241,176 @@ entities:
     - type: Transform
       pos: -75.24839,-66.594925
       parent: 30
+- proto: Newscaster
+  entities:
+  - uid: 18838
+    components:
+    - type: Transform
+      pos: 30.5,44.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 19841
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 7.5,4.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 20432
+    components:
+    - type: Transform
+      pos: 5.5,11.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 20525
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -19.5,-13.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 21165
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -32.5,0.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 21283
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -44.5,34.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 21906
+    components:
+    - type: Transform
+      pos: -37.5,45.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 21907
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -19.5,24.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 22996
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -16.5,38.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 23146
+    components:
+    - type: Transform
+      pos: -1.5,28.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 23882
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 24.5,29.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 23883
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 38.5,31.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 23884
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 30.5,9.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 23885
+    components:
+    - type: Transform
+      pos: 31.5,-0.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 23886
+    components:
+    - type: Transform
+      pos: -5.5,-37.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 23887
+    components:
+    - type: Transform
+      pos: -55.5,11.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 23888
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -43.5,-13.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 23889
+    components:
+    - type: Transform
+      pos: -58.5,-47.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 23890
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -80.5,-52.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 23891
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -64.5,-36.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 23892
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -43.5,1.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
+  - uid: 23893
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -44.5,58.5
+      parent: 30
+    - type: Fixtures
+      fixtures: {}
 - proto: NitrogenCanister
   entities:
   - uid: 690
@@ -114880,6 +114922,12 @@ entities:
     - type: Transform
       pos: -40.5,56.5
       parent: 30
+  - uid: 4698
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -37.5,53.5
+      parent: 30
   - uid: 5417
     components:
     - type: Transform
@@ -115833,11 +115881,6 @@ entities:
     components:
     - type: Transform
       pos: -29.5,9.5
-      parent: 30
-  - uid: 22996
-    components:
-    - type: Transform
-      pos: 30.5,44.5
       parent: 30
 - proto: RandomSoap
   entities:
@@ -127019,6 +127062,9 @@ entities:
     - type: Transform
       pos: -37.5,51.5
       parent: 30
+    - type: AccessReader
+      accessListsOriginal:
+      - - Security
   - uid: 22785
     components:
     - type: Transform
@@ -127034,6 +127080,9 @@ entities:
     - type: Transform
       pos: -37.5,52.5
       parent: 30
+    - type: AccessReader
+      accessListsOriginal:
+      - - Security
 - proto: SuitStorageWarden
   entities:
   - uid: 2010
@@ -132480,6 +132529,40 @@ entities:
           - Reverse
         - - Middle
           - Off
+- proto: UMGunSafeEnergyGun
+  entities:
+  - uid: 16251
+    components:
+    - type: Transform
+      pos: -37.5,54.5
+      parent: 30
+- proto: UMGunSafeLaserCarbine
+  entities:
+  - uid: 2594
+    components:
+    - type: Transform
+      pos: -42.5,54.5
+      parent: 30
+    - type: AccessReader
+      accessListsOriginal:
+      - - Armory
+- proto: UMGunSafeShotgunRiot
+  entities:
+  - uid: 17473
+    components:
+    - type: Transform
+      pos: -42.5,53.5
+      parent: 30
+    - type: AccessReader
+      accessListsOriginal:
+      - - Armory
+- proto: UMWeaponIonRifle
+  entities:
+  - uid: 23894
+    components:
+    - type: Transform
+      pos: -37.476456,53.56616
+      parent: 30
 - proto: UnfinishedMachineFrame
   entities:
   - uid: 7826
@@ -148129,33 +148212,6 @@ entities:
     - type: Transform
       pos: -38.316597,60.345554
       parent: 30
-- proto: WeaponRifleLecter
-  entities:
-  - uid: 21907
-    components:
-    - type: Transform
-      parent: 21165
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: WeaponShotgunKammerer
-  entities:
-  - uid: 17473
-    components:
-    - type: Transform
-      parent: 16251
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: WeaponSubMachineGunDrozd
-  entities:
-  - uid: 20432
-    components:
-    - type: Transform
-      parent: 18838
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: WeedSpray
   entities:
   - uid: 2395
