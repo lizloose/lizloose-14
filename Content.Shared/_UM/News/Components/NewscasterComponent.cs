@@ -4,12 +4,11 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._UM.News.Components;
 
 /// <summary>
-/// This is used for...
+/// This is used for handling news reading machines
 /// </summary>
 [RegisterComponent]
 public sealed partial class NewscasterComponent : Component
 {
-
 }
 
 
