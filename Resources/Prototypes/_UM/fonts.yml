@@ -1,0 +1,7 @@
+- type: font
+  id: Grand9K
+  path: /Fonts/Grand9K_Pixel.ttf
+
+- type: font
+  id: TinyUnicode
+  path: /Fonts/TinyUnicode.ttf
