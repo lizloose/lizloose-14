@@ -12,6 +12,7 @@ public sealed partial class OutlineRichTextLabel : RichTextLabel
     private static readonly ProtoId<ShaderPrototype> OutlinePrototype = "FontOutline";
     private Vector2 _textScaling = Vector2.One;
     private ShaderInstance? _outlineShader;
+
     public static int Thickness = 2;
 
     public OutlineRichTextLabel()
@@ -79,6 +80,7 @@ public sealed partial class OutlineRichTextLabel : RichTextLabel
 
         handle.SetTransform(Matrix3x2.Identity);
         handle.UseShader(null);
+        InvalidateMeasure();
     }
 
 }

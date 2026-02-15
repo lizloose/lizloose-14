@@ -1,5 +1,7 @@
 using System.Numerics;
+using Content.Client._UM.UserInterface.Controls;
 using Content.Client.Chat.Managers;
+using Content.Client.UserInterface.Systems.Chat;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Speech;
@@ -18,8 +20,11 @@ namespace Content.Client.Chat.UI
         [Dependency] private readonly IEyeManager _eyeManager = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] protected readonly IConfigurationManager ConfigManager = default!;
+        //UM START
+        [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
+        private readonly ChatUIController _chatUIController;
+        //UM END
         private readonly SharedTransformSystem _transformSystem;
-
         public enum SpeechType : byte
         {
             Emote,
@@ -72,10 +77,10 @@ namespace Content.Client.Chat.UI
                     return new TextSpeechBubble(message, senderEntity, "emoteBox");
 
                 case SpeechType.Say:
-                    return new FancyTextSpeechBubble(message, senderEntity, "sayBox");
+                    return new OutlinedSpeechBubble(message, senderEntity, "sayBox");
 
                 case SpeechType.Whisper:
-                    return new FancyTextSpeechBubble(message, senderEntity, "whisperBox");
+                    return new OutlinedSpeechBubble(message, senderEntity, "whisperBox");
 
                 case SpeechType.Looc:
                     return new TextSpeechBubble(message, senderEntity, "emoteBox", Color.FromHex("#48d1cc"));
@@ -90,10 +95,18 @@ namespace Content.Client.Chat.UI
             IoCManager.InjectDependencies(this);
             _senderEntity = senderEntity;
             _transformSystem = _entityManager.System<SharedTransformSystem>();
+            _chatUIController = _userInterfaceManager.GetUIController<ChatUIController>(); //UM ADDITION
 
             // Use text clipping so new messages don't overlap old ones being pushed up.
             RectClipContent = true;
 
+            //UM START
+            if (fontColor == null && _entityManager.TryGetComponent<MetaDataComponent>(senderEntity, out var metaData))
+            {
+                var colorString = _chatUIController.GetNameColor(metaData.EntityName);
+                fontColor = Color.FromHex(colorString);
+            }
+            //UM END
             var bubble = BuildBubble(message, speechStyleClass, fontColor);
 
             AddChild(bubble);
@@ -303,4 +316,37 @@ namespace Content.Client.Chat.UI
             return panel;
         }
     }
+    //UM START
+    public sealed class OutlinedSpeechBubble : SpeechBubble
+    {
+        public OutlinedSpeechBubble(ChatMessage message, EntityUid senderEntity, string speechStyleClass, Color? fontColor = null)
+            : base(message, senderEntity, speechStyleClass, fontColor)
+        {
+        }
+
+        protected override Control BuildBubble(ChatMessage message, string speechStyleClass, Color? fontColor = null)
+        {
+            var bubbleContent = new FancySpeechBubble(
+                message,
+                12,
+                "Grand9K",
+                fontColor);
+
+            var mainPanel = new PanelContainer
+            {
+                Children = { bubbleContent },
+                ModulateSelfOverride = Color.White.WithAlpha(ConfigManager.GetCVar(CCVars.SpeechBubbleBackgroundOpacity)),
+                Margin = new Thickness(4, 14, 4, 2)
+            };
+
+            var panel = new PanelContainer
+            {
+                Children = { mainPanel },
+            };
+
+            return panel;
+        }
+
+    }
+    //UM END
 }
