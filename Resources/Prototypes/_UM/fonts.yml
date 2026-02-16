@@ -11,6 +11,6 @@
   path: /Fonts/SpessFont.ttf
 
 - type: font
-  id: ComicSans
-  path: /Fonts/comicsans.ttf
+  id: PixelComicSans
+  path: /Fonts/PixelComicSans.ttf
 
