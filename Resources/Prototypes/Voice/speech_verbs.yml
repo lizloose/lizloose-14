@@ -31,10 +31,11 @@
 - type: speechVerb
   id: DefaultExclamationStrong
   name: chat-speech-verb-name-exclamation-strong
-  bold: true
+  bold: false
   speechVerbStrings:
   - chat-speech-verb-exclamation-strong
   priority: 10
+  fontSize: 18
 
 - type: speechVerb
   id: Arachnid

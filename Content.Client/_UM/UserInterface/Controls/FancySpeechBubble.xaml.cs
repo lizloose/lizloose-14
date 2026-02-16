@@ -18,7 +18,7 @@ public sealed partial class FancySpeechBubble : Control
     private string _font;
     private Color? _color;
 
-    public FancySpeechBubble(ChatMessage message, int fontSize = 12, string font = "Default", Color? fontColor = null)
+    public FancySpeechBubble(ChatMessage message, int fontSize = 12, string font = "TinyUnicode", Color? fontColor = null)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
@@ -74,10 +74,6 @@ public sealed partial class FancySpeechBubble : Control
             msg.Pop();
             msg.Pop();
 
-            int thick = _fontSize / 6;
-
-            Log.Debug("Thickness: " + thick);
-
             var label = new OutlineRichTextLabel
             {
                 Thickness = _fontSize / 6,
@@ -94,10 +90,7 @@ public sealed partial class FancySpeechBubble : Control
 
             labelContainer.AddChild(label);
             TextContainer.AddChild(labelContainer);
-            Log.Debug("Line: " + msg.ToMarkup());
         }
-
-        Log.Debug("Child count: " + TextContainer.ChildCount);
     }
 
 }
