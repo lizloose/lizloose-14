@@ -5,3 +5,8 @@
 - type: font
   id: TinyUnicode
   path: /Fonts/TinyUnicode.ttf
+
+- type: font
+  id: ComicSans
+  path: /Fonts/comicsans.ttf
+

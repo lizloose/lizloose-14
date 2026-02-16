@@ -329,19 +329,11 @@ namespace Content.Client.Chat.UI
             var bubbleContent = new FancySpeechBubble(
                 message,
                 12,
-                "Grand9K",
-                fontColor);
-
-            var mainPanel = new PanelContainer
-            {
-                Children = { bubbleContent },
-                ModulateSelfOverride = Color.White.WithAlpha(ConfigManager.GetCVar(CCVars.SpeechBubbleBackgroundOpacity)),
-                Margin = new Thickness(4, 14, 4, 2)
-            };
+                fontColor: fontColor);
 
             var panel = new PanelContainer
             {
-                Children = { mainPanel },
+                Children = { bubbleContent },
             };
 
             return panel;

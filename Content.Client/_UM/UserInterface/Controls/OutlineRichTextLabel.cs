@@ -7,22 +7,23 @@ namespace Content.Client._UM.UserInterface.Controls;
 /// <summary>
 /// Control for putting an outline around text. TODO: make the outline thickness configurable
 /// </summary>
-public sealed partial class OutlineRichTextLabel : RichTextLabel
+public sealed class OutlineRichTextLabel : RichTextLabel
 {
     private static readonly ProtoId<ShaderPrototype> OutlinePrototype = "FontOutline";
-    private Vector2 _textScaling = Vector2.One;
+
     private ShaderInstance? _outlineShader;
 
-    public static int Thickness = 2;
+    public int Thickness;
 
-    public OutlineRichTextLabel()
+    public OutlineRichTextLabel(int thickness = 2)
     {
         IoCManager.InjectDependencies(this);
         var prototypes = IoCManager.Resolve<IPrototypeManager>();
         _outlineShader = prototypes.Index(OutlinePrototype).InstanceUnique();
+        Thickness = thickness;
     }
 
-    static List<Vector2> BuildOutlineOffsets()
+    private List<Vector2> BuildOutlineOffsets()
     {
         var list = new List<Vector2>();
 
@@ -39,49 +40,34 @@ public sealed partial class OutlineRichTextLabel : RichTextLabel
         return list;
     }
 
-    protected override Vector2 MeasureOverride(Vector2 availableSize)
-    {
-        var desiredTextSize = base.MeasureOverride(availableSize);
-        var clampedScale = Vector2.Min(availableSize / desiredTextSize, Vector2.One);
-        var keepAspectRatio = MathF.Min(clampedScale.X, clampedScale.Y);
-        const float shimmerReduction = 0.1f;
-        _textScaling = Vector2.One * MathF.Round(keepAspectRatio / shimmerReduction) * shimmerReduction;
-        return desiredTextSize;
-    }
-
     protected override void Draw(DrawingHandleScreen handle)
     {
         var offsets = BuildOutlineOffsets();
 
         handle.UseShader(_outlineShader);
 
+        var originalTransform = handle.GetTransform();
+
         foreach (var o in offsets)
         {
-            Vector2 pixelOffset = o;
-            Vector2 scaledOffset = pixelOffset / _textScaling;
+            float scaleX = originalTransform.M11;
+            float scaleY = originalTransform.M22;
 
-            handle.SetTransform(
-                GlobalPixelPosition - PixelPosition + scaledOffset,
-                0f,
-                _textScaling
+            Vector2 scaledOffset = new Vector2(
+                o.X / scaleX,
+                o.Y / scaleY
             );
 
+            var offsetMatrix = Matrix3x2.CreateTranslation(scaledOffset);
+
+            handle.SetTransform(offsetMatrix * originalTransform);
             base.Draw(handle);
         }
 
         handle.UseShader(null);
-        handle.SetTransform(
-            GlobalPixelPosition - PixelPosition,
-            0f,
-            _textScaling
-        );
+        handle.SetTransform(originalTransform);
 
         base.Draw(handle);
-
-        handle.SetTransform(Matrix3x2.Identity);
-        handle.UseShader(null);
-        InvalidateMeasure();
     }
-
 }
 
