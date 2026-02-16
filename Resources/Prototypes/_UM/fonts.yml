@@ -7,6 +7,10 @@
   path: /Fonts/TinyUnicode.ttf
 
 - type: font
+  id: SpessFont
+  path: /Fonts/SpessFont.ttf
+
+- type: font
   id: ComicSans
   path: /Fonts/comicsans.ttf
 

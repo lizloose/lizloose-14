@@ -74,13 +74,13 @@ namespace Content.Client.Chat.UI
             switch (type)
             {
                 case SpeechType.Emote:
-                    return new TextSpeechBubble(message, senderEntity, "emoteBox");
+                    return new TextSpeechBubble(message, senderEntity, "emoteBox",  new(200, 200, 200));
 
                 case SpeechType.Say:
                     return new OutlinedSpeechBubble(message, senderEntity, "sayBox");
 
                 case SpeechType.Whisper:
-                    return new OutlinedSpeechBubble(message, senderEntity, "whisperBox");
+                    return new WhisperOutlinedSpeechBubble(message, senderEntity, "whisperBox");
 
                 case SpeechType.Looc:
                     return new TextSpeechBubble(message, senderEntity, "emoteBox", Color.FromHex("#48d1cc"));
@@ -328,17 +328,39 @@ namespace Content.Client.Chat.UI
         {
             var bubbleContent = new FancySpeechBubble(
                 message,
-                12,
                 fontColor: fontColor);
 
             var panel = new PanelContainer
             {
                 Children = { bubbleContent },
             };
-
             return panel;
         }
+    }
 
+    public sealed class WhisperOutlinedSpeechBubble : SpeechBubble
+    {
+        public WhisperOutlinedSpeechBubble(ChatMessage message, EntityUid senderEntity, string speechStyleClass, Color? fontColor = null)
+            : base(message, senderEntity, speechStyleClass, fontColor)
+        {
+        }
+
+        protected override Control BuildBubble(ChatMessage message, string speechStyleClass, Color? fontColor = null)
+        {
+            var bubbleContent = new FancySpeechBubble(
+                message,
+                24,
+                font: "TinyUnicode",
+                true,
+                fontColor: fontColor,
+                thicknessOverride: 2);
+
+            var panel = new PanelContainer
+            {
+                Children = { bubbleContent },
+            };
+            return panel;
+        }
     }
     //UM END
 }

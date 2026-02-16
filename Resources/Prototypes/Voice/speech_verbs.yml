@@ -35,7 +35,7 @@
   speechVerbStrings:
   - chat-speech-verb-exclamation-strong
   priority: 10
-  fontSize: 18
+  fontSize: 14
 
 - type: speechVerb
   id: Arachnid

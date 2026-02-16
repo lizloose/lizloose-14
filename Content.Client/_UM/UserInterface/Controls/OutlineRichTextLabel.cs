@@ -1,6 +1,7 @@
 using System.Numerics;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Graphics;
 using Robust.Shared.Prototypes;
 namespace Content.Client._UM.UserInterface.Controls;
 
@@ -27,18 +28,21 @@ public sealed class OutlineRichTextLabel : RichTextLabel
     {
         var list = new List<Vector2>();
 
-        for (var x = -Thickness; x <= Thickness; x++)
+        for (int x = -Thickness; x <= Thickness; x++)
         {
-            for (var y = -Thickness; y <= Thickness; y++)
+            for (int y = -Thickness; y <= Thickness; y++)
             {
                 if (x == 0 && y == 0)
                     continue;
 
-                list.Add(new Vector2(x, y));
+                if (Math.Abs(x) == Thickness || Math.Abs(y) == Thickness)
+                    list.Add(new Vector2(x, y));
             }
         }
+
         return list;
     }
+
 
     protected override void Draw(DrawingHandleScreen handle)
     {
@@ -70,4 +74,3 @@ public sealed class OutlineRichTextLabel : RichTextLabel
         base.Draw(handle);
     }
 }
-

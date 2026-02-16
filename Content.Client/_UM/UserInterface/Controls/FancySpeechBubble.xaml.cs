@@ -17,14 +17,18 @@ public sealed partial class FancySpeechBubble : Control
     private int _fontSize;
     private string _font;
     private Color? _color;
+    private bool _forceFont;
+    private int? _thicknessOverride;
 
-    public FancySpeechBubble(ChatMessage message, int fontSize = 24, string font = "TinyUnicode", Color? fontColor = null)
+    public FancySpeechBubble(ChatMessage message, int fontSize = 12, string font = "Grand9K", bool forceFont = false, Color? fontColor = null, int? thicknessOverride = null)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
         _color = fontColor;
         _fontSize = fontSize;
         _font = font;
+        _forceFont = forceFont;
+        _thicknessOverride = thicknessOverride;
 
         BuildLines(message, "BubbleContent");
     }
@@ -47,10 +51,10 @@ public sealed partial class FancySpeechBubble : Control
         var messageString = SharedChatSystem.GetStringInsideTag(chatMessage, tag);
         var font = ParseFont(chatMessage.WrappedMessage);
 
-        if (font.FontName != null)
+        if (font.FontName != null && !_forceFont)
             _font = font.FontName;
 
-        if (font.FontSize != null)
+        if (font.FontSize != null && !_forceFont)
             _fontSize = font.FontSize.Value;
 
         var wrappedText = WordWrapHelper.Wordwrap(messageString, 32);
@@ -74,11 +78,17 @@ public sealed partial class FancySpeechBubble : Control
             msg.Pop();
             msg.Pop();
 
+            var thickness = _fontSize / 6;
+
+            if (_thicknessOverride != null)
+                thickness = _thicknessOverride.Value;
+
             var label = new OutlineRichTextLabel
             {
-                Thickness = _fontSize / 6,
+                Thickness = thickness,
                 StyleClasses = { "bubbleContent" },
-                HorizontalAlignment = HAlignment.Center
+                HorizontalAlignment = HAlignment.Center,
+                Margin = new Thickness(thickness * 3),
             };
 
             label.SetMessage(msg, tagsAllowed: [ typeof(FontTag), typeof(ColorTag), typeof(ItalicTag), typeof(BoldTag) ]);
