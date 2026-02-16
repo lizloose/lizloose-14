@@ -18,7 +18,7 @@ public sealed partial class FancySpeechBubble : Control
     private string _font;
     private Color? _color;
 
-    public FancySpeechBubble(ChatMessage message, int fontSize = 12, string font = "TinyUnicode", Color? fontColor = null)
+    public FancySpeechBubble(ChatMessage message, int fontSize = 24, string font = "TinyUnicode", Color? fontColor = null)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
