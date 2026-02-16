@@ -14,3 +14,7 @@
   id: PixelComicSans
   path: /Fonts/PixelComicSans.ttf
 
+- type: font
+  id: IbmVga
+  path: /Fonts/ibmvga9.ttf
+
