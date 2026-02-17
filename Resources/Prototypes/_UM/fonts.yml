@@ -11,6 +11,10 @@
   path: /Fonts/SpessFont.ttf
 
 - type: font
+  id: SpessFontBold
+  path: /Fonts/SpessFont_caps.ttf
+
+- type: font
   id: PixelComicSans
   path: /Fonts/PixelComicSans.ttf
 
