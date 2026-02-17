@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Client._UM.UserInterface.Controls;
 using Content.Client.Chat.Managers;
+using Content.Client.Guidebook.Richtext;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
@@ -74,7 +75,7 @@ namespace Content.Client.Chat.UI
             switch (type)
             {
                 case SpeechType.Emote:
-                    return new TextSpeechBubble(message, senderEntity, "emoteBox",  new(200, 200, 200));
+                    return new EmoteOutlinedSpeechBubble(message, senderEntity, "emoteBox");
 
                 case SpeechType.Say:
                     return new OutlinedSpeechBubble(message, senderEntity, "sayBox");
@@ -328,6 +329,7 @@ namespace Content.Client.Chat.UI
         {
             var bubbleContent = new FancySpeechBubble(
                 message,
+                contentTag: "BubbleContent",
                 fontColor: fontColor);
 
             var panel = new PanelContainer
@@ -353,7 +355,35 @@ namespace Content.Client.Chat.UI
                 font: "TinyUnicode",
                 true,
                 fontColor: fontColor,
-                thicknessOverride: 2);
+                thicknessOverride: 2,
+                contentTag: "BubbleContent");
+
+            var panel = new PanelContainer
+            {
+                Children = { bubbleContent },
+            };
+            return panel;
+        }
+    }
+
+    public sealed class EmoteOutlinedSpeechBubble : SpeechBubble
+    {
+        public EmoteOutlinedSpeechBubble(ChatMessage message, EntityUid senderEntity, string speechStyleClass, Color? fontColor = null)
+            : base(message, senderEntity, speechStyleClass, fontColor)
+        {
+        }
+
+        protected override Control BuildBubble(ChatMessage message, string speechStyleClass, Color? fontColor = null)
+        {
+
+            var bubbleContent = new FancySpeechBubble(
+                message,
+                12,
+                font: "MinecraftItalic",
+                true,
+                fontColor: fontColor,
+                thicknessOverride: 2,
+                contentTag: "BubbleContent");
 
             var panel = new PanelContainer
             {
