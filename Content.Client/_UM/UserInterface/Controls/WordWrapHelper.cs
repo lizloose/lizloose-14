@@ -1,143 +1,84 @@
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Shared.Chat;
+using Robust.Shared.Utility;
 
 namespace Content.Client._UM.UserInterface.Controls;
 
 public sealed class WordWrapHelper
 {
-    private const int DefaultLineWidth = 80;
-
-    /// <summary>
-    /// Wordwraps a markdown string, rebuilding tags on each line to maintain proper formatting.
-    /// Tags are not counted toward the line width limit.
-    /// </summary>
-    public static List<string> Wordwrap(string input, int lineWidth = DefaultLineWidth)
+    public static IEnumerable<string> WordWrap(string text, int charLimit)
     {
-        if (string.IsNullOrEmpty(input))
-            return new List<string>();
-
-        var tokens = ParseTokens(input);
-
         var lines = new List<string>();
-        var currentLine = new List<string>();
-        var openTags = new Stack<string>();
-        int contentLength = 0;
+        var currentLine = "";
 
-        foreach (var token in tokens)
+        int i = 0;
+        while (i < text.Length)
         {
-            if (token.IsTag)
-            {
-                // Handle opening/closing tags
-                if (token.IsClosingTag)
-                {
-                    openTags.Pop();
-                }
-                else
-                {
-                    openTags.Push(token.Content);
-                }
+            string token = ExtractToken(text, i, out int nextIndex);
+            string word = token.TrimEnd(' ');
+            string spaces = token.Substring(word.Length);
 
-                currentLine.Add(token.Content);
+            if ((currentLine + token).Length <= charLimit)
+            {
+                currentLine += token;
+                i = nextIndex;
+                continue;
+            }
+
+            if (currentLine.Length > 0)
+            {
+                lines.Add(currentLine.TrimEnd(' '));
+                currentLine = "";
+            }
+
+            if (word.Length <= charLimit)
+            {
+                currentLine = word + spaces;
+                i = nextIndex;
             }
             else
             {
-                int wordLength = token.Content.Length;
-
-                if (contentLength + wordLength + (contentLength > 0 ? 1 : 0) > lineWidth && currentLine.Count > 0)
-                {
-                    var closingTags = CloseAllTags(openTags);
-
-                    foreach (var tag in closingTags)
-                    {
-                        currentLine.Add(tag);
-                    }
-
-                    lines.Add(string.Join("", currentLine));
-                    currentLine.Clear();
-                    contentLength = 0;
-
-                    foreach (var tag in openTags)
-                    {
-                        currentLine.Add(tag);
-                    }
-                }
-
-                if (contentLength > 0)
-                {
-                    currentLine.Add(" ");
-                    contentLength += 1;
-                }
-
-                currentLine.Add(token.Content);
-                contentLength += wordLength;
+                // Word is too long - must split it with hyphen
+                int available = charLimit - 1;
+                currentLine = word.Substring(0, available) + "-";
+                lines.Add(currentLine);
+                currentLine = "";
+                i += available;
             }
         }
 
-        if (currentLine.Count > 0)
+        if (currentLine.Length > 0)
         {
-            var closingTags = CloseAllTags(openTags);
-            foreach (var tag in closingTags)
-            {
-                currentLine.Add(tag);
-            }
-
-            lines.Add(string.Join("", currentLine));
+            lines.Add(currentLine.TrimEnd(' '));
         }
 
-        return lines;
-    }
-
-    private static List<Token> ParseTokens(string input)
-    {
-        var tokens = new List<Token>();
-        var pattern = @"(\[/?[^\]]+\]|[^\[\s]+|\s+)";
-        var matches = Regex.Matches(input, pattern);
-
-        foreach (Match match in matches)
+        foreach (var line in lines)
         {
-            var content = match.Value;
-
-            if (content.StartsWith("[") && content.EndsWith("]"))
-            {
-                var isClosing = content.StartsWith("[/");
-                tokens.Add(new Token
-                {
-                    Content = content,
-                    IsTag = true,
-                    IsClosingTag = isClosing
-                });
-            }
-            else if (!string.IsNullOrWhiteSpace(content))
-            {
-                tokens.Add(new Token { Content = content.Trim(), IsTag = false });
-            }
+            yield return line;
         }
-
-        return tokens;
     }
 
-    private static List<string> CloseAllTags(Stack<string> openTags)
+    /// <summary>
+    /// Extracts the next token (word + trailing spaces) from text starting at position i
+    /// </summary>
+    private static string ExtractToken(string text, int startIndex, out int nextIndex)
     {
-        var closingTags = new List<string>();
-        foreach (var tag in openTags.ToList())
+        int i = startIndex;
+
+        // Read the word (non-space characters)
+        while (i < text.Length && text[i] != ' ')
         {
-            var tagName = ExtractTagName(tag);
-            closingTags.Add($"[/{tagName}]");
+            i++;
         }
-        return closingTags;
-    }
 
-    private static string ExtractTagName(string tag)
-    {
-        // Extract tag name from [tagname] or [tagname=value]
-        var match = Regex.Match(tag, @"\[(/?)([^\]=\s]+)");
-        return match.Success ? match.Groups[2].Value : "";
-    }
+        // Read all trailing spaces
+        while (i < text.Length && text[i] == ' ')
+        {
+            i++;
+        }
 
-    private sealed class Token
-    {
-        public required string Content { get; set; }
-        public bool IsTag { get; set; }
-        public bool IsClosingTag { get; set; }
+        nextIndex = i;
+        return text.Substring(startIndex, i - startIndex);
     }
 }
