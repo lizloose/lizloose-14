@@ -55,7 +55,6 @@ public sealed partial class FancySpeechBubble : Control
     private void BuildLines(ChatMessage chatMessage, string tag)
     {
         var messageString = SharedChatSystem.GetStringInsideTag(chatMessage, tag);
-        var msgTesting = new FormattedMessage();
 
         var font = ParseFont(chatMessage.WrappedMessage);
         Log.Debug("fontname: " + font.FontName);
@@ -68,23 +67,25 @@ public sealed partial class FancySpeechBubble : Control
 
         Log.Debug("font name: " + _font);
 
-        msgTesting.PushTag(new MarkupNode("font",
-            new MarkupParameter(_font),
-            new Dictionary<string, MarkupParameter>()
-            {
-                { "size", new MarkupParameter(_fontSize) }
-            }));
-        if (_color != null)
-            msgTesting.PushColor(_color.Value);
-
-        msgTesting.AddMarkupOrThrow(messageString);
-        msgTesting.Pop();
-        msgTesting.Pop();
-
-        var wraptest = BuildMessages(msgTesting);
+        var wraptest = WordWrapHelper.WordWrap(messageString, WordWrapLength);
 
         foreach (var message in wraptest)
         {
+            var msg = new FormattedMessage();
+
+            msg.PushTag(new MarkupNode("font",
+                new MarkupParameter(_font),
+                new Dictionary<string, MarkupParameter>()
+                {
+                    { "size", new MarkupParameter(_fontSize) }
+                }));
+            if (_color != null)
+                msg.PushColor(_color.Value);
+
+            msg.AddMarkupOrThrow(message);
+            msg.Pop();
+            msg.Pop();
+
             var thickness = _fontSize / 6;
 
             if (_thicknessOverride != null)
@@ -97,7 +98,7 @@ public sealed partial class FancySpeechBubble : Control
                 HorizontalAlignment = HAlignment.Center,
                 Margin = new Thickness(thickness * 3),
             };
-            label.SetMessage(message, tagsAllowed: [ typeof(FontTag), typeof(ColorTag), typeof(ItalicTag), typeof(BoldTag) ]);
+            label.SetMessage(msg, tagsAllowed: [ typeof(FontTag), typeof(ColorTag), typeof(ItalicTag), typeof(BoldTag) ]);
 
             var labelContainer = new BoxContainer
             {
