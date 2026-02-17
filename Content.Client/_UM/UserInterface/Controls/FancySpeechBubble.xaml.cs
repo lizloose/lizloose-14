@@ -38,28 +38,19 @@ public sealed partial class FancySpeechBubble : Control
     /// Gets the font that the message has.
     /// </summary>
     /// <param name="message"></param>
-    /// <returns></returns>
-    private static (string? FontName, int? FontSize) ParseFont(string message)
+    private (string? FontName, int? FontSize) ParseFont(string input)
     {
-        var formattedMessage = new FormattedMessage();
-        formattedMessage.AddMarkupOrThrow(message);
+        var match = Regex.Match(input, @"\[font=([^\s\]]+)\s+size=(\d+)\]", RegexOptions.IgnoreCase);
 
-        string? fontName = null;
-        int? fontSize = null;
-
-        foreach (var node in formattedMessage)
+        if (match.Success)
         {
-            if (node.Name == "font")
-            {
-                fontName = node.Value.StringValue;
-                if (node.Attributes.TryGetValue("size", out var size) && size.LongValue != null)
-                    fontSize = (int)size.LongValue;
-
-                return (fontName, fontSize);
-            }
+            string fontName = match.Groups[1].Value;
+            int fontSize = int.Parse(match.Groups[2].Value);
+            return (fontName, fontSize);
         }
-        return (fontName, fontSize);
+        return (null, null);
     }
+
 
     private void BuildLines(ChatMessage chatMessage, string tag)
     {
@@ -67,12 +58,15 @@ public sealed partial class FancySpeechBubble : Control
         var msgTesting = new FormattedMessage();
 
         var font = ParseFont(chatMessage.WrappedMessage);
+        Log.Debug("fontname: " + font.FontName);
 
         if (font.FontName != null && !_forceFont)
             _font = font.FontName;
 
         if (font.FontSize != null && !_forceFont)
             _fontSize = font.FontSize.Value;
+
+        Log.Debug("font name: " + _font);
 
         msgTesting.PushTag(new MarkupNode("font",
             new MarkupParameter(_font),
@@ -128,7 +122,7 @@ public sealed partial class FancySpeechBubble : Control
 
         FormattedMessage currentLine = new();
 
-        var wrapLimit = 42;
+        var wrapLimit = 35;
 
         foreach (var node in message)
         {
