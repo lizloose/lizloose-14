@@ -1,6 +1,6 @@
 - type: speechVerb
   id: Clown
-  name: chat-speech-verb-name-default
+  name: chat-speech-verb-name-clown
   speechVerbStrings:
   - chat-speech-verb-default
   bubbleFontId: PixelComicSans
@@ -10,7 +10,7 @@
 
 - type: speechVerb
   id: ClownQuestion
-  name: chat-speech-verb-name-question
+  name: chat-speech-verb-name-clown-question
   speechVerbStrings:
   - chat-speech-verb-question
   bubbleFontId: PixelComicSans
@@ -20,7 +20,7 @@
 
 - type: speechVerb
   id: ClownStutter
-  name: chat-speech-verb-name-stutter
+  name: chat-speech-verb-name-clown-stutter
   speechVerbStrings:
   - chat-speech-verb-stutter
   bubbleFontId: PixelComicSans
@@ -30,7 +30,7 @@
 
 - type: speechVerb
   id: ClownMumble
-  name: chat-speech-verb-name-mumble
+  name: chat-speech-verb-name-clown-mumble
   speechVerbStrings:
   - chat-speech-verb-mumble
   bubbleFontId: PixelComicSans
@@ -40,7 +40,7 @@
 
 - type: speechVerb
   id: ClownExclamation
-  name: chat-speech-verb-name-exclamation
+  name: chat-speech-verb-name-clown-exclamation
   speechVerbStrings:
   - chat-speech-verb-exclamation
   bubbleFontId: PixelComicSans
@@ -50,7 +50,7 @@
 
 - type: speechVerb
   id: ClownExclamationStrong
-  name: chat-speech-verb-name-exclamation-strong
+  name: chat-speech-verb-name-clown-exclamation-strong
   bold: false
   speechVerbStrings:
   - chat-speech-verb-exclamation-strong
@@ -88,7 +88,7 @@
 
 - type: speechVerb
   id: UMArachnidQuestion
-  name: chat-speech-verb-name-question
+  name: chat-speech-verb-name-broodmother-question
   speechVerbStrings:
   - chat-speech-verb-question
   bubbleFontId: KiwiSoda
@@ -98,7 +98,7 @@
 
 - type: speechVerb
   id: UMArachnidStutter
-  name: chat-speech-verb-name-stutter
+  name: chat-speech-verb-name-broodmother-stutter
   speechVerbStrings:
   - chat-speech-verb-stutter
   bubbleFontId: KiwiSoda
@@ -108,7 +108,7 @@
 
 - type: speechVerb
   id: UMArachnidMumble
-  name: chat-speech-verb-name-mumble
+  name: chat-speech-verb-name-broodmother-mumble
   speechVerbStrings:
   - chat-speech-verb-mumble
   bubbleFontId: KiwiSoda
@@ -118,7 +118,7 @@
 
 - type: speechVerb
   id: UMArachnidExclamation
-  name: chat-speech-verb-name-exclamation
+  name: chat-speech-verb-name-broodmother-exclamation
   speechVerbStrings:
   - chat-speech-verb-exclamation
   bubbleFontId: KiwiSoda
@@ -128,7 +128,7 @@
 
 - type: speechVerb
   id: UMArachnidExclamationStrong
-  name: chat-speech-verb-name-exclamation-strong
+  name: chat-speech-verb-name-broodmother-exclamation-strong
   speechVerbStrings:
   - chat-speech-verb-exclamation-strong
   priority: 10
@@ -151,7 +151,7 @@
 
 - type: speechVerb
   id: UMRoboticQuestion
-  name: chat-speech-verb-name-question
+  name: chat-speech-verb-name-robotic-question
   speechVerbStrings:
   - chat-speech-verb-question
   bubbleFontId: Squarewave
@@ -161,7 +161,7 @@
 
 - type: speechVerb
   id: UMRoboticStutter
-  name: chat-speech-verb-name-stutter
+  name: chat-speech-verb-name-robotic-stutter
   speechVerbStrings:
   - chat-speech-verb-stutter
   bubbleFontId: Squarewave
@@ -171,7 +171,7 @@
 
 - type: speechVerb
   id: UMRoboticMumble
-  name: chat-speech-verb-name-mumble
+  name: chat-speech-verb-name-robotic-mumble
   speechVerbStrings:
   - chat-speech-verb-mumble
   bubbleFontId: Squarewave
@@ -181,7 +181,7 @@
 
 - type: speechVerb
   id: UMRoboticExclamation
-  name: chat-speech-verb-name-exclamation
+  name: chat-speech-verb-name-robotic-exclamation
   speechVerbStrings:
   - chat-speech-verb-exclamation
   bubbleFontId: Squarewave
@@ -191,7 +191,7 @@
 
 - type: speechVerb
   id: UMRoboticExclamationStrong
-  name: chat-speech-verb-name-exclamation-strong
+  name: chat-speech-verb-name-robotic-exclamation-strong
   bold: false
   speechVerbStrings:
   - chat-speech-verb-exclamation-strong
