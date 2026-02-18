@@ -37,3 +37,27 @@
 - type: font
   id: MinecraftItalic
   path: /Fonts/Minecraft/macs-minecraft-Italic.ttf
+
+- type: font
+  id: Typecast
+  path: /Fonts/Typecast/Typecast.ttf
+
+- type: font
+  id: TypecastBold
+  path: /Fonts/Typecast/Typecast-Bold.ttf
+
+- type: font
+  id: TypecastItalic
+  path: /Fonts/Typecast/Typecast-Italic.ttf
+
+- type: font
+  id: Squarewave
+  path: /Fonts/Squarewave/Squarewave.ttf
+
+- type: font
+  id: SquarewaveBold
+  path: /Fonts/Squarewave/Squarewave-Bold.ttf
+
+- type: font
+  id: SquarewaveItalic
+  path: /Fonts/Squarewave/Squarewave-Italic.ttf

@@ -136,3 +136,67 @@
   bubbleFontSize: 18
   bubbleWhisperFontId: KiwiSoda
   bubbleWhisperFontSize: 12
+# end spiders
+
+- type: speechVerb
+  id: UMRobotic
+  name: chat-speech-verb-name-robotic
+  speechVerbStrings:
+  - chat-speech-verb-robotic-1
+  - chat-speech-verb-robotic-2
+  bubbleFontId: Squarewave
+  bubbleFontSize: 22
+  bubbleWhisperFontId: Squarewave
+  bubbleWhisperFontSize: 18
+
+- type: speechVerb
+  id: UMRoboticQuestion
+  name: chat-speech-verb-name-question
+  speechVerbStrings:
+  - chat-speech-verb-question
+  bubbleFontId: Squarewave
+  bubbleFontSize: 22
+  bubbleWhisperFontId: Squarewave
+  bubbleWhisperFontSize: 18
+
+- type: speechVerb
+  id: UMRoboticStutter
+  name: chat-speech-verb-name-stutter
+  speechVerbStrings:
+  - chat-speech-verb-stutter
+  bubbleFontId: Squarewave
+  bubbleFontSize: 22
+  bubbleWhisperFontId: Squarewave
+  bubbleWhisperFontSize: 18
+
+- type: speechVerb
+  id: UMRoboticMumble
+  name: chat-speech-verb-name-mumble
+  speechVerbStrings:
+  - chat-speech-verb-mumble
+  bubbleFontId: Squarewave
+  bubbleFontSize: 22
+  bubbleWhisperFontId: Squarewave
+  bubbleWhisperFontSize: 18
+
+- type: speechVerb
+  id: UMRoboticExclamation
+  name: chat-speech-verb-name-exclamation
+  speechVerbStrings:
+  - chat-speech-verb-exclamation
+  bubbleFontId: Squarewave
+  bubbleFontSize: 22
+  bubbleWhisperFontId: Squarewave
+  bubbleWhisperFontSize: 18
+
+- type: speechVerb
+  id: UMRoboticExclamationStrong
+  name: chat-speech-verb-name-exclamation-strong
+  bold: false
+  speechVerbStrings:
+  - chat-speech-verb-exclamation-strong
+  priority: 10
+  bubbleFontId: SquarewaveBold
+  bubbleFontSize: 22
+  bubbleWhisperFontId: Squarewave
+  bubbleWhisperFontSize: 18

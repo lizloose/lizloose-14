@@ -142,7 +142,15 @@
   - type: TypingIndicator
     proto: robot
   - type: Speech
-    speechVerb: Robotic
+    #UM START
+    speechVerb: UMRobotic
+    suffixSpeechVerbs:
+      chat-speech-verb-suffix-exclamation-strong: UMRoboticExclamationStrong
+      chat-speech-verb-suffix-exclamation: UMRoboticExclamation
+      chat-speech-verb-suffix-question: UMRoboticQuestion
+      chat-speech-verb-suffix-stutter: UMRoboticStutter
+      chat-speech-verb-suffix-mumble: UMRoboticMumble
+    #UM END
     speechSounds: Borg
   - type: Vocal
     sounds:
