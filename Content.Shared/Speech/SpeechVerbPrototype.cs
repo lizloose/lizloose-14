@@ -37,11 +37,30 @@ public sealed partial class SpeechVerbPrototype : IPrototype
     [DataField]
     public int BubbleFontSize = 12;
 
+    [DataField]
+    public int BubbleFontThickness = 2;
+
     /// <summary>
     /// What font ID should be used for speech bubbles
     /// </summary>
     [DataField]
     public string BubbleFontId = "Minecraft";
+
+    /// <summary>
+    /// What font size should speech bubbles use for whispering
+    /// </summary>
+    [DataField]
+    public int BubbleWhisperFontSize = 10;
+
+    [DataField]
+    public int BubbleWhisperFontThickness = 2;
+
+    /// <summary>
+    /// What font ID should be used for speech bubbles while whispering
+    /// </summary>
+    [DataField]
+    public string BubbleWhisperFontId = "Minecraft";
+
     //UM END
 
     /// <summary>

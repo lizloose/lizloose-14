@@ -464,6 +464,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (message.Length == 0)
             return;
 
+        var speech = GetSpeechVerb(source, message); //UM EDIT
+
         var obfuscatedMessage = ObfuscateMessageReadability(message, 0.2f);
 
         // get the entity's name by visual identity (if no override provided).
@@ -493,6 +495,8 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         //UM START
         var bubbleMessage = Loc.GetString("chat-manager-bubble-entity-whisper-wrap-message",
+            ("fontType", speech.BubbleWhisperFontId),
+            ("fontSize", speech.BubbleWhisperFontSize),
             ("message", FormattedMessage.EscapeText(message)));
         //UM END
 
