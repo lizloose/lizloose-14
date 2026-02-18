@@ -62,7 +62,6 @@
         Quantity: 150
   - type: NameIdentifier
     group: GenericNumber
-    allowedEmotes: ['Click', 'Chitter']
   - type: Vocal
     sounds:
       Male: UnisexArachnid
@@ -114,6 +113,7 @@
     webPrototype: UMSpiderWeb
   - type: Speech
     speechVerb: UMArachnid
+    allowedEmotes: ['Click', 'Chitter']
     speechSounds: Arachnid
     suffixSpeechVerbs:
       chat-speech-verb-suffix-exclamation-strong: UMArachnidExclamationStrong
