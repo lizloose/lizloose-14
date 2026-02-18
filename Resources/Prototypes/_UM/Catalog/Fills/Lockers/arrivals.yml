@@ -1,0 +1,36 @@
+- type: entity
+  parent: [ LockerBaseSecure ]
+  id: UMArrivalsEvidenceLocker
+  name: evidence locker
+  description: To store bags of bullet casings and detainee belongings.
+  suffix: UM
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec
+    stateDoorOpen: sec_open
+    stateDoorClosed: sec_door
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: UMArrivalsEvidenceLockerTable
+
+# Entity tables
+- type: entityTable
+  id: UMArrivalsEvidenceLockerTable
+  table: !type:AllSelector
+    children:
+      - id: ClothingBeltUtilityEngineering
+        prob: 0.25
+      - id: ClothingHandsGlovesColorYellow
+        prob: 0.25
+      - id: ClothingHeadHatWelding
+        prob: 0.25
+      - id: CrayonBox
+        prob: 0.25
+      - id: EnergySword
+        prob: 0.001
+      - id: DrinkSpaceLube
+        prob: 0.20
+      - id: RubberStampCaptain # ~1/100
+        prob: 0.02

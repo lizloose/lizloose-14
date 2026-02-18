@@ -1,0 +1,12 @@
+- type: entity
+  parent: SalvageHumanCorpse
+  id: ArrivalsSecurityHumanCorpse
+  name: unknown officer
+  description: Here rests in honored glory, a security officer
+  suffix: UM
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: Loadout
+    prototypes:
+    - SecurityCadetGear

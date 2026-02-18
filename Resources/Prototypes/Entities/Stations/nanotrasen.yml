@@ -5,6 +5,7 @@
     - type: NpcFactionMember
       factions:
         - NanoTrasen
+    - type: StationJobArrivals
 
 - type: entity
   id: StandardNanotrasenStation

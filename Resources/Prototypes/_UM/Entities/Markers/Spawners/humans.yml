@@ -1,0 +1,16 @@
+- type: entity
+  name: dead security officer spawner
+  id: SpawnArrivalsSecurityHumanCorpse
+  parent: SpawnMobSyndicateFootSoldier
+  suffix: UM
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: full
+    - sprite: Clothing/Head/Helmets/swat_syndicate.rsi
+      state: equipped-HELMET
+  - type: ConditionalSpawner
+    prototypes:
+    - ArrivalsSecurityHumanCorpse
