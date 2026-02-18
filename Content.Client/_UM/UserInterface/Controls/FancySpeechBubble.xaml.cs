@@ -57,9 +57,30 @@ public sealed partial class FancySpeechBubble : Control
         return (null, null);
     }
 
+    public static string? GetStringInsideTag(ChatMessage message, string tag)
+    {
+        if (message.BubbleMessage == null)
+            return null;
+
+        var rawmsg = message.BubbleMessage;
+        var tagStart = rawmsg.IndexOf($"[{tag}]");
+        var tagEnd = rawmsg.IndexOf($"[/{tag}]");
+        if (tagStart < 0 || tagEnd < 0)
+            return "";
+        tagStart += tag.Length + 2;
+        return rawmsg.Substring(tagStart, tagEnd - tagStart);
+    }
 
     private void BuildLines(ChatMessage chatMessage, string? tag)
     {
+        Log.Debug("Bubble message: " + chatMessage.BubbleMessage);
+
+        if (chatMessage.BubbleMessage == null)
+        {
+            Log.Debug("bubble message null");
+            return;
+        }
+
         string messageString;
         if (tag != null)
         {
@@ -70,12 +91,13 @@ public sealed partial class FancySpeechBubble : Control
             messageString = chatMessage.WrappedMessage;
         }
 
+        //strip markup cheap hack
         var tmpMsg = new FormattedMessage();
         tmpMsg.AddMarkupOrThrow(messageString);
 
         var glyphed = false;
 
-        var font = ParseFont(chatMessage.WrappedMessage);
+        var font = ParseFont(chatMessage.BubbleMessage);
 
         if (font.FontName != null && !_forceFont)
             _font = font.FontName;

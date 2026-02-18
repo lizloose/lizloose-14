@@ -30,12 +30,26 @@ public sealed partial class SpeechVerbPrototype : IPrototype
     [DataField("fontSize")]
     public int FontSize = 12;
 
+    //UM START
+    /// <summary>
+    /// What font size should speech bubbles use
+    /// </summary>
+    [DataField]
+    public int BubbleFontSize = 12;
+
+    /// <summary>
+    /// What font ID should be used for speech bubbles
+    /// </summary>
+    [DataField]
+    public string BubbleFontId = "Minecraft";
+    //UM END
+
     /// <summary>
     ///     What font prototype ID should be used for the message contents?
     /// </summary>
     /// font proto is client only so cant lint this lol sorry
     [DataField("fontId")]
-    public string FontId = "Minecraft";
+    public string FontId = "Default";
 
     /// <summary>
     ///     If multiple applicable speech verb protos are found (i.e. through speech suffixes) this will determine
