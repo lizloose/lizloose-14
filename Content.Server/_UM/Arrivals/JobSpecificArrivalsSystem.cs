@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Server._UM.Arrivals.Components;
 using Content.Server.Chat.Managers;
+using Content.Server.GameTicking;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
@@ -8,12 +9,14 @@ using Content.Server.Spawners.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
+using Content.Shared.CCVar;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Station;
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
+using Robust.Shared.Configuration;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
@@ -25,6 +28,7 @@ namespace Content.Server._UM.Arrivals;
 
 public sealed class TiderArrivalsSystem : EntitySystem
 {
+    [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
@@ -35,11 +39,11 @@ public sealed class TiderArrivalsSystem : EntitySystem
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ActorSystem _actor = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
 
     private bool _arrivalsEnabled = true;
 
     private static readonly ProtoId<TagPrototype> DockTagProto = "DockEmergency";
-
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -53,6 +57,16 @@ public sealed class TiderArrivalsSystem : EntitySystem
         SubscribeLocalEvent<ShuttleJobArrivalsComponent, FTLTagEvent>(OnShuttleTag);
 
         SubscribeLocalEvent<PlayerSpawningEvent>(HandlePlayerSpawning, before: [typeof(SpawnPointSystem)]);
+
+        _config.OnValueChanged(CCVars.ArrivalsShuttles, OnArrivalsConfigChanged, true);
+    }
+
+    private void OnArrivalsConfigChanged(bool val)
+    {
+        if (_arrivalsEnabled && !val && _gameTicker.RunLevel != GameRunLevel.PreRoundLobby)
+            return;
+
+        _arrivalsEnabled = val;
     }
 
     private void OnStationPostInit(Entity<StationJobArrivalsComponent> ent, ref StationPostInitEvent args)
