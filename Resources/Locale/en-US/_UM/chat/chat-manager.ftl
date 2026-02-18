@@ -24,7 +24,6 @@ chat-speech-verb-name-clown-exclamation-strong = Clown Exclaiming
 
 
 
-chat-speech-verb-name-robotic = Robotic
 chat-speech-verb-name-robotic-question = Robotic Asking
 chat-speech-verb-name-robotic-stutter = Robotic Stuttering
 chat-speech-verb-name-robotic-mumble = Robotic Mumbling
