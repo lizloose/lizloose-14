@@ -2,6 +2,7 @@ using Content.Shared._UM.Energy;
 using Content.Shared.Actions;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Toggleable;
+using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._UM.Spiders.ToggleAbility;
@@ -12,6 +13,7 @@ public sealed class SpiderToggleActionSystem : EntitySystem
     [Dependency] private readonly ItemToggleSystem _toggle = default!;
     [Dependency] private readonly EnergyContainerSystem _energy = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly INetManager _net = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -32,6 +34,9 @@ public sealed class SpiderToggleActionSystem : EntitySystem
         while (query.MoveNext(out var uid, out var comp))
         {
             if (comp.NextUpdate > curTime)
+                continue;
+
+            if (_net.IsClient)
                 continue;
 
             if (_toggle.IsActivated(uid) && !_energy.TrySpendEnergy(uid, comp.EnergyName, comp.EnergyDrain))
