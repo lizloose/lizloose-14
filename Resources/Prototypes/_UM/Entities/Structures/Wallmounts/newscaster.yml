@@ -5,6 +5,7 @@
   description: A standard Nanotrasen-licensed newsfeed handler for use in commercial space stations. All the news you absolutely have no use for, in one place!
   suffix: UM, Wall
   components:
+  - type: StationAiWhitelist
   - type: Newscaster
   - type: WallMount
     arc: 360
