@@ -8,7 +8,7 @@
 - type: hiveBuild
   id: Web
   name: Spider Web
-  prototype: SpiderWeb
+  prototype: UMSpiderWeb
   cost: 2
   delay: 0.1
 

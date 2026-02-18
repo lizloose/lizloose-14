@@ -114,6 +114,7 @@
     castShadows: false
     enabled: false
   - type: Spider
+    webPrototype: UMSpiderWeb
 #  - type: Speech Re-Enable when we have separate font sizes
 #    speechVerb: UMArachnid
 #    suffixSpeechVerbs:
