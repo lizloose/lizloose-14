@@ -838,12 +838,13 @@ public sealed partial class ChatUIController : UIController
             {
                 foreach (var (_, codewordData) in codewordComp.RoleCodewords)
                 {
-                    foreach (string codeword in codewordData.Codewords)
+                    foreach (var codeword in codewordData.Codewords)
+                    {
                         msg = SharedChatSystem.InjectTagAroundString(msg, codeword, "color", codewordData.Color.ToHex());
+                    }
                 }
             }
         }
-
         return msg;
     }
     //UM END

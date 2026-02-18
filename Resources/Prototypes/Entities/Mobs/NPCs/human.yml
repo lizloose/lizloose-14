@@ -97,4 +97,12 @@
   components:
   - type: Cluwne
   - type: Speech
-    speechVerb: Cluwne
+    #UM START
+    speechVerb: UMCluwne
+    suffixSpeechVerbs:
+      chat-speech-verb-suffix-exclamation-strong: ClownExclamationStrong
+      chat-speech-verb-suffix-exclamation: ClownExclamation
+      chat-speech-verb-suffix-question: ClownQuestion
+      chat-speech-verb-suffix-stutter: ClownStutter
+      chat-speech-verb-suffix-mumble: ClownMumble
+    #UM END

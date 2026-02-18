@@ -26,7 +26,14 @@ public sealed partial class FancySpeechBubble : Control
     private readonly string? _contentTag;
     private readonly string? _glyph;
 
-    public FancySpeechBubble(ChatMessage message, int fontSize = 12, string font = "Minecraft", bool forceFont = false, Color? fontColor = null, int? thicknessOverride = null, string? contentTag = null, string? glyph = null)
+    public FancySpeechBubble(ChatMessage message,
+        int fontSize = 12,
+        string font = "Minecraft",
+        bool forceFont = false,
+        Color? fontColor = null,
+        int? thicknessOverride = null,
+        string? contentTag = null,
+        string? glyph = null)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
@@ -45,7 +52,6 @@ public sealed partial class FancySpeechBubble : Control
     /// <summary>
     /// Gets the font that the message has.
     /// </summary>
-    /// <param name="message"></param>
     private (string? FontName, int? FontSize) ParseFont(string input)
     {
         var match = Regex.Match(input, @"\[font=([^\s\]]+)\s+size=(\d+)\]", RegexOptions.IgnoreCase);
@@ -56,10 +62,13 @@ public sealed partial class FancySpeechBubble : Control
             int fontSize = int.Parse(match.Groups[2].Value);
             return (fontName, fontSize);
         }
+
         return (null, null);
     }
 
-    public static bool TryGetStringInsideTag(ChatMessage message, string tag, [NotNullWhen(true)] out string? outMessage)
+    public static bool TryGetStringInsideTag(ChatMessage message,
+        string tag,
+        [NotNullWhen(true)] out string? outMessage)
     {
         outMessage = null;
 
@@ -74,6 +83,7 @@ public sealed partial class FancySpeechBubble : Control
             outMessage = "";
             return true; //?? idk just in case
         }
+
         tagStart += tag.Length + 2;
 
         outMessage = rawmsg.Substring(tagStart, tagEnd - tagStart);
@@ -82,13 +92,8 @@ public sealed partial class FancySpeechBubble : Control
 
     private void BuildLines(ChatMessage chatMessage, string? tag)
     {
-        Log.Debug("Bubble message: " + chatMessage.BubbleMessage);
-
         if (chatMessage.BubbleMessage == null)
-        {
-            Log.Debug("bubble message null");
             return;
-        }
 
         string? messageString;
         if (tag == null || !TryGetStringInsideTag(chatMessage, tag, out messageString))
@@ -112,7 +117,7 @@ public sealed partial class FancySpeechBubble : Control
 
         foreach (var rawMessage in wraptest)
         {
-            var message = _chatUIController.HighlightString(rawMessage);
+            var message = _chatUIController.HighlightString(rawMessage); //highlight the text here.. i know
 
             var msg = new FormattedMessage();
 
@@ -139,9 +144,9 @@ public sealed partial class FancySpeechBubble : Control
                 Thickness = thickness,
                 StyleClasses = { "bubbleContent" },
                 HorizontalAlignment = HAlignment.Center,
-                Margin = new Thickness(thickness),
+                Margin = new Thickness(thickness * 3, thickness),
             };
-            label.SetMessage(msg, tagsAllowed: [ typeof(FontTag), typeof(ColorTag), typeof(BoldTag) ]);
+            label.SetMessage(msg, tagsAllowed: [typeof(FontTag), typeof(ColorTag), typeof(BoldTag)]);
 
             var labelContainer = new BoxContainer
             {
@@ -168,4 +173,3 @@ public sealed partial class FancySpeechBubble : Control
         }
     }
 }
-
