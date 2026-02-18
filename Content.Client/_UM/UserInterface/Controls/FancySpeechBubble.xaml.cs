@@ -70,6 +70,9 @@ public sealed partial class FancySpeechBubble : Control
             messageString = chatMessage.WrappedMessage;
         }
 
+        var tmpMsg = new FormattedMessage();
+        tmpMsg.AddMarkupOrThrow(messageString);
+
         var glyphed = false;
 
         var font = ParseFont(chatMessage.WrappedMessage);
@@ -80,12 +83,10 @@ public sealed partial class FancySpeechBubble : Control
         if (font.FontSize != null && !_forceFont)
             _fontSize = font.FontSize.Value;
 
-        var wraptest = WordWrapHelper.WordWrap(messageString, WordWrapLength);
+        var wraptest = WordWrapHelper.WordWrap(tmpMsg.ToString(), WordWrapLength);
 
         foreach (var message in wraptest)
         {
-            Log.Debug("message: " + message);
-
             var msg = new FormattedMessage();
 
             msg.PushTag(new MarkupNode("font",
@@ -111,7 +112,7 @@ public sealed partial class FancySpeechBubble : Control
                 Thickness = thickness,
                 StyleClasses = { "bubbleContent" },
                 HorizontalAlignment = HAlignment.Center,
-                Margin = new Thickness(thickness * 3),
+                Margin = new Thickness(thickness),
             };
             label.SetMessage(msg, tagsAllowed: [ typeof(FontTag), typeof(ColorTag), typeof(BoldTag) ]);
 
