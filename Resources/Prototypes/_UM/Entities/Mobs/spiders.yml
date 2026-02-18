@@ -114,6 +114,14 @@
     castShadows: false
     enabled: false
   - type: Spider
+#  - type: Speech Re-Enable when we have separate font sizes
+#    speechVerb: UMArachnid
+#    suffixSpeechVerbs:
+#      chat-speech-verb-suffix-exclamation-strong: UMArachnidExclamationStrong
+#      chat-speech-verb-suffix-exclamation: UMArachnidExclamation
+#      chat-speech-verb-suffix-question: UMArachnidQuestion
+#      chat-speech-verb-suffix-stutter: UMArachnidStutter
+#      chat-speech-verb-suffix-mumble: UMArachnidMumble
 
 - type: entity
   parent: MobMouse
