@@ -455,5 +455,5 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Blunt: 15
-        Slash: 15
+        Blunt: 13
+        Slash: 13
