@@ -195,14 +195,3 @@
     path: /Audio/Animals/wawa_question.ogg
   exclaimSound:
     path: /Audio/Animals/wawa_exclaim.ogg
-
-#UM START
-- type: speechSounds
-  id: Moth
-  saySound:
-    path: /Audio/Voice/Talk/moth.ogg
-  askSound:
-    path: /Audio/Voice/Talk/moth_ask.ogg
-  exclaimSound:
-    path: /Audio/Voice/Talk/moth_exclaim.ogg
-#UM END
