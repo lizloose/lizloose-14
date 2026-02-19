@@ -69,7 +69,7 @@
   - AppearanceDiona
   - BaseSpeciesMobOrganic
   id: MobDiona
-  name: Urist McPlants
+  name: McUrist Plants
   components:
   - type: Respirator
     damage:

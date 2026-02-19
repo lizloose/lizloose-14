@@ -71,17 +71,16 @@ public sealed class EventManagerSystem : EntitySystem
         GameTicker.AddGameRule(randomLimitedEvent);
     }
 
-    /// <summary>
-    /// Builds a list of all possible events and their probabilities.
-    /// </summary>
-    public IEnumerable<(EntProtoId, double)> ListLimitedEvents(
+    /// <inheritdoc cref="TryBuildLimitedEvents(IEnumerable{EntProtoId},out Dictionary{EntityPrototype,StationEventComponent},TimeSpan?,int?)"/>
+    public bool TryListLimitedEvents(
         EntityTableSelector limitedEventsTable,
+        out Dictionary<EntityPrototype, StationEventComponent> limitedEvents,
         TimeSpan? currentTime = null,
         int? playerCount = null)
     {
         var selectedEvents = _entityTable.ListSpawns(limitedEventsTable);
 
-        return ListLimitedEvents(selectedEvents, currentTime, playerCount);
+        return TryBuildLimitedEvents(selectedEvents, out limitedEvents, currentTime, playerCount);
     }
 
     /// <inheritdoc cref="TryBuildLimitedEvents(IEnumerable{EntProtoId},out Dictionary{EntityPrototype,StationEventComponent},TimeSpan?,int?)"/>
@@ -94,49 +93,6 @@ public sealed class EventManagerSystem : EntitySystem
         var selectedEvents = _entityTable.GetSpawns(limitedEventsTable);
 
         return TryBuildLimitedEvents(selectedEvents, out limitedEvents, currentTime, playerCount);
-    }
-
-    public IEnumerable<(EntProtoId, double)> ListLimitedEvents(
-        IEnumerable<(EntProtoId, double)> selectedEvents,
-        TimeSpan? currentTime = null,
-        int? playerCount = null)
-    {
-        var limitedEvents = new List<(EntProtoId, double)>();
-
-        playerCount ??= _playerManager.PlayerCount;
-
-        // playerCount does a lock so we'll just keep the variable here
-        currentTime ??= GameTicker.RoundDuration();
-
-        var totalWeight = 0f;
-
-        foreach (var (eventId, prob) in selectedEvents)
-        {
-            if (!_prototype.Resolve(eventId, out var eventproto))
-                continue;
-
-            if (eventproto.Abstract)
-                continue;
-
-            if (!eventproto.TryGetComponent<StationEventComponent>(out var stationEvent, EntityManager.ComponentFactory))
-                continue;
-
-            if (!CanRun(eventproto, stationEvent, playerCount.Value, currentTime.Value))
-                continue;
-
-            limitedEvents.Add((eventproto, prob * stationEvent.Weight));
-            totalWeight += stationEvent.Weight;
-        }
-
-        if (!limitedEvents.Any() || totalWeight <= 0)
-            yield break;
-
-        for (var i = 0; i < limitedEvents.Count; i++)
-        {
-            var eventWeight = limitedEvents[i];
-            eventWeight.Item2 /= totalWeight;
-            yield return eventWeight;
-        }
     }
 
     /// <summary>

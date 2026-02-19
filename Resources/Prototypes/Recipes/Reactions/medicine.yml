@@ -677,7 +677,7 @@
     Haloperidol: 5
 
 - type: reaction
-  id: Heparin
+  id: Warfarin
   reactants:
     SulfuricAcid:
       amount: 1
@@ -686,12 +686,12 @@
     Sodium:
       amount: 1
   products:
-    Heparin: 2
+    Warfarin: 2
 
 - type: reaction
   id: Hemorrhinol
   reactants:
-    Heparin:
+    Warfarin:
       amount: 2
     Razorium:
       amount: 2

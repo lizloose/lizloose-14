@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.EntityTable.Conditions;
 using Content.Shared.EntityTable.ValueSelector;
 using JetBrains.Annotations;
@@ -85,43 +84,22 @@ public abstract partial class EntityTableSelector
     }
 
     /// <summary>
-    /// Gets a list of every spawn in the table, and the odds of that spawn occuring, ignoring conditions.
+    /// Gets the spawns in a given table, ignoring the requirements for the table.
+    /// This should only be used for debugging!
     /// </summary>
-    public IEnumerable<(EntProtoId spawn, double prob)> ListSpawns(IEntityManager entMan,
+    public IEnumerable<EntProtoId> ListSpawns(System.Random rand,
+        IEntityManager entMan,
         IPrototypeManager proto,
-        EntityTableContext ctx,
-        float mod = 1f)
+        EntityTableContext ctx)
     {
-        foreach (var (spawn, prob) in ListSpawnsImplementation(entMan, proto, ctx))
+        foreach (var spawn in GetSpawnsImplementation(rand, entMan, proto, ctx))
         {
-            yield return (spawn, prob * Prob * Rolls.Odds() * mod);
-        }
-    }
-
-    /// <summary>
-    /// Gets a list of every spawn in the table, and the average number of occurrences, ignoring conditions.
-    /// </summary>
-    public IEnumerable<(EntProtoId spawn, double prob)> AverageSpawns(IEntityManager entMan,
-        IPrototypeManager proto,
-        EntityTableContext ctx,
-        float mod = 1f)
-    {
-        foreach (var (spawn, prob) in AverageSpawnsImplementation(entMan, proto, ctx))
-        {
-            yield return (spawn, prob * Prob * Rolls.Average() * mod);
+            yield return spawn;
         }
     }
 
     protected abstract IEnumerable<EntProtoId> GetSpawnsImplementation(System.Random rand,
         IEntityManager entMan,
-        IPrototypeManager proto,
-        EntityTableContext ctx);
-
-    protected abstract IEnumerable<(EntProtoId spawn, double)> ListSpawnsImplementation(IEntityManager entMan,
-        IPrototypeManager proto,
-        EntityTableContext ctx);
-
-    protected abstract IEnumerable<(EntProtoId spawn, double)> AverageSpawnsImplementation(IEntityManager entMan,
         IPrototypeManager proto,
         EntityTableContext ctx);
 }

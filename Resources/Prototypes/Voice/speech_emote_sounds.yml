@@ -484,8 +484,6 @@
       collection: Whistles
     Sigh:
       collection: MaleSigh
-    Yawn:
-      collection: VulpkaninYawns
     Scream:
       collection: VulpkaninScreams
     Growl:
@@ -526,8 +524,6 @@
       collection: Whistles
     Sigh:
       collection: FemaleSigh
-    Yawn:
-      collection: VulpkaninYawns
     Scream:
       collection: VulpkaninScreams
     Growl:

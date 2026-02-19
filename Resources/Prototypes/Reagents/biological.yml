@@ -164,8 +164,8 @@
   flavor: metallic
   color: "#f4692e"
   recognizable: true
-  metabolisms:        
-    Bloodstream:
+  metabolisms:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 1.5
