@@ -8,6 +8,7 @@ using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Tag;
 using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Whitelist;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 
@@ -24,6 +25,9 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    //UM START
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    //UM END
 
     private static readonly ProtoId<TagPrototype> HardsuitTag = "Hardsuit";
 
@@ -93,6 +97,10 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
         {
             if (Deleted(target))
                 continue;
+            //UM START
+            if (_whitelist.IsWhitelistPass(injector.Comp.Blacklist, target))
+                continue;
+            //UM END
 
             // Yuck, this is way to hardcodey for my tastes
             // TODO blocking injection with a hardsuit should probably done with a cancellable event or something

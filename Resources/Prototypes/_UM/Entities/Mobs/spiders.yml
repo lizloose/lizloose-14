@@ -320,6 +320,9 @@
   - type: MeleeChemicalInjector
     transferAmount: 4
     solution: melee
+    blacklist:
+      tags:
+      - Spider
   - type: DamageStateVisuals
     states:
       Alive:

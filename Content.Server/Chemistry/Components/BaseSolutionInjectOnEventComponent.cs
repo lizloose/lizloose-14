@@ -1,5 +1,6 @@
 ﻿using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
+using Content.Shared.Whitelist;
 
 namespace Content.Server.Chemistry.Components;
 
@@ -57,4 +58,12 @@ public abstract partial class BaseSolutionInjectOnEventComponent : Component
     /// </summary>
     [DataField]
     public SlotFlags BlockSlots = SlotFlags.NONE;
+
+    //UM START
+    /// <summary>
+    /// Blacklist of entities we can't inject
+    /// </summary>
+    [DataField]
+    public EntityWhitelist Blacklist = new();
+    //UM END
 }
