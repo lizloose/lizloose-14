@@ -16,7 +16,6 @@
         Asphyxiation: -1.0
   - type: StatusEffects
     allowed:
-    - Electrocution
     - TemporaryBlindness
     - Pacified
     - Flashed
