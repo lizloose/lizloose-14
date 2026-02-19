@@ -1,4 +1,34 @@
 - type: entity
+  name: disabler
+  parent: [WeaponDisablerPractice, BaseSecurityCommandContraband]
+  id: UMWeaponDisabler
+  description: A self-defense weapon that exhausts organic targets, weakening them until they collapse.
+  suffix: UM
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/disabler.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/disabler.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: BatteryAmmoProvider
+    proto: UMBulletDisablerWindowPiercing
+    fireCost: 62.5
+  - type: GuideHelp
+    guides:
+    - Security
+    - Antagonists
+  - type: PacifismAllowedGun
+
+- type: entity
   name: energy gun
   parent: [BaseWeaponBatterySmall]
   id: UMWeaponEnergyGun
@@ -18,8 +48,8 @@
     visuals:
       enum.BatteryWeaponFireModeVisuals.State:
         color:
-          BulletDisabler: { color: "#5fcde4" }
-          BulletLaser: { color: "#ff0006" }
+          UMBulletDisablerWindowPiercing: { color: "#5fcde4" }
+          UMBulletLaserWindowPiercing: { color: "#ff0006" }
   - type: Clothing
     sprite: _UM/Objects/Weapons/Guns/Battery/energygun.rsi
     quickEquip: false
@@ -37,12 +67,12 @@
     fireCost: 50
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: BulletDisabler
+    - proto: UMBulletDisablerWindowPiercing
       fireCost: 50
       pacifismAllowedMode: true
       color: "#5fcde4"
-    - proto: BulletLaser
-      fireCost: 100
+    - proto: UMBulletLaserWindowPiercing
+      fireCost: 75
       color: "#ff0006"
   - type: FireModeVisuals
     inhandVisuals:

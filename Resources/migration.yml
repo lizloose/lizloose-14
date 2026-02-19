@@ -19,6 +19,7 @@ GunSafeRifleLecter: PottedPlantRandom
 GunSafePistolMk58: GunSafeDisabler
 CrateSecurityRiot : UMCrateSecurityRiot
 GunSafeLaserCarbine : UMGunSafeLaserCarbine
+WeaponDisabler: UMWeaponDisabler
 # Service
 WeaponShotgunDoubleBarreled : UMWeaponShotgunDoubleBarreled
 WeaponShotgunDoubleBarreledRubber: UMWeaponShotgunDoubleBarreled
