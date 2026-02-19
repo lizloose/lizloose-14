@@ -241,6 +241,7 @@
 - type: loadoutGroup
   id: PassengerShoes
   name: loadout-group-passenger-shoes
+  minLimit: 0 #UM EDIT
   loadouts:
   - BlackShoes
   - WinterBoots
