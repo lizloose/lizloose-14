@@ -35,8 +35,10 @@
   speechVerbStrings:
   - chat-speech-verb-exclamation-strong
   priority: 10
-  fontId: MinecraftBold
-  fontSize: 12
+  #UM START
+  bubbleFontId: MinecraftBold
+  bubbleFontSize: 12
+  #UM END
 
 - type: speechVerb
   id: Arachnid

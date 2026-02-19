@@ -27,9 +27,6 @@
     sprite: Structures/Machines/VendingMachines/pride.rsi
     layers:
     - state: "off"
-    - state: "off"
-      map: ["powered"]
-      shader: unshaded
     - state: "normal-unshaded"
       map: ["screen"]
       shader: unshaded

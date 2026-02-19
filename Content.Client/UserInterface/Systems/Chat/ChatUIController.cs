@@ -818,6 +818,37 @@ public sealed partial class ChatUIController : UIController
         }
     }
 
+    //UM START
+    /// <summary>
+    /// Used for speech bubbles, will take a string and highlight any codewords/highlighted chat words
+    /// </summary>
+    /// <param name="msg"></param>
+    public string HighlightString(string msg)
+    {
+        // Color any words chosen by the client.
+        foreach (var highlight in _highlights)
+        {
+            msg = SharedChatSystem.InjectTagAroundString(msg, highlight, "color", _highlightsColor);
+        }
+
+        // Color any codewords for minds that have roles that use them
+        if (_player.LocalUser != null && _mindSystem != null && _roleCodewordSystem != null)
+        {
+            if (_mindSystem.TryGetMind(_player.LocalUser.Value, out var mindId) && _ent.TryGetComponent(mindId, out RoleCodewordComponent? codewordComp))
+            {
+                foreach (var (_, codewordData) in codewordComp.RoleCodewords)
+                {
+                    foreach (var codeword in codewordData.Codewords)
+                    {
+                        msg = SharedChatSystem.InjectTagAroundString(msg, codeword, "color", codewordData.Color.ToHex());
+                    }
+                }
+            }
+        }
+        return msg;
+    }
+    //UM END
+
     public void ProcessChatMessage(ChatMessage msg, bool speechBubble = true)
     {
         // color the name unless it's something like "the old man"

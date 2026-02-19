@@ -15,7 +15,7 @@ public sealed class RussianAccentSystem : EntitySystem
     public string Accentuate(string message)
     {
         var accentedMessage = new StringBuilder(_replacement.ApplyReplacements(message, "russian"));
-
+        /* UM START NO RUSSIAN
         for (var i = 0; i < accentedMessage.Length; i++)
         {
             var c = accentedMessage[i];
@@ -39,6 +39,7 @@ public sealed class RussianAccentSystem : EntitySystem
                 _ => accentedMessage[i]
             };
         }
+        */ //UM END SORRY I CANT BE ASSED TO HAVE FONTS THIS COMPLETE
 
         return accentedMessage.ToString();
     }

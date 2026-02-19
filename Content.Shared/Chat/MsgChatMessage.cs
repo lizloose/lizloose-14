@@ -24,6 +24,13 @@ namespace Content.Shared.Chat
         /// </summary>
         public string WrappedMessage;
 
+        //UM START
+        /// <summary>
+        /// This is the messsage, formatted for the speech bubbles
+        /// </summary>
+        public string? BubbleMessage;
+        //UM END
+
         public NetEntity SenderEntity;
 
         /// <summary>
@@ -41,11 +48,12 @@ namespace Content.Shared.Chat
         [NonSerialized]
         public bool Read;
 
-        public ChatMessage(ChatChannel channel, string message, string wrappedMessage, NetEntity source, int? senderKey, bool hideChat = false, Color? colorOverride = null, string? audioPath = null, float audioVolume = 0)
+        public ChatMessage(ChatChannel channel, string message, string wrappedMessage, NetEntity source, int? senderKey, bool hideChat = false, Color? colorOverride = null, string? audioPath = null, float audioVolume = 0, string? bubbleMessage = null)
         {
             Channel = channel;
             Message = message;
             WrappedMessage = wrappedMessage;
+            BubbleMessage = bubbleMessage;
             SenderEntity = source;
             SenderKey = senderKey;
             HideChat = hideChat;

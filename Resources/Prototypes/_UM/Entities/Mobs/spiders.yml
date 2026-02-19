@@ -62,10 +62,6 @@
         Quantity: 150
   - type: NameIdentifier
     group: GenericNumber
-  - type: Speech
-    speechVerb: Arachnid
-    speechSounds: Arachnid
-    allowedEmotes: ['Click', 'Chitter']
   - type: Vocal
     sounds:
       Male: UnisexArachnid
@@ -114,6 +110,17 @@
     castShadows: false
     enabled: false
   - type: Spider
+    webPrototype: UMSpiderWeb
+  - type: Speech
+    speechVerb: UMArachnid
+    allowedEmotes: ['Click', 'Chitter']
+    speechSounds: Arachnid
+    suffixSpeechVerbs:
+      chat-speech-verb-suffix-exclamation-strong: UMArachnidExclamationStrong
+      chat-speech-verb-suffix-exclamation: UMArachnidExclamation
+      chat-speech-verb-suffix-question: UMArachnidQuestion
+      chat-speech-verb-suffix-stutter: UMArachnidStutter
+      chat-speech-verb-suffix-mumble: UMArachnidMumble
 
 - type: entity
   parent: MobMouse
