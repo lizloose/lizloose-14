@@ -93,6 +93,7 @@
   - type: ReplacementAccent
     accent: liar
 
+#UM LAST
 - type: trait
   id: IlleismFirst
   name: trait-illeism-first-name
@@ -113,6 +114,8 @@
   cost: 1
   components:
   - type: IlleismAccent
+
+#UM FIRST
 
 # 2 Cost
 
