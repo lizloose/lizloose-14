@@ -12,7 +12,7 @@ public sealed partial class ShuttleJobArrivalsComponent : Component
     /// How long the initial flight should take
     /// </summary>
     [DataField]
-    public TimeSpan FlightDelay = TimeSpan.FromSeconds(240f);
+    public TimeSpan FlightDelay = TimeSpan.FromSeconds(180f);
 
     /// <summary>
     /// How long to wait at station until it leaves
