@@ -10,6 +10,7 @@
     layers:
     - state: cocoon_large1
       map: ["random"]
+  - type: AntiRottingContainer
   - type: ContainerContainer
     containers:
       contents: !type:Container
