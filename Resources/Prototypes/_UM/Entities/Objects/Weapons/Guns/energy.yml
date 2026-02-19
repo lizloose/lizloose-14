@@ -63,7 +63,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: BatteryAmmoProvider
-    proto: BulletDisabler
+    proto: UMBulletDisablerWindowPiercing
     fireCost: 50
   - type: BatteryWeaponFireModes
     fireModes:

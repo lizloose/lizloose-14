@@ -33,6 +33,7 @@
 - type: latheRecipePack
   id: SecurityAmmoStatic
   recipes:
+  - BoxBeanbag #UM EDIT
   - BoxLethalshot
   - BoxShotgunSlug
   - MagazineBoxLightRifle
@@ -49,6 +50,7 @@
   - MagazinePistolSubMachineGunTopMountedEmpty
   - MagazineRifle
   - MagazineRifleEmpty
+  - MagazineShotgunBeanbag #UM EDIT
   - SpeedLoaderMagnum
   - SpeedLoaderMagnumEmpty
 
@@ -99,7 +101,7 @@
 - type: latheRecipePack
   id: SecurityAmmo
   recipes:
-  - BoxBeanbag
+#  - BoxBeanbag UM EDIT
   - BoxShotgunIncendiary
   - BoxShotgunUranium
   - BoxShellTranquilizer
@@ -119,7 +121,7 @@
   - MagazinePistolSubMachineGunUranium
   - MagazineRifleIncendiary
   - MagazineRifleUranium
-  - MagazineShotgunBeanbag
+#  - MagazineShotgunBeanbag #UM EDIT
   - MagazineShotgunIncendiary
   - SpeedLoaderMagnumIncendiary
   - SpeedLoaderMagnumUranium

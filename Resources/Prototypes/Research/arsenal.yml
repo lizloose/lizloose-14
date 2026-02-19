@@ -58,9 +58,9 @@
   tier: 1
   cost: 5000
   recipeUnlocks:
-  - MagazineShotgunBeanbag
+#  - MagazineShotgunBeanbag
   - BoxShellTranquilizer
-  - BoxBeanbag
+#  - BoxBeanbag
   - WeaponDisabler
 
 - type: technology
