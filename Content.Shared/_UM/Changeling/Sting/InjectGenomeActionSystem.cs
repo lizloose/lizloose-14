@@ -26,7 +26,7 @@ public sealed class InjectGenomeActionSystem : EntitySystem
     [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly ChangedGenomeSystem _changedGenome = default!;
+    [Dependency] private readonly UMSharedChangelingSystem _changeling = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -57,7 +57,7 @@ public sealed class InjectGenomeActionSystem : EntitySystem
         if (!Exists(cloneEnt) || _net.IsClient)
             return;
 
-        _changedGenome.TransformInto(args.Target, cloneEnt);
+        _changeling.TransformInto(args.Target, cloneEnt);
 
         _popup.PopupEntity(Loc.GetString(ent.Comp.UserPopup, ("target", args.Target)), args.Performer, args.Performer);
 

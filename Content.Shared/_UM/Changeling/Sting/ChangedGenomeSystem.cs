@@ -24,6 +24,8 @@ public sealed class ChangedGenomeSystem : EntitySystem
     [Dependency] private readonly IdentitySystem _identity = default!;
     [Dependency] private readonly SharedChangelingIdentitySystem _changelingIdentity = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly UMSharedChangelingSystem _changeling = default!;
+
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -45,7 +47,9 @@ public sealed class ChangedGenomeSystem : EntitySystem
             if (comp.EndTime > curTime)
                 continue;
 
-            Transform((uid, comp), comp.OriginalEntity);
+            if (comp.OriginalEntity != null)
+                _changeling.Transform(uid, comp.OriginalEntity.Value);
+
             _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(4));
             RemComp<ChangedGenomeComponent>(uid);
         }
@@ -56,35 +60,4 @@ public sealed class ChangedGenomeSystem : EntitySystem
         ent.Comp.EndTime = _timing.CurTime + ent.Comp.Duration;
     }
 
-    public void TransformInto(EntityUid ent, EntityUid toClone)
-    {
-        var comp = EnsureComp<ChangedGenomeComponent>(ent);
-
-        if (!_prototype.Resolve(comp.Settings, out var settings))
-            return;
-
-        var cloneEnt = _changelingIdentity.CloneToPausedMap(settings, toClone);
-        var ownerClone = _changelingIdentity.CloneToPausedMap(settings, ent);
-
-        comp.OriginalEntity = ownerClone;
-        comp.TransformedEntity = cloneEnt;
-
-        if (!Exists(comp.TransformedEntity) || _net.IsClient)
-            return;
-
-        Transform((ent, comp), comp.TransformedEntity);
-
-        comp.EndTime = _timing.CurTime + comp.Duration;
-    }
-
-    private void Transform(Entity<ChangedGenomeComponent> ent, EntityUid? cloneEnt)
-    {
-        if (!Exists(cloneEnt) || _net.IsClient)
-            return;
-
-        _visualBody.CopyAppearanceFrom(cloneEnt.Value, ent.Owner);
-        _cloning.CloneComponents(cloneEnt.Value, ent.Owner, ent.Comp.Settings);
-        _metaData.SetEntityName(ent.Owner, Name(cloneEnt.Value), raiseEvents: false);
-        _identity.QueueIdentityUpdate(ent.Owner);
-    }
 }
