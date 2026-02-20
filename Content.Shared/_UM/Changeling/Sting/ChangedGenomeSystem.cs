@@ -42,7 +42,7 @@ public sealed class ChangedGenomeSystem : EntitySystem
             if (comp.OriginalEntity != null)
                 _changeling.Transform(uid, comp.OriginalEntity.Value, comp.Settings);
 
-            _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(4));
+            _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(8));
             RemComp<ChangedGenomeComponent>(uid);
         }
     }
