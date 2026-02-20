@@ -1,13 +1,7 @@
 using Content.Shared._UM.Changeling.Sting.Components;
-using Content.Shared.Body;
 using Content.Shared.Changeling.Components;
-using Content.Shared.Changeling.Systems;
-using Content.Shared.Cloning;
-using Content.Shared.Forensics.Systems;
 using Content.Shared.Humanoid;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
-using Content.Shared.StatusEffectNew;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
 
@@ -20,11 +14,6 @@ public sealed class InjectGenomeActionSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
-    [Dependency] private readonly SharedCloningSystem _cloning = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
-    [Dependency] private readonly IdentitySystem _identity = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly UMSharedChangelingSystem _changeling = default!;
 

@@ -1,11 +1,5 @@
 using Content.Shared._UM.Changeling.Sting.Components;
-using Content.Shared.Body;
-using Content.Shared.Changeling.Systems;
-using Content.Shared.Cloning;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Stunnable;
-using Robust.Shared.Network;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._UM.Changeling.Sting;
@@ -18,14 +12,6 @@ public sealed class ChangedGenomeSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedStunSystem _stunSystem = default!;
     [Dependency] private readonly UMSharedChangelingSystem _changeling = default!;
-
-
-    /// <inheritdoc/>
-    public override void Initialize()
-    {
-        base.Initialize();
-
-    }
 
     public override void Update(float frametime)
     {
@@ -46,10 +32,4 @@ public sealed class ChangedGenomeSystem : EntitySystem
             RemComp<ChangedGenomeComponent>(uid);
         }
     }
-
-    private void OnMapInit(Entity<ChangedGenomeComponent> ent, ref MapInitEvent args)
-    {
-        ent.Comp.EndTime = _timing.CurTime + ent.Comp.Duration;
-    }
-
 }
