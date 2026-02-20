@@ -131,7 +131,7 @@
         changelingTransformAction: UMActionChangelingTransform
       - type: ActionGrant
         actions:
-        - ActionChangelingStore
+        - UMActionChangelingStore #UM EDIT
         - ActionEnterStasis
       - type: Store
         name: store-preset-name-changeling
@@ -140,7 +140,7 @@
         currencyWhitelist:
         - ChangelingDNA
         balance:
-          ChangelingDNA: 50
+          ChangelingDNA: 15 #UM EDIT
       mindRoles:
       - MindRoleChangeling
   - type: AntagObjectives

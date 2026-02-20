@@ -5,7 +5,7 @@
   productAction: UMActionRetractableItemArmBlade
   applyToMob: true
   cost:
-      ChangelingDNA: 25
+      ChangelingDNA: 15
   categories:
       - UMChangelingAbilities
   conditions:
@@ -19,7 +19,7 @@
   productAction: ActionStingMute
   applyToMob: true
   cost:
-    ChangelingDNA: 20
+    ChangelingDNA: 10
   categories:
   - UMChangelingAbilities
   conditions:
@@ -33,7 +33,7 @@
   productAction: ActionExtractGenomeSting
   applyToMob: true
   cost:
-    ChangelingDNA: 20
+    ChangelingDNA: 10
   categories:
   - UMChangelingAbilities
   conditions:
@@ -47,7 +47,7 @@
   productAction: ActionInjectGenomeSting
   applyToMob: true
   cost:
-    ChangelingDNA: 20
+    ChangelingDNA: 10
   categories:
   - UMChangelingAbilities
   conditions:

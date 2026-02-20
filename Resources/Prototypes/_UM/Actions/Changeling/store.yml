@@ -1,0 +1,11 @@
+- type: entity
+  parent: ActionIntrinsicStore
+  id: UMActionChangelingStore
+  name: DNA Store
+  description: Opens the ability store.
+  components:
+  - type: Action
+    priority: 10
+    icon: Interface/Actions/shop.png
+  - type: InstantAction
+    event: !type:IntrinsicStoreActionEvent

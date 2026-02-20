@@ -286,7 +286,7 @@
         #UM END
       - type: ActionGrant
         actions:
-        - ActionChangelingStore
+        - UMActionChangelingStore #UM EDIT
         #UM START
         - ActionEnterStasis
         #UM END
@@ -300,7 +300,7 @@
         currencyWhitelist:
         - ChangelingDNA
         balance:
-          ChangelingDNA: 50
+          ChangelingDNA: 15 #UM EDIT
 #UM START
 #      - type: UserInterface
 #        interfaces:

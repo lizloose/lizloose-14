@@ -2,7 +2,6 @@ using Content.Shared._UM.Changeling.Devour.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Armor;
 using Content.Shared.Atmos.Rotting;
-using Content.Shared.Changeling;
 using Content.Shared.Changeling.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -36,7 +35,7 @@ public sealed class UMChangelingDevourActionSystem : EntitySystem
     [Dependency] private readonly UMSharedChangelingSystem _changeling = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
-    private static readonly ProtoId<DamageTypePrototype> RadiationDamageType = "Radiation";
+    private static readonly ProtoId<DamageTypePrototype> CellularDamageType = "Cellular";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -153,7 +152,7 @@ public sealed class UMChangelingDevourActionSystem : EntitySystem
         _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager,
             ent,
             args.DevourConsumeTime,
-            new ChangelingDevourConsumeDoAfterEvent(),
+            new UMChangelingDevourConsumeDoAfterEvent(),
             ent,
             target: args.Target,
             used: ent)
@@ -177,7 +176,7 @@ public sealed class UMChangelingDevourActionSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (!_mobState.IsAlive(target.Value))
+        if (_mobState.IsAlive(target.Value))
         {
             _adminLogger.Add(LogType.Action,
                 LogImpact.Medium,
@@ -201,7 +200,9 @@ public sealed class UMChangelingDevourActionSystem : EntitySystem
             args.User,
             PopupType.LargeCaution);
 
-        _damageable.TryChangeDamage(target.Value, new DamageSpecifier(_prototype.Index(RadiationDamageType), 300));
+        _changeling.TryAddStorePoints(ent.Owner, 15); //TODO: Don't hardcode this
+
+        _damageable.TryChangeDamage(target.Value, new DamageSpecifier(_prototype.Index(CellularDamageType), 300));
 
     }
 }

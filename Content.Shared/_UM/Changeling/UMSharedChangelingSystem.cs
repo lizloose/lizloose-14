@@ -3,6 +3,7 @@ using Content.Shared.Body;
 using Content.Shared.Changeling.Components;
 using Content.Shared.Changeling.Systems;
 using Content.Shared.Cloning;
+using Content.Shared.FixedPoint;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
@@ -15,7 +16,7 @@ namespace Content.Shared._UM.Changeling;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class UMSharedChangelingSystem : EntitySystem
+public abstract class UMSharedChangelingSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -110,5 +111,10 @@ public sealed class UMSharedChangelingSystem : EntitySystem
         _changelingIdentity.CloneToPausedMap((ent, ent.Comp), target);
 
         return true;
+    }
+
+    public virtual bool TryAddStorePoints(EntityUid ent, FixedPoint2 points)
+    {
+        return false;
     }
 }
