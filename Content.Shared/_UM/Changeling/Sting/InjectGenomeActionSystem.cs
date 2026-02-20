@@ -46,6 +46,12 @@ public sealed class InjectGenomeActionSystem : EntitySystem
         if (!HasComp<HumanoidProfileComponent>(args.Target))
             return;
 
+        if (HasComp<ChangedGenomeComponent>(args.Target))
+        {
+            _popup.PopupEntity(Loc.GetString(ent.Comp.AlreadyChangedPopup, ("target", args.Target)), args.Performer, args.Performer);
+            return;
+        }
+
         if (!TryComp<ChangelingIdentityComponent>(args.Performer, out var changelingIdentity))
             return;
 
@@ -57,7 +63,7 @@ public sealed class InjectGenomeActionSystem : EntitySystem
         if (!Exists(cloneEnt) || _net.IsClient)
             return;
 
-        _changeling.TransformInto(args.Target, cloneEnt);
+        _changeling.TransformInto(args.Target, cloneEnt, ent.Comp.Duration);
 
         _popup.PopupEntity(Loc.GetString(ent.Comp.UserPopup, ("target", args.Target)), args.Performer, args.Performer);
 

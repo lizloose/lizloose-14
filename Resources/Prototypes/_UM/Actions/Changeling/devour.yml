@@ -4,13 +4,20 @@
   description: Consume the essence of your victims and subsume their identity and mind into your own.
   components:
   - type: Action
+    useDelay: 3
+    raiseOnAction: true
+    itemIconStyle: BigAction
     icon:
       sprite: _UM/Interface/Actions/changeling.rsi
       state: absorb_dna
     priority: 1
   - type: TargetAction
   - type: EntityTargetAction
-    event: !type:ChangelingDevourActionEvent
+    event: !type:UMChangelingDevourActionEvent
+    whitelist:
+      components:
+      - MobState
+  - type: UMChangelingDevourAction
 
 - type: entity
   id: UMActionChangelingTransform

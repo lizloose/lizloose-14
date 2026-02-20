@@ -1,10 +1,7 @@
 using Content.Shared._UM.Changeling.Sting.Components;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Body;
-using Content.Shared.Changeling.Components;
 using Content.Shared.Changeling.Systems;
-using Content.Shared.Cloning;
-using Content.Shared.Forensics.Components;
 using Content.Shared.Forensics.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Popups;
@@ -16,9 +13,9 @@ namespace Content.Shared._UM.Changeling.Sting;
 /// </summary>
 public sealed class ExtractGenomeActionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedChangelingIdentitySystem _changelingIdentitySystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedForensicsSystem _forensics = default!;
+    // ReSharper disable once InconsistentNaming
+    [Dependency] private readonly UMSharedChangelingSystem _changeling = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -33,22 +30,10 @@ public sealed class ExtractGenomeActionSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!TryComp<ChangelingIdentityComponent>(args.Performer, out var identityStorage))
-            return;
-
-        foreach (var identity in identityStorage.ConsumedIdentities)
+        if (!_changeling.CanExtractDna(args.Performer, args.Target))
         {
-            var name = Name(identity);
-            var targetName = Name(args.Target);
-
-            if (!TryComp<DnaComponent>(identity, out var identityDna) || !TryComp<DnaComponent>(args.Target, out var targetDna))
-                return;
-
-            if (identityDna.DNA == targetDna.DNA)
-            {
-                _popup.PopupClient(Loc.GetString("changeling-extract-genome-sting-already-absorbed", ("target", args.Target)), args.Performer, args.Performer);
-                return;
-            }
+            _popup.PopupClient(Loc.GetString("changeling-extract-genome-sting-already-absorbed", ("target", args.Target)), args.Performer, args.Performer);
+            return;
         }
 
         if (HasComp<RottingComponent>(args.Target))
@@ -57,10 +42,12 @@ public sealed class ExtractGenomeActionSystem : EntitySystem
             return;
         }
 
-        if (!TryComp<BodyComponent>(args.Target, out var body) && !HasComp<HumanoidProfileComponent>(args.Target))
+        if (!HasComp<BodyComponent>(args.Target) && !HasComp<HumanoidProfileComponent>(args.Target))
             return;
 
-        _changelingIdentitySystem.CloneToPausedMap((args.Performer, identityStorage), args.Target);
+        if (!_changeling.TryExtractDna(args.Performer, args.Target))
+            return;
+
         args.Handled = true;
 
         _popup.PopupClient(Loc.GetString(ent.Comp.UserPopup, ("target", args.Target)), args.Performer, args.Performer);

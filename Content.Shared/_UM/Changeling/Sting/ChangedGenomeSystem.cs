@@ -15,15 +15,8 @@ namespace Content.Shared._UM.Changeling.Sting;
 /// </summary>
 public sealed class ChangedGenomeSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
     [Dependency] private readonly SharedStunSystem _stunSystem = default!;
-    [Dependency] private readonly SharedCloningSystem _cloning = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly IdentitySystem _identity = default!;
-    [Dependency] private readonly SharedChangelingIdentitySystem _changelingIdentity = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly UMSharedChangelingSystem _changeling = default!;
 
 
@@ -39,7 +32,6 @@ public sealed class ChangedGenomeSystem : EntitySystem
         base.Update(frametime);
         var curTime = _timing.CurTime;
 
-
         var query = EntityQueryEnumerator<ChangedGenomeComponent>();
 
         while (query.MoveNext(out var uid, out var comp))
@@ -48,7 +40,7 @@ public sealed class ChangedGenomeSystem : EntitySystem
                 continue;
 
             if (comp.OriginalEntity != null)
-                _changeling.Transform(uid, comp.OriginalEntity.Value);
+                _changeling.Transform(uid, comp.OriginalEntity.Value, comp.Settings);
 
             _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(4));
             RemComp<ChangedGenomeComponent>(uid);
