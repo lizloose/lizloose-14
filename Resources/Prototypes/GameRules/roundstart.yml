@@ -35,6 +35,10 @@
     rules:
     - id: Thief
       prob: 0.5
+    #UM START
+    - id: SubChangeling
+      prob: 0.5
+    #UM END
     - id: Xenoborgs
       prob: 0.05
 
@@ -264,7 +268,7 @@
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Changeling ]
-      max: 3
+      max: 2
       playerRatio: 15
       briefing:
         text: changeling-role-greeting

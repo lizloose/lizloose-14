@@ -103,3 +103,47 @@
       max: 4
   - type: DynamicRuleCost
     cost: 200
+
+
+#UM START
+- type: entity
+  id: SubChangeling
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+    minPlayers: 1
+  - type: AntagSelection
+    agentName: changeling-round-end-agent-name
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Changeling ]
+      max: 2
+      playerRatio: 15
+      briefing:
+        text: changeling-role-greeting
+        color: Red
+        sound: /Audio/Ambience/Antag/changeling_start.ogg
+      components:
+      - type: ChangelingDevour
+        changelingDevourAction: UMActionChangelingDevour
+      - type: ChangelingIdentity
+      - type: ChangelingTransform
+        changelingTransformAction: UMActionChangelingTransform
+      - type: ActionGrant
+        actions:
+        - ActionChangelingStore
+        - ActionEnterStasis
+      - type: Store
+        name: store-preset-name-changeling
+        categories:
+        - UMChangelingAbilities
+        currencyWhitelist:
+        - ChangelingDNA
+        balance:
+          ChangelingDNA: 50
+      mindRoles:
+      - MindRoleChangeling
+  - type: AntagObjectives
+    objectives:
+    - ChangelingSurviveObjective
+#UM END
