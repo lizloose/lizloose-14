@@ -629,8 +629,12 @@ public sealed partial class ChatSystem : SharedChatSystem
                 ("message", FormattedMessage.EscapeText(message)));
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Dead chat from {source}: {message}");
         }
+        //UM START
+        var bubbleMessage = Loc.GetString("chat-manager-bubble-dead-chat-wrap-message",
+            ("message", FormattedMessage.EscapeText(message)));
+        //UM END
 
-        _chatManager.ChatMessageToMany(ChatChannel.Dead, message, wrappedMessage, source, hideChat, true, clients.ToList(), author: player.UserId);
+        _chatManager.ChatMessageToMany(ChatChannel.Dead, message, wrappedMessage, source, hideChat, true, clients.ToList(), author: player.UserId, bubbleMessage: bubbleMessage);
     }
     #endregion
 
