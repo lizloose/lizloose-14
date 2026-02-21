@@ -167,6 +167,7 @@
   - type: Physics
   - type: Damageable
     damageModifierSet: Wood
+  - type: Airtight
   - type: Temperature
   - type: TemperatureDamage
     heatDamage:
