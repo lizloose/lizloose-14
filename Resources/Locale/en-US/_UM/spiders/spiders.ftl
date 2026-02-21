@@ -43,12 +43,22 @@ role-subtype-spider = Spider
 role-type-spider-name = Spider
 role-type-broodmother-name = Broodmother
 
-roles-antag-broodmother-name = [color={role-type-spider-color}]Broodmother[/color]
+roles-antag-broodmother-name = Broodmother
 roles-antag-broodmother-objective =
     Create your hive. Spread to every corner of the station.
+    Talk to your fellow spiders using :w
+
+broodmother-role-greeting =
+    You are infected with the Broodmother!
+    Find a good spot on the station to start your hive.
+    Spread to every corner of the station.
     Talk to your fellow spiders using :w
 
 roles-antag-spider-name = Spider
 roles-antag-spider-objective =
     Help the broodmother create the hive.
     Talk to your fellow spiders using :w
+
+
+broodmother-swarm-title = Broodmother Swarm
+broodmother-swarm-description = I'm tired of these motherfucking spiders

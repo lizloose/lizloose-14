@@ -1,0 +1,30 @@
+- type: gamePreset
+  id: UMSecret
+  alias:
+  - secret
+  - sekrit
+  name: secret-title
+  showInVote: true
+  description: secret-description
+  rules:
+  - Secret
+
+- type: gamePreset
+  id: UMTraitor
+  alias:
+  - traitor
+  - tator
+  name: traitor-title
+  description: traitor-description
+  showInVote: true
+  rules:
+  - UMTraitor
+  - UMSubGamemodesRule
+
+- type: gamePreset
+  id: UMBroodmotherSwarm
+  name: broodmother-swarm-title
+  description: broodmother-swarm-description
+  showInVote: true
+  rules:
+  - UMBroodmotherSwarm

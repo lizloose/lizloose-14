@@ -2,6 +2,7 @@
   id: Broodmother
   name: roles-antag-broodmother-name
   antagonist: true
+  setPreference: true
   objective: roles-antag-broodmother-objective
 
 - type: antag

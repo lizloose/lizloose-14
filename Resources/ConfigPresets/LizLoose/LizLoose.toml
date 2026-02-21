@@ -11,6 +11,7 @@ lobbyduration    = 300
 role_timers      = false
 role_loadout_timers = false
 map_pool         = "UMMapPool"
+secret_weight_prototype = "UMSecret"
 
 [shuttle]
 emergency_early_launch_allowed = true
