@@ -1,0 +1,11 @@
+- type: entity
+  id: ChangelingChemicalEnergy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Energy
+    name: changeling
+    amount: 20
+    passiveRegen: 1
+    updateInterval: 5
+    maxRegen: 75
+    alert: ChangelingChemical

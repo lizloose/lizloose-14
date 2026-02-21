@@ -1,0 +1,29 @@
+- type: alert
+  id: ChangelingChemical
+  category: ChangelingChemical
+  icons:
+  - sprite: /Textures/_UM/Interface/Actions/changeling.rsi
+    state: regenerate
+  alertViewEntity: AlertChangelingChemicalSpriteView
+  name: alerts-changeling-energy-name
+  description: alerts-changeling-chemicals-desc
+
+- type: alertCategory
+  id: ChangelingChemical
+
+- type: entity
+  id: AlertChangelingChemicalSpriteView
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GenericCounterAlert
+    centerGlyph: false
+    hideLeadingZeroes: false
+  - type: Sprite
+    sprite: /Textures/Interface/Alerts/essence_counter.rsi
+    layers:
+    - map: [ "enum.AlertVisualLayers.Base" ]
+    - map: [ "1" ]
+      offset: 0.25, 0
+    - map: [ "10" ]
+      offset: 0.125, 0
+    - map: [ "100" ]

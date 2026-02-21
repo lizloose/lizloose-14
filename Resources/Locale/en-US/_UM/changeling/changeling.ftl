@@ -35,3 +35,6 @@ changeling-in-stasis-desc = You're [color=red]in stasis[/color], preparing energ
 
 changeling-finished-stasis-alert-name = [color=red]Revive[/color]
 changeling-finished-stasis-alert-desc = You're [color=green]ready[/color] to exit stasis. Click the alert to revive.
+
+alerts-changeling-energy-name = Chemicals
+alerts-changeling-chemicals-desc = This is a placeholder icon. Please submit a better one

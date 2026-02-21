@@ -290,6 +290,11 @@
         #UM START
         - ActionEnterStasis
         #UM END
+      #UM START
+      - type: EnergyContainer
+        types:
+        - ChangelingChemicalEnergy
+      #UM END
       # TODO: Make it so the changeling gamerule changeling can inherit from the changeling store preset somehow
       - type: Store
         name: store-preset-name-changeling

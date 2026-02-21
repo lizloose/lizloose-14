@@ -5,6 +5,7 @@
   id: BaseAlertOrder
   order:
     # BEGIN UM
+    - category: ChangelingChemical
     - category: SpiderEnergy
     # END UM
     - category: Health

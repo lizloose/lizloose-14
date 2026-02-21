@@ -30,3 +30,7 @@
       state: transform
   - type: InstantAction
     event: !type:ChangelingTransformActionEvent
+  - type: EnergyActionRequirement
+    energyName: changeling
+    fancyName: chemicals
+    amount: 5

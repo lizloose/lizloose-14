@@ -133,6 +133,11 @@
         actions:
         - UMActionChangelingStore #UM EDIT
         - ActionEnterStasis
+      #UM START
+      - type: EnergyContainer
+        types:
+        - ChangelingChemicalEnergy
+      #UM END
       - type: Store
         name: store-preset-name-changeling
         categories:
