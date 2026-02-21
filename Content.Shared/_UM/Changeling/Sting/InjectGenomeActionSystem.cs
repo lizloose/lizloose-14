@@ -32,6 +32,9 @@ public sealed class InjectGenomeActionSystem : EntitySystem
         if (args.Target == args.Performer)
             return;
 
+        if (_net.IsClient) //I know, but sigh.
+            return;
+
         if (!HasComp<HumanoidProfileComponent>(args.Target))
             return;
 
