@@ -6,6 +6,8 @@
   components:
   - type: Action
     priority: 10
-    icon: Interface/Actions/shop.png
+    icon:
+      sprite: _UM/Interface/Actions/changeling.rsi
+      state: changelingsting
   - type: InstantAction
     event: !type:IntrinsicStoreActionEvent
