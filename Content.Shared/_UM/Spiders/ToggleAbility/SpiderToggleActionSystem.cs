@@ -50,6 +50,7 @@ public sealed class SpiderToggleActionSystem : EntitySystem
     {
         _actionsSystem.AddAction(ent, ref ent.Comp.ActionEntity, ent.Comp.Action);
 
+        ent.Comp.NextUpdate = ent.Comp.UpdateInterval + _timing.CurTime;
     }
 
     private void OnShutdown(Entity<SpiderToggleActionComponent> ent, ref ComponentShutdown args)
@@ -71,5 +72,4 @@ public sealed class SpiderToggleActionSystem : EntitySystem
         if (_toggle.IsActivated(ent.Owner))
             args.Handled = _toggle.Toggle(ent.Owner, args.Performer);
     }
-
 }
