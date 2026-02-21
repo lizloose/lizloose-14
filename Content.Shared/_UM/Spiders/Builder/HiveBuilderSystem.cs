@@ -136,7 +136,9 @@ public sealed class HiveBuilderSystem : EntitySystem
         if (!_energy.TrySpendEnergy(ent.Owner, ent.Comp.EnergyName, buildPrototype.Cost))
             return;
 
-        PredictedSpawnAtPosition(buildPrototype.Prototype, GetCoordinates(args.TargetCoordinates));
+        var build = PredictedSpawnAtPosition(buildPrototype.Prototype, GetCoordinates(args.TargetCoordinates));
+
+        _transform.SetLocalRotation(build, 0); //yeah i dunno
 
         args.Handled = true;
     }
