@@ -111,7 +111,7 @@
   parent: BaseGameRule
   components:
   - type: GameRule
-    minPlayers: 1
+    minPlayers: 15
   - type: AntagSelection
     agentName: changeling-round-end-agent-name
     selectionTime: IntraPlayerSpawn
