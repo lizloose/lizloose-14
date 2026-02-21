@@ -21,8 +21,8 @@
     - id: SlimesSpawn
     - id: SolarFlare
     - id: SnakeSpawn
-    - id: SpiderClownSpawn
-    - id: SpiderSpawn
+    #- id: SpiderClownSpawn UM EDIT we have real spiders now
+    #- id: SpiderSpawn
     - id: VentClog
 
 - type: entityTable

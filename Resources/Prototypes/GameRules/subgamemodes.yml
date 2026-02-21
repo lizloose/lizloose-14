@@ -134,6 +134,7 @@
         - UMActionChangelingStore #UM EDIT
         - ActionEnterStasis
       #UM START
+      - type: UMChangeling
       - type: EnergyContainer
         types:
         - ChangelingChemicalEnergy

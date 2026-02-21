@@ -291,6 +291,7 @@
         - ActionEnterStasis
         #UM END
       #UM START
+      - type: UMChangeling
       - type: EnergyContainer
         types:
         - ChangelingChemicalEnergy
