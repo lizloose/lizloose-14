@@ -22,7 +22,7 @@
   parent: BaseActionSolutionInject
   id: ActionStingMute
   name: Mute Sting
-  description: We silently sting a human, completely silencing them for a short time. Does not provide a warning to the victim that they have been stung, until they try to speak and cannot.
+  description: We silently sting a human, completely silencing them for a short time. Does not provide a warning to the victim that they have been stung, until they try to speak and cannot. [color=red]Requires 20 Chemicals[/color]
   components:
   - type: Action
     useDelay: 60
@@ -45,7 +45,7 @@
   parent: BaseAction
   id: ActionExtractGenomeSting
   name: Extract DNA
-  description: dna
+  description: dna [color=red]Requires 20 Chemicals[/color]
   components:
   - type: Action
     useDelay: 60
@@ -70,7 +70,7 @@
   parent: BaseAction
   id: ActionInjectGenomeSting
   name: Transformation Sting
-  description: We silently sting an organism, injecting a retrovirus that forces them to transform.
+  description: We silently sting an organism, injecting a retrovirus that forces them to transform. [color=red]Requires 20 Chemicals[/color]
   components:
   - type: Action
     useDelay: 60

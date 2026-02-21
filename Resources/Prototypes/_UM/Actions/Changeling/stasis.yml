@@ -16,10 +16,6 @@
   - type: EnterStasisAction
   - type: ConfirmableAction
     popup: changeling-enter-stasis-confirm
-  - type: EnergyActionRequirement
-    energyName: changeling
-    fancyName: chemicals
-    amount: 15
 
 - type: alert
   id: StasisRegenerating
