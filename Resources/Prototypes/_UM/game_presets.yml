@@ -20,6 +20,8 @@
   rules:
   - UMTraitor
   - UMSubGamemodesRule
+  - UMBasicStationEventScheduler
+  - BasicRoundstartVariation
 
 - type: gamePreset
   id: UMBroodmotherSwarm
@@ -28,3 +30,17 @@
   showInVote: true
   rules:
   - UMBroodmotherSwarm
+  - UMBasicStationEventScheduler
+  - BasicRoundstartVariation
+
+# no antags just lowpop
+- type: gamePreset
+  id: UMLowPop
+  name: extended-title
+  showInVote: false
+  description: extended-description
+  rules:
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation

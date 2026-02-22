@@ -50,7 +50,6 @@
       mindRoles:
       - MindRoleTraitor
 
-
 - type: entity
   id: UMBroodmotherSwarm
   parent: BaseGameRule
@@ -77,3 +76,24 @@
         protoId: MobBroodmother
       mindRoles:
       - MindRoleBroodmother
+
+- type: entity
+  id: UMBasicStationEventScheduler
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: UMBasicGameRulesTable
+
+
+# event schedulers
+- type: entityTable
+  id: UMBasicGameRulesTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - !type:NestedSelector
+      tableId: UMBasicCalmEventsTable
+    - !type:NestedSelector
+      tableId: CargoGiftsTable
+    - !type:NestedSelector
+      tableId: CalmPestEventsTable

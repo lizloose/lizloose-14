@@ -14,8 +14,6 @@
     children:
     - id: KingRatMigration
     - id: SnailMigration
-    #UM START
-    - id: BroodmotherSpawn
 
 # events
 
