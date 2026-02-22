@@ -2,6 +2,7 @@
 using Content.Client.Ghost;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.UserInterface.Systems.Ghost.Widgets;
+using Content.Shared._UM.Ghost;
 using Content.Shared.Ghost;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
@@ -42,7 +43,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         system.PlayerUpdated += OnPlayerUpdated;
         system.PlayerAttached += OnPlayerAttached;
         system.PlayerDetached += OnPlayerDetached;
-        system.GhostWarpsResponse += OnWarpsResponse;
+        system.UMGhostWarpsResponse += OnWarpsResponse; //UM EDIT
         system.GhostRoleCountUpdated += OnRoleCountUpdated;
     }
 
@@ -52,7 +53,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         system.PlayerUpdated -= OnPlayerUpdated;
         system.PlayerAttached -= OnPlayerAttached;
         system.PlayerDetached -= OnPlayerDetached;
-        system.GhostWarpsResponse -= OnWarpsResponse;
+        system.UMGhostWarpsResponse -= OnWarpsResponse; //UM EDIT
         system.GhostRoleCountUpdated -= OnRoleCountUpdated;
     }
 
@@ -91,12 +92,12 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui?.Hide();
     }
 
-    private void OnWarpsResponse(GhostWarpsResponseEvent msg)
+    private void OnWarpsResponse(UMGhostWarpsResponseEvent msg) //UM EDIT
     {
         if (Gui?.TargetWindow is not { } window)
             return;
 
-        window.UpdateWarps(msg.Warps);
+        window.UpdateWarps(msg.PlayerWarps, msg.LocationWarps); //UM EDIT
         window.Populate();
     }
 
@@ -153,7 +154,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     {
         _system?.RequestWarps();
         Gui?.TargetWindow.Populate();
-        Gui?.TargetWindow.OpenCentered();
+        Gui?.TargetWindow.Open(); //UM EDIT
     }
 
     private void GhostRolesPressed()

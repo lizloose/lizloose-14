@@ -4,7 +4,9 @@ using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
+using Content.Server.Roles;
 using Content.Server.Roles.Jobs;
+using Content.Shared._UM.Ghost;
 using Content.Shared.Actions;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
@@ -70,6 +72,7 @@ namespace Content.Server.Ghost
         [Dependency] private readonly TagSystem _tag = default!;
         [Dependency] private readonly NameModifierSystem _nameMod = default!;
         [Dependency] private readonly GhostSpriteStateSystem _ghostState = default!;
+        [Dependency] private readonly RoleSystem _roleSystem = default!;
 
         private EntityQuery<GhostComponent> _ghostQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
@@ -299,7 +302,9 @@ namespace Content.Server.Ghost
                 return;
             }
 
-            var response = new GhostWarpsResponseEvent(GetPlayerWarps(entity).Concat(GetLocationWarps()).ToList());
+            //var response = new GhostWarpsResponseEvent(GetPlayerWarps(entity).Concat(GetLocationWarps()).ToList());
+            //RaiseNetworkEvent(response, args.SenderSession.Channel);
+            var response = new UMGhostWarpsResponseEvent(UMGetPlayerWarps(entity).ToList(), UMGetLocationWarps().ToList());
             RaiseNetworkEvent(response, args.SenderSession.Channel);
         }
 
@@ -385,6 +390,42 @@ namespace Content.Server.Ghost
             }
         }
 
+        //UM START
+        private IEnumerable<UMPlayerWarp> UMGetPlayerWarps(EntityUid except)
+        {
+            foreach (var player in _player.Sessions)
+            {
+                if (player.AttachedEntity is not {Valid: true} attached)
+                    continue;
+
+                if (attached == except)
+                    continue;
+
+                if (!_mind.TryGetMind(player.UserId, out var mind))
+                    continue;
+
+                _jobs.MindTryGetJobId(mind, out var job);
+
+                var antag = _roleSystem.MindIsAntagonist(mind);
+
+                var playerName = Comp<MetaDataComponent>(attached).EntityName;
+
+                if (_mobState.IsAlive(attached) || _mobState.IsCritical(attached))
+                    yield return new UMPlayerWarp(GetNetEntity(attached), playerName, job, antag);
+            }
+        }
+
+        private IEnumerable<UMLocationWarp> UMGetLocationWarps()
+        {
+            var allQuery = AllEntityQuery<WarpPointComponent>();
+
+            while (allQuery.MoveNext(out var uid, out var warp))
+            {
+                yield return new UMLocationWarp(GetNetEntity(uid), warp.Location ?? Name(uid));
+            }
+        }
+
+        //UM END
         #endregion
 
         private void OnEntityStorageInsertAttempt(EntityUid uid, GhostComponent comp, ref InsertIntoEntityStorageAttemptEvent args)

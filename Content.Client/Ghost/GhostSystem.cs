@@ -1,4 +1,5 @@
 using Content.Client.Movement.Systems;
+using Content.Shared._UM.Ghost;
 using Content.Shared.Actions;
 using Content.Shared.Ghost;
 using Robust.Client.Console;
@@ -48,8 +49,12 @@ namespace Content.Client.Ghost
         public event Action<GhostComponent>? PlayerUpdated;
         public event Action<GhostComponent>? PlayerAttached;
         public event Action? PlayerDetached;
-        public event Action<GhostWarpsResponseEvent>? GhostWarpsResponse;
+        //public event Action<GhostWarpsResponseEvent>? GhostWarpsResponse; UM EDIT
         public event Action<GhostUpdateGhostRoleCountEvent>? GhostRoleCountUpdated;
+
+        //UM START
+        public event Action<UMGhostWarpsResponseEvent>? UMGhostWarpsResponse;
+        //UM END
 
         public override void Initialize()
         {
@@ -62,7 +67,7 @@ namespace Content.Client.Ghost
             SubscribeLocalEvent<GhostComponent, LocalPlayerAttachedEvent>(OnGhostPlayerAttach);
             SubscribeLocalEvent<GhostComponent, LocalPlayerDetachedEvent>(OnGhostPlayerDetach);
 
-            SubscribeNetworkEvent<GhostWarpsResponseEvent>(OnGhostWarpsResponse);
+            SubscribeNetworkEvent<UMGhostWarpsResponseEvent>(OnGhostWarpsResponse); //UM EDIT
             SubscribeNetworkEvent<GhostUpdateGhostRoleCountEvent>(OnUpdateGhostRoleCount);
 
             SubscribeLocalEvent<EyeComponent, ToggleLightingActionEvent>(OnToggleLighting);
@@ -165,14 +170,15 @@ namespace Content.Client.Ghost
             PlayerDetached?.Invoke();
         }
 
-        private void OnGhostWarpsResponse(GhostWarpsResponseEvent msg)
+        private void OnGhostWarpsResponse(UMGhostWarpsResponseEvent msg) //UM EDIT
         {
             if (!IsGhost)
             {
                 return;
             }
 
-            GhostWarpsResponse?.Invoke(msg);
+            //GhostWarpsResponse?.Invoke(msg); UM EDIT
+            UMGhostWarpsResponse?.Invoke(msg); //UM EDIT
         }
 
         private void OnUpdateGhostRoleCount(GhostUpdateGhostRoleCountEvent msg)

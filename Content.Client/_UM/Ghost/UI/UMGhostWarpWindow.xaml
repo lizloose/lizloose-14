@@ -1,0 +1,48 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               Title="{Loc 'ghost-target-window-title'}"
+               MinSize="600 250"
+               SetSize="600 300">
+
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" SizeFlagsStretchRatio="0.4">
+        <Button Name="GhostnadoButton" Text="{Loc 'ghost-target-window-warp-to-most-followed'}" HorizontalAlignment="Center" Margin="0 4" />
+        <LineEdit Name="SearchBar" PlaceHolder="Search" HorizontalExpand="True" Margin="0 4" />
+        <ScrollContainer Name="GhostScroll" VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
+
+            <BoxContainer Orientation="Vertical" Align="Begin" VerticalAlignment="Top">
+
+                <BoxContainer HorizontalExpand="True" VerticalExpand="True">
+                    <Collapsible BodyVisible="True">
+                        <CollapsibleHeading Title="Antagonists"/>
+                        <CollapsibleBody>
+                            <WrapContainer Name="AntagonistButtons" VerticalExpand="True" HorizontalExpand="True" Justification="Center" CrossSeparationOverride="8">
+                                <!--locations go here-->
+                            </WrapContainer>
+                        </CollapsibleBody>
+                    </Collapsible>
+                </BoxContainer>
+
+                <BoxContainer HorizontalExpand="True" VerticalExpand="True">
+                    <Collapsible BodyVisible="True">
+                        <CollapsibleHeading Title="Players"/>
+                        <CollapsibleBody>
+                            <WrapContainer Name="PlayerButtons" VerticalExpand="True" HorizontalExpand="True" Justification="Center" CrossSeparationOverride="8">
+                                <!--locations go here-->
+                            </WrapContainer>
+                        </CollapsibleBody>
+                    </Collapsible>
+                </BoxContainer>
+
+                <BoxContainer HorizontalExpand="True" VerticalExpand="True">
+                    <Collapsible>
+                        <CollapsibleHeading Title="Locations"/>
+                        <CollapsibleBody>
+                            <WrapContainer Name="LocationButtons" VerticalExpand="True" HorizontalExpand="True" Justification="Center" CrossSeparationOverride="8">
+                                <!--locations go here-->
+                            </WrapContainer>
+                        </CollapsibleBody>
+                    </Collapsible>
+                </BoxContainer>
+            </BoxContainer>
+        </ScrollContainer>
+    </BoxContainer>
+</DefaultWindow>
