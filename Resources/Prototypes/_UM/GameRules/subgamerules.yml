@@ -56,7 +56,7 @@
       min: 600
       max: 960
   - type: AntagSelection
-    agentName: TODO
+    agentName: broodmother-round-end-agent-name
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Broodmother ]
