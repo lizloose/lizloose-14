@@ -35,10 +35,6 @@
     rules:
     - id: Thief
       prob: 0.5
-    #UM START
-    - id: SubChangeling
-      prob: 0.5
-    #UM END
     - id: Xenoborgs
       prob: 0.05
 

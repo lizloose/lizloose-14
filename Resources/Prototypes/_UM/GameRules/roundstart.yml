@@ -85,7 +85,6 @@
     scheduledGameRules: !type:NestedSelector
       tableId: UMBasicGameRulesTable
 
-
 # event schedulers
 - type: entityTable
   id: UMBasicGameRulesTable

@@ -24,7 +24,6 @@
   - type: DynamicRuleCost
     cost: 75
 
-
 - type: entityTable
   id: UMBasicCalmEventsTable
   table: !type:AllSelector
