@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/22/2026 00:56:03
-  entityCount: 23903
+  time: 02/22/2026 01:20:01
+  entityCount: 23904
 maps:
 - 5350
 grids:
@@ -6471,7 +6471,7 @@ entities:
             2: 34952
           6,-6:
             2: 61440
-            6: 224
+            5: 224
           6,-5:
             0: 112
             2: 2184
@@ -6480,7 +6480,7 @@ entities:
             3: 57344
           6,-7:
             3: 224
-            5: 57344
+            6: 57344
           6,-9:
             3: 57568
           7,-5:
@@ -7562,11 +7562,11 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-            Oxygen: 6666.982
+            Nitrogen: 6666.982
         - volume: 2500
           temperature: 293.15
           moles:
-            Nitrogen: 6666.982
+            Oxygen: 6666.982
         chunkSize: 4
     - type: BecomesStation
       id: Marathon
@@ -11788,7 +11788,7 @@ entities:
       pos: 34.5,45.5
       parent: 30
     - type: Door
-      secondsUntilStateChange: -49214.484
+      secondsUntilStateChange: -49243.086
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -125941,6 +125941,13 @@ entities:
     components:
     - type: Transform
       pos: 24.5,1.5
+      parent: 30
+- proto: SpawnPointReporter
+  entities:
+  - uid: 23904
+    components:
+    - type: Transform
+      pos: -75.5,-36.5
       parent: 30
 - proto: SpawnPointResearchAssistant
   entities:
