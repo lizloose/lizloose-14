@@ -10,7 +10,7 @@
 
             <BoxContainer Orientation="Vertical" Align="Begin" VerticalAlignment="Top">
 
-                <BoxContainer HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer HorizontalExpand="True" VerticalExpand="True" Margin="0 8 0 8">
                     <Collapsible BodyVisible="True">
                         <CollapsibleHeading Title="Antagonists"/>
                         <CollapsibleBody>
@@ -21,7 +21,7 @@
                     </Collapsible>
                 </BoxContainer>
 
-                <BoxContainer HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer HorizontalExpand="True" VerticalExpand="True" Margin="0 8 0 8">
                     <Collapsible BodyVisible="True">
                         <CollapsibleHeading Title="Players"/>
                         <CollapsibleBody>
@@ -32,7 +32,7 @@
                     </Collapsible>
                 </BoxContainer>
 
-                <BoxContainer HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer HorizontalExpand="True" VerticalExpand="True" Margin="0 8 0 8">
                     <Collapsible>
                         <CollapsibleHeading Title="Locations"/>
                         <CollapsibleBody>
