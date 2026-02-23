@@ -49,17 +49,33 @@ public sealed partial class UMGhostWarpWindow : DefaultWindow
 
         _locationWarps = locationWarps.ToList();
     }
-
     public void Populate()
     {
-        LocationButtons.RemoveAllChildren();
-        PlayerButtons.RemoveAllChildren();
-        AntagonistButtons.RemoveAllChildren();
+        CategoryContainer.RemoveAllChildren();
         AddButtons();
     }
 
     private void AddButtons()
     {
+        var antagonistCategory = new UMGhostWarpCategory
+        {
+            Text = "Antagonists",
+        };
+        CategoryContainer.AddChild(antagonistCategory);
+
+        var playerCategory = new UMGhostWarpCategory
+        {
+            Text = "Players",
+        };
+        CategoryContainer.AddChild(playerCategory);
+
+        var locationCategory = new UMGhostWarpCategory
+        {
+            Text = "Locations",
+            Justification = WrapContainer.ItemJustification.Center,
+        };
+        CategoryContainer.AddChild(locationCategory);
+
         foreach (var warp in _playerWarps)
         {
              var currentButtonRef = new UMPlayerButton();
@@ -67,13 +83,12 @@ public sealed partial class UMGhostWarpWindow : DefaultWindow
 
             currentButtonRef.OnPressed += _ => WarpClicked?.Invoke(warp.Entity);
             currentButtonRef.Visible = ButtonIsVisible(currentButtonRef);
-
             if (warp.Antagonist)
             {
-                AntagonistButtons.AddChild(currentButtonRef);
+                antagonistCategory.AddButton(currentButtonRef);
                 continue;
             }
-            PlayerButtons.AddChild(currentButtonRef);
+            playerCategory.AddButton(currentButtonRef);
         }
 
         foreach (var warp in _locationWarps)
@@ -91,7 +106,7 @@ public sealed partial class UMGhostWarpWindow : DefaultWindow
             currentButtonRef.OnPressed += _ => WarpClicked?.Invoke(warp.Entity);
             currentButtonRef.Visible = ButtonIsVisible(currentButtonRef);
 
-            LocationButtons.AddChild(currentButtonRef);
+            locationCategory.AddButton(currentButtonRef);
         }
     }
 
@@ -107,20 +122,19 @@ public sealed partial class UMGhostWarpWindow : DefaultWindow
 
     private void UpdateVisibleButtons()
     {
-        foreach (var child in LocationButtons.Children)
+        foreach (var child in CategoryContainer.Children)
         {
-            if (child is Button button)
-                button.Visible = ButtonIsVisible(button);
-        }
-        foreach (var child in PlayerButtons.Children)
-        {
-            if (child is UMPlayerButton button)
-                button.Visible = PlayerButtonIsVisible(button);
-        }
-        foreach (var child in AntagonistButtons.Children)
-        {
-            if (child is UMPlayerButton button)
-                button.Visible = PlayerButtonIsVisible(button);
+            if (child is UMGhostWarpCategory category)
+            {
+                foreach (var button in category.GetButtons())
+                {
+                    if (button is Button normButton)
+                        normButton.Visible = ButtonIsVisible(normButton);
+
+                    if (button is UMPlayerButton playerButton)
+                        playerButton.Visible = PlayerButtonIsVisible(playerButton);
+                }
+            }
         }
     }
 

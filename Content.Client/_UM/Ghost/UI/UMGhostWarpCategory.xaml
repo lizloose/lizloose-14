@@ -1,0 +1,16 @@
+<controls:UMGhostWarpCategory
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._UM.Ghost.UI"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+
+    <BoxContainer HorizontalExpand="True" VerticalExpand="True" Margin="0 8 0 8">
+        <Collapsible Name="Collapsible" BodyVisible="True" Visible="False">
+            <CollapsibleHeading Name="Heading"/>
+            <CollapsibleBody>
+                <WrapContainer Name="ButtonContainer" VerticalExpand="True" HorizontalExpand="True" Justification="Begin" CrossSeparationOverride="8">
+                </WrapContainer>
+            </CollapsibleBody>
+        </Collapsible>
+    </BoxContainer>
+
+</controls:UMGhostWarpCategory>
