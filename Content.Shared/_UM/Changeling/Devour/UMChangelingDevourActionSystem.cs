@@ -92,7 +92,7 @@ public sealed class UMChangelingDevourActionSystem : EntitySystem
 
         if (IsTargetProtected(target, ent.Comp.ProtectiveDamageTypes, ent.Comp.DevourPreventionPercentageThreshold))
         {
-            _popupSystem.PopupClient(Loc.GetString("changeling-devour-attempt-failed-protected"), ent, ent, PopupType.Medium);
+            _popupSystem.PopupClient(Loc.GetString("changeling-devour-attempt-failed-protected"), args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
