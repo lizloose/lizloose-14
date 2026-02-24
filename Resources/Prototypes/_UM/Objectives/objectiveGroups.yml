@@ -1,0 +1,30 @@
+- type: weightedRandom
+  id: ChangelingObjectiveGroups
+  weights:
+    ChangelingObjectiveGroupsDevourCount: 1
+    ChangelingObjectiveGroupSurvive: 1
+
+
+- type: weightedRandom
+  id: ChangelingObjectiveGroupsDevourCount
+  weights:
+    UMChangelingDevourCountObjective: 1
+
+
+- type: weightedRandom
+  id: ChangelingObjectiveGroupsDevour
+  weights:
+    ChangelingObjectiveGroupsDevourIndividual: 1
+
+- type: weightedRandom
+  id: ChangelingObjectiveGroupsDevourIndividual
+  weights:
+    UMChangelingDevourObjective: 1
+
+
+
+- type: weightedRandom
+  id: ChangelingObjectiveGroupSurvive
+  weights:
+    UMChangelingEscapeShuttleObjective: 1
+    UMChangelingSurviveObjective: 0.4

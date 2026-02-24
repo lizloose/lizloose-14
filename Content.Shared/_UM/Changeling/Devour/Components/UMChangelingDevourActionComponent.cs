@@ -117,3 +117,11 @@ public sealed partial class UMChangelingDevourWindupDoAfterEvent : DoAfterEvent
 /// </summary>
 [Serializable, NetSerializable]
 public sealed partial class UMChangelingDevourConsumeDoAfterEvent : SimpleDoAfterEvent;
+
+
+/// <summary>
+/// Event raised whenever a changeling devours someone
+/// </summary>
+/// <param name="Origin">The changeling that did the devouring</param>
+/// <param name="Target">The entity that got devoured</param>
+public record struct ChangelingDevouredEvent(EntityUid Origin, EntityUid Target);

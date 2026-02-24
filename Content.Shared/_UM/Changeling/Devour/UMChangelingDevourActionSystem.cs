@@ -168,15 +168,16 @@ public sealed class UMChangelingDevourActionSystem : EntitySystem
         ref UMChangelingDevourConsumeDoAfterEvent args)
     {
         args.Handled = true;
-        var target = args.Target;
-
-        if (target == null)
+        if (args.Target == null)
             return;
+
+        var target = args.Target.Value;
+
 
         if (args.Cancelled)
             return;
 
-        if (_mobState.IsAlive(target.Value))
+        if (_mobState.IsAlive(target))
         {
             _adminLogger.Add(LogType.Action,
                 LogImpact.Medium,
@@ -188,7 +189,7 @@ public sealed class UMChangelingDevourActionSystem : EntitySystem
             return;
         }
 
-        if (!_changeling.TryExtractDna((ent, ent.Comp), target.Value))
+        if (!_changeling.TryExtractDna((ent, ent.Comp), target))
             return;
 
         var selfMessage = Loc.GetString("changeling-devour-consume-complete-self", ("user", Identity.Entity(args.User, EntityManager)));
@@ -202,7 +203,10 @@ public sealed class UMChangelingDevourActionSystem : EntitySystem
 
         _changeling.TryAddStorePoints(ent.Owner, 15); //TODO: Don't hardcode this
 
-        _damageable.TryChangeDamage(target.Value, new DamageSpecifier(_prototype.Index(CellularDamageType), 300));
+        _damageable.TryChangeDamage(target, new DamageSpecifier(_prototype.Index(CellularDamageType), 300));
+
+        var ev = new ChangelingDevouredEvent(ent.Owner, target);
+        RaiseLocalEvent(target, ev, true);
 
     }
 }

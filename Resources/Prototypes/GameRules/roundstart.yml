@@ -315,6 +315,9 @@
   - type: AntagObjectives
     objectives:
     - ChangelingSurviveObjective
+    - UMChangelingDevourObjective #UM EDIT
+    - UMChangelingDevourObjective #UM EDIT
+    - UMChangelingDevourCountObjective #UM EDIT
 
 - type: entity
   id: Revolutionary

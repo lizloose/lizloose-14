@@ -6,7 +6,7 @@
     rules:
     - id: Thief
       prob: 1.0
-    - id: UMSubChangeling
+    - id: UMChangeling
       prob: 0.5
     - id: UMSubBroodmotherInfection
       prob: 0.5
@@ -49,6 +49,60 @@
       lateJoinAdditional: false
       mindRoles:
       - MindRoleTraitor
+
+- type: entity
+  id: UMChangeling
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+    minPlayers: 20
+  - type: AntagRandomObjectives
+    sets:
+    - groups: ChangelingObjectiveGroupsDevour
+      prob: 0.5
+      maxPicks: 2
+    - groups: ChangelingObjectiveGroups
+      prob: 1
+      maxPicks: 2
+    maxDifficulty: 6
+  - type: AntagSelection
+    agentName: changeling-round-end-agent-name
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Changeling ]
+      max: 2
+      playerRatio: 16
+      lateJoinAdditional: true
+      allowNonHumans: true
+      multiAntagSetting: NotExclusive
+      briefing:
+        text: changeling-role-greeting
+        color: Red
+        sound: /Audio/Ambience/Antag/changeling_start.ogg
+      components:
+      - type: ChangelingDevour
+        changelingDevourAction: UMActionChangelingDevour
+      - type: ChangelingIdentity
+      - type: ChangelingTransform
+        changelingTransformAction: UMActionChangelingTransform
+      - type: ActionGrant
+        actions:
+        - UMActionChangelingStore #UM EDIT
+        - ActionEnterStasis
+      - type: UMChangeling
+      - type: EnergyContainer
+        types:
+        - ChangelingChemicalEnergy
+      - type: Store
+        name: store-preset-name-changeling
+        categories:
+        - UMChangelingAbilities
+        currencyWhitelist:
+        - ChangelingDNA
+        balance:
+          ChangelingDNA: 15
+      mindRoles:
+      - MindRoleChangeling
 
 - type: entity
   id: UMBroodmotherSwarm
