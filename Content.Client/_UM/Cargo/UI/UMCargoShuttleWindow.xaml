@@ -2,8 +2,6 @@
                MinSize="300 150"
                Title="Cargo Shuttle"
                Resizable="False">
-
-
     <BoxContainer Orientation="Vertical" Align="Center">
         <Label Name="LocationLabel" Align="Center"  Margin="4"></Label>
         <Label Name="StatusLabel" Align="Center"  Margin="4"></Label>
@@ -12,5 +10,4 @@
         </BoxContainer>
         <Button Name="SendButton" MaxWidth="80" Text="Send"></Button>
     </BoxContainer>
-
 </DefaultWindow>
