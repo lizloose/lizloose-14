@@ -26,6 +26,9 @@ public sealed partial class UMCargoSystem
         if (!Resolve(ent, ref ent.Comp))
             return;
 
+        if (!TryComp<UMCargoShuttleComponent>(ent.Owner, out var cargoShuttleComponent))
+            return;
+
         if (TryComp<FTLComponent>(ent.Owner, out var ftlComponent) && ftlComponent.State != FTLState.Available)
             return;
 
@@ -38,6 +41,13 @@ public sealed partial class UMCargoSystem
         var stationGrid = _station.GetLargestGrid(stationUid.Value);
         if (!stationGrid.HasValue)
             return;
+
+        if (cargoShuttleComponent.FirstWarp)
+        {
+            FTLCargoShuttle(ent.Owner, ent.Comp, stationGrid.Value, true);
+            cargoShuttleComponent.FirstWarp = false;
+            return;
+        }
 
         if (shuttleXform.MapUid != Transform(stationGrid.Value).MapUid)
         {

@@ -14,6 +14,9 @@ public sealed partial class UMCargoShuttleComponent : Component
     [DataField]
     public List<CargoOrderData> CurrentOrders = new();
 
+    [DataField]
+    public bool FirstWarp = true;
+
     /// <summary>
     ///     The paper-type prototype to spawn with the order information.
     /// </summary>
