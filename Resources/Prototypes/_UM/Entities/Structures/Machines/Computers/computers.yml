@@ -1,0 +1,24 @@
+- type: entity
+  parent: BaseComputerAiAccess
+  id: UMCargoShuttleComputer
+  name: cargo shuttle computer
+  description: Used to ferry the cargo shuttle back and forth
+  suffix: UM
+  components:
+  #- type: AccessReader
+  #  access:
+  #  - [ Command ]
+  #- type: EmergencyShuttleConsole
+  - type: UMCargoShuttleConsole
+  - type: ActivatableUI
+    key: enum.UMCargoShuttleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.UMCargoShuttleUiKey.Key:
+        type: UMCargoShuttleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#43ccb5"

@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
+using Content.Server._UM.Cargo.Events;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
@@ -557,6 +558,10 @@ public sealed partial class ShuttleSystem
     private void UpdateFTLCooldown(Entity<FTLComponent, ShuttleComponent> entity)
     {
         RemCompDeferred<FTLComponent>(entity);
+        //UM START
+        var ftlEvent = new FTLAvailableEvent(entity);
+        RaiseLocalEvent(entity, ref ftlEvent, true);
+        //UM END
         _console.RefreshShuttleConsoles(entity);
     }
 
