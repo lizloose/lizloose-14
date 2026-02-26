@@ -63,6 +63,8 @@ entities:
     - type: CargoShuttle
     - type: UMCargoShuttle
       currentOrders: []
+    - type: PreventPilot
+    - type: ProtectedGrid
     - type: DecalGrid
       chunkCollection:
         version: 2

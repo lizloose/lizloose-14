@@ -135,6 +135,8 @@ entities:
     - type: RadiationGridResistance
     - type: CargoShuttle
     - type: UMCargoShuttle
+    - type: PreventPilot
+    - type: ProtectedGrid
     - type: ImplicitRoof
     - type: TileHistory
       chunkHistory: {}
