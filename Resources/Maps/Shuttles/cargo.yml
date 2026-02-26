@@ -50,7 +50,6 @@ entities:
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
     - type: CargoShuttle
-    - type: UMCargoShuttle
     - type: DecalGrid
       chunkCollection:
         version: 2

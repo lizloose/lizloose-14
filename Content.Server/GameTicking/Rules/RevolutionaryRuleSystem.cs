@@ -100,7 +100,6 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         var revsLost = CheckRevsLose();
         var commandLost = CheckCommandLose();
         // This is (revsLost, commandsLost) concatted together
-        // This is (revsLost, commandsLost) concatted together
         // (moony wrote this comment idk what it means)
         var index = (commandLost ? 1 : 0) | (revsLost ? 2 : 0);
         args.AddLine(Loc.GetString(Outcomes[index]));
