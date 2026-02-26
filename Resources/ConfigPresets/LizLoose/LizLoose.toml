@@ -38,3 +38,6 @@ allow_multi_server_play = false
 [hub]
 tags = "lang:en,region:am_n_w,rp:low"
 
+[audio]
+attenuation = 4 # inversedistanceclamped 1 << 2, see audioparams.cs
+z_offset = -2

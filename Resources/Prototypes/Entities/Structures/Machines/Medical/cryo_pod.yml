@@ -118,6 +118,7 @@
   - type: GuideHelp
     guides:
     - Cryogenics
+  - type: UMAmbientMusicMarkerMedical #UM EDIT
 
 - type: entity
   parent: BaseMachine

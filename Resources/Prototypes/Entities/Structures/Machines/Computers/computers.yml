@@ -52,6 +52,7 @@
     guides:
     - AtmosphericAlertsComputer
     - DeviceMonitoringAndControl
+  - type: UMAmbientMusicMarkerEngineering #UM EDIT
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -89,6 +90,7 @@
     guides:
     - AtmosphericNetworkMonitor
     - DeviceMonitoringAndControl
+  - type: UMAmbientMusicMarkerEngineering #UM EDIT
 
 - type: entity
   parent: BaseComputer
@@ -338,6 +340,7 @@
         type: PowerMonitoringConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+  - type: UMAmbientMusicMarkerEngineering #UM EDIT
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -363,6 +366,7 @@
     color: "#1f8c28"
   - type: Computer
     board: MedicalRecordsComputerCircuitboard
+  - type: UMAmbientMusicMarkerMedical #UM EDIT
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -466,6 +470,7 @@
     receiveFrequencyId: CrewMonitor
   - type: WirelessNetworkConnection
     range: 1200
+  - type: UMAmbientMusicMarkerMedical #UM EDIT
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -946,6 +951,7 @@
     color: "#c9c042"
   - type: AccessReader
     access: [["Engineering"]]
+  - type: UMAmbientMusicMarkerEngineering #UM EDIT
 
 - type: entity
   id: ComputerCargoOrdersMedical
@@ -979,6 +985,7 @@
     color: "#41e0fc"
   - type: AccessReader
     access: [["Medical"]]
+  - type: UMAmbientMusicMarkerMedical #UM EDIT
 
 - type: entity
   id: ComputerCargoOrdersScience

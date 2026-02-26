@@ -65,3 +65,4 @@
     guides:
     - MedicalDoctor
   - type: PowerSwitch
+  - type: UMAmbientMusicMarkerMedical #UM EDIT

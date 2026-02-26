@@ -1,0 +1,31 @@
+- type: ambientMusic
+  id: UMMorgue
+  disabled: false
+  sound:
+    params:
+      volume: -3
+    collection: AmbienceSpooky
+  rules: NearMorgue
+  priority: 4
+
+- type: ambientMusic
+  id: UMMaintenance
+  disabled: false
+  sound:
+    params:
+      volume: -6
+    collection: AmbienceMaintenance
+  rules: NearMaintenance
+  priority: 2
+
+- type: ambientMusic
+  id: UMSpace
+  disabled: false
+  sound:
+    params:
+      volume: -4
+    collection: AmbienceSpace
+  fadeIn: true
+  interruptable: true
+  rules: InSpace
+  priority: 1

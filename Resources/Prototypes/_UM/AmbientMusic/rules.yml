@@ -1,0 +1,36 @@
+- type: rules
+  id: UMNearEngineering
+  rules:
+  - !type:NearbyComponentsRule
+    components:
+    - type: UMAmbientMusicMarkerEngineering
+    count: 3
+    range: 5
+
+- type: rules
+  id: UMNearMedical
+  rules:
+  - !type:NearbyComponentsRule
+    components:
+    - type: UMAmbientMusicMarkerMedical
+    count: 3
+    range: 5
+
+- type: rules
+  id: UMNearPrayable
+  rules:
+  - !type:NearbyComponentsRule
+    anchored: true
+    components:
+    - type: Prayable
+    range: 6
+
+- type: rules
+  id: UMNearSpookyFog
+  rules:
+  - !type:NearbyEntitiesRule
+    count: 5
+    whitelist:
+      tags:
+      - SpookyFog
+    range: 4

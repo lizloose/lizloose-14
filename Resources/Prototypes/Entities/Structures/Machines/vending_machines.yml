@@ -908,6 +908,7 @@
     radius: 1.5
     energy: 3.0
     color: "#b89e2a"
+  - type: UMAmbientMusicMarkerEngineering #UM EDIT
 
 - type: entity
   parent: VendingMachine
@@ -944,6 +945,7 @@
   - type: GuideHelp
     guides:
     - MedicalDoctor
+  - type: UMAmbientMusicMarkerMedical #UM EDIT
 
 - type: entity
   parent: VendingMachineMedicalBase
@@ -1732,6 +1734,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
     access: [["Medical"]]
+  - type: UMAmbientMusicMarkerMedical #UM EDIT
 
 - type: entity
   parent: VendingMachine
@@ -1760,6 +1763,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
     access: [["Chemistry"]]
+  - type: UMAmbientMusicMarkerMedical #UM EDIT
 
 - type: entity
   parent: VendingMachine
@@ -1820,6 +1824,7 @@
     color: "#b89e2a"
   - type: AccessReader
     access: [["Engineering"]]
+  - type: UMAmbientMusicMarkerEngineering #UM EDIT
 
 - type: entity
   parent: VendingMachine
@@ -1852,6 +1857,7 @@
     color: "#b89e2a"
   - type: AccessReader
     access: [["Engineering"]]
+  - type: UMAmbientMusicMarkerEngineering #UM EDIT
 
 - type: entity
   parent: VendingMachine
@@ -2213,6 +2219,7 @@
     layers:
     - state: dispenser
     - state: dispensereng
+  - type: UMAmbientMusicMarkerEngineering #UM EDIT
 
 - type: entity
   parent: VendingMachine
@@ -2242,6 +2249,7 @@
     guides:
     - Chemicals
     - Chemist
+  - type: UMAmbientMusicMarkerMedical #UM EDIT
 
 - type: entity
   parent: VendingMachineChemicals

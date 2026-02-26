@@ -1,0 +1,19 @@
+## Fallback if nothing else found
+- type: ambientMusic
+  id: UMGeneral
+  disabled: false
+  sound:
+    params:
+      volume: -10
+    collection: AmbienceGeneral
+  rules: AlwaysTrue
+
+# Shadow anomaly
+- type: ambientMusic
+  id: UMSpookyFog
+  sound:
+    params:
+      volume: -12
+    collection: AmbienceSpookyFog
+  rules: UMNearSpookyFog
+  priority: 5

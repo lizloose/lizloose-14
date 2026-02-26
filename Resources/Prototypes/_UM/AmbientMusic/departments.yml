@@ -1,0 +1,30 @@
+# Departments
+- type: ambientMusic
+  id: UMMedical
+  disabled: false
+  sound:
+    params:
+      volume: -6
+    collection: AmbienceMedical
+  rules: UMNearMedical
+  priority: 3
+
+- type: ambientMusic
+  id: UMEngineering
+  disabled: false
+  sound:
+    params:
+      volume: -8
+    collection: AmbienceEngineering
+  rules: UMNearEngineering
+  priority: 3
+
+- type: ambientMusic
+  id: UMHoly
+  disabled: false
+  sound:
+    params:
+      volume: -12
+    collection: AmbienceHoly
+  rules: UMNearPrayable
+  priority: 3
