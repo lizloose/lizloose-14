@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server._UM.Cargo.Events;
+using Content.Server.Cargo.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
@@ -20,6 +21,7 @@ public sealed class UMCargoShuttleConsoleSystem : EntitySystem
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly SharedStationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
+    [Dependency] private readonly CargoSystem _cargoSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -131,11 +133,26 @@ public sealed class UMCargoShuttleConsoleSystem : EntitySystem
             return;
 
         UpdateCargoShuttleConsoles(ent.Owner, ftlComponent.State, ftlComponent.StateTime);
-    }
+        }
 
     private void OnFTLAvailable(Entity<UMCargoShuttleComponent> ent, ref FTLAvailableEvent args)
     {
         UpdateCargoShuttleConsoles(ent.Owner, FTLState.Available, null);
+
+        //Sell once we can ftl back :)
+        var shuttleXform = Transform(ent.Owner);
+        var stationUid = _station.GetOwningStation(ent.Owner);
+        if (stationUid == null || shuttleXform.MapUid == null || shuttleXform.GridUid == null)
+            return;
+
+        if (!TryComp<StationCentcommComponent>(stationUid, out var centcomm) || centcomm.MapEntity == null)
+            return;
+
+        if (shuttleXform.MapUid != centcomm.MapEntity)
+            return;
+
+        _cargoSystem.SellPallets(shuttleXform.GridUid.Value, stationUid.Value, out var sold);
+
     }
 
     private EntityUid? GetShuttleLocation(EntityUid shuttleUid)

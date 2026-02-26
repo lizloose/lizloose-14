@@ -35,11 +35,3 @@ public sealed class UMCargoShuttleBoundUserInterfaceState(FTLState ftlState, Sta
 public sealed class UMSendCargoShuttleMessage : BoundUserInterfaceMessage
 {
 }
-
-[Serializable, NetSerializable]
-public enum ShuttleLocation
-{
-    Station,
-    Moving,
-    Centcom,
-}
