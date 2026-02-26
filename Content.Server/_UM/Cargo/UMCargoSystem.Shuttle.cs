@@ -52,6 +52,7 @@ public sealed partial class UMCargoSystem
         if (shuttleXform.MapUid != Transform(stationGrid.Value).MapUid)
         {
             FTLCargoShuttle(ent.Owner, ent.Comp, stationGrid.Value, true);
+            cargoShuttleComponent.DumpMobs = false;
             return;
         }
 
@@ -82,8 +83,10 @@ public sealed partial class UMCargoSystem
 
     private void OnFTLStart(Entity<UMCargoShuttleComponent> ent, ref FTLStartedEvent args)
     {
-        _UMshuttle.DumpChildren(ent.Owner, ref args);
+        if (ent.Comp.DumpMobs)
+            _UMshuttle.DumpChildren(ent.Owner, ref args);
 
+        ent.Comp.DumpMobs = true;
         if (!TryComp<FTLComponent>(ent, out var ftlComponent))
             return;
 

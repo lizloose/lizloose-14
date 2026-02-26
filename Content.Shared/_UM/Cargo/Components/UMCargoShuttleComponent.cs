@@ -21,6 +21,8 @@ public sealed partial class UMCargoShuttleComponent : Component
     [DataField]
     public bool FirstWarp = true;
 
+    public bool DumpMobs = true;
+
     /// <summary>
     ///     The paper-type prototype to spawn with the order information.
     /// </summary>
