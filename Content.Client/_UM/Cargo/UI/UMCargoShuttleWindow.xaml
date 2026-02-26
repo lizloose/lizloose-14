@@ -1,6 +1,7 @@
 <DefaultWindow xmlns="https://spacestation14.io"
                MinSize="300 150"
-               Title="Cargo Shuttle">
+               Title="Cargo Shuttle"
+               Resizable="False">
 
 
     <BoxContainer Orientation="Vertical" Align="Center">

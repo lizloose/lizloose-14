@@ -70,7 +70,7 @@ public sealed partial class UMCargoSystem
 
     private bool FTLCargoShuttle(EntityUid shuttleUid, ShuttleComponent component, EntityUid target, bool allowMobs)
     {
-        if (!allowMobs && _UMshuttle.HasDumpChildren(shuttleUid))
+        if (!allowMobs && _UMShuttle.HasDumpChildren(shuttleUid))
             return false;
 
         _shuttle.FTLToDock(shuttleUid, component, target);
@@ -84,7 +84,7 @@ public sealed partial class UMCargoSystem
     private void OnFTLStart(Entity<UMCargoShuttleComponent> ent, ref FTLStartedEvent args)
     {
         if (ent.Comp.DumpMobs)
-            _UMshuttle.DumpChildren(ent.Owner, ref args);
+            _UMShuttle.DumpChildren(ent.Owner, ref args);
 
         ent.Comp.DumpMobs = true;
         if (!TryComp<FTLComponent>(ent, out var ftlComponent))

@@ -1,5 +1,4 @@
 using Content.Shared.Cargo;
-using Content.Shared.DeviceLinking;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -28,7 +27,4 @@ public sealed partial class UMCargoShuttleComponent : Component
     /// </summary>
     [DataField("printerOutput", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadWrite)]
     public string PrinterOutput = "PaperCargoInvoice";
-
-    [DataField("receiverPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>)), ViewVariables(VVAccess.ReadWrite)]
-    public string ReceiverPort = "OrderReceiver";
 }

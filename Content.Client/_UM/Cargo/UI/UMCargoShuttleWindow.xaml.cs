@@ -66,7 +66,7 @@ public sealed partial class UMCargoShuttleWindow : DefaultWindow
 
         if (_startEndTime.Value.End < _timing.CurTime)
         {
-            Countdown.Text = "Ready!";
+            Countdown.Text = "Time Remaining: 00:00:00";
             return;
         }
 

@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Server.Chat.Managers;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Shared.Mobs.Components;

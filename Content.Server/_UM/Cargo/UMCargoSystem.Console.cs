@@ -19,7 +19,7 @@ public sealed partial class UMCargoSystem
         var query = EntityQueryEnumerator<UMCargoShuttleComponent>();
         var owningStation = _station.GetOwningStation(ent.Owner);
 
-        while (query.MoveNext(out var uid, out var comp))
+        while (query.MoveNext(out var uid, out _))
         {
             if (_station.GetOwningStation(uid) == owningStation)
             {

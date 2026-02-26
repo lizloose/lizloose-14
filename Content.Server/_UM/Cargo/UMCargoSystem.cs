@@ -27,7 +27,8 @@ public sealed partial class UMCargoSystem : EntitySystem
     [Dependency] private readonly CargoSystem _cargoSystem = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly UMShuttleSystem _UMshuttle = default!;
+    // ReSharper disable once InconsistentNaming
+    [Dependency] private readonly UMShuttleSystem _UMShuttle = default!;
 
     private bool _lockboxCutEnabled;
 
