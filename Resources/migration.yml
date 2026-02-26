@@ -20,6 +20,7 @@ GunSafePistolMk58: GunSafeDisabler
 CrateSecurityRiot : UMCrateSecurityRiot
 GunSafeLaserCarbine : UMGunSafeLaserCarbine
 WeaponDisabler: UMWeaponDisabler
+WeaponLaserCarbine:  UMWeaponLaserCarbine
 # Service
 WeaponShotgunDoubleBarreled : UMWeaponShotgunDoubleBarreled
 WeaponShotgunDoubleBarreledRubber: UMWeaponShotgunDoubleBarreled
