@@ -11,6 +11,7 @@
 # Shadow anomaly
 - type: ambientMusic
   id: UMSpookyFog
+  disabled: false
   sound:
     params:
       volume: -12
