@@ -1,6 +1,9 @@
 using System.Linq;
+using Content.Server._UM.Shuttle;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
+using Content.Server.Popups;
+using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._UM.Cargo.Components;
 using Content.Shared.Cargo.Components;
@@ -23,6 +26,8 @@ public sealed partial class UMCargoSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly CargoSystem _cargoSystem = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly UMShuttleSystem _UMshuttle = default!;
 
     private bool _lockboxCutEnabled;
 
@@ -40,9 +45,9 @@ public sealed partial class UMCargoSystem : EntitySystem
 
     private void OnFulfillCargoOrder(ref FulfillCargoOrderEvent args)
     {
-        var query = EntityQueryEnumerator<UMCargoShuttleComponent>();
+        var query = EntityQueryEnumerator<UMCargoShuttleComponent, TransformComponent>();
 
-        while (query.MoveNext(out var uid, out var shuttle))
+        while (query.MoveNext(out var uid, out var shuttle, out var shuttleXform))
         {
             if (_station.GetOwningStation(uid) != args.Station)
                 continue;
@@ -51,8 +56,14 @@ public sealed partial class UMCargoSystem : EntitySystem
             {
                 shuttle.CurrentOrders.Add(args.Order);
             }
+
             args.Handled = true;
             args.FulfillmentEntity = uid;
+
+            if (!TryComp<StationCentcommComponent>(args.Station, out var centcomm) || centcomm.MapEntity == null)
+                return;
+            if (shuttleXform.MapUid == centcomm.MapEntity)
+                TryFulfillOrders((uid, shuttle));
             return;
         }
     }
@@ -65,7 +76,7 @@ public sealed partial class UMCargoSystem : EntitySystem
 
         var query = AllEntityQuery<CargoPalletComponent, TransformComponent>();
 
-        while (query.MoveNext(out var uid, out var comp, out var xform))
+        while (query.MoveNext(out var uid, out _, out var xform))
         {
             if (xform.GridUid != shuttleXform.GridUid)
                 continue;

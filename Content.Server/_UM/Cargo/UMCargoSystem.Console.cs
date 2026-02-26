@@ -1,5 +1,6 @@
 using Content.Server.Shuttles.Components;
 using Content.Shared._UM.Cargo.Components;
+using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
 using Content.Shared.Timing;
 
@@ -18,11 +19,17 @@ public sealed partial class UMCargoSystem
         var query = EntityQueryEnumerator<UMCargoShuttleComponent>();
         var owningStation = _station.GetOwningStation(ent.Owner);
 
-        while (query.MoveNext(out var uid, out _))
+        while (query.MoveNext(out var uid, out var comp))
         {
             if (_station.GetOwningStation(uid) == owningStation)
             {
                 ent.Comp.ShuttleUid = uid;
+                if (TryComp<FTLComponent>(uid, out var ftlComponent))
+                {
+                    UpdateUi((ent.Owner, ent.Comp), ftlComponent.State, ftlComponent.StateTime);
+                    return;
+                }
+                UpdateUi((ent.Owner, ent.Comp), FTLState.Available, null);
                 return;
             }
         }
@@ -33,7 +40,7 @@ public sealed partial class UMCargoSystem
         if (!TryComp<ShuttleComponent>(ent.Comp.ShuttleUid, out var shuttleComp))
             return;
 
-        MoveCargoShuttle((ent.Comp.ShuttleUid, shuttleComp));
+        MoveCargoShuttle((ent.Comp.ShuttleUid, shuttleComp), ent);
     }
 
     private void UpdateCargoShuttleConsoles(EntityUid shuttleUid, FTLState ftlState, StartEndTime? time)

@@ -2,6 +2,7 @@ using Content.Server._UM.Cargo.Events;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Shared._UM.Cargo.Components;
+using Content.Shared.Popups;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
 
@@ -20,7 +21,7 @@ public sealed partial class UMCargoSystem
         SubscribeLocalEvent<UMCargoShuttleComponent, FTLAvailableEvent>(OnFTLAvailable);
     }
 
-    private void MoveCargoShuttle(Entity<ShuttleComponent?> ent)
+    private void MoveCargoShuttle(Entity<ShuttleComponent?> ent, Entity<UMCargoShuttleConsoleComponent> consoleEnt)
     {
         if (!Resolve(ent, ref ent.Comp))
             return;
@@ -40,7 +41,7 @@ public sealed partial class UMCargoSystem
 
         if (shuttleXform.MapUid != Transform(stationGrid.Value).MapUid)
         {
-            _shuttle.FTLToDock(ent.Owner, ent.Comp, stationGrid.Value);
+            FTLCargoShuttle(ent.Owner, ent.Comp, stationGrid.Value, true);
             return;
         }
 
@@ -50,11 +51,29 @@ public sealed partial class UMCargoSystem
         if (centcomm.Entity == null)
             return;
 
-        _shuttle.FTLToDock(ent.Owner, ent.Comp, centcomm.Entity.Value);
+        if (!FTLCargoShuttle(ent.Owner, ent.Comp, centcomm.Entity.Value, false))
+        {
+            _popup.PopupEntity("Please remove all life forms", consoleEnt.Owner, PopupType.SmallCaution);
+        }
+    }
+
+    private bool FTLCargoShuttle(EntityUid shuttleUid, ShuttleComponent component, EntityUid target, bool allowMobs)
+    {
+        if (!allowMobs && _UMshuttle.HasDumpChildren(shuttleUid))
+            return false;
+
+        _shuttle.FTLToDock(shuttleUid, component, target);
+
+        if (TryComp<FTLComponent>(shuttleUid, out var ftlComponent))
+            UpdateCargoShuttleConsoles(shuttleUid, ftlComponent.State, ftlComponent.StateTime);
+
+        return true;
     }
 
     private void OnFTLStart(Entity<UMCargoShuttleComponent> ent, ref FTLStartedEvent args)
     {
+        _UMshuttle.DumpChildren(ent.Owner, ref args);
+
         if (!TryComp<FTLComponent>(ent, out var ftlComponent))
             return;
 
