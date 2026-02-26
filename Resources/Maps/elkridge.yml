@@ -4,7 +4,7 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/14/2026 06:26:12
+  time: 02/26/2026 21:32:11
   entityCount: 18724
 maps:
 - 1
@@ -13982,6 +13982,20 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -10.5,46.5
       parent: 2
+- proto: AirlockExternalGlassShuttleCargoLocked
+  entities:
+  - uid: 6504
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 9.5,42.5
+      parent: 2
+  - uid: 6505
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 7.5,42.5
+      parent: 2
 - proto: AirlockExternalGlassShuttleEmergencyLocked
   entities:
   - uid: 3591
@@ -14362,20 +14376,6 @@ entities:
     components:
     - type: Transform
       pos: -8.5,16.5
-      parent: 2
-- proto: AirlockGlassShuttle
-  entities:
-  - uid: 6504
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 7.5,42.5
-      parent: 2
-  - uid: 6505
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 9.5,42.5
       parent: 2
 - proto: AirlockHeadOfPersonnelGlassLocked
   entities:
@@ -61265,6 +61265,13 @@ entities:
     components:
     - type: Transform
       pos: 50.915657,5.6519375
+      parent: 2
+- proto: DripDrobe
+  entities:
+  - uid: 13514
+    components:
+    - type: Transform
+      pos: -23.5,-17.5
       parent: 2
 - proto: ElectrolysisUnitMachineCircuitboard
   entities:
@@ -110750,13 +110757,6 @@ entities:
     components:
     - type: Transform
       pos: -9.5,-46.5
-      parent: 2
-- proto: VendingMachinePride
-  entities:
-  - uid: 13514
-    components:
-    - type: Transform
-      pos: -23.5,-17.5
       parent: 2
 - proto: VendingMachineRoboDrobe
   entities:

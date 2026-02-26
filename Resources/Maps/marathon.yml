@@ -4,7 +4,7 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/22/2026 01:20:01
+  time: 02/26/2026 21:31:45
   entityCount: 23904
 maps:
 - 5350
@@ -10895,6 +10895,20 @@ entities:
     - type: Transform
       pos: -59.5,2.5
       parent: 30
+- proto: AirlockExternalGlassShuttleCargoLocked
+  entities:
+  - uid: 11864
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 38.5,-5.5
+      parent: 30
+  - uid: 12012
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 38.5,-3.5
+      parent: 30
 - proto: AirlockExternalGlassShuttleEmergencyLocked
   entities:
   - uid: 16406
@@ -10937,18 +10951,6 @@ entities:
       parent: 30
 - proto: AirlockExternalGlassShuttleLocked
   entities:
-  - uid: 11864
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 38.5,-5.5
-      parent: 30
-  - uid: 12012
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 38.5,-3.5
-      parent: 30
   - uid: 15244
     components:
     - type: Transform
@@ -11788,7 +11790,7 @@ entities:
       pos: 34.5,45.5
       parent: 30
     - type: Door
-      secondsUntilStateChange: -49243.086
+      secondsUntilStateChange: -49282.184
       state: Opening
     - type: DeviceLinkSource
       lastSignals:

@@ -19,6 +19,7 @@ public sealed partial class UMCargoSystem
         SubscribeLocalEvent<UMCargoShuttleComponent, FTLStartedEvent>(OnFTLStart);
         SubscribeLocalEvent<UMCargoShuttleComponent, FTLCompletedEvent>(OnFTLComplete);
         SubscribeLocalEvent<UMCargoShuttleComponent, FTLAvailableEvent>(OnFTLAvailable);
+        SubscribeLocalEvent<UMCargoShuttleComponent, FTLTagEvent>(OnShuttleTag);
     }
 
     private void MoveCargoShuttle(Entity<ShuttleComponent?> ent, Entity<UMCargoShuttleConsoleComponent> consoleEnt)
@@ -74,7 +75,7 @@ public sealed partial class UMCargoSystem
         if (!allowMobs && _UMShuttle.HasDumpChildren(shuttleUid))
             return false;
 
-        _shuttle.FTLToDock(shuttleUid, component, target);
+        _shuttle.FTLToDock(shuttleUid, component, target, priorityTag: "DockCargo");
 
         if (TryComp<FTLComponent>(shuttleUid, out var ftlComponent))
             UpdateCargoShuttleConsoles(shuttleUid, ftlComponent.State, ftlComponent.StateTime);
@@ -120,6 +121,15 @@ public sealed partial class UMCargoSystem
 
         PalletSell(ent);
         TryFulfillOrders(ent);
+    }
+
+    private void OnShuttleTag(Entity<UMCargoShuttleComponent> ent, ref FTLTagEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        args.Handled = true;
+        args.Tag = "DockCargo";
     }
 
     private EntityUid? GetShuttleLocation(EntityUid shuttleUid)

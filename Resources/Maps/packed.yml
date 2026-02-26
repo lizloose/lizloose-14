@@ -4,7 +4,7 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/22/2026 00:43:33
+  time: 02/26/2026 21:33:15
   entityCount: 15967
 maps:
 - 126
@@ -9123,11 +9123,6 @@ entities:
       parent: 2
     - type: DeviceLinkSink
       invokeCounter: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        607:
-        - - DoorStatus
-          - DoorBolt
   - uid: 428
     components:
     - type: Transform
@@ -9136,11 +9131,6 @@ entities:
       parent: 2
     - type: DeviceLinkSink
       invokeCounter: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        451:
-        - - DoorStatus
-          - DoorBolt
   - uid: 974
     components:
     - type: Transform
@@ -9290,6 +9280,20 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,-16.5
       parent: 2
+- proto: AirlockExternalGlassShuttleCargoLocked
+  entities:
+  - uid: 451
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,24.5
+      parent: 2
+  - uid: 607
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,26.5
+      parent: 2
 - proto: AirlockExternalGlassShuttleEmergencyLocked
   entities:
   - uid: 139
@@ -9341,21 +9345,6 @@ entities:
       invokeCounter: 1
 - proto: AirlockExternalGlassShuttleLocked
   entities:
-  - uid: 451
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,26.5
-      parent: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        10982:
-        - - DoorStatus
-          - InputA
-        - - DockStatus
-          - InputB
-    - type: DeviceLinkSink
-      invokeCounter: 1
   - uid: 509
     components:
     - type: Transform
@@ -9365,21 +9354,6 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         8663:
-        - - DoorStatus
-          - InputA
-        - - DockStatus
-          - InputB
-    - type: DeviceLinkSink
-      invokeCounter: 1
-  - uid: 607
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,24.5
-      parent: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        553:
         - - DoorStatus
           - InputA
         - - DockStatus
@@ -43304,7 +43278,7 @@ entities:
       pos: 59.5,39.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -18555.166
+      secondsUntilStateChange: -18601.303
       state: Closing
 - proto: CurtainsWhiteOpen
   entities:
@@ -49167,7 +49141,7 @@ entities:
       pos: 26.5,37.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -65848.95
+      secondsUntilStateChange: -65895.086
       state: Closing
   - uid: 9362
     components:
@@ -71984,7 +71958,7 @@ entities:
       pos: 12.5,12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -4020.8992
+      secondsUntilStateChange: -4067.0356
       state: Closing
   - uid: 5750
     components:

@@ -4,7 +4,7 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/14/2026 06:03:32
+  time: 02/26/2026 21:28:57
   entityCount: 36029
 maps:
 - 1
@@ -19574,6 +19574,20 @@ entities:
       rot: 3.141592653589793 rad
       pos: -37.5,-20.5
       parent: 13329
+- proto: AirlockExternalGlassShuttleCargoLocked
+  entities:
+  - uid: 10108
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-35.5
+      parent: 13329
+  - uid: 10109
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-37.5
+      parent: 13329
 - proto: AirlockExternalGlassShuttleEmergencyLocked
   entities:
   - uid: 3754
@@ -19656,18 +19670,6 @@ entities:
         3748:
         - - DoorStatus
           - Close
-  - uid: 10108
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,-37.5
-      parent: 13329
-  - uid: 10109
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,-35.5
-      parent: 13329
   - uid: 12395
     components:
     - type: Transform
@@ -200530,6 +200532,43 @@ entities:
     - type: AccessReader
       accessListsOriginal:
       - - Armory
+- proto: UMWeaponDisabler
+  entities:
+  - uid: 8645
+    components:
+    - type: Transform
+      parent: 27875
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 9473
+    components:
+    - type: Transform
+      parent: 27875
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 9475
+    components:
+    - type: Transform
+      parent: 27875
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 9476
+    components:
+    - type: Transform
+      parent: 27875
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 9646
+    components:
+    - type: Transform
+      parent: 27875
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: UMWeaponIonRifle
   entities:
   - uid: 8649
@@ -224547,43 +224586,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 22.5,13.5
       parent: 13329
-- proto: WeaponDisabler
-  entities:
-  - uid: 8645
-    components:
-    - type: Transform
-      parent: 27875
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 9473
-    components:
-    - type: Transform
-      parent: 27875
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 9475
-    components:
-    - type: Transform
-      parent: 27875
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 9476
-    components:
-    - type: Transform
-      parent: 27875
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 9646
-    components:
-    - type: Transform
-      parent: 27875
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: WeaponDisablerPractice
   entities:
   - uid: 10257

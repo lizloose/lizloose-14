@@ -1,0 +1,10 @@
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockExternalGlassShuttleCargoLocked
+  suffix: UM, External, Cargo, Glass, Docking, Locked
+  components:
+  - type: PriorityDock
+    tag: DockCargo
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]

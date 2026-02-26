@@ -4,7 +4,7 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/14/2026 05:56:51
+  time: 02/26/2026 21:30:11
   entityCount: 25430
 maps:
 - 943
@@ -12406,6 +12406,20 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -5.5,-63.5
       parent: 60
+- proto: AirlockExternalGlassShuttleCargoLocked
+  entities:
+  - uid: 12091
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 59.5,12.5
+      parent: 60
+  - uid: 12092
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 59.5,14.5
+      parent: 60
 - proto: AirlockExternalGlassShuttleEmergencyLocked
   entities:
   - uid: 6372
@@ -12563,18 +12577,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 58.5,39.5
-      parent: 60
-  - uid: 13181
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 59.5,12.5
-      parent: 60
-  - uid: 13182
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 59.5,14.5
       parent: 60
 - proto: AirlockExternalGlassShuttleSyndicateLocked
   entities:
@@ -141136,8 +141138,6 @@ entities:
     - type: AccessReader
       accessListsOriginal:
       - - Armory
-    - type: Physics
-      sleepTime: 0.21666646
 - proto: UMGunSafeLaserCarbine
   entities:
   - uid: 1142

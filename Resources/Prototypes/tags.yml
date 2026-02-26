@@ -1,6 +1,13 @@
 # PUT YOUR TAGS IN ALPHABETICAL ORDER
 # ALSO DOCUMENT WHAT THE HELL THEY DO
 
+#UM START
+
+- type: Tag
+  id: DockCargo # Used bv cargo shuttle for finding a priority FTL destination.
+
+#UM END
+
 ## A ##
 
 - type: Tag
