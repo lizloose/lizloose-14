@@ -210,7 +210,7 @@
     board: SyndicateShuttleConsoleCircuitboard
 
 - type: entity
-  parent: BaseComputerShuttle
+  parent: UMCargoShuttleComputer #UM EDIT
   id: ComputerShuttleCargo
   name: cargo shuttle console
   description: Used to pilot the cargo shuttle.
@@ -227,11 +227,13 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: DroneConsole
-    components:
-      - type: CargoShuttle
-  - type: RadarConsole
-    maxRange: 256
+  # UM START
+#  - type: DroneConsole
+#    components:
+#     - type: CargoShuttle
+#  - type: RadarConsole
+#    maxRange: 256
+  #UM END
   - type: PointLight
     radius: 1.5
     energy: 4.0

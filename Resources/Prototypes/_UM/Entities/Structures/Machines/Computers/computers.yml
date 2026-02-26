@@ -3,6 +3,7 @@
   id: UMCargoShuttleComputer
   name: cargo shuttle computer
   description: Used to ferry the cargo shuttle back and forth
+  abstract: true
   suffix: UM
   components:
   #- type: AccessReader

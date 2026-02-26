@@ -16,7 +16,7 @@
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/Shuttles/emergency_elkridge.yml
         - type: StationCargoShuttle
-          path: /Maps/Shuttles/cargo_elkridge.yml
+          path: /Maps/_UM/Shuttles/cargo_elkridge.yml #UM EDIT
         - type: StationJobs
           availableJobs: # 46 jobs total w/o latejoins & interns, 61 jobs total w/ latejoins & interns
             #command (7)

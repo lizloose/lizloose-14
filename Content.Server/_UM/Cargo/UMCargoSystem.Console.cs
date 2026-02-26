@@ -17,7 +17,11 @@ public sealed partial class UMCargoSystem
     private void OnMapInit(Entity<UMCargoShuttleConsoleComponent> ent, ref MapInitEvent args)
     {
         ent.Comp.NextDenySoundTime = _timing.CurTime + ent.Comp.DenySoundDelay;
+        UpdateShuttle(ent);
+    }
 
+    private void UpdateShuttle(Entity<UMCargoShuttleConsoleComponent> ent)
+    {
         var query = EntityQueryEnumerator<UMCargoShuttleComponent>();
         var owningStation = _station.GetOwningStation(ent.Owner);
 
@@ -39,8 +43,8 @@ public sealed partial class UMCargoSystem
 
     private void OnCargoRequestSend(Entity<UMCargoShuttleConsoleComponent> ent, ref UMSendCargoShuttleMessage args)
     {
-        if (!TryComp<ShuttleComponent>(ent.Comp.ShuttleUid, out var shuttleComp))
-            return;
+        if (!TryComp<ShuttleComponent>(ent.Comp.ShuttleUid, out var shuttleComp) || !ent.Comp.ShuttleUid.IsValid())
+            UpdateShuttle(ent);
 
         MoveCargoShuttle((ent.Comp.ShuttleUid, shuttleComp), ent);
     }
