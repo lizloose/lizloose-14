@@ -52,7 +52,7 @@ public sealed class VocalSystem : EntitySystem
     private void OnMapInit(EntityUid uid, VocalComponent component, MapInitEvent args)
     {
         // try to add scream action when vocal comp added
-        _actions.AddAction(uid, ref component.ScreamActionEntity, component.ScreamAction);
+        //_actions.AddAction(uid, ref component.ScreamActionEntity, component.ScreamAction);
         LoadSounds(uid, component);
     }
 
