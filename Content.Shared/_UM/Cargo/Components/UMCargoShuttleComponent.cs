@@ -14,6 +14,10 @@ public sealed partial class UMCargoShuttleComponent : Component
     [DataField]
     public List<CargoOrderData> CurrentOrders = new();
 
+    /// <summary>
+    /// if we still need to do the initial warp
+    /// (warp to station while in station space)
+    /// </summary>
     [DataField]
     public bool FirstWarp = true;
 
