@@ -10,9 +10,11 @@ using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.CCVar;
 using Content.Shared.Station;
+using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server._UM.Cargo;
 
@@ -27,6 +29,8 @@ public sealed partial class UMCargoSystem : EntitySystem
     [Dependency] private readonly CargoSystem _cargoSystem = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     // ReSharper disable once InconsistentNaming
     [Dependency] private readonly UMShuttleSystem _UMShuttle = default!;
 

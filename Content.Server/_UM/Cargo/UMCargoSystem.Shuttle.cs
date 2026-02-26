@@ -65,6 +65,7 @@ public sealed partial class UMCargoSystem
         if (!FTLCargoShuttle(ent.Owner, ent.Comp, centcomm.Entity.Value, false))
         {
             _popup.PopupEntity("Please remove all life forms", consoleEnt.Owner, PopupType.SmallCaution);
+            PlayDenySound(consoleEnt);
         }
     }
 
