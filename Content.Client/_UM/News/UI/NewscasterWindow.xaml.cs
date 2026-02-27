@@ -8,7 +8,7 @@ namespace Content.Client._UM.News.UI;
 [GenerateTypedNameReferences]
 public sealed partial class NewscasterWindow : FancyWindow
 {
-    public List<NewsArticle> _articles = new();
+    public List<NewsArticle> Articles = new();
 
     public NewscasterWindow()
     {
@@ -24,13 +24,13 @@ public sealed partial class NewscasterWindow : FancyWindow
     {
         EntryTable.RemoveAllChildren();
 
-        if (_articles.Count == 0)
+        if (Articles.Count == 0)
         {
             NoArticleText.Visible = true;
             return;
         }
         NoArticleText.Visible = false;
-        foreach (var article in _articles)
+        foreach (var article in Articles)
         {
             AddEntry(article.Title, article.Author, article.Content, article.ShareTime);
         }
@@ -38,7 +38,7 @@ public sealed partial class NewscasterWindow : FancyWindow
 
     public void UpdateState(List<NewsArticle> articles)
     {
-        _articles = articles;
+        Articles = articles;
         articles.Reverse();
         CreateEntries();
     }
