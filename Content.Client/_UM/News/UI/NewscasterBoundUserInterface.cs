@@ -16,26 +16,22 @@ public sealed class NewscasterBoundUserInterface : BoundUserInterface
     {
         base.Open();
         _window = this.CreateWindow<NewscasterWindow>();
-        _window.OnOpen += WindowOnOnOpen;
+
+        if (!EntMan.TryGetComponent(Owner, out NewscasterComponent? component))
+            return;
+
+        _window.Update(component.Articles);
     }
 
-    private void WindowOnOnOpen()
-    {
-        if (_window != null)
-            _window.OpenWindow();
-    }
-
-    protected override void UpdateState(BoundUserInterfaceState state)
+    public override void Update()
     {
         if (_window == null)
             return;
 
-        switch (state)
-        {
-            case NewscasterBoundUserInterfaceState cast:
-                _window.UpdateState(cast.Articles);
-                break;
-        }
+        if (!EntMan.TryGetComponent(Owner, out NewscasterComponent? component))
+            return;
+
+        _window.Update(component.Articles);
     }
 }
 

@@ -1,4 +1,5 @@
 using Content.Shared.MassMedia.Systems;
+using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._UM.News.Components;
@@ -6,9 +7,14 @@ namespace Content.Shared._UM.News.Components;
 /// <summary>
 /// This is used for handling news reading machines
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
 public sealed partial class NewscasterComponent : Component
 {
+    /// <summary>
+    /// List of articles this device currently has
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public List<NewsArticle> Articles = new();
 }
 
 
@@ -17,15 +23,4 @@ public sealed partial class NewscasterComponent : Component
 public enum NewscasterUiKey : byte
 {
     Key,
-}
-
-[Serializable, NetSerializable]
-public sealed class NewscasterBoundUserInterfaceState : BoundUserInterfaceState
-{
-    public List<NewsArticle> Articles;
-
-    public NewscasterBoundUserInterfaceState(List<NewsArticle> articles)
-    {
-        Articles = articles;
-    }
 }

@@ -49,7 +49,7 @@ public sealed class NewsSystem : SharedNewsSystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IBaseServer _baseServer = default!;
     //UM START
-    [Dependency] private readonly NewscasterSystem _newscasterSystem = default!;
+    [Dependency] private readonly SharedNewscasterSystem _newscasterSystem = default!;
     //UM END
 
     private WebhookIdentifier? _webhookId = null;
@@ -401,7 +401,7 @@ public sealed class NewsSystem : SharedNewsSystem
         var query = EntityQueryEnumerator<NewscasterComponent>();
         while (query.MoveNext(out var owner, out var comp))
         {
-            _newscasterSystem.UpdateNewscasterUiState((owner, comp));
+            _newscasterSystem.UpdateNewscaster((owner, comp));
         }
     }
     //UM END

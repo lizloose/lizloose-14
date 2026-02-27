@@ -15,11 +15,6 @@ public sealed partial class NewscasterWindow : FancyWindow
         RobustXamlLoader.Load(this);
     }
 
-    public void OpenWindow()
-    {
-        CreateEntries();
-    }
-
     private void CreateEntries()
     {
         EntryTable.RemoveAllChildren();
@@ -36,14 +31,14 @@ public sealed partial class NewscasterWindow : FancyWindow
         }
     }
 
-    public void UpdateState(List<NewsArticle> articles)
+    public void Update(List<NewsArticle> articles)
     {
         Articles = articles;
         articles.Reverse();
         CreateEntries();
     }
 
-    public void AddEntry(string title, string? author, string contents, TimeSpan publishTime)
+    private void AddEntry(string title, string? author, string contents, TimeSpan publishTime)
     {
         var entry = new NewscasterEntry(title, author, contents, publishTime);
         EntryTable.AddChild(entry);
