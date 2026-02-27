@@ -251,7 +251,7 @@ public sealed class NewsSystem : SharedNewsSystem
 
         UpdateWriterDevices();
         //UM START
-        UpdateNewscasters(article.Value);
+        UpdateNewscasters(article.Value, uid);
         //UM END
         return true;
     }
@@ -387,12 +387,13 @@ public sealed class NewsSystem : SharedNewsSystem
     }
 
     //UM START
-    private void UpdateNewscasters(NewsArticle article)
+    private void UpdateNewscasters(NewsArticle article, EntityUid consoleUid)
     {
         var query = EntityQueryEnumerator<NewscasterComponent>();
-        while (query.MoveNext(out var owner, out var comp))
+        while (query.MoveNext(out var uid, out var casterComp))
         {
-            _newscasterSystem.OnNewArticle((owner, comp), article);
+            if (_station.GetOwningStation(uid) == _station.GetOwningStation(consoleUid))
+                _newscasterSystem.OnNewArticle((uid, casterComp), article);
         }
     }
     private void UpdateNewscasters()

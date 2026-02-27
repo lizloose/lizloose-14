@@ -3,6 +3,7 @@ using Content.Shared._UM.News.Components;
 using Content.Shared.Chat;
 using Content.Shared.MassMedia.Components;
 using Content.Shared.MassMedia.Systems;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.Station;
 
 namespace Content.Shared._UM.News;
@@ -15,15 +16,16 @@ public sealed class NewscasterSystem : EntitySystem
     [Dependency] private readonly SharedStationSystem _station = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedChatSystem _chat = default!;
+    [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<NewscasterComponent, BoundUIOpenedEvent>(OnOpened);
+        SubscribeLocalEvent<NewscasterComponent, MapInitEvent>(OnMapInit);
     }
 
-    private void OnOpened(Entity<NewscasterComponent> ent, ref BoundUIOpenedEvent args)
+    private void OnMapInit(Entity<NewscasterComponent> ent, ref MapInitEvent args)
     {
         UpdateNewscasterUiState(ent);
     }
@@ -33,8 +35,10 @@ public sealed class NewscasterSystem : EntitySystem
     /// </summary>
     public void OnNewArticle(Entity<NewscasterComponent> ent, NewsArticle article)
     {
-        _chat.TrySendInGameICMessage(ent.Owner, article.Title, InGameICChatType.Speak, hideChat: true);
         UpdateNewscasterUiState(ent);
+
+        if (_powerReceiver.IsPowered(ent.Owner))
+            _chat.TrySendInGameICMessage(ent.Owner, article.Title, InGameICChatType.Speak, hideChat: true);
     }
 
     /// <summary>
