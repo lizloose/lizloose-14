@@ -1,0 +1,63 @@
+- type: soundCollection
+  id: UMAmbienceMaintenance
+  files:
+  - /Audio/Ambience/ambimaint1.ogg
+  - /Audio/Ambience/ambimaint2.ogg
+  - /Audio/Ambience/ambimaint3.ogg
+  - /Audio/Ambience/ambimaint4.ogg
+  - /Audio/Ambience/ambimaint5.ogg
+  - /Audio/Ambience/_UM/Maintenance/ambimaint6.ogg
+  - /Audio/Ambience/_UM/Maintenance/ambimaint7.ogg
+  - /Audio/Ambience/_UM/Maintenance/ambimaint8.ogg
+  - /Audio/Ambience/_UM/Maintenance/ambimaint9.ogg
+  - /Audio/Ambience/_UM/Maintenance/ambimaint10.ogg
+  - /Audio/Ambience/_UM/Maintenance/ambimaint11.ogg
+  - /Audio/Ambience/_UM/Maintenance/ambimaint12.ogg
+  - /Audio/Ambience/ambitech2.ogg
+  - /Audio/Voice/Misc/lowHiss1.ogg
+  - /Audio/Voice/Misc/lowHiss2.ogg
+  - /Audio/Voice/Misc/lowHiss3.ogg
+  - /Audio/Voice/Misc/lowHiss4.ogg
+  - /Audio/Ambience/maintambience.ogg
+
+- type: soundCollection
+  id: UMAmbienceSpace
+  files:
+  - /Audio/Ambience/spookyspace1.ogg
+  - /Audio/Ambience/spookyspace2.ogg
+  - /Audio/Ambience/ambispace2.ogg
+  - /Audio/_UM/Ambience/Space/ambispace.ogg
+  - /Audio/_UM/Ambience/Space/ambispace3.ogg
+
+- type: soundCollection
+  id: UMAmbienceDetective
+  files:
+  - /Audio/_UM/Ambience/Detective/ambidet1.ogg
+  - /Audio/_UM/Ambience/Detective/ambidet2.ogg
+
+- type: soundCollection
+  id: UMAmbienceWeird
+  files:
+  - /Audio/Ambience/ambireebe1.ogg
+  - /Audio/Ambience/ambireebe3.ogg
+
+- type: soundCollection
+  id: UMAmbienceMining
+  files:
+  - /Audio/Ambience/ambireebe1.ogg
+  - /Audio/Ambience/ambireebe3.ogg
+  - /Audio/Ambience/ambicave.ogg
+  - /Audio/Ambience/ambidanger.ogg
+  - /Audio/Ambience/ambidanger2.ogg
+  - /Audio/Ambience/ambilava1.ogg
+  - /Audio/Ambience/ambilava2.ogg
+  - /Audio/Ambience/ambilava3.ogg
+  - /Audio/Ambience/ambimaint1.ogg
+  - /Audio/Ambience/ambimine.ogg
+  - /Audio/Ambience/ambiruin.ogg
+  - /Audio/Ambience/ambiruin2.ogg
+  - /Audio/Ambience/ambiruin3.ogg
+  - /Audio/Ambience/ambiruin4.ogg
+  - /Audio/Ambience/ambiruin5.ogg
+  - /Audio/Ambience/ambiruin6.ogg
+  - /Audio/Ambience/ambiruin7.ogg

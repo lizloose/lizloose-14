@@ -35,12 +35,15 @@
             False: { visible: false }
     - type: Appearance
     - type: AmbientOnPowered
+    # UM START
     - type: AmbientSound
-      volume: -9
-      range: 5
+      volume: -12
+      range: 3
+      maxSoundOverride: 1
       enabled: false
       sound:
         path: /Audio/Ambience/Objects/server_fans.ogg
+    # UM END
     - type: WiresVisuals
     - type: WiresPanel
 
@@ -169,12 +172,15 @@
             False: { visible: false }
     - type: Appearance
     - type: AmbientOnPowered
+    # UM START
     - type: AmbientSound
-      volume: -9
-      range: 5
+      volume: -12
+      range: 3
+      maxSoundOverride: 1
       enabled: false
       sound:
         path: /Audio/Ambience/Objects/server_fans.ogg
+    # UM END
     - type: WiresVisuals
     - type: WiresPanel
 

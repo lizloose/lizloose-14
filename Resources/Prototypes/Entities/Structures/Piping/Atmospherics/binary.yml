@@ -498,8 +498,10 @@
           !type:PipeNode
           nodeGroupID: Pipe
           pipeDirection: South
-    - type: AmbientSound
-      enabled: true
+    # UM START
+    #- type: AmbientSound
+    #  enabled: true
+    # UM END
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
     - type: GuideHelp

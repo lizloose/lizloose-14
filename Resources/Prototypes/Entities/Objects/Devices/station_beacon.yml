@@ -227,6 +227,7 @@
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-detective
+  - type: UMAmbientMusicMarkerDetective
 
 - type: entity
   parent: DefaultStationBeaconSecurity

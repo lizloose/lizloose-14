@@ -5,6 +5,7 @@
     params:
       volume: -3
     collection: AmbienceSpooky
+  fadeIn: true
   rules: NearMorgue
   priority: 4
 
@@ -15,6 +16,7 @@
     params:
       volume: -6
     collection: AmbienceMaintenance
+  fadeIn: true
   rules: NearMaintenance
   priority: 2
 
@@ -24,8 +26,19 @@
   sound:
     params:
       volume: -4
-    collection: AmbienceSpace
+    collection: UMAmbienceSpace
   fadeIn: true
   interruptable: true
-  rules: InSpace
+  rules: UMInSpace
   priority: 1
+
+- type: ambientMusic
+  id: UMSpookyGrid
+  disabled: false
+  sound:
+    params:
+      volume: -5
+    collection: UMAmbienceMining
+  fadeIn: true
+  rules: UMOnWeirdGrid
+  priority: 4

@@ -401,6 +401,7 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsDetective ]
+  - type: UMAmbientMusicMarkerDetective
 
 - type: entity
   parent: AirlockSecurity
@@ -815,6 +816,7 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsDetective ]
+  - type: UMAmbientMusicMarkerDetective
 
 - type: entity
   parent: AirlockSecurityGlass

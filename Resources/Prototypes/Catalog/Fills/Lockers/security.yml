@@ -151,6 +151,7 @@
     containers:
       entity_storage: !type:NestedSelector
         tableId: FillLockerDetective
+  - type: UMAmbientMusicMarkerDetective
 
 - type: entityTable
   id: FillLockerDetective

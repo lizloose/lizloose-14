@@ -6,6 +6,7 @@
     params:
       volume: -6
     collection: AmbienceMedical
+  fadeIn: true
   rules: UMNearMedical
   priority: 3
 
@@ -16,6 +17,7 @@
     params:
       volume: -8
     collection: AmbienceEngineering
+  fadeIn: true
   rules: UMNearEngineering
   priority: 3
 
@@ -26,5 +28,18 @@
     params:
       volume: -12
     collection: AmbienceHoly
+  fadeIn: true
   rules: UMNearPrayable
   priority: 3
+
+- type: ambientMusic
+  id: UMDetective
+  disabled: false
+  sound:
+    params:
+      volume: -11
+    collection: UMAmbienceDetective
+  fadeIn: true
+  interruptable: true
+  rules: UMNearDetective
+  priority: 4

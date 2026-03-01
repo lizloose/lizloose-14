@@ -17,6 +17,15 @@
     range: 5
 
 - type: rules
+  id: UMNearDetective
+  rules:
+  - !type:NearbyComponentsRule
+    components:
+    - type: UMAmbientMusicMarkerDetective
+    count: 3
+    range: 5
+
+- type: rules
   id: UMNearPrayable
   rules:
   - !type:NearbyComponentsRule
@@ -34,3 +43,30 @@
       tags:
       - SpookyFog
     range: 4
+
+- type: rules # only play if they're really deep in space
+  id: UMInSpace
+  rules:
+  - !type:InSpaceRule
+  - !type:IsGhostRule
+    inverted: true
+  - !type:GridInRangeRule
+    inverted: true
+    range: 7
+
+- type: rules
+  id: UMNearWeirdGrid
+  rules:
+  - !type:InSpaceRule
+  #- !type:IsGhostRule
+  #  inverted: true
+  - !type:StationInRangeRule # play when near a grid that isn't the station
+    inverted: true
+    range: 5
+
+- type: rules
+  id: UMOnWeirdGrid
+  rules:
+  - !type:OnStationGridRule
+    inverted: true
+

@@ -46,6 +46,9 @@ random_characters = true
 random_species_weights = ""
 ssd_sleep_time = 3600
 
+[ambience]
+range = 15# APCs
+
 [audio]
 attenuation = 4 # inversedistanceclamped 1 << 2, see audioparams.cs
 z_offset = -2
