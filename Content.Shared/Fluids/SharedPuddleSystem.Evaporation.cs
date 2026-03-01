@@ -72,7 +72,8 @@ public abstract partial class SharedPuddleSystem
             {
                 // Spawn a *sparkle*
                 //UM START
-                PredictedSpawnAttachedTo(evaporation.EvaporationEffect, Transform(uid).Coordinates);
+                if (_net.IsServer) // TODO: Change this once we have entity spawn prediction V2
+                    SpawnAttachedTo(evaporation.EvaporationEffect, Transform(uid).Coordinates);
                 //UM END
                 PredictedQueueDel(uid);
             }
