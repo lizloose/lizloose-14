@@ -130,6 +130,26 @@
         - ReagentId: Flour
           Quantity: 15
 
+- type: entity
+  id: PuddleSparkle
+  name: sparkle
+  placement:
+    mode: SnapgridCenter
+  components:
+    # Animation is like 3 something seconds so we just need to despawn it before then.
+    - type: TimedDespawn
+      lifetime: 1
+    - type: EvaporationSparkle
+    - type: Transform
+      noRot: true
+      anchored: true
+    - type: Sprite
+      layers:
+        - sprite: Fluids/wet_floor_sparkles.rsi
+          state: sparkles
+      drawdepth: Puddles
+      color: "#FFFFFF80"
+
 #UM START
 - type: entity
   id: WetFloorEffect
@@ -137,60 +157,40 @@
   placement:
     mode: SnapgridCenter
   components:
-    # Animation is like 3 something seconds so we just need to despawn it before then.
-    - type: TimedDespawn
-      lifetime: 30
-    - type: Slippery
-    - type: StepTrigger
-      intersectRatio: 0.2
-    - type: Fixtures
-      fixtures:
-        slipFixture:
-          shape:
-            !type:PhysShapeAabb
-            bounds: "-0.5,-0.5,0.5,0.5"
-          mask:
-          - ItemMask
-          layer:
-          - SlipLayer
-          hard: false
-    - type: Physics
-      bodyType: Static
-    - type: SpawnOnDespawn
-      prototype: PuddleSparkle
-    - type: EvaporationSparkle
-    - type: Transform
-      noRot: true
-      anchored: true
-    - type: Sprite
-      layers:
-        - sprite: _UM/Efffects/water.rsi
-          state: wet_floor
-        - sprite: _UM/Efffects/water.rsi
-          state: wet_floor_static
-      drawdepth: Puddles
-      color: "#FFFFFFFF"
-#UM END
-
-- type: entity
-  id: PuddleSparkle
-  name: sparkle
-  placement:
-    mode: SnapgridCenter
-  components:
   # Animation is like 3 something seconds so we just need to despawn it before then.
   - type: TimedDespawn
-    lifetime: 1
+    lifetime: 30
+  - type: Slippery
+  - type: StepTrigger
+    intersectRatio: 0.2
+  - type: Fixtures
+    fixtures:
+      slipFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - ItemMask
+        layer:
+        - SlipLayer
+        hard: false
+  - type: Physics
+    bodyType: Static
+  - type: SpawnOnDespawn
+    prototype: PuddleSparkle
   - type: EvaporationSparkle
   - type: Transform
     noRot: true
     anchored: true
   - type: Sprite
     layers:
-    - sprite: Fluids/wet_floor_sparkles.rsi
-      state: sparkles
+    - sprite: _UM/Efffects/water.rsi
+      state: wet_floor
+    - sprite: _UM/Efffects/water.rsi
+      state: wet_floor_static
     drawdepth: Puddles
-    color: "#FFFFFF80"
+    color: "#FFFFFFFF"
+#UM END
 
 - type: entity
   name: puddle
