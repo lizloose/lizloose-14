@@ -5,7 +5,7 @@
   sound:
     params:
       volume: -10
-    collection: AmbienceGeneral
+    collection: UMAmbienceGeneral
   fadeIn: true
   rules: AlwaysTrue
 

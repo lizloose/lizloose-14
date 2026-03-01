@@ -6,13 +6,13 @@
   - /Audio/Ambience/ambimaint3.ogg
   - /Audio/Ambience/ambimaint4.ogg
   - /Audio/Ambience/ambimaint5.ogg
-  - /Audio/Ambience/_UM/Maintenance/ambimaint6.ogg
-  - /Audio/Ambience/_UM/Maintenance/ambimaint7.ogg
-  - /Audio/Ambience/_UM/Maintenance/ambimaint8.ogg
-  - /Audio/Ambience/_UM/Maintenance/ambimaint9.ogg
-  - /Audio/Ambience/_UM/Maintenance/ambimaint10.ogg
-  - /Audio/Ambience/_UM/Maintenance/ambimaint11.ogg
-  - /Audio/Ambience/_UM/Maintenance/ambimaint12.ogg
+  - /Audio/_UM/Ambience/Maintenance/ambimaint6.ogg
+  - /Audio/_UM/Ambience/Maintenance/ambimaint7.ogg
+  - /Audio/_UM/Ambience/Maintenance/ambimaint8.ogg
+  - /Audio/_UM/Ambience/Maintenance/ambimaint9.ogg
+  - /Audio/_UM/Ambience/Maintenance/ambimaint10.ogg
+  - /Audio/_UM/Ambience/Maintenance/ambimaint11.ogg
+  - /Audio/_UM/Ambience/Maintenance/ambimaint12.ogg
   - /Audio/Ambience/ambitech2.ogg
   - /Audio/Voice/Misc/lowHiss1.ogg
   - /Audio/Voice/Misc/lowHiss2.ogg
@@ -61,3 +61,29 @@
   - /Audio/Ambience/ambiruin5.ogg
   - /Audio/Ambience/ambiruin6.ogg
   - /Audio/Ambience/ambiruin7.ogg
+
+- type: soundCollection
+  id: UMAmbienceGeneral
+  files:
+  - /Audio/Ambience/ambigen1.ogg
+  - /Audio/Ambience/ambigen2.ogg
+  - /Audio/Ambience/ambigen3.ogg
+  - /Audio/Ambience/ambigen4.ogg
+  - /Audio/Ambience/ambigen5.ogg
+  - /Audio/Ambience/ambigen6.ogg
+  - /Audio/Ambience/ambigen7.ogg
+  - /Audio/Ambience/ambigen8.ogg
+  - /Audio/Ambience/ambigen9.ogg
+  - /Audio/Ambience/ambigen10.ogg
+  - /Audio/Ambience/ambigen11.ogg
+  - /Audio/Ambience/ambigen12.ogg
+  - /Audio/Ambience/ambigen14.ogg
+  - /Audio/Ambience/ambigen15.ogg
+
+- type: soundCollection
+  id: UMFireAlarm
+  files:
+  - /Audio/_UM/Machines/FireAlarm/FireAlarm1.ogg
+  - /Audio/_UM/Machines/FireAlarm/FireAlarm2.ogg
+  - /Audio/_UM/Machines/FireAlarm/FireAlarm3.ogg
+  - /Audio/_UM/Machines/FireAlarm/FireAlarm4.ogg
