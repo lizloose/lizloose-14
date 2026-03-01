@@ -1,5 +1,16 @@
 # Departments
 - type: ambientMusic
+  id: UMMedicalSpooky
+  disabled: false
+  sound:
+    params:
+      volume: -10
+    collection: UMAmbienceMedicalSpooky
+  fadeIn: true
+  rules: UMSpookierMedical
+  priority: 4
+
+- type: ambientMusic
   id: UMMedical
   disabled: false
   sound:
