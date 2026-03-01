@@ -28,6 +28,8 @@ public sealed partial class EvaporationComponent : Component
     /// <summary>
     /// The effect spawned when the puddle fully evaporates.
     /// </summary>
+    //UM START
     [DataField]
-    public EntProtoId EvaporationEffect = "PuddleSparkle";
+    public EntProtoId EvaporationEffect = "WetFloorEffect";
+    //UM END
 }
