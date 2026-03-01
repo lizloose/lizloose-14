@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": null,
+  "copyright": null,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "wet_floor",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          5
+        ]
+      ]
+    },
+    {
+      "name": "wet_floor_static"
+    },
+    {
+      "name": "wet_static"
+    },
+    {
+      "name": "ice_floor"
+    }
+  ]
+}
