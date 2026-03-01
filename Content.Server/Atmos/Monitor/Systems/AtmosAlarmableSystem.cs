@@ -12,6 +12,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Content.Shared.DeviceNetwork.Components;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Atmos.Monitor.Systems;
 
@@ -21,6 +22,9 @@ public sealed class AtmosAlarmableSystem : EntitySystem
     [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNet = default!;
     [Dependency] private readonly AtmosDeviceNetworkSystem _atmosDevNetSystem = default!;
+    //UM START
+    [Dependency] private readonly IGameTiming _timing = default!;
+    //UM END
 
     /// <summary>
     ///     An alarm. Has three valid states: Normal, Warning, Danger.
@@ -49,6 +53,24 @@ public sealed class AtmosAlarmableSystem : EntitySystem
         SubscribeLocalEvent<AtmosAlarmableComponent, PowerChangedEvent>(OnPowerChange);
     }
 
+    //UM START
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var curTime = _timing.CurTime;
+
+        var query = EntityQueryEnumerator<AtmosAlarmableComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (comp.NextSound > curTime)
+                 continue;
+
+            PlayAlertSound(uid, comp.LastAlarmState, comp);
+        }
+
+    }
+    //UM END
     private void OnMapInit(EntityUid uid, AtmosAlarmableComponent component, MapInitEvent args)
     {
         TryUpdateAlert(
@@ -305,6 +327,9 @@ public sealed class AtmosAlarmableSystem : EntitySystem
         if (alarm == AtmosAlarmType.Danger)
         {
             _audioSystem.PlayPvs(alarmable.AlarmSound, uid, AudioParams.Default.WithVolume(alarmable.AlarmVolume));
+            //UM START
+            alarmable.NextSound = _timing.CurTime + alarmable.UpdateInterval;
+            //UM END
         }
     }
 

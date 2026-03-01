@@ -1,6 +1,7 @@
 using Content.Shared.Atmos.Monitor;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
 
 namespace Content.Server.Atmos.Monitor.Components;
@@ -26,6 +27,9 @@ namespace Content.Server.Atmos.Monitor.Components;
 ///     calculate the highest network alert.
 /// </summary>
 [RegisterComponent]
+//UM START
+[AutoGenerateComponentPause]
+//UM END
 public sealed partial class AtmosAlarmableComponent : Component
 {
     [ViewVariables]
@@ -38,11 +42,11 @@ public sealed partial class AtmosAlarmableComponent : Component
     //UM START
     [DataField("alarmSound")]
     public SoundSpecifier AlarmSound { get; set; } = new SoundCollectionSpecifier("UMFireAlarm");
-    //UM END
+
 
     [DataField("alarmVolume")]
-    public float AlarmVolume { get; set; } = -10;
-
+    public float AlarmVolume { get; set; } = -6;
+    //UM END
     /// <summary>
     ///     List of tags to check for when synchronizing alarms.
     /// </summary>
@@ -59,4 +63,18 @@ public sealed partial class AtmosAlarmableComponent : Component
     /// </summary>
     [DataField("receiveOnly")]
     public bool ReceiveOnly { get; private set; }
+
+    //UM START
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
+    public TimeSpan NextSound = TimeSpan.Zero;
+
+    /// <summary>
+    /// How often the sound is played.
+    /// In this case every two seconds.
+    /// </summary>
+    [DataField]
+    public TimeSpan UpdateInterval = TimeSpan.FromSeconds(10);
+    //UM END
+
 }
