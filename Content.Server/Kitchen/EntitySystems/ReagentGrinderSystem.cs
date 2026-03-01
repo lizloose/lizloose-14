@@ -307,9 +307,10 @@ namespace Content.Server.Kitchen.EntitySystems
             var active = AddComp<ActiveReagentGrinderComponent>(uid);
             active.EndTime = _timing.CurTime + reagentGrinder.WorkTime * reagentGrinder.WorkTimeMultiplier;
             active.Program = program;
-
+            //UM START
             reagentGrinder.AudioStream = _audioSystem.PlayPvs(sound, uid,
-                AudioParams.Default.WithPitchScale(1 / reagentGrinder.WorkTimeMultiplier))?.Entity; //slightly higher pitched
+                sound.Params.WithPitchScale(1 / reagentGrinder.WorkTimeMultiplier))?.Entity; //slightly higher pitched
+            //UM END
             _userInterfaceSystem.ServerSendUiMessage(uid, ReagentGrinderUiKey.Key,
                 new ReagentGrinderWorkStartedMessage(program));
         }

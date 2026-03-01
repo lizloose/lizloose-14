@@ -5,7 +5,19 @@
   description: From BlenderTech. Will It Blend? Let's find out!
   suffix: grinder/juicer
   components:
+  #UM START
   - type: ReagentGrinder
+    grindSound:
+      params:
+        volume: -1.5
+        rolloffFactor: 2
+      path: /Audio/Machines/blender.ogg
+    juiceSound:
+      params:
+        volume: -1.5
+        rolloffFactor: 2
+      path: /Audio/Machines/juicer.ogg
+  #UM END
   - type: ActivatableUI
     key: enum.ReagentGrinderUiKey.Key
   - type: UserInterface
