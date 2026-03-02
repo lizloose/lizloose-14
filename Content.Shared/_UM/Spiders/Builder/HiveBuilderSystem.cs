@@ -76,6 +76,9 @@ public sealed class HiveBuilderSystem : EntitySystem
 
     private void OnBuildAction(Entity<HiveBuilderComponent> ent, ref HiveBuilderBuildActionEvent args)
     {
+        if (ent.Comp.CurrentBuild == null)
+            return;
+
         if (!_prototypeManager.TryIndex(ent.Comp.CurrentBuild, out var buildPrototype))
             return;
 

@@ -41,8 +41,8 @@ public sealed partial class HiveBuilderComponent : Component
     /// <summary>
     /// Currently selected build.
     /// </summary>
-    [ViewVariables]
-    public ProtoId<HiveBuildPrototype> CurrentBuild = new();
+    [ViewVariables, AutoNetworkedField]
+    public ProtoId<HiveBuildPrototype>? CurrentBuild = new();
 }
 
 
