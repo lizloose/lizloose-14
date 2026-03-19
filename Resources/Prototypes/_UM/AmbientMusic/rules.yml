@@ -44,6 +44,19 @@
       - SpookyFog
     range: 4
 
+- type: rules
+  id: UMSpookierMedical # play spookier sounds when less people are around
+  rules:
+  - !type:PlayersNearbyRule
+    inverted: true
+    count: 1
+    range: 13
+  - !type:NearbyComponentsRule
+    components:
+    - type: UMAmbientMusicMarkerMedical
+    count: 3
+    range: 5
+
 - type: rules # only play if they're really deep in space
   id: UMInSpace
   rules:

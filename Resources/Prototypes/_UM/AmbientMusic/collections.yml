@@ -86,3 +86,12 @@
   - /Audio/_UM/Machines/FireAlarm/FireAlarm2.ogg
   - /Audio/_UM/Machines/FireAlarm/FireAlarm3.ogg
   - /Audio/_UM/Machines/FireAlarm/FireAlarm4.ogg
+
+- type: soundCollection
+  id: UMAmbienceMedicalSpooky
+  files:
+  - /Audio/Ambience/ambimo1.ogg
+  - /Audio/Ambience/ambimystery.ogg
+  - /Audio/_UM/Ambience/Medical/ambiviro.ogg
+  - /Audio/_UM/Ambience/Medical/ambiviro1.ogg
+  - /Audio/_UM/Ambience/Medical/ambiviro2.ogg
