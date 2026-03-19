@@ -28,7 +28,9 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                     SendMessage(new LeaveGhostRoleRaffleMessage(info.Identifier));
                     return;
                 }
-
+                //UM START
+                SendMessage(new RequestGhostRoleMessage(info.Identifier));
+                /*
                 _windowRules = new GhostRoleRulesWindow(info.Rules, _ =>
                 {
                     SendMessage(new RequestGhostRoleMessage(info.Identifier));
@@ -44,6 +46,8 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                     _windowRules = null;
                 };
                 _windowRules.OpenCentered();
+                */
+                //UM END
             };
 
             _window.OnRoleFollow += info =>
