@@ -403,14 +403,7 @@
     whitelist:
       tags:
       - Spider
-    healAmount:
-      groups:
-        Brute: -25
-        Burn: -25
-        Airloss: -25
-        Toxin: -25
-      types:
-        Bloodloss: -10
+    healAmount: -30
 
 - type: entity
   name: hunter

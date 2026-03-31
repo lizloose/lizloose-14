@@ -21,14 +21,18 @@
       tags:
       - Spider
     whitelistDamage:
-      groups:
-        Brute: -7
-        Burn: -7
-        Airloss: -7
-        Toxin: -7
-      types:
-        Bloodloss: -7
+      types: # good enough. Maybe make it call the rejuvenate command later.
+        Asphyxiation: -10
+        Bloodloss: -10
+        Blunt: -10
+        Caustic: -10
+        Cold: -10
         Heat: 1
+        Piercing: -10
+        Poison: -10
+        Radiation: -10
+        Shock: -10
+        Slash: -10
 
 - type: entity
   id: BulletImpactEffectGreenNurseSpider
