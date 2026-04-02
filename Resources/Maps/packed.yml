@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 272.0.0
+  engineVersion: 275.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/26/2026 21:33:15
-  entityCount: 15967
+  time: 04/02/2026 11:34:42
+  entityCount: 15977
 maps:
 - 126
 grids:
@@ -11932,6 +11932,14 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
+  - uid: 15977
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 22.5,-20.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: APCElectronics
   entities:
   - uid: 6656
@@ -16169,7 +16177,7 @@ entities:
   - uid: 6472
     components:
     - type: Transform
-      pos: 22.5,-17.5
+      pos: 22.5,-20.5
       parent: 2
   - uid: 6474
     components:
@@ -23641,6 +23649,11 @@ entities:
     - type: Transform
       pos: 55.5,-19.5
       parent: 2
+  - uid: 15480
+    components:
+    - type: Transform
+      pos: 22.5,-17.5
+      parent: 2
   - uid: 15499
     components:
     - type: Transform
@@ -23650,6 +23663,16 @@ entities:
     components:
     - type: Transform
       pos: 17.5,-18.5
+      parent: 2
+  - uid: 15574
+    components:
+    - type: Transform
+      pos: 22.5,-19.5
+      parent: 2
+  - uid: 15575
+    components:
+    - type: Transform
+      pos: 22.5,-18.5
       parent: 2
   - uid: 15580
     components:
@@ -35049,6 +35072,11 @@ entities:
     - type: Transform
       pos: 35.5,-25.5
       parent: 2
+  - uid: 15459
+    components:
+    - type: Transform
+      pos: 22.5,-20.5
+      parent: 2
   - uid: 15555
     components:
     - type: Transform
@@ -35154,6 +35182,11 @@ entities:
     - type: Transform
       pos: 57.5,24.5
       parent: 2
+  - uid: 15634
+    components:
+    - type: Transform
+      pos: 22.5,-19.5
+      parent: 2
   - uid: 15708
     components:
     - type: Transform
@@ -35168,6 +35201,16 @@ entities:
     components:
     - type: Transform
       pos: 62.5,46.5
+      parent: 2
+  - uid: 15799
+    components:
+    - type: Transform
+      pos: 22.5,-18.5
+      parent: 2
+  - uid: 15800
+    components:
+    - type: Transform
+      pos: 22.5,-17.5
       parent: 2
   - uid: 15802
     components:
@@ -35353,6 +35396,16 @@ entities:
     components:
     - type: Transform
       pos: 33.5,8.5
+      parent: 2
+  - uid: 15975
+    components:
+    - type: Transform
+      pos: 22.5,-15.5
+      parent: 2
+  - uid: 15976
+    components:
+    - type: Transform
+      pos: 22.5,-16.5
       parent: 2
 - proto: CableMVStack
   entities:
@@ -43278,7 +43331,7 @@ entities:
       pos: 59.5,39.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -18601.303
+      secondsUntilStateChange: -18680.893
       state: Closing
 - proto: CurtainsWhiteOpen
   entities:
@@ -49141,7 +49194,7 @@ entities:
       pos: 26.5,37.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -65895.086
+      secondsUntilStateChange: -65974.68
       state: Closing
   - uid: 9362
     components:
@@ -71958,7 +72011,7 @@ entities:
       pos: 12.5,12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -4067.0356
+      secondsUntilStateChange: -4146.626
       state: Closing
   - uid: 5750
     components:
@@ -76887,7 +76940,6 @@ entities:
       parent: 2
     - type: ApcPowerReceiver
       powerLoad: 0
-    - type: Timer
   - uid: 7568
     components:
     - type: Transform

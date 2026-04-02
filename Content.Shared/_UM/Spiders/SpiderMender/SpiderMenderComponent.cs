@@ -1,7 +1,5 @@
 using Content.Shared.Actions;
-using Content.Shared.Damage;
 using Content.Shared.DoAfter;
-using Content.Shared.FixedPoint;
 using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -33,9 +31,10 @@ public sealed partial class SpiderMenderComponent : Component
 
     /// <summary>
     /// How much should the action heal
+    /// Number must be negative to heal
     /// </summary>
     [DataField(required: true)]
-    public DamageSpecifier HealAmount;
+    public float HealAmount = -30;
 
     /// <remarks>
     /// This should generally be negative,

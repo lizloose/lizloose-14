@@ -47,19 +47,16 @@ public sealed class SpiderMenderSystem : EntitySystem
         }
     }
 
-    private bool HasDamage(Entity<SpiderMenderComponent> healing, Entity<DamageableComponent?> target)
+    private bool HasDamage(Entity<DamageableComponent?> target)
     {
         if (!Resolve(target, ref target.Comp))
             return false;
 
-        var damageableDict = target.Comp.Damage.DamageDict;
-        var healingDict = healing.Comp.HealAmount.DamageDict;
-        foreach (var type in healingDict)
+        var damageableDict = _damage.GetPositiveDamage((target.Owner, target.Comp)).DamageDict;
+        foreach (var type in damageableDict)
         {
-            if (damageableDict[type.Key].Value > 0)
-            {
+            if (type.Value > 0)
                 return true;
-            }
         }
 
         return false;
@@ -77,7 +74,7 @@ public sealed class SpiderMenderSystem : EntitySystem
             return;
         }
 
-        if (!HasDamage(ent, args.Target))
+        if (!HasDamage(args.Target))
             return;
 
         var time = ent.Comp.HealTime;
@@ -123,6 +120,8 @@ public sealed class SpiderMenderSystem : EntitySystem
             return;
 
         _bloodstreamSystem.TryModifyBleedAmount(args.Target.Value, ent.Comp.BloodlossModifier);
-        _damage.TryChangeDamage(args.Target.Value, ent.Comp.HealAmount);
+        Log.Debug("trying to heal");
+        _damage.HealDistributed(args.Target.Value, ent.Comp.HealAmount, origin: args.User);
+        //_damage.TryChangeDamage(args.Target.Value, ent.Comp.HealAmount);
     }
 }
