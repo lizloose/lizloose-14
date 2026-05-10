@@ -71,7 +71,6 @@ internal static class ServerContentIoC
         //UM END
         deps.Register<UserDbDataManager>();
         deps.Register<ServerInfoManager>();
-        deps.Register<PoissonDiskSampler>();
         deps.Register<DiscordWebhook>();
         deps.Register<VoteWebhooks>();
         deps.Register<ServerDbEntryManager>();
