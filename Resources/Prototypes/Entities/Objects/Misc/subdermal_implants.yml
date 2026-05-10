@@ -158,9 +158,7 @@
     - Syndicate
 
 - type: entity
-  #UM START
-  parent: [ BaseSubdermalImplant, UMStorePresetUplink ]
-  #UM END
+  parent: BaseSubdermalImplant
   id: UplinkImplant
   name: uplink implant
   description: This implant lets the user access a hidden Syndicate uplink at will.
@@ -171,9 +169,7 @@
     whitelist:
       components:
       - Hands # prevent mouse buying grenade penguin since its not telepathic
-  - type: Store
-    balance:
-      Telecrystal: 0
+  - type: RemoteStore
   - type: UserInterface
     interfaces:
       enum.StoreUiKey.Key:

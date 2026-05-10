@@ -24,12 +24,8 @@
     - Syndicate
 
 - type: entity
-  id: UMStorePresetChangeling
-  abstract: true
+  parent: UMStorePresetUplink
+  id: UMStorePresetRemoteUplink
+  categories: [ HideSpawnMenu ]
   components:
-  - type: Store
-    name: store-preset-name-changeling
-    categories:
-    - ChangelingAbilities
-    currencyWhitelist:
-    - ChangelingDNA
+  - type: RingerAccessUplink

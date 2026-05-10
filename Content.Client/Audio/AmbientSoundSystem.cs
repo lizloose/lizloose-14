@@ -310,7 +310,7 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
                     continue;
                 // ES END
                 if (_playingSounds.ContainsKey(sourceEntity) ||
-                    metaQuery.GetComponent(uid).EntityPaused)
+                    Paused(uid))
                     continue;
 
                 var audioParams = _params

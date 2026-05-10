@@ -41,7 +41,7 @@
     children:
     - id: DragonSpawn
     - id: NinjaSpawn
-    - id: ParadoxCloneSpawn
+#    - id: ParadoxCloneSpawn
     - id: SleeperAgents
     - id: ZombieOutbreak
     - id: LoneOpsSpawn
@@ -267,43 +267,44 @@
   - type: DynamicRuleCost
     cost: 75
 
-- type: entity
-  parent: BaseGameRule
-  id: ParadoxCloneSpawn
-  components:
-  - type: StationEvent
-    weight: 5
-    duration: null
-    earliestStart: 20
-    reoccurrenceDelay: 20
-    minimumPlayers: 15
-  - type: ParadoxCloneRule
-    objectiveBlacklist:
-      tags:
-      - ParadoxCloneObjectiveBlacklist
-  - type: AntagObjectives
-    objectives:
-    - ParadoxCloneKillObjective
-    - ParadoxCloneLivingObjective
-  - type: AntagRandomSpawn # TODO: improve spawning so they only start in maints
-  - type: AntagSelection
-    agentName: paradox-clone-round-end-agent-name
-    definitions:
-    - spawnerPrototype: SpawnPointGhostParadoxClone
-      min: 1
-      max: 1
-      pickPlayer: false
-      startingGear: ParadoxCloneGear
-      roleLoadout:
-      - RoleSurvivalVoxTank # give vox something to breath in case they don't get a copy
-      briefing:
-        text: paradox-clone-role-greeting
-        color: lightblue
-        sound: /Audio/Misc/paradox_clone_greeting.ogg
-      mindRoles:
-      - MindRoleParadoxClone
-  - type: DynamicRuleCost
-    cost: 50
+#UM START
+#- type: entity
+#  parent: BaseGameRule
+#  id: ParadoxCloneSpawn
+#  components:
+#  - type: StationEvent
+#    weight: 5
+#    duration: null
+#    earliestStart: 20
+#    reoccurrenceDelay: 20
+#    minimumPlayers: 15
+#  - type: ParadoxCloneRule
+#    objectiveBlacklist:
+#      tags:
+#      - ParadoxCloneObjectiveBlacklist
+#  - type: AntagObjectives
+#    objectives:
+#    - ParadoxCloneKillObjective
+#    - ParadoxCloneLivingObjective
+#  - type: AntagRandomSpawn # TODO: improve spawning so they only start in maints
+#  - type: AntagSelection
+#    agentName: paradox-clone-round-end-agent-name
+#    definitions:
+#    - spawnerPrototype: SpawnPointGhostParadoxClone
+#      min: 1
+#      max: 1
+#      pickPlayer: false
+#      startingGear: ParadoxCloneGear
+#      roleLoadout:
+#      - RoleSurvivalVoxTank # give vox something to breath in case they don't get a copy
+#      briefing:
+#        text: paradox-clone-role-greeting
+#        color: lightblue
+#        sound: /Audio/Misc/paradox_clone_greeting.ogg
+#      mindRoles:
+#      - MindRoleParadoxClone
+#  - type: DynamicRuleCost
+#    cost: 50
 
 - type: entity
   parent: BaseGameRule
@@ -323,7 +324,7 @@
   components:
   - type: StationEvent
     weight: 1 # rare
-    duration: 1
+    duration: null
     earliestStart: 30
     reoccurrenceDelay: 60
     minimumPlayers: 30

@@ -195,25 +195,27 @@
     - sprite: Objects/Weapons/Melee/energykatana.rsi
       state: icon
 
-- type: entity
-  categories: [ HideSpawnMenu, Spawner ]
-  parent: BaseAntagSpawner
-  id: SpawnPointGhostParadoxClone
-  components:
-  - type: GhostRole
-    name: ghost-role-information-paradox-clone-name
-    description: ghost-role-information-paradox-clone-description
-    rules: ghost-role-information-antagonist-rules
-    mindRoles:
-    - MindRoleParadoxClone
-    raffle:
-      settings: default
-  - type: Sprite
-    layers:
-    - sprite: Markers/jobs.rsi
-      state: green
-    - sprite: Mobs/Aliens/paradox_clone.rsi
-      state: preview
+#UM START
+#- type: entity
+#  categories: [ HideSpawnMenu, Spawner ]
+#  parent: BaseAntagSpawner
+#  id: SpawnPointGhostParadoxClone
+#  components:
+#  - type: GhostRole
+#    name: ghost-role-information-paradox-clone-name
+#    description: ghost-role-information-paradox-clone-description
+#    rules: ghost-role-information-antagonist-rules
+#    mindRoles:
+#    - MindRoleParadoxClone
+#    raffle:
+#      settings: default
+#  - type: Sprite
+#    layers:
+#    - sprite: Markers/jobs.rsi
+#      state: green
+#    - sprite: Mobs/Aliens/paradox_clone.rsi
+#      state: preview
+#UM END
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
@@ -349,6 +351,7 @@
   - type: GhostRole
     name: ghost-role-information-wizard-name
     description: ghost-role-information-wizard-desc
+    rules: ghost-role-information-antagonist-rules
     mindRoles:
     - MindRoleWizard
     raffle:

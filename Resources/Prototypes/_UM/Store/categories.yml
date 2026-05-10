@@ -53,7 +53,3 @@
   id: UMUplinkPointless
   name: store-category-pointless
   priority: 10
-
-- type: storeCategory
-  id: UMChangelingAbilities
-  name: store-category-abilities

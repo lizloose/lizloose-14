@@ -264,7 +264,7 @@
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Changeling ]
-      max: 2
+      max: 3
       playerRatio: 15
       briefing:
         text: changeling-role-greeting
@@ -272,52 +272,25 @@
         sound: /Audio/Ambience/Antag/changeling_start.ogg
       components:
       - type: ChangelingDevour
-        #UM START
-        changelingDevourAction: UMActionChangelingDevour
-        #UM END
       - type: ChangelingIdentity
       - type: ChangelingTransform
-        #UM START
-        changelingTransformAction: UMActionChangelingTransform
-        #UM END
       - type: ActionGrant
         actions:
-        - UMActionChangelingStore #UM EDIT
-        #UM START
-        - ActionEnterStasis
-        #UM END
-      #UM START
-      - type: UMChangeling
-      - type: EnergyContainer
-        types:
-        - ChangelingChemicalEnergy
-      #UM END
+        - ActionChangelingStore
       # TODO: Make it so the changeling gamerule changeling can inherit from the changeling store preset somehow
       - type: Store
         name: store-preset-name-changeling
         categories:
-        #UM START
-        - UMChangelingAbilities
-        #UM END
+        - ChangelingAbilities
         currencyWhitelist:
         - ChangelingDNA
         balance:
-          ChangelingDNA: 15 #UM EDIT
-#UM START
-#      - type: UserInterface
-#        interfaces:
-#          enum.StoreUiKey.Key:
-#            type: StoreBoundUserInterface
-#            requireInputValidation: false
-#UM END
+          ChangelingDNA: 50
       mindRoles:
       - MindRoleChangeling
   - type: AntagObjectives
     objectives:
     - ChangelingSurviveObjective
-    - UMChangelingDevourObjective #UM EDIT
-    - UMChangelingDevourObjective #UM EDIT
-    - UMChangelingDevourCountObjective #UM EDIT
 
 - type: entity
   id: Revolutionary
