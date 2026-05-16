@@ -7,7 +7,8 @@
 - type: weightedRandom
   id: VictimObjectiveGroupDamage
   weights:
-    WelderBombObjective: 1
+    WelderBombLocationObjective: 1
+    WelderBombObjective: 0.25
     DamageSelfObjective: 1
 
 - type: weightedRandom

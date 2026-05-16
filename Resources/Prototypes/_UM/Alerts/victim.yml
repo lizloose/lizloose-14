@@ -4,8 +4,8 @@
   - sprite: Objects/Weapons/Bombs/c4.rsi
     state: icon
   alertViewEntity: VictimAlertSpriteView
-  name: minutes until doom
-  description: your head is gonna blow off!
+  name: victim-timer-name
+  description: victim-timer-description
 
 - type: entity
   id: VictimAlertSpriteView
@@ -23,5 +23,3 @@
     - map: [ "10" ]
       offset: 0.125, 0
     - map: [ "100" ]
-
-

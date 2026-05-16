@@ -32,17 +32,36 @@ public sealed class WelderBombObjectiveSystem : EntitySystem
     private void OnWelderBombAfterAssign(Entity<WelderBombObjectiveComponent> ent, ref ObjectiveAfterAssignEvent args)
     {
         if (!TryComp<WarpPointComponent>(ent.Comp.Target, out var warp) || warp.Location == null)
+        {
+            var title = Loc.GetString("objective-condition-welder-tank-title-no-location");
+            _metaData.SetEntityName(ent, title, args.Meta);
             return;
+        }
 
-        var title = Loc.GetString("objective-condition-welder-tank-title", ("location", warp.Location));
+        var titleLocation = Loc.GetString("objective-condition-welder-tank-title", ("location", warp.Location));
 
-        _metaData.SetEntityName(ent, title, args.Meta);
+        _metaData.SetEntityName(ent, titleLocation, args.Meta);
     }
 
     private void OnWelderBombRequirementCheck(Entity<WelderBombObjectiveComponent> ent, ref RequirementCheckEvent args)
     {
         if (args.Cancelled)
             return;
+
+        foreach (var obj in args.Mind.Objectives)
+        {
+            if (HasComp<WelderBombObjectiveComponent>(obj))
+            {
+                args.Cancelled = true;
+                return;
+            }
+        }
+
+        if (ent.Comp.NoLocation)
+        {
+            ent.Comp.Target = null;
+            return;
+        }
 
         var warps = new List<EntityUid>();
         var allEnts = EntityQueryEnumerator<WarpPointComponent>();
@@ -59,7 +78,7 @@ public sealed class WelderBombObjectiveSystem : EntitySystem
 
         if (warps.Count <= 0)
         {
-            args.Cancelled = true;
+            ent.Comp.Target = null;
             return;
         }
         ent.Comp.Target = _random.Pick(warps);

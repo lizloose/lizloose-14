@@ -9,8 +9,14 @@ objective-condition-welder-tank-title = You must welderbomb the {$location}.
 objective-condition-steal-and-flush-title = You must steal a {$item} and flush it down a disposals bin.
 objective-condition-deal-damage-to-self-title = Deal {$amount} damage to yourself.
 
+objective-condition-welder-tank-title-no-location = Welderbomb something. Make it a good one!
+
 roles-antag-victim-name = Victim
 roles-antag-victim-objective =
     Complete your objectives before your head blows off
 
 role-subtype-victim = Victim
+
+
+victim-timer-name = minutes until doom
+victim-timer-description = your head is gonna blow off!

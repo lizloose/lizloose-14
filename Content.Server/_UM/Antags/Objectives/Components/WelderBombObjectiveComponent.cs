@@ -21,6 +21,9 @@ public sealed partial class WelderBombObjectiveComponent : Component
     [DataField]
     public EntityWhitelist? Blacklist;
 
+    [DataField]
+    public bool NoLocation = false;
+
     /// <summary>
     /// Range for how far we can welder bomb
     /// </summary>
