@@ -1,5 +1,4 @@
 using Content.Shared.FixedPoint;
-using Robust.Shared.Serialization;
 
 namespace Content.Server._UM.Antags.Objectives.Components;
 

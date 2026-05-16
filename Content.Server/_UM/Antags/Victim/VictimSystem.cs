@@ -1,13 +1,9 @@
-using Content.Server._UM.Antags.Objectives.Components;
-using Content.Server.Damage.Components;
 using Content.Server.Objectives.Components;
-using Content.Server.Objectives.Systems;
 using Content.Shared._UM.Antags.Victim.Components;
 using Content.Shared._UM.Antags.Victim.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.Mind;
-using Content.Shared.Roles;
 using Robust.Shared.Timing;
 
 namespace Content.Server._UM.Antags.Victim;
@@ -18,7 +14,6 @@ public sealed class VictimSystem : SharedVictimSystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedExplosionSystem _explosionSystem = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
 
     public override void Initialize()
     {
@@ -57,7 +52,7 @@ public sealed class VictimSystem : SharedVictimSystem
 
     private void Detonate(Entity<VictimComponent> ent)
     {
-        if (!_mind.TryGetMind(ent, out var mindEnt, out var mindComponent))
+        if (!_mind.TryGetMind(ent, out _, out var mindComponent))
             return;
 
         foreach (var objective in mindComponent.Objectives)
