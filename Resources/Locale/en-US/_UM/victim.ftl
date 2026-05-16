@@ -20,3 +20,5 @@ role-subtype-victim = Victim
 
 victim-timer-name = minutes until doom
 victim-timer-description = your head is gonna blow off!
+
+victim-round-end-agent-name = victim

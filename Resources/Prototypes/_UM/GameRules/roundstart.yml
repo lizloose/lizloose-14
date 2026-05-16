@@ -104,7 +104,7 @@
   - type: GameRule
     minPlayers: 25
   - type: AntagSelection
-    agentName: victim
+    agentName: victim-round-end-agent-name
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Victim ]

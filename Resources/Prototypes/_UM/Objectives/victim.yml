@@ -65,7 +65,7 @@
     - WeaponDisabler
     - Stunbaton
     - WeaponPistolMk58
-    - JackBoots
+    - ClothingShoesBootsJack
 
 - type: entity
   parent: [BaseVictimObjective, BaseCounterObjective]
