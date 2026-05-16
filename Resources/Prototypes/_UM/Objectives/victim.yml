@@ -10,7 +10,6 @@
     roles:
     - VictimRole
 
-
 - type: entity
   parent: [BaseVictimObjective, BaseCodeObjective]
   id: WelderBombObjective
@@ -54,3 +53,19 @@
     - Stunbaton
     - WeaponPistolMk58
     - JackBoots
+
+- type: entity
+  parent: [BaseVictimObjective, BaseCounterObjective]
+  id: VictimMailFraudObjective
+  description: You need it more than they do.
+  components:
+  - type: Objective
+    difficulty: 0.5
+    icon:
+      sprite: Objects/Specific/Cargo/mail_bag.rsi
+      state: icon
+  - type: MailFraudCondition
+  - type: NumberObjective
+    min: 8
+    max: 12
+    title: objective-condition-mail-fraud-title

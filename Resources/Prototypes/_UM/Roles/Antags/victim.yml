@@ -1,0 +1,6 @@
+- type: antag
+  id: Victim
+  name: roles-antag-victim-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-victim-objective

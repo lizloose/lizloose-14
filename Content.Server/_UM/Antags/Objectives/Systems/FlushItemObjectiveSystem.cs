@@ -80,6 +80,8 @@ public sealed class FlushItemObjectiveSystem : EntitySystem
         if (obj.ItemInserted && obj.BinFlushed)
             return;
 
+        //TODO: Use generic target system when thats added
+        // this is --good enough-- for playtesting until thats added
         if (Prototype(args.Inserted) != obj.Target)
             return;
 

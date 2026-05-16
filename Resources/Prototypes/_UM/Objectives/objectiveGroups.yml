@@ -1,0 +1,17 @@
+- type: weightedRandom
+  id: VictimObjectiveGroup
+  weights:
+    VictimObjectiveGroupDamage: 1
+    VictimObjectiveGroupSteal: 1
+
+- type: weightedRandom
+  id: VictimObjectiveGroupDamage
+  weights:
+    WelderBombObjective: 1
+    DamageSelfObjective: 1
+
+- type: weightedRandom
+  id: VictimObjectiveGroupSteal
+  weights:
+    FlushItemObjective: 1
+    VictimMailFraudObjective: 1

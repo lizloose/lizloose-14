@@ -8,6 +8,8 @@
       prob: 1.0
     - id: UMSubBroodmotherInfection
       prob: 0.5
+    - id: Victim
+      prob: 0.5
 
 - type: entity
   abstract: true
@@ -105,7 +107,7 @@
     agentName: victim
     selectionTime: IntraPlayerSpawn
     definitions:
-    - prefRoles: [ Changeling ]
+    - prefRoles: [ Victim ]
       max: 3
       playerRatio: 15
       briefing:
@@ -115,11 +117,11 @@
       - type: Victim
       mindRoles:
       - MindRoleVictim
-  - type: AntagObjectives
-    objectives:
-    - WelderBombObjective
-    - DamageSelfObjective
-    - FlushItemObjective
+  - type: AntagRandomObjectives
+    sets:
+    - groups: VictimObjectiveGroup
+      maxPicks: 2
+    maxDifficulty: 5
 
 - type: entity
   parent: BaseMindRoleAntag
@@ -128,5 +130,5 @@
   components:
   - type: MindRole
     antagPrototype: Victim
-    subtype: Victim
+    subtype: role-subtype-victim
   - type: VictimRole

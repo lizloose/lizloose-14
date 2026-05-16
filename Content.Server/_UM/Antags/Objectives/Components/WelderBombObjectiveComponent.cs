@@ -1,5 +1,4 @@
 using Content.Shared.Whitelist;
-using Robust.Shared.GameStates;
 
 namespace Content.Server._UM.Antags.Objectives.Components;
 
@@ -26,7 +25,7 @@ public sealed partial class WelderBombObjectiveComponent : Component
     /// Range for how far we can welder bomb
     /// </summary>
     [DataField]
-    public float Range = 10f;
+    public float Range = 12f;
 
     /// <summary>
     /// Whether or not they did the bomb

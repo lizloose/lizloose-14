@@ -26,12 +26,7 @@ public sealed class WelderBombObjectiveSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<VictimComponent, WelderBombEvent>(OnWelderBomb);
         SubscribeLocalEvent<WelderBombObjectiveComponent, RequirementCheckEvent>(OnWelderBombRequirementCheck);
-        SubscribeLocalEvent<WelderBombObjectiveComponent, ObjectiveGetProgressEvent>(OnWelderBombGetProgress);
         SubscribeLocalEvent<WelderBombObjectiveComponent, ObjectiveAfterAssignEvent>(OnWelderBombAfterAssign);
-    }
-
-    private void OnWelderBombGetProgress(Entity<WelderBombObjectiveComponent> ent, ref ObjectiveGetProgressEvent args)
-    {
     }
 
     private void OnWelderBombAfterAssign(Entity<WelderBombObjectiveComponent> ent, ref ObjectiveAfterAssignEvent args)
@@ -78,8 +73,14 @@ public sealed class WelderBombObjectiveSystem : EntitySystem
         if (!_roles.MindHasRole<VictimRoleComponent>(mind))
             return;
 
-        if (!_mind.TryGetObjectiveComp<WelderBombObjectiveComponent>(ent, out var obj) || obj.Target == null)
+        if (!_mind.TryGetObjectiveComp<WelderBombObjectiveComponent>(ent, out var obj))
             return;
+
+        if (obj.Target == null) //if it's null we give them the win anyways, they blew up the bomb.
+        {
+            _codeCondition.SetCompleted(ent.Owner, "WelderBombObjective");
+            return;
+        }
 
         var tankXform = Transform(args.Tank);
         var targetXform = Transform(obj.Target.Value);
