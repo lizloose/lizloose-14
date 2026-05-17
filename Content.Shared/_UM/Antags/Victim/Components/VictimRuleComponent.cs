@@ -1,5 +1,3 @@
-using Robust.Shared.Serialization;
-
 namespace Content.Shared._UM.Antags.Victim.Components;
 
 /// <summary>
@@ -7,7 +5,4 @@ namespace Content.Shared._UM.Antags.Victim.Components;
 /// </summary>
 ///
 [RegisterComponent]
-public abstract partial class VictimRuleComponent : Component
-{
-
-}
+public sealed partial class VictimRuleComponent : Component;
