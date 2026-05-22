@@ -15,14 +15,14 @@
   #  range: 2
   #  sound:
   #    path: /Audio/Ambience/Objects/hdd_buzz.ogg
-  - type: AmbientOnPowered
-  - type: AmbientSound
-    volume: -12
-    range: 15 # max range
-    sound:
-      path: /Audio/Ambience/shipambience.ogg # plays nonpositionally, so this is stereo
-    maxSoundOverride: 1
-    playPositional: false
+  #- type: AmbientOnPowered
+  #- type: AmbientSound
+  #  volume: -12
+  #  range: 15 # max range
+  #  sound:
+  #    path: /Audio/Ambience/shipambience.ogg # plays nonpositionally, so this is stereo
+  #  maxSoundOverride: 1
+  #  playPositional: false
   #ES END
   - type: PointLight
     radius: 1.5
