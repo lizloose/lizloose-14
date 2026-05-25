@@ -6,6 +6,20 @@
       factions:
         - NanoTrasen
     - type: StationJobArrivals
+    - type: StationAmbience
+      ambience:
+      - DefaultDrone
+
+- type: stationAmbience
+  id: DefaultDrone
+  sound: !type:SoundPathSpecifier
+    params:
+      loop: true
+      volume: -2
+    path: /Audio/Ambience/shipambience.ogg
+  conditions:
+  - !type:NearPowerCondition
+    range: 10
 
 - type: entity
   id: StandardNanotrasenStation
