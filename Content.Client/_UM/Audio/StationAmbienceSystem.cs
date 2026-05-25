@@ -1,12 +1,16 @@
 using System.Linq;
 using Content.Client.Power.Components;
 using Content.Client.Power.EntitySystems;
+using Content.Shared._UM.Audio;
 using Content.Shared.Audio;
+using Content.Shared.EntityConditions;
 using Content.Shared.Power.EntitySystems;
+using Content.Shared.Station;
 using Robust.Client.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Client._UM.Audio;
@@ -20,10 +24,13 @@ public sealed class StationAmbienceSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly SharedStationSystem _station = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-    private Entity<AudioComponent>? _playingSound;
+    [Dependency] private readonly SharedEntityConditionsSystem _conditions = default!;
 
-    private readonly SoundSpecifier _soundFile = new SoundPathSpecifier("/Audio/Ambience/shipambience.ogg");
+    private Entity<AudioComponent>? _playingSound = null;
+
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -39,47 +46,41 @@ public sealed class StationAmbienceSystem : EntitySystem
         if (!_gameTiming.IsFirstTimePredicted)
             return;
 
-        var player = _playerManager.LocalEntity;
-
-        if (player is not { } ent)
+        if (_playerManager.LocalEntity is not { } player)
             return;
 
-        var powered = IsNearPower(ent);
+        var xform = Transform(player);
 
-        if (!powered && _playingSound != null)
+        if (_station.GetOwningStation(xform.GridUid) is not { } station)
         {
             _audio.Stop(_playingSound);
             _playingSound = null;
             return;
         }
 
-        if (_playingSound == null && powered)
+        if (!TryComp<StationAmbienceComponent>(station, out var comp))
+            return;
+
+        if (_playingSound is not null && !Exists(_playingSound))
+            _playingSound = null;
+
+        foreach (var sound in comp.Ambience)
         {
-            _playingSound = _audio.PlayGlobal(_soundFile,
-                ent,
-                audioParams: new AudioParams()
+            if (!_prototypeManager.Resolve(sound, out var proto))
+                continue;
+
+            var passed = _conditions.TryConditions(player, proto.Conditions);
+
+            if (!passed && _playingSound != null)
             {
-                Volume = -8,
-                Loop = true
-            });
-        }
-    }
+                _audio.Stop(_playingSound);
+                _playingSound = null;
+            }
 
-    public bool IsNearPower(EntityUid ent)
-    {
-        var xform = Transform(ent);
-
-        if (xform.GridUid == null)
-            return false;
-
-        foreach (var uid in _lookup.GetEntitiesInRange(xform.Coordinates, 10f, LookupFlags.Static))
-        {
-            if (TryComp<ApcPowerReceiverComponent>(uid, out var comp) && comp.Powered)
+            if (passed && _playingSound == null)
             {
-                return true;
+                _playingSound = _audio.PlayGlobal(proto.Sound, player);
             }
         }
-
-        return false;
     }
 }
