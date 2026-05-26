@@ -36,17 +36,13 @@
     #  min: 240
     #  max: 420
   - type: AntagSelection
-    selectionTime: IntraPlayerSpawn
-    definitions:
-    - prefRoles: [ Traitor ]
-      max: 1
-      playerRatio: 5
-      blacklist:
-        components:
-        - AntagImmune
-      lateJoinAdditional: false
-      mindRoles:
-      - MindRoleTraitor
+    lateJoinAdditional: true
+    antags:
+    - !type:LinearAntagCount
+      proto: Traitor
+      range:
+        min: 1
+        max: 8
 
 - type: entity
   id: UMBroodmotherSwarm
@@ -58,22 +54,13 @@
       min: 600
       max: 960
   - type: AntagSelection
-    agentName: broodmother-round-end-agent-name
-    selectionTime: IntraPlayerSpawn
-    definitions:
-    - prefRoles: [ Broodmother ]
-      max: 4
-      playerRatio: 10
-      allowNonHumans: true
-      briefing:
-        text: broodmother-role-greeting
-        color: Red
-        sound: /Audio/Ambience/Antag/changeling_start.ogg
-      components:
-      - type: DeployableAntag
-        protoId: MobBroodmother
-      mindRoles:
-      - MindRoleBroodmother
+    lateJoinAdditional: false
+    antags:
+    - !type:LinearAntagCount
+      proto: Broodmother
+      range:
+        min: 1
+        max: 4
 
 - type: entity
   id: UMBasicStationEventScheduler

@@ -6,11 +6,11 @@ using Robust.Shared.Player;
 
 namespace Content.Client._UM.Drip;
 
-public sealed class DripTrackingManager : ISharedDripTrackingManager
+public sealed partial class DripTrackingManager : ISharedDripTrackingManager
 {
-    [Dependency] private readonly IBaseClient _client = default!;
-    [Dependency] private readonly IClientNetManager _net = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private IBaseClient _client = default!;
+    [Dependency] private IClientNetManager _net = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
 
     private readonly Dictionary<string, int> _drip = new();
 

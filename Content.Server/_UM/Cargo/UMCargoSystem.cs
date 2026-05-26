@@ -23,16 +23,16 @@ namespace Content.Server._UM.Cargo;
 /// </summary>
 public sealed partial class UMCargoSystem : EntitySystem
 {
-    [Dependency] private readonly ShuttleSystem _shuttle = default!;
-    [Dependency] private readonly SharedStationSystem _station = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
-    [Dependency] private readonly CargoSystem _cargoSystem = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private ShuttleSystem _shuttle = default!;
+    [Dependency] private SharedStationSystem _station = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
+    [Dependency] private CargoSystem _cargoSystem = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private IGameTiming _timing = default!;
     // ReSharper disable once InconsistentNaming
-    [Dependency] private readonly UMShuttleSystem _UMShuttle = default!;
+    [Dependency] private UMShuttleSystem _UMShuttle = default!;
 
     private bool _lockboxCutEnabled;
 

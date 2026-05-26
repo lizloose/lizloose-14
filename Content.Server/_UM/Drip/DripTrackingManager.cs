@@ -13,13 +13,13 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._UM.Drip;
 
-public sealed class DripTrackingManager : ISharedDripTrackingManager, IPostInjectInit
+public sealed partial class DripTrackingManager : ISharedDripTrackingManager, IPostInjectInit
 {
-    [Dependency] private readonly UserDbDataManager _userDb = default!;
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly IServerNetManager _net = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ITaskManager _task = default!;
+    [Dependency] private UserDbDataManager _userDb = default!;
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private IServerNetManager _net = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ITaskManager _task = default!;
 
     private ISawmill _sawmill = default!;
 

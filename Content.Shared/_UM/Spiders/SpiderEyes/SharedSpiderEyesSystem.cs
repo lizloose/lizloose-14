@@ -5,9 +5,9 @@ namespace Content.Shared._UM.Spiders.SpiderEyes;
 /// <summary>
 /// This handles...
 /// </summary>
-public abstract class SharedSpiderEyesSystem : EntitySystem
+public abstract partial class SharedSpiderEyesSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

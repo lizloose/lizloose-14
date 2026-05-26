@@ -4,10 +4,10 @@ using Content.Shared.Popups;
 
 namespace Content.Shared._UM.Energy;
 
-public sealed class EnergyActionRequirementSystem : EntitySystem
+public sealed partial class EnergyActionRequirementSystem : EntitySystem
 {
-    [Dependency] private readonly EnergyContainerSystem _energyContainer = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private EnergyContainerSystem _energyContainer = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {

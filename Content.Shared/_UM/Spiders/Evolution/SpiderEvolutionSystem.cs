@@ -8,16 +8,16 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._UM.Spiders.Evolution;
 
-public sealed class SpiderEvolutionSystem : EntitySystem
+public sealed partial class SpiderEvolutionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly EnergyContainerSystem _energy = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private EnergyContainerSystem _energy = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
 
     private const string SpiderEvolveBuiXmlGeneratedName = "SpiderEvolutionBoundUserInterface";
     /// <inheritdoc/>

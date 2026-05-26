@@ -10,14 +10,14 @@ namespace Content.Shared._UM.Antag.DeployableAntag;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class DeployableAntagSystem : EntitySystem
+public sealed partial class DeployableAntagSystem : EntitySystem
 {
-    [Dependency] private readonly SpiderEvolutionSystem _evolution = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly GibbingSystem _gibbing = default!;
+    [Dependency] private SpiderEvolutionSystem _evolution = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private GibbingSystem _gibbing = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

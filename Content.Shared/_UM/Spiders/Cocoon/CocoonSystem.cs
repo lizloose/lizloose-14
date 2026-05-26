@@ -7,12 +7,12 @@ using Robust.Shared.Containers;
 
 namespace Content.Shared._UM.Spiders.Cocoon;
 
-public sealed class CocoonSystem : EntitySystem
+public sealed partial class CocoonSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedToolSystem _tools = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedToolSystem _tools = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

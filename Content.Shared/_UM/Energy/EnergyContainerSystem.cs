@@ -8,12 +8,12 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._UM.Energy;
 
-public sealed class EnergyContainerSystem : EntitySystem
+public sealed partial class EnergyContainerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

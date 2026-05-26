@@ -7,11 +7,11 @@ namespace Content.Shared._UM.Spiders.EggLayer;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class EggLayerSystem : EntitySystem
+public sealed partial class EggLayerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

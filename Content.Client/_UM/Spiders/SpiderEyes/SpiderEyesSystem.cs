@@ -7,9 +7,9 @@ namespace Content.Client._UM.Spiders.SpiderEyes;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class SpiderEyesSystem : SharedSpiderEyesSystem
+public sealed partial class SpiderEyesSystem : SharedSpiderEyesSystem
 {
-    [Dependency] private readonly PointLightSystem _pointLightSystem = default!;
+    [Dependency] private PointLightSystem _pointLightSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -9,9 +9,9 @@ namespace Content.Server._UM.Shuttle;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class UMShuttleSystem : EntitySystem
+public sealed partial class UMShuttleSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
 
     public void DumpChildren(EntityUid uid, ref FTLStartedEvent args)

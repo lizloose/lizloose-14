@@ -11,15 +11,15 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._UM.Spiders.Builder;
 
-public sealed class HiveBuilderSystem : EntitySystem
+public sealed partial class HiveBuilderSystem : EntitySystem
 {
-    [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly EnergyContainerSystem _energy = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private EnergyContainerSystem _energy = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private const string HiveBuilderBuiXmlGeneratedName = "HiveBuilderSelectTypeBoundUserInterface";
     public override void Initialize()
