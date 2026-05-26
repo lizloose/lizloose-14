@@ -39,7 +39,6 @@
         mask:
         - MobMask
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: Web
   - type: Destructible
     thresholds:
