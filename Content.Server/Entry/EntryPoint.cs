@@ -83,7 +83,7 @@ namespace Content.Server.Entry
         [Dependency] private ServerUpdateManager _updateManager = default!;
         [Dependency] private ServerFeedbackManager _feedbackManager = null!;
         //UM START
-        [Dependency] private readonly DripTrackingManager _dripTracking = default!;
+        [Dependency] private DripTrackingManager _dripTracking = default!;
         //UM END
 
         public override void PreInit()

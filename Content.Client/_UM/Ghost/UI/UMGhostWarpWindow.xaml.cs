@@ -12,7 +12,7 @@ namespace Content.Client._UM.Ghost.UI;
 [GenerateTypedNameReferences]
 public sealed partial class UMGhostWarpWindow : DefaultWindow
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private List<UMPlayerWarp> _playerWarps = new();
     private List<UMLocationWarp> _locationWarps = new();

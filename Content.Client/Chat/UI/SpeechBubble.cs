@@ -23,7 +23,7 @@ namespace Content.Client.Chat.UI
         [Dependency] protected IConfigurationManager ConfigManager = default!;
         private readonly SharedTransformSystem _transformSystem;
         //UM START
-        [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
+        [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
         private readonly ChatUIController _chatUIController;
         //UM END
         public enum SpeechType : byte

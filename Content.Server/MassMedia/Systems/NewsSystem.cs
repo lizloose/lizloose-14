@@ -50,7 +50,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
     [Dependency] private IBaseServer _baseServer = default!;
     [Dependency] private IdentitySystem _identity = default!;
     //UM START
-    [Dependency] private readonly SharedNewscasterSystem _newscasterSystem = default!;
+    [Dependency] private SharedNewscasterSystem _newscasterSystem = default!;
     //UM END
     private WebhookIdentifier? _webhookId = null;
     private Color _webhookEmbedColor;

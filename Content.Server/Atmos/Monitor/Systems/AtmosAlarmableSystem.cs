@@ -23,7 +23,7 @@ public sealed partial class AtmosAlarmableSystem : EntitySystem
     [Dependency] private DeviceNetworkSystem _deviceNet = default!;
     [Dependency] private AtmosDeviceNetworkSystem _atmosDevNetSystem = default!;
     //UM START
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
     //UM END
     /// <summary>
     ///     An alarm. Has three valid states: Normal, Warning, Danger.
