@@ -13,7 +13,6 @@ public sealed partial class StationAmbienceComponent : Component
 {
     [DataField(required: true), AutoNetworkedField]
     public List<ProtoId<StationAmbiencePrototype>> Ambience = new();
-
 }
 
 
