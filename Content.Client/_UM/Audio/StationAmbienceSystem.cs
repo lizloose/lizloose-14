@@ -16,7 +16,6 @@ namespace Content.Client._UM.Audio;
 public sealed class StationAmbienceSystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ContentAudioSystem _contentAudio = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
@@ -24,6 +23,8 @@ public sealed class StationAmbienceSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     [Dependency] private readonly SharedEntityConditionsSystem _conditions = default!;
+
+    private Dictionary<StationAmbiencePrototype, Entity<AudioComponent>?> _playingSounds = new();
 
     private Entity<AudioComponent>? _playingSound = null;
 
@@ -48,34 +49,45 @@ public sealed class StationAmbienceSystem : EntitySystem
 
         if (_station.GetOwningStation(xform.GridUid) is not { } station)
         {
-            _contentAudio.FadeOut(_playingSound, duration: 1f);
-            _playingSound = null;
+            foreach (var (proto, sound) in _playingSounds)
+            {
+                _audio.Stop(sound);
+                _playingSounds.Remove(proto);
+            }
             return;
         }
 
         if (!TryComp<StationAmbienceComponent>(station, out var comp))
             return;
 
-        if (_playingSound is not null && !Exists(_playingSound))
-            _playingSound = null;
+        //Check playing sounds
+        foreach (var (proto, sound) in _playingSounds)
+        {
+            if (!Exists(sound))
+            {
+                _playingSounds.Remove(proto);
+                continue;
+            }
 
+            if (!_conditions.TryConditions(player, proto.Conditions))
+            {
+                _contentAudio.FadeOut(sound);
+                _playingSounds.Remove(proto);
+            }
+        }
+
+        //Check rules for not playing sounds
         foreach (var sound in comp.Ambience)
         {
             if (!_prototypeManager.Resolve(sound, out var proto))
                 continue;
 
-            var passed = _conditions.TryConditions(player, proto.Conditions);
+            if (_playingSounds.ContainsKey(proto))
+                continue;
 
-            if (!passed && _playingSound != null)
+            if (_conditions.TryConditions(player, proto.Conditions))
             {
-                _contentAudio.FadeOut(_playingSound, duration:1f);
-                _playingSound = null;
-            }
-
-            if (passed && _playingSound == null)
-            {
-                _playingSound = _audio.PlayGlobal(proto.Sound, player);
-                _contentAudio.FadeIn(_playingSound, duration:1f);
+                _playingSounds[proto] = _audio.PlayGlobal(proto.Sound, player);
             }
         }
     }
