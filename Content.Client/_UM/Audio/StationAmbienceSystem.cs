@@ -21,8 +21,8 @@ public sealed class StationAmbienceSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedStationSystem _station = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-
     [Dependency] private readonly SharedEntityConditionsSystem _conditions = default!;
+
 
     private Dictionary<StationAmbiencePrototype, Entity<AudioComponent>?> _playingSounds = new();
 
@@ -42,7 +42,7 @@ public sealed class StationAmbienceSystem : EntitySystem
         {
             foreach (var (proto, sound) in _playingSounds)
             {
-                _audio.Stop(sound);
+                StopSound(sound, proto.FadeOut);
                 _playingSounds.Remove(proto);
             }
             return;
@@ -62,7 +62,7 @@ public sealed class StationAmbienceSystem : EntitySystem
 
             if (!_conditions.TryConditions(player, proto.Conditions))
             {
-                _contentAudio.FadeOut(sound);
+                StopSound(sound, proto.FadeOut);
                 _playingSounds.Remove(proto);
             }
         }
@@ -78,8 +78,19 @@ public sealed class StationAmbienceSystem : EntitySystem
 
             if (_conditions.TryConditions(player, proto.Conditions))
             {
-                _playingSounds[proto] = _audio.PlayGlobal(proto.Sound, player);
+                var stream = _audio.PlayGlobal(proto.Sound, player);
+                _playingSounds[proto] = stream;
             }
         }
+    }
+
+    private void StopSound(Entity<AudioComponent>? sound, bool fade)
+    {
+        if (fade)
+        {
+            _contentAudio.FadeOut(sound);
+            return;
+        }
+        _audio.Stop(sound);
     }
 }

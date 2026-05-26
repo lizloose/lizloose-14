@@ -26,4 +26,7 @@ public sealed partial class StationAmbiencePrototype : IPrototype
 
     [DataField]
     public EntityCondition[]? Conditions;
+
+    [DataField]
+    public bool FadeOut = true;
 }
