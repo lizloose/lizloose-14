@@ -12,7 +12,6 @@
   objective: roles-antag-spider-objective
 
 - type: antagSpecifier
-  abstract: true
   parent: RestrictedAntag
   id: Broodmother
   prefRoles:

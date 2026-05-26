@@ -38,6 +38,8 @@
         - MobLayer
         mask:
         - MobMask
+  - type: Injurable
+    damageContainer: Biological
   - type: Damageable
     damageModifierSet: Web
   - type: Destructible
@@ -108,6 +110,8 @@
     - state: eggs
   - type: Clickable
   - type: InteractionOutline
+  - type: Injurable
+    damageContainer: Biological
   - type: Damageable
     damageModifierSet: Web
   - type: Destructible
@@ -165,6 +169,8 @@
   - type: Physics
   - type: Damageable
     damageModifierSet: Wood
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Airtight
   - type: Temperature
   - type: TemperatureDamage
