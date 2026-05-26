@@ -3,7 +3,7 @@ using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._UM.Audio;
+namespace Content.Shared._UM.Audio.Conditions;
 
 public sealed partial class NearPowerEntityConditionSystem : EntityConditionSystem<TransformComponent, NearPowerCondition>
 {
@@ -21,6 +21,9 @@ public sealed partial class NearPowerEntityConditionSystem : EntityConditionSyst
             SharedApcPowerReceiverComponent? comp = null;
 
             if (!_power.ResolveApc(uid, ref comp))
+                continue;
+
+            if (TryComp<ApcPowerReceiverBatteryComponent>(uid, out var batteryComp) && batteryComp.Enabled) //Ignore if it's on battery power.
                 continue;
 
             if (comp.Powered)
