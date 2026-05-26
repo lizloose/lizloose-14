@@ -109,7 +109,6 @@
   - type: Clickable
   - type: InteractionOutline
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: Web
   - type: Destructible
     thresholds:
