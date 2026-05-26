@@ -5,6 +5,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._UM.Audio.Conditions;
 
+/// <summary>
+/// Returns true if this entity is nearby a powered device.
+/// </summary>
+/// <inheritdoc cref="EntityConditionSystem{T, TCondition}"/>
 public sealed partial class NearPowerEntityConditionSystem : EntityConditionSystem<TransformComponent, NearPowerCondition>
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;

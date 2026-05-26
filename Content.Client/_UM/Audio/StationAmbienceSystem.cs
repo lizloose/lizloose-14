@@ -26,15 +26,6 @@ public sealed class StationAmbienceSystem : EntitySystem
 
     private Dictionary<StationAmbiencePrototype, Entity<AudioComponent>?> _playingSounds = new();
 
-    private Entity<AudioComponent>? _playingSound = null;
-
-    /// <inheritdoc/>
-    public override void Initialize()
-    {
-        base.Initialize();
-
-    }
-
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
