@@ -1,12 +1,15 @@
-using Content.Client.Power.Components;
 using Content.Shared.EntityConditions;
+using Content.Shared.Power.Components;
+using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client.EntityConditions.Ambience;
+namespace Content.Shared._UM.Audio;
 
 public sealed partial class NearPowerEntityConditionSystem : EntityConditionSystem<TransformComponent, NearPowerCondition>
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
+
 
     protected override void Condition(Entity<TransformComponent> entity, ref EntityConditionEvent<NearPowerCondition> args)
     {
@@ -15,10 +18,12 @@ public sealed partial class NearPowerEntityConditionSystem : EntityConditionSyst
             if (uid == entity.Owner)
                 continue;
 
-            if (!TryComp<ApcPowerReceiverComponent>(uid, out var powerComp))
+            SharedApcPowerReceiverComponent? comp = null;
+
+            if (!_power.ResolveApc(uid, ref comp))
                 continue;
 
-            if (powerComp.Powered)
+            if (comp.Powered)
             {
                 args.Result = true;
                 return;
