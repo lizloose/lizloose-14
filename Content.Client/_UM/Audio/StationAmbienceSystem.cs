@@ -13,15 +13,15 @@ namespace Content.Client._UM.Audio;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class StationAmbienceSystem : EntitySystem
+public sealed partial class StationAmbienceSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly ContentAudioSystem _contentAudio = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedStationSystem _station = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedEntityConditionsSystem _conditions = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private ContentAudioSystem _contentAudio = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private SharedStationSystem _station = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedEntityConditionsSystem _conditions = default!;
 
 
     private Dictionary<StationAmbiencePrototype, Entity<AudioComponent>?> _playingSounds = new();
