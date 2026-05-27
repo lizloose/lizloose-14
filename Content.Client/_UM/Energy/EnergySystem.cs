@@ -4,9 +4,9 @@ using Content.Shared.Alert.Components;
 
 namespace Content.Client._UM.Energy;
 
-public sealed class EnergySystem : EntitySystem
+public sealed partial class EnergySystem : EntitySystem
 {
-    [Dependency] private readonly EnergyContainerSystem _energyContainer = default!;
+    [Dependency] private EnergyContainerSystem _energyContainer = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {

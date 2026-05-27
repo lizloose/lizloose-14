@@ -8,10 +8,10 @@ namespace Content.Client._UM.Spiders;
 
 
 [UsedImplicitly]
-public sealed class SpiderEvolutionBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
+public sealed partial class SpiderEvolutionBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     private SimpleRadialMenu? _menu;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     protected override void Open()
     {

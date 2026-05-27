@@ -38,8 +38,9 @@
         - MobLayer
         mask:
         - MobMask
-  - type: Damageable
+  - type: Injurable
     damageContainer: Biological
+  - type: Damageable
     damageModifierSet: Web
   - type: Destructible
     thresholds:
@@ -109,8 +110,9 @@
     - state: eggs
   - type: Clickable
   - type: InteractionOutline
-  - type: Damageable
+  - type: Injurable
     damageContainer: Biological
+  - type: Damageable
     damageModifierSet: Web
   - type: Destructible
     thresholds:
@@ -167,6 +169,8 @@
   - type: Physics
   - type: Damageable
     damageModifierSet: Wood
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Airtight
   - type: Temperature
   - type: TemperatureDamage

@@ -11,13 +11,13 @@ using Robust.Shared.Player;
 namespace Content.Server._UM.Drip;
 
 /// <inheritdoc/>
-public sealed class TrackedDripSystem : SharedTrackedDripSystem
+public sealed partial class TrackedDripSystem : SharedTrackedDripSystem
 {
-    [Dependency] private readonly EmergencyShuttleSystem _eShuttle = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly DripTrackingManager _dripTracking = default!;
+    [Dependency] private EmergencyShuttleSystem _eShuttle = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private DripTrackingManager _dripTracking = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

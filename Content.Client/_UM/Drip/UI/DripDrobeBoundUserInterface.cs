@@ -6,10 +6,10 @@ using Robust.Client.UserInterface;
 namespace Content.Client._UM.Drip.UI
 {
     [UsedImplicitly]
-    public sealed class DripDrobeBoundUserInterface : BoundUserInterface
+    public sealed partial class DripDrobeBoundUserInterface : BoundUserInterface
     {
-        [Dependency] private readonly DripTrackingManager _dripTrackingManager = default!;
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
+        [Dependency] private DripTrackingManager _dripTrackingManager = default!;
+        [Dependency] private IPlayerManager _playerManager = default!;
 
 
         private DripDrobeWindow? _window;

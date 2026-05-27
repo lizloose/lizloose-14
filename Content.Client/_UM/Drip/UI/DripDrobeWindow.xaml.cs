@@ -10,8 +10,8 @@ namespace Content.Client._UM.Drip.UI;
 [GenerateTypedNameReferences]
 public sealed partial class DripDrobeWindow : FancyWindow
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public event Action<BaseButton.ButtonEventArgs, string>? OnItemSelected;
 
