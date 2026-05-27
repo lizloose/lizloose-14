@@ -23,16 +23,6 @@
   - UMBasicStationEventScheduler
   - BasicRoundstartVariation
 
-- type: gamePreset
-  id: UMBroodmotherSwarm
-  name: broodmother-swarm-title
-  description: broodmother-swarm-description
-  showInVote: true
-  rules:
-  - UMBroodmotherSwarm
-  - UMBasicStationEventScheduler
-  - BasicRoundstartVariation
-
 # no antags just lowpop
 - type: gamePreset
   id: UMLowPop

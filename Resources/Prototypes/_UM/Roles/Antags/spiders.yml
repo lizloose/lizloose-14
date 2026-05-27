@@ -15,7 +15,7 @@
   parent: RestrictedAntag
   id: Broodmother
   prefRoles:
-  - GenericTeamAntagonist # For antag ban purposes
+  - GenericTeamAntagonist
   - Broodmother
   briefing:
     text: broodmother-role-greeting

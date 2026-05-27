@@ -45,24 +45,6 @@
         max: 8
 
 - type: entity
-  id: UMBroodmotherSwarm
-  parent: BaseGameRule
-  components:
-  - type: GameRule
-    minPlayers: 20
-    delay:
-      min: 600
-      max: 960
-  - type: AntagSelection
-    lateJoinAdditional: false
-    antags:
-    - !type:LinearAntagCount
-      proto: Broodmother
-      range:
-        min: 1
-        max: 4
-
-- type: entity
   id: UMBasicStationEventScheduler
   parent: BaseGameRule
   components:
