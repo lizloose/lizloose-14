@@ -1,15 +1,4 @@
 - type: gamePreset
-  id: UMSecret
-  alias:
-  - secret
-  - sekrit
-  name: secret-title
-  showInVote: true
-  description: secret-description
-  rules:
-  - Secret
-
-- type: gamePreset
   id: UMTraitor
   alias:
   - traitor
@@ -18,7 +7,7 @@
   description: traitor-description
   showInVote: true
   rules:
-  - UMTraitor
+  - Traitor
   - UMSubGamemodesRule
   - UMBasicStationEventScheduler
   - BasicRoundstartVariation
@@ -34,3 +23,4 @@
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
+

@@ -10,39 +10,6 @@
       prob: 0.5
 
 - type: entity
-  abstract: true
-  parent: BaseGameRule
-  id: UMBaseTraitorRule
-  components:
-  - type: TraitorRule
-  - type: AntagRandomObjectives
-    sets:
-    - groups: TraitorObjectiveGroups
-    maxDifficulty: 5
-  - type: AntagSelection
-    agentName: traitor-round-end-agent-name
-  - type: DynamicRuleCost
-    cost: 100
-
-- type: entity
-  parent: UMBaseTraitorRule
-  id: UMTraitor
-  components:
-  - type: GameRule
-    minPlayers: 5
-    #delay:
-    #  min: 240
-    #  max: 420
-  - type: AntagSelection
-    lateJoinAdditional: true
-    antags:
-    - !type:LinearAntagCount
-      proto: UMTraitor
-      range:
-        min: 1
-        max: 8
-
-- type: entity
   id: UMBasicStationEventScheduler
   parent: BaseGameRule
   components:
@@ -61,3 +28,4 @@
       tableId: CargoGiftsTable
     - !type:NestedSelector
       tableId: CalmPestEventsTable
+
