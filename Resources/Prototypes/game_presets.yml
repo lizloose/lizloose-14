@@ -143,13 +143,17 @@
   description: traitor-description
   showInVote: false
   rules:
-  - DummyNonAntagChance
   - Traitor
-  - SubGamemodesRuleNoWizard
-  - BasicStationEventScheduler
-  - MeteorSwarmScheduler
-  - SpaceTrafficControlEventScheduler
+  - UMSubGamemodesRule
+  - UMBasicStationEventScheduler
   - BasicRoundstartVariation
+#  - DummyNonAntagChance
+#  - Traitor
+#  - SubGamemodesRuleNoWizard
+#  - BasicStationEventScheduler
+#  - MeteorSwarmScheduler
+#  - SpaceTrafficControlEventScheduler
+#  - BasicRoundstartVariation
 
 - type: gamePreset
   id: Deathmatch
