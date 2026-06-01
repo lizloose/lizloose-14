@@ -5,9 +5,9 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 1.0
-    - id: UMSubBroodmotherInfection
-      prob: 0.5
+      prob: 0.75
+    - id: SubWizard
+      prob: 0.01
 
 - type: entity
   id: UMBasicStationEventScheduler
