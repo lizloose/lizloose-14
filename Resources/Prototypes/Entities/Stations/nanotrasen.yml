@@ -6,7 +6,7 @@
       factions:
         - NanoTrasen
     - type: StationJobArrivals
-    - type: StationAmbience
+    - type: UMStationAmbience
       ambience:
       - DefaultDrone
 

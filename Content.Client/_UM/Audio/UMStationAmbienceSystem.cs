@@ -13,7 +13,7 @@ namespace Content.Client._UM.Audio;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed partial class StationAmbienceSystem : EntitySystem
+public sealed partial class UMStationAmbienceSystem : EntitySystem
 {
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
@@ -22,7 +22,6 @@ public sealed partial class StationAmbienceSystem : EntitySystem
     [Dependency] private SharedStationSystem _station = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private SharedEntityConditionsSystem _conditions = default!;
-
 
     private Dictionary<StationAmbiencePrototype, Entity<AudioComponent>?> _playingSounds = new();
 
@@ -48,7 +47,7 @@ public sealed partial class StationAmbienceSystem : EntitySystem
             return;
         }
 
-        if (!TryComp<StationAmbienceComponent>(station, out var comp))
+        if (!TryComp<UMStationAmbienceComponent>(station, out var comp))
             return;
 
         //Check playing sounds

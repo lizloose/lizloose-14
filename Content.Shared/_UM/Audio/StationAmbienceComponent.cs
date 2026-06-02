@@ -9,7 +9,7 @@ namespace Content.Shared._UM.Audio;
 /// This is used for...
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class StationAmbienceComponent : Component
+public sealed partial class UMStationAmbienceComponent : Component
 {
     [DataField(required: true), AutoNetworkedField]
     public List<ProtoId<StationAmbiencePrototype>> Ambience = new();
