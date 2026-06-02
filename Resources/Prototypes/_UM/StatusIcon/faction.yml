@@ -6,5 +6,5 @@
     - ShowAntagIcons
     - UMInitialBroodmother
   icon:
-    sprite: /Textures/Interface/Misc/job_icons.rsi
-    state: Pirate
+    sprite: /Textures/_UM/Interface/Misc/job_icons.rsi
+    state: Spider
