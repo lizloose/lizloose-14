@@ -57,6 +57,7 @@ public sealed partial class WelderBombObjectiveSystem : EntitySystem
             }
         }
 
+        //TODO Make this a generic location objective system
         if (ent.Comp.NoLocation)
         {
             ent.Comp.Target = null;
