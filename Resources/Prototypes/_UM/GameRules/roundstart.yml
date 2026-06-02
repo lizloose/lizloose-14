@@ -6,8 +6,8 @@
     rules:
     - id: Thief
       prob: 0.75
-    - id: Victim
-      prob: 0.5
+    - id: UMVictim
+      prob: 0.6
     - id: SubWizard
       prob: 0.01
 
@@ -30,39 +30,3 @@
       tableId: CargoGiftsTable
     - !type:NestedSelector
       tableId: CalmPestEventsTable
-
-- type: entity
-  id: Victim
-  parent: BaseGameRule
-  components:
-  - type: GameRule
-    minPlayers: 25
-  - type: AntagSelection
-    agentName: victim-round-end-agent-name
-    selectionTime: IntraPlayerSpawn
-    definitions:
-    - prefRoles: [ Victim ]
-      max: 3
-      playerRatio: 15
-      briefing:
-        text: victim-role-greeting
-        color: Red
-      components:
-      - type: Victim
-      mindRoles:
-      - MindRoleVictim
-  - type: AntagRandomObjectives
-    sets:
-    - groups: VictimObjectiveGroup
-      maxPicks: 2
-    maxDifficulty: 5
-
-- type: entity
-  parent: BaseMindRoleAntag
-  id: MindRoleVictim
-  name: Victim Role
-  components:
-  - type: MindRole
-    antagPrototype: Victim
-    subtype: role-subtype-victim
-  - type: VictimRole

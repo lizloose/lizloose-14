@@ -15,3 +15,22 @@
       range:
         min: 1
         max: 3
+
+- type: entity
+  id: UMVictim
+  parent: [BaseGameRule, BaseRoundstartAntagRule]
+  components:
+  - type: GameRule
+  - type: AntagSelection
+    lateJoinAdditional: true
+    antags:
+    - !type:LinearAntagCount
+      proto: UMVictim
+      range:
+        min: 1
+        max: 2
+  - type: AntagRandomObjectives
+    sets:
+    - groups: VictimObjectiveGroup
+      maxPicks: 2
+    maxDifficulty: 5

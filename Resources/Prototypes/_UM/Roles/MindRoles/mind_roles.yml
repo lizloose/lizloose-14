@@ -35,3 +35,13 @@
     exclusiveAntag: true
   - type: RoleBriefing
     briefing: roles-antag-spider-objective
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: UMMindRoleVictim
+  name: Victim Role
+  components:
+  - type: MindRole
+    antagPrototype: Victim
+    subtype: role-subtype-victim
+  - type: VictimRole
