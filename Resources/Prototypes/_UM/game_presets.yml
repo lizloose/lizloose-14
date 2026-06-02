@@ -1,4 +1,18 @@
 - type: gamePreset
+  id: Broodmother
+  alias:
+  - brood
+  - spiders
+  name: broodmother-title
+  description: broodmother-description
+  showInVote: true
+  rules:
+  - UMBroodmotherInfection
+  - UMSubGamemodesRule
+  - UMBasicStationEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
   id: TraitorBrood
   name: traitor-title
   description: traitor-description

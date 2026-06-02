@@ -63,5 +63,7 @@ roles-antag-spider-objective =
 broodmother-swarm-title = Broodmother Swarm
 broodmother-swarm-description = I'm tired of these motherfucking spiders
 
-
 broodmother-round-end-agent-name = broodmother
+
+broodmother-title = Broodmother
+broodmother-description = They have a lot of legs
