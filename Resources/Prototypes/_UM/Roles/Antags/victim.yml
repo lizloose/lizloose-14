@@ -1,0 +1,19 @@
+- type: antag
+  id: UMVictim
+  name: roles-antag-victim-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-victim-objective
+
+- type: antagSpecifier
+  id: UMVictim
+  parent: CyborgBlacklistedAntag
+  prefRoles:
+  - UMVictim
+  components:
+  - type: Victim
+  mindRoles:
+  - UMMindRoleVictim
+  briefing:
+    text: victim-role-greeting
+    color: Red

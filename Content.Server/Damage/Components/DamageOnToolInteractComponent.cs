@@ -17,3 +17,11 @@ public sealed partial class DamageOnToolInteractComponent : Component
     [DataField]
     public DamageSpecifier? DefaultDamage { get; private set; }
 }
+
+//UM
+/// <summary>
+/// Event raised on someone who did a welder bomb
+/// </summary>
+[ByRefEvent]
+public readonly record struct WelderBombEvent(EntityUid Tank);
+//END UM

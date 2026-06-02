@@ -1,0 +1,25 @@
+- type: alert
+  id: VictimAlert
+  icons:
+  - sprite: Objects/Weapons/Bombs/c4.rsi
+    state: icon
+  alertViewEntity: VictimAlertSpriteView
+  name: victim-timer-name
+  description: victim-timer-description
+
+- type: entity
+  id: VictimAlertSpriteView
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GenericCounterAlert
+    centerGlyph: true
+    hideLeadingZeroes: true
+  - type: Sprite
+    sprite: /Textures/Interface/Alerts/essence_counter.rsi
+    layers:
+    - map: [ "enum.AlertVisualLayers.Base" ]
+    - map: [ "1" ]
+      offset: 0.25, 0
+    - map: [ "10" ]
+      offset: 0.125, 0
+    - map: [ "100" ]

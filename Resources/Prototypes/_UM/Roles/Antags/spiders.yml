@@ -13,10 +13,11 @@
 
 - type: antagSpecifier
   id: Broodmother
-  parent: RestrictedAntag
+  parent: [ MindshieldRestrictedAntag, InternBlacklistedAntag ]
   prefRoles:
   - Broodmother
   - GenericTeamAntagonist # for role ban
+  allowNonHumans: true
   components:
   - type: DeployableAntag
     protoId: MobBroodmother

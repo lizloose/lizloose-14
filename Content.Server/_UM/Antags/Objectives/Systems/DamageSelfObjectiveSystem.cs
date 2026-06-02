@@ -1,0 +1,69 @@
+using Content.Server._UM.Antags.Objectives.Components;
+using Content.Server.Objectives.Systems;
+using Content.Shared._UM.Antags.Victim.Components;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Mind;
+using Content.Shared.Objectives.Components;
+using Content.Shared.Roles;
+using Robust.Shared.Random;
+
+namespace Content.Server._UM.Antags.Objectives.Systems;
+
+/// <inheritdoc/>
+public sealed partial class DamageSelfObjectiveSystem : EntitySystem
+{
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private CodeConditionSystem _codeCondition = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+
+    /// <inheritdoc/>
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<VictimComponent, DamageDealtEvent>(OnDamageDealt);
+        SubscribeLocalEvent<DamageSelfObjectiveComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<DamageSelfObjectiveComponent, ObjectiveGetProgressEvent>(OnGetProgress);
+        SubscribeLocalEvent<DamageSelfObjectiveComponent, ObjectiveAfterAssignEvent>(OnAfterAssign);
+    }
+
+    private void OnMapInit(Entity<DamageSelfObjectiveComponent> ent, ref MapInitEvent args)
+    {
+        ent.Comp.Damage = _random.Next(ent.Comp.MinDamage, ent.Comp.MaxDamage);
+    }
+
+    private void OnGetProgress(Entity<DamageSelfObjectiveComponent> ent, ref ObjectiveGetProgressEvent args)
+    {
+        if (ent.Comp.DamageDealt > ent.Comp.Damage)
+            args.Progress = 1f;
+        else
+            args.Progress = (ent.Comp.DamageDealt / ent.Comp.Damage).Float();
+    }
+
+    private void OnAfterAssign(Entity<DamageSelfObjectiveComponent> ent, ref ObjectiveAfterAssignEvent args)
+    {
+        var title = Loc.GetString("objective-condition-deal-damage-to-self-title", ("amount", ent.Comp.Damage));
+        _metaData.SetEntityName(ent, title, args.Meta);
+    }
+
+    private void OnDamageDealt(Entity<VictimComponent> ent, ref DamageDealtEvent args)
+    {
+        if (!args.Damage.AnyPositive() || ent.Owner != args.Origin)
+            return;
+
+        if (!_mind.TryGetMind(ent, out var mind, out _))
+            return;
+
+        if (!_roles.MindHasRole<VictimRoleComponent>(mind))
+            return;
+
+        if (!_mind.TryGetObjectiveComp<DamageSelfObjectiveComponent>(ent, out var obj))
+            return;
+
+        obj.DamageDealt += args.Damage.GetTotal();
+
+        if (obj.DamageDealt > obj.Damage)
+            _codeCondition.SetCompleted(ent.Owner, "DamageSelfObjective");
+    }
+}
