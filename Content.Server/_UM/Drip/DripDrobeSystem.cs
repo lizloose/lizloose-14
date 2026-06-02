@@ -8,12 +8,12 @@ namespace Content.Server._UM.Drip;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class DripDrobeSystem : EntitySystem
+public sealed partial class DripDrobeSystem : EntitySystem
 {
-    [Dependency] private readonly DripTrackingManager _dripTracking = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private DripTrackingManager _dripTracking = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {

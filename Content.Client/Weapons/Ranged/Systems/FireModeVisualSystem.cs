@@ -13,9 +13,9 @@ using Robust.Client.GameObjects;
 namespace Content.Client.Weapons.Ranged.Systems;
 
 /// <inheritdoc/>
-public sealed class BatteryWeaponFireModesVisuals : EntitySystem
+public sealed partial class BatteryWeaponFireModesVisuals : EntitySystem
 {
-    [Dependency] private readonly SharedItemSystem _item = default!;
+    [Dependency] private SharedItemSystem _item = default!;
 
     public override void Initialize()
     {

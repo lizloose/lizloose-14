@@ -12,15 +12,15 @@ namespace Content.Shared._UM.Spiders.SpiderMender;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class SpiderMenderSystem : EntitySystem
+public sealed partial class SpiderMenderSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly EnergyContainerSystem _energy = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private DamageableSystem _damage = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private EnergyContainerSystem _energy = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

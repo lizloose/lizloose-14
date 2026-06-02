@@ -307,16 +307,9 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 6
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      melee:
-        maxVol: 30
-  - type: SolutionRegeneration
-    solution: melee
-    generated:
-      reagents:
-      - ReagentId: ChloralHydrate
-        Quantity: 4
+    - SolutionSleepyViper
   - type: MeleeChemicalInjector
     transferAmount: 4
     solution: melee
@@ -355,6 +348,23 @@
   - type: EnergyContainer
     types:
     - ViperEnergy
+
+- type: entity
+  parent: [SolutionWeapon, SolutionNormal]
+  id: SolutionSleepyViper
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 50
+      reagents:
+      - ReagentId: ChloralHydrate
+        Quantity: 30
+  - type: SolutionRegeneration
+    generated:
+      reagents:
+      - ReagentId: ChloralHydrate
+        Quantity: 4
 
 - type: entity
   name: nurse

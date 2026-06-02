@@ -11,8 +11,8 @@ namespace Content.Client._UM.Ghost.UI;
 [GenerateTypedNameReferences]
 public sealed partial class UMPlayerButton : Button
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
     private readonly SpriteSystem _sprite;
     public int Weight = 0;
 

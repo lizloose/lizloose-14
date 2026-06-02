@@ -11,12 +11,12 @@ namespace Content.Shared._UM.News;
 /// <summary>
 /// This handles news reading machines, such as the newscaster
 /// </summary>
-public abstract class SharedNewscasterSystem : EntitySystem
+public abstract partial class SharedNewscasterSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStationSystem _station = default!;
-    [Dependency] protected readonly SharedUserInterfaceSystem UserInterfaceSystem = default!;
-    [Dependency] private readonly SharedChatSystem _chat = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!;
+    [Dependency] private SharedStationSystem _station = default!;
+    [Dependency] protected SharedUserInterfaceSystem UserInterfaceSystem = default!;
+    [Dependency] private SharedChatSystem _chat = default!;
+    [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

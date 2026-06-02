@@ -15,8 +15,8 @@ namespace Content.Shared.Body;
 
 public abstract partial class SharedVisualBodySystem
 {
-    [Dependency] private readonly ISharedAdminManager _admin = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!;
+    [Dependency] private ISharedAdminManager _admin = default!;
+    [Dependency] private SharedUserInterfaceSystem _userInterface = default!;
 
     private void InitializeModifiers()
     {
@@ -58,18 +58,6 @@ public abstract partial class SharedVisualBodySystem
     {
         if (!Resolve(source, ref source.Comp) || !Resolve(target, ref target.Comp))
             return;
-        //UM START
-        if (TryComp<HumanoidProfileComponent>(source, out var humanoidProfile))
-        {
-            var profile = new HumanoidCharacterProfile()
-                .WithSex(humanoidProfile.Sex)
-                .WithGender(humanoidProfile.Gender)
-                .WithAge(humanoidProfile.Age)
-                .WithSpecies(humanoidProfile.Species);
-
-            _humanoidProfile.ApplyProfileTo(target.Owner, profile);
-        }
-        //UM END
         var sourceOrgans = _container.EnsureContainer<Container>(source, BodyComponent.ContainerID);
 
         foreach (var sourceOrgan in sourceOrgans.ContainedEntities)

@@ -11,8 +11,8 @@ namespace Content.Client._UM.Cargo.UI;
 [GenerateTypedNameReferences]
 public sealed partial class UMCargoShuttleWindow : DefaultWindow
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     public event Action? OnSendButton;
 

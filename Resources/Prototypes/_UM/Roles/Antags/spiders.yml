@@ -10,3 +10,18 @@
   name: roles-antag-spider-name
   antagonist: true
   objective: roles-antag-spider-objective
+
+- type: antagSpecifier
+  id: Broodmother
+  parent: RestrictedAntag
+  prefRoles:
+  - Broodmother
+  - GenericTeamAntagonist # for role ban
+  components:
+  - type: DeployableAntag
+    protoId: MobBroodmother
+  mindRoles:
+  - MindRoleBroodmother
+  briefing:
+    text: broodmother-role-greeting
+    color: Red

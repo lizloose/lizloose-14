@@ -3,10 +3,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._UM.Drip;
 
-public sealed class DripTrackingSystem : EntitySystem
+public sealed partial class DripTrackingSystem : EntitySystem
 {
-    [Dependency] private readonly DripTrackingManager _tracking = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private DripTrackingManager _tracking = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
     public override void Initialize()
     {

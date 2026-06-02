@@ -7,13 +7,13 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._UM.Spiders.ToggleAbility;
 
-public sealed class SpiderToggleActionSystem : EntitySystem
+public sealed partial class SpiderToggleActionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly EnergyContainerSystem _energy = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private ItemToggleSystem _toggle = default!;
+    [Dependency] private EnergyContainerSystem _energy = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private INetManager _net = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
