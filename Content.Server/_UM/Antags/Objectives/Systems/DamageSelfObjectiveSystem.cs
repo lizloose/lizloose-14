@@ -10,13 +10,13 @@ using Robust.Shared.Random;
 namespace Content.Server._UM.Antags.Objectives.Systems;
 
 /// <inheritdoc/>
-public sealed class DamageSelfObjectiveSystem : EntitySystem
+public sealed partial class DamageSelfObjectiveSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly CodeConditionSystem _codeCondition = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private CodeConditionSystem _codeCondition = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

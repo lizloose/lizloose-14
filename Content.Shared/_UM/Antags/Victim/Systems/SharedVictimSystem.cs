@@ -8,8 +8,7 @@ namespace Content.Shared._UM.Antags.Victim.Systems;
 /// </summary>
 public abstract partial class SharedVictimSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-
+    [Dependency] private IGameTiming _gameTiming = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

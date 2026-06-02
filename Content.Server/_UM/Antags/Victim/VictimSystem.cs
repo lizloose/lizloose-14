@@ -8,12 +8,12 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._UM.Antags.Victim;
 
-public sealed class VictimSystem : SharedVictimSystem
+public sealed partial class VictimSystem : SharedVictimSystem
 {
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedExplosionSystem _explosionSystem = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedExplosionSystem _explosionSystem = default!;
 
     public override void Initialize()
     {

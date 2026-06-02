@@ -6,9 +6,9 @@ using Robust.Shared.Timing;
 namespace Content.Client._UM.Antags.Victim;
 
 /// <inheritdoc/>
-public sealed class VictimSystem : SharedVictimSystem
+public sealed partial class VictimSystem : SharedVictimSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
