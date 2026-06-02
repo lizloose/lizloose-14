@@ -22,7 +22,7 @@ public sealed partial class DamageSelfObjectiveSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<VictimComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<VictimComponent, DamageDealtEvent>(OnDamageDealt);
         SubscribeLocalEvent<DamageSelfObjectiveComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<DamageSelfObjectiveComponent, ObjectiveGetProgressEvent>(OnGetProgress);
         SubscribeLocalEvent<DamageSelfObjectiveComponent, ObjectiveAfterAssignEvent>(OnAfterAssign);
@@ -47,12 +47,9 @@ public sealed partial class DamageSelfObjectiveSystem : EntitySystem
         _metaData.SetEntityName(ent, title, args.Meta);
     }
 
-    private void OnDamageChanged(Entity<VictimComponent> ent, ref DamageChangedEvent args)
+    private void OnDamageDealt(Entity<VictimComponent> ent, ref DamageDealtEvent args)
     {
-        if (!args.DamageIncreased || ent.Owner != args.Origin)
-            return;
-
-        if (args.DamageDelta == null)
+        if (!args.Damage.AnyPositive() || ent.Owner != args.Origin)
             return;
 
         if (!_mind.TryGetMind(ent, out var mind, out _))
@@ -64,7 +61,7 @@ public sealed partial class DamageSelfObjectiveSystem : EntitySystem
         if (!_mind.TryGetObjectiveComp<DamageSelfObjectiveComponent>(ent, out var obj))
             return;
 
-        obj.DamageDealt += args.DamageDelta.GetTotal();
+        obj.DamageDealt += args.Damage.GetTotal();
 
         if (obj.DamageDealt > obj.Damage)
             _codeCondition.SetCompleted(ent.Owner, "DamageSelfObjective");
