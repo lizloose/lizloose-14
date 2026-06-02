@@ -6,8 +6,6 @@
     rules:
     - id: Thief
       prob: 0.75
-    - id: UMVictim
-      prob: 0.6
     - id: SubWizard
       prob: 0.01
 
