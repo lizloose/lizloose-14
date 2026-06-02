@@ -37,6 +37,10 @@ namespace Content.Server.Damage.Systems
             {
                 if (_damageableSystem.TryChangeDamage(args.Target, weldingDamage, out var dmg, origin: args.User))
                 {
+                    //UM EDIT
+                    var ev = new WelderBombEvent(args.Target);
+                    RaiseLocalEvent(args.User, ref ev);
+                    //END UM EDIT
                     _adminLogger.Add(LogType.Damaged,
                         $"{ToPrettyString(args.User):user} used {ToPrettyString(args.Used):used} as a welder to deal {dmg.GetTotal():damage} damage to {ToPrettyString(args.Target):target}");
                 }
@@ -48,6 +52,10 @@ namespace Content.Server.Damage.Systems
             {
                 if (_damageableSystem.TryChangeDamage(args.Target, damage, out var dmg, origin: args.User))
                 {
+                    //UM EDIT
+                    var ev = new WelderBombEvent(args.Target);
+                    RaiseLocalEvent(args.User, ref ev);
+                    //END UM EDIT
                     _adminLogger.Add(LogType.Damaged,
                         $"{ToPrettyString(args.User):user} used {ToPrettyString(args.Used):used} as a tool to deal {dmg.GetTotal():damage} damage to {ToPrettyString(args.Target):target}");
                 }

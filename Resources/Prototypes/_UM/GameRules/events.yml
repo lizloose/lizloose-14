@@ -39,7 +39,6 @@
     - id: IonStorm
     - id: KudzuGrowth
     - id: MassHallucinations
-    - id: MimicVendorRule
     - id: MouseMigration
     - id: PowerGridCheck
     - id: RandomSentience

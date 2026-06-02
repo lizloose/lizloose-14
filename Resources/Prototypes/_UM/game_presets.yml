@@ -1,24 +1,25 @@
 - type: gamePreset
-  id: UMSecret
+  id: Broodmother
   alias:
-  - secret
-  - sekrit
-  name: secret-title
+  - brood
+  - spiders
+  name: broodmother-title
+  description: broodmother-description
   showInVote: true
-  description: secret-description
   rules:
-  - Secret
+  - UMBroodmotherInfection
+  - UMSubGamemodesRule
+  - UMBasicStationEventScheduler
+  - BasicRoundstartVariation
 
 - type: gamePreset
-  id: UMTraitor
-  alias:
-  - traitor
-  - tator
+  id: TraitorBrood
   name: traitor-title
   description: traitor-description
-  showInVote: true
+  showInVote: false
   rules:
-  - UMTraitor
+  - UMBroodmotherInfection
+  - Traitor
   - UMSubGamemodesRule
   - UMBasicStationEventScheduler
   - BasicRoundstartVariation
