@@ -42,6 +42,6 @@
   name: Victim Role
   components:
   - type: MindRole
-    antagPrototype: Victim
+    antagPrototype: UMVictim
     subtype: role-subtype-victim
   - type: VictimRole
