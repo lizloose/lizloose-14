@@ -33,7 +33,7 @@ public sealed partial class AdminVerbSystem
 //    private static readonly EntProtoId ParadoxCloneRuleId = "ParadoxCloneSpawn";
     private static readonly EntProtoId DefaultWizardRule = "Wizard";
     private static readonly EntProtoId DefaultNinjaRule = "NinjaSpawn";
-    private static readonly EntProtoId DefaultVictimRule = "Victim";
+    private static readonly EntProtoId DefaultVictimRule = "UMVictim";
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
 
     // All antag verbs have names so invokeverb works.
