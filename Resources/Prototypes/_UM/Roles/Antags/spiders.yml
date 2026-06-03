@@ -21,8 +21,10 @@
   components:
   - type: DeployableAntag
     protoId: MobBroodmother
+  - type: UMInitialBroodmother
   mindRoles:
   - MindRoleBroodmother
   briefing:
     text: broodmother-role-greeting
     color: Red
+    sound: /Audio/Ambience/Antag/changeling_start.ogg

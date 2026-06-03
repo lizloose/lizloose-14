@@ -1,0 +1,10 @@
+- type: factionIcon
+  id: UMInitialBroodmotherFaction
+  priority: 11
+  showTo:
+    components:
+    - ShowAntagIcons
+    - UMInitialBroodmother
+  icon:
+    sprite: /Textures/_UM/Interface/Misc/job_icons.rsi
+    state: Spider
