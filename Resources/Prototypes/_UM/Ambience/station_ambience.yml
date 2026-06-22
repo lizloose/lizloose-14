@@ -8,3 +8,4 @@
   conditions:
   - !type:NearPowerCondition
     range: 10
+  - !type:IsPressurizedEntityCondition

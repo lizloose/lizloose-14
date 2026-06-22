@@ -6,7 +6,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._UM.Audio;
 
 /// <summary>
-/// This is used for...
+/// This is used for ambient sounds that are only audible while on the station grid
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class UMStationAmbienceComponent : Component

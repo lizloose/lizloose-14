@@ -11,8 +11,8 @@ namespace Content.Shared._UM.Audio.Conditions;
 /// <inheritdoc cref="EntityConditionSystem{T, TCondition}"/>
 public sealed partial class NearPowerEntityConditionSystem : EntityConditionSystem<TransformComponent, NearPowerCondition>
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedPowerReceiverSystem _power = default!;
 
 
     protected override void Condition(Entity<TransformComponent> entity, ref EntityConditionEvent<NearPowerCondition> args)
