@@ -15,11 +15,11 @@ public sealed partial class UMStationAmbienceComponent : Component
     public List<ProtoId<StationAmbiencePrototype>> Ambience = new();
 }
 
-
 [Prototype]
 public sealed partial class StationAmbiencePrototype : IPrototype
 {
-    [IdDataField] public string ID { get; private set; } = string.Empty;
+    [IdDataField]
+    public string ID { get; private set; } = default!;
 
     [ViewVariables(VVAccess.ReadWrite), DataField(required: true)]
     public SoundSpecifier Sound = default!;
