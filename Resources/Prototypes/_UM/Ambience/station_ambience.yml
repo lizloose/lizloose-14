@@ -3,7 +3,7 @@
   sound: !type:SoundPathSpecifier
     params:
       loop: true
-      volume: -2
+      volume: -4
     path: /Audio/Ambience/shipambience.ogg
   conditions:
   - !type:NearPowerCondition
