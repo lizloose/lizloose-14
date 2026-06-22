@@ -378,7 +378,7 @@ namespace Content.Client.Chat.UI
                 12,
                 font: "MinecraftItalic",
                 true,
-                fontColor: fontColor,
+                fontColor: new Color(180, 188, 188),
                 thicknessOverride: 2,
                 contentTag: "BubbleContent");
 
