@@ -1,0 +1,11 @@
+- type: stationAmbience
+  id: DefaultDrone
+  sound: !type:SoundPathSpecifier
+    params:
+      loop: true
+      volume: -4
+    path: /Audio/Ambience/shipambience.ogg
+  conditions:
+  - !type:NearPowerCondition
+    range: 10
+  - !type:IsPressurizedEntityCondition
